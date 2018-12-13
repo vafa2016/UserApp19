@@ -2561,17 +2561,17 @@ export class InnermatchcenterPage {
                 let options = {
                     canvas: false,
                     series: {
-                        lines: { show: true, fill: true, fillColor: 'rgba(255,187,42, 0.2)', lineWidth: 4 }
+                        lines: { show: true, fill: false, lineWidth: 2 }
                     },
                     grid: {
                         color: 'transparent',
 
                         markings: [
 
-                            { xaxis: { from: 0, to: timeDuration * 60 }, color: 'rgba(39, 54, 86, 1)' },
-                            { xaxis: { from: timeDuration * 60, to: timeDuration * 2 * 60 }, color: 'rgba(25, 39, 67, 1)' },
-                            { xaxis: { from: timeDuration * 2 * 60, to: timeDuration * 3 * 60 }, color: 'rgba(39, 54, 86, 1)' },
-                            { xaxis: { from: timeDuration * 3 * 60, to: timeDuration * 4 * 60 }, color: 'rgba(25, 39, 67, 1)' }
+                            { xaxis: { from: 0, to: timeDuration * 60 }, color: 'rgba(255, 255, 255, 1)' },
+                            { xaxis: { from: timeDuration * 60, to: timeDuration * 2 * 60 }, color: 'rgba(255, 255, 255, 1)' },
+                            { xaxis: { from: timeDuration * 2 * 60, to: timeDuration * 3 * 60 }, color: 'rgba(255, 255, 255, 1)' },
+                            { xaxis: { from: timeDuration * 3 * 60, to: timeDuration * 4 * 60 }, color: 'rgba(255, 255, 255, 1)' }
                         ]
 
                     },
@@ -2581,7 +2581,7 @@ export class InnermatchcenterPage {
                         ticks: ticks1, min: 0, max: 24 * 4 * 60, color: "rgb(111,124,148)",
                         font: { color: 'rgb(121,133,155)', family: 'Gotham-Bold', size: 11 }
                     },
-                    colors: ["rgb(255,187,42)"],
+                    colors: ["rgba(41, 255, 98, 1)"],
                 };
                 // alert("hh");
 

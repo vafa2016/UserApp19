@@ -2039,9 +2039,10 @@ element.style {
         margin: 0 auto;
     }
 	.bar-sub-subheader {
-	  top: 89px;
+    top: 89px;
+    
 	}
-	
+
 	
 	.custBar .title img 
 	{
@@ -2051,7 +2052,8 @@ element.style {
 		position: fixed;
 		top: 9px;
 		vertical-align: middle;
-		z-index: 0;
+    z-index: 0;
+    
 	}
 
 .halfHeader > img {
@@ -2943,11 +2945,11 @@ table.dataTable td {
         color: white;
     }
    .jb-class-back{
-     background: #2F4366;
+    background: white;
          height: 215px;
    }
     .jb-class-back-top{
-     background: #2F4366;
+     background: white;
    }
 
     .teamCol {
