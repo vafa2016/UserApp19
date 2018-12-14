@@ -22,6 +22,15 @@ page-innermatchcenter {
   text-align: center;
   width: 30px;
 }
+.xAxis{
+  .tickLabel{
+    top: 74px !important;
+    font-size: 30px !important;
+    color: #ddd !important;
+    font-weight: 700 !important;
+    font-family: -webkit-pictograph;
+  }
+}
  .circularMidQtr1 {
   background-color: #23304d;
   border-radius: 50%;
