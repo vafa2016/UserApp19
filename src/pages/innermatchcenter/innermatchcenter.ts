@@ -88,14 +88,14 @@ export class InnermatchcenterPage {
                 })
                 .catch(e => console.log('Error starting GoogleAnalytics', e));
         })
-        //check login 
+        //check login
         this.Storage.get('userData').then((val) => {
         if (val) {
             console.log(val)
            this.isLogin=true;
         }
         });
-        // 
+        //
     }
     ionViewWillLeave() {
 
@@ -108,7 +108,7 @@ export class InnermatchcenterPage {
     }
     onScroll() {
         //   this.content.ionScrollEnd.subscribe((data)=>{
-        //  setTimeout(() => {  
+        //  setTimeout(() => {
         this.scrollTop = this.content.scrollTop;
         let storeData = this.scrollTop;
         if (this.type == 'stats') {
@@ -229,10 +229,10 @@ export class InnermatchcenterPage {
         this.awayTeamScore = res.awayTeamScore;
         if (res.homeTeamScore != '') {
             let quaterHScore = ["0.0", "0.0", "0.0", "0.0"];
-            //START:Home TEam SCORE EACH FUNCTIon 
+            //START:Home TEam SCORE EACH FUNCTIon
             this.HomeTeamScore.forEach(obj => {
                 if (obj.stat_id == 1 || obj.stat_id == 2 || obj.stat_id == 3) {
-                    if (obj.stat_id == 1) //calculation for total goal  
+                    if (obj.stat_id == 1) //calculation for total goal
                     {
                         let Q = obj.quater;
                         let totaValQ = quaterHScore[Q - 1];
@@ -282,11 +282,11 @@ export class InnermatchcenterPage {
 
                         }
 
-                    }//END:calculation for total goal  
-                    else //calculation for total RB  
+                    }//END:calculation for total goal
+                    else //calculation for total RB
                     {
 
-                        //Calulation for display total quarter values in 
+                        //Calulation for display total quarter values in
                         let Q = obj.quater;
                         let totaValQ = quaterHScore[Q - 1];
                         //////console.log(totaValQ);
@@ -340,21 +340,21 @@ export class InnermatchcenterPage {
 
                         }
 
-                    }//calculation for total RB  
+                    }//calculation for total RB
                 }
                 ////console.log("quaterHScore[0]!==="+quaterHScore[0]);
                 //START:total scores calculations
                 //////console.log('Home Team Scores');////console.log('q1-'+quaterHScore[0]); ////console.log('q2-'+quaterHScore[1]); ////console.log('q3-'+quaterHScore[2]); ////console.log('q4-'+quaterHScore[3]);  ////console.log('-----');
 
                 if (quaterHScore[0] != '') {
-                    // $("#q1HomeScore").html(quaterHScore[0]);  
+                    // $("#q1HomeScore").html(quaterHScore[0]);
                     this.q1HomeScore = quaterHScore[0];
 
                 }
                 else {
-                    // $("#q1HomeScore").html('-'); 
+                    // $("#q1HomeScore").html('-');
                     this.q1HomeScore = '-';
-                    ////console.log(" this.q1HomeScore1=="+this.q1HomeScore); 
+                    ////console.log(" this.q1HomeScore1=="+this.q1HomeScore);
                 }
                 //for q2 score
                 ////console.log("quaterHScore[1]"+quaterHScore[1]);
@@ -366,11 +366,11 @@ export class InnermatchcenterPage {
                     let q12Total = q2G + "." + q2RB;
                     //////console.log(q12Total);
                     // $("#q2HomeScore").html(q12Total);
-                    // $('.totalHomeQuarerScore').html(q12Total);  
+                    // $('.totalHomeQuarerScore').html(q12Total);
 
                     this.q2HomeScore = q12Total;
                     this.totalHomeQuarerScore = q12Total;
-                    ////console.log(this.q2HomeScore); ////console.log(this.totalHomeQuarerScore); 
+                    ////console.log(this.q2HomeScore); ////console.log(this.totalHomeQuarerScore);
                 }
                 // }
                 else {
@@ -379,12 +379,12 @@ export class InnermatchcenterPage {
                     let q2G = parseInt(q1Score[0]) + parseInt(q2Score[0]);
                     let q2RB = parseInt(q1Score[1]) + parseInt(q2Score[1]);
                     let q2HTotal = q2G + "." + q2RB;
-                    //$('.totalHomeQuarerScore').html(q2HTotal);  
+                    //$('.totalHomeQuarerScore').html(q2HTotal);
                     // $("#q2HomeScore").html('-');
                     this.q2HomeScore = '-';
                     this.totalHomeQuarerScore = q2HTotal;
 
-                    ////console.log("q2 else1"+this.q2HomeScore); ////console.log("q2 else2"+this.totalHomeQuarerScore); 
+                    ////console.log("q2 else1"+this.q2HomeScore); ////console.log("q2 else2"+this.totalHomeQuarerScore);
                 }
                 //END:q2 score
 
@@ -396,11 +396,11 @@ export class InnermatchcenterPage {
                     let q3G = parseInt(q1Score[0]) + parseInt(q2Score[0]) + parseInt(q3Score[0]);
                     let q3RB = parseInt(q1Score[1]) + parseInt(q2Score[1]) + parseInt(q3Score[1]);
                     let q3Total = q3G + "." + q3RB;
-                    // $("#q3HomeScore").html(q3Total); 
-                    //$('.totalHomeQuarerScore').html(q3Total);  
+                    // $("#q3HomeScore").html(q3Total);
+                    //$('.totalHomeQuarerScore').html(q3Total);
                     this.q3HomeScore = q3Total;
                     this.totalHomeQuarerScore = q3Total;
-                    ////console.log(this.q3HomeScore); ////console.log(this.totalHomeQuarerScore); 
+                    ////console.log(this.q3HomeScore); ////console.log(this.totalHomeQuarerScore);
                 }
                 else {
 
@@ -410,11 +410,11 @@ export class InnermatchcenterPage {
                     let q3G = parseInt(q1Score[0]) + parseInt(q2Score[0]) + parseInt(q3Score[0]);
                     let q3RB = parseInt(q1Score[1]) + parseInt(q2Score[1]) + parseInt(q3Score[1]);
                     let q3Htotal = q3G + "." + q3RB;
-                    // $('.totalHomeQuarerScore').html(q3Htotal); 
+                    // $('.totalHomeQuarerScore').html(q3Htotal);
                     // $("#q3HomeScore").html('-');
                     this.q3HomeScore = '-';
                     this.totalHomeQuarerScore = q3Htotal;
-                    ////console.log(this.q3HomeScore); ////console.log(this.totalHomeQuarerScore); 
+                    ////console.log(this.q3HomeScore); ////console.log(this.totalHomeQuarerScore);
                 }
                 // }
                 //END:q3 score
@@ -430,10 +430,10 @@ export class InnermatchcenterPage {
                     let q4RB = parseInt(q1Score[1]) + parseInt(q2Score[1]) + parseInt(q3Score[1]) + parseInt(q4Score[1]);
                     let q4Total = q4G + "." + q4RB;
                     // $("#q4HomeScore").html(q4Total);
-                    // $('.totalHomeQuarerScore').html(q4Total);  
+                    // $('.totalHomeQuarerScore').html(q4Total);
                     this.q4HomeScore = q4Total;
                     this.totalHomeQuarerScore = q4Total;
-                    ////console.log(this.q4HomeScore); ////console.log(this.totalHomeQuarerScore); 
+                    ////console.log(this.q4HomeScore); ////console.log(this.totalHomeQuarerScore);
                 }
                 else {
                     let q1Score = quaterHScore[0].split(".");
@@ -443,7 +443,7 @@ export class InnermatchcenterPage {
                     let q4G = parseInt(q1Score[0]) + parseInt(q2Score[0]) + parseInt(q3Score[0]) + parseInt(q4Score[0]);
                     let q4RB = parseInt(q1Score[1]) + parseInt(q2Score[1]) + parseInt(q3Score[1]) + parseInt(q4Score[1]);
                     let q4Htotal = q4G + "." + q4RB;
-                    // $('.totalHomeQuarerScore').html(q4Htotal); 
+                    // $('.totalHomeQuarerScore').html(q4Htotal);
                     // $("#q4HomeScore").html('-');
                     this.q4HomeScore = '-';
                     this.totalHomeQuarerScore = q4Htotal;
@@ -456,7 +456,7 @@ export class InnermatchcenterPage {
                 if (quaterHScore[0] !== '0.0') {
                     let q1Score = quaterHScore[0].split(".");
                     let q1HTot = (parseInt(q1Score[0]) * 6) + parseInt(q1Score[1]);
-                    //$('.totalHoMeScores').html(q1HTot); 
+                    //$('.totalHoMeScores').html(q1HTot);
                     //////console.log('q1-'+q1HTot);
 
                     this.totalHoMeScores = q1HTot;
@@ -469,7 +469,7 @@ export class InnermatchcenterPage {
                     let q2G = parseInt(q1Score[0]) + parseInt(q2Score[0]);
                     let q2RB = parseInt(q1Score[1]) + parseInt(q2Score[1]);
                     let q2HTot = q2G * 6 + q2RB;
-                    //$('.totalHoMeScores').html(q2HTot); 
+                    //$('.totalHoMeScores').html(q2HTot);
                     //////console.log('q2-'+q2HTot);
                     this.totalHoMeScores = q2HTot;
                     ////console.log(this.totalHoMeScores);
@@ -481,7 +481,7 @@ export class InnermatchcenterPage {
                     let q3G = parseInt(q1Score[0]) + parseInt(q2Score[0]) + parseInt(q3Score[0]);
                     let q3RB = parseInt(q1Score[1]) + parseInt(q2Score[1]) + parseInt(q3Score[1]);
                     let q3HTot = q3G * 6 + q3RB;
-                    //$('.totalHoMeScores').html(q3HTot); 
+                    //$('.totalHoMeScores').html(q3HTot);
                     //////console.log('q3-'+q3HTot);
                     this.totalHoMeScores = q3HTot;
                     ////console.log(this.totalHoMeScores);
@@ -494,20 +494,20 @@ export class InnermatchcenterPage {
                     let q4G = parseInt(q1Score[0]) + parseInt(q2Score[0]) + parseInt(q3Score[0]) + parseInt(q4Score[0]);
                     let q4RB = parseInt(q1Score[1]) + parseInt(q2Score[1]) + parseInt(q3Score[1]) + parseInt(q4Score[1]);
                     let q4HTot = q4G * 6 + q4RB;
-                    //$('.totalHoMeScores').html(q4HTot); 
+                    //$('.totalHoMeScores').html(q4HTot);
                     //////console.log('q4-'+q4HTot);
                     this.totalHoMeScores = q4HTot;
                     ////console.log(this.totalHoMeScores);
                 }
-                //END:total scores calculations   
+                //END:total scores calculations
 
-                //END:genrate home team players score                 
+                //END:genrate home team players score
 
 
             });//END:Home TEam SCORE EACH FUNCTIon
 
         }
-        //END:HOME TEAM res  
+        //END:HOME TEAM res
 
         //START:AWAY TEAM res
 
@@ -568,13 +568,13 @@ export class InnermatchcenterPage {
 
                         }
 
-                        //END:Calulation for display total quarter values in 
+                        //END:Calulation for display total quarter values in
 
 
                     }
                     else {
 
-                        //Calulation for display total quarter values in 
+                        //Calulation for display total quarter values in
                         let Q = obj.quater;
                         let totaValQ = quaterAScore[Q - 1];
                         //alert(totaValQ);
@@ -634,7 +634,7 @@ export class InnermatchcenterPage {
 
                         }
 
-                        //END:Calulation for display total quarter values in 
+                        //END:Calulation for display total quarter values in
 
 
                     }
@@ -645,15 +645,15 @@ export class InnermatchcenterPage {
                 //START:Away Team total scores calculations
                 //////console.log('Away Team Scores');////console.log('q1-'+quaterAScore[0]); ////console.log('q2-'+quaterAScore[1]); ////console.log('q3-'+quaterAScore[2]); ////console.log('q4-'+quaterAScore[3]);  ////console.log('-----');
                 if (quaterAScore[0] !== '0.0') {
-                    //$("#q1AwayScore").html(quaterAScore[0]); 
+                    //$("#q1AwayScore").html(quaterAScore[0]);
                     this.q1AwayScore = quaterAScore[0];
                     ////console.log("q1AwayScore==="+this.q1AwayScore);
                 }
                 else {
-                    //$("#q2AwayScore").html('0.0'); 
+                    //$("#q2AwayScore").html('0.0');
                     this.q1AwayScore = '0.0';
                     this.q2AwayScore = '0.0';
-                    ////console.log("q2AwayScore"+this.q2AwayScore); 
+                    ////console.log("q2AwayScore"+this.q2AwayScore);
 
                 }
                 //for q2 score
@@ -664,7 +664,7 @@ export class InnermatchcenterPage {
                     let q12RB = parseInt(q1Score[1]) + parseInt(q2Score[1]);
                     let q12Total = q12G + "." + q12RB;
                     // $("#q2AwayScore").html(q12Total);
-                    // $('.totalAwayQuarerScore').html(q12Total);  
+                    // $('.totalAwayQuarerScore').html(q12Total);
 
                     this.q2AwayScore = q12Total;
                     this.totalAwayQuarerScore = q12Total;
@@ -695,13 +695,13 @@ export class InnermatchcenterPage {
                     let q3G = parseInt(q1Score[0]) + parseInt(q2Score[0]) + parseInt(q3Score[0]);
                     let q3RB = parseInt(q1Score[1]) + parseInt(q2Score[1]) + parseInt(q3Score[1]);
                     let q3Total = q3G + "." + q3RB;
-                    //$("#q3AwayScore").html(q3Total); 
-                    // $('.totalAwayQuarerScore').html(q3Total); 
+                    //$("#q3AwayScore").html(q3Total);
+                    // $('.totalAwayQuarerScore').html(q3Total);
 
                     this.q3AwayScore = q3Total;
                     this.totalAwayQuarerScore = q3Total;
                     ////console.log("totalAwayQuarerScore==="+this.totalAwayQuarerScore);
-                    ////console.log("q2AwayScore==="+this.q3Total); 
+                    ////console.log("q2AwayScore==="+this.q3Total);
                 }
                 else {
                     let q1Score = quaterAScore[0].split(".");
@@ -711,12 +711,12 @@ export class InnermatchcenterPage {
                     let q3RB = parseInt(q1Score[1]) + parseInt(q2Score[1]) + parseInt(q3Score[1]);
                     let q3ATotal = q3G + "." + q3RB;
                     //$('.totalAwayQuarerScore').html(q3ATotal);
-                    //$("#q3AwayScore").html('-'); 
+                    //$("#q3AwayScore").html('-');
 
                     this.q3AwayScore = '-';
                     this.totalAwayQuarerScore = q3ATotal;
                     ////console.log("totalAwayQuarerScore==="+this.totalAwayQuarerScore);
-                    ////console.log("q2AwayScore==="+this.q3AwayScore); 
+                    ////console.log("q2AwayScore==="+this.q3AwayScore);
                 }
                 //END:q3 score
 
@@ -730,12 +730,12 @@ export class InnermatchcenterPage {
                     let q4RB = parseInt(q1Score[1]) + parseInt(q2Score[1]) + parseInt(q3Score[1]) + parseInt(q4Score[1]);
                     let q4Total = q4G + "." + q4RB;
                     //$("#q4AwayScore").html(q4Total);
-                    // $('.totalAwayQuarerScore').html(q4Total);  
+                    // $('.totalAwayQuarerScore').html(q4Total);
 
                     this.q4AwayScore = q4Total;
                     this.totalAwayQuarerScore = q4Total;
                     ////console.log("totalAwayQuarerScore==="+this.totalAwayQuarerScore);
-                    ////console.log("q2AwayScore==="+this.q4AwayScore);  
+                    ////console.log("q2AwayScore==="+this.q4AwayScore);
                 }
                 else {
                     let q1Score = quaterAScore[0].split(".");
@@ -751,7 +751,7 @@ export class InnermatchcenterPage {
                     this.q4AwayScore = '-';
                     this.totalAwayQuarerScore = q4ATotal;
                     ////console.log("totalAwayQuarerScore==="+this.totalAwayQuarerScore);
-                    ////console.log("q2AwayScore==="+this.q4AwayScore);  
+                    ////console.log("q2AwayScore==="+this.q4AwayScore);
                 }
                 //END:q3 score
 
@@ -759,7 +759,7 @@ export class InnermatchcenterPage {
                 if (quaterAScore[0] !== '0.0') {
                     let q1Score = quaterAScore[0].split(".");
                     let q1ATot = (parseInt(q1Score[0]) * 6) + parseInt(q1Score[1]);
-                    // $('.totalAwAyScores').html(q1ATot); 
+                    // $('.totalAwAyScores').html(q1ATot);
 
                     this.totalAwAyScores = q1ATot;
                     ////console.log("totalAwAyScores==="+this.totalAwAyScores);
@@ -771,9 +771,9 @@ export class InnermatchcenterPage {
                     let q2G = parseInt(q1Score[0]) + parseInt(q2Score[0]);
                     let q2RB = parseInt(q1Score[1]) + parseInt(q2Score[1]);
                     let q2ATot = (q2G * 6) + q2RB;
-                    // $('.totalAwAyScores').html(q2ATot); 
+                    // $('.totalAwAyScores').html(q2ATot);
                     this.totalAwAyScores = q2ATot;
-                    ////console.log("totalAwAyScores==="+this.totalAwAyScores); 
+                    ////console.log("totalAwAyScores==="+this.totalAwAyScores);
                 }
                 if (quaterAScore[2] !== '0.0') {
                     let q1Score = quaterAScore[0].split(".");
@@ -782,9 +782,9 @@ export class InnermatchcenterPage {
                     let q3G = parseInt(q1Score[0]) + parseInt(q2Score[0]) + parseInt(q3Score[0]);
                     let q3RB = parseInt(q1Score[1]) + parseInt(q2Score[1]) + parseInt(q3Score[1]);
                     let q3ATot = (q3G * 6) + q3RB;
-                    //$('.totalAwAyScores').html(q3ATot);  
+                    //$('.totalAwAyScores').html(q3ATot);
                     this.totalAwAyScores = q3ATot;
-                    ////console.log("totalAwAyScores==="+this.totalAwAyScores); 
+                    ////console.log("totalAwAyScores==="+this.totalAwAyScores);
                 }
                 if (quaterAScore[3] !== '0.0') {
                     let q1Score = quaterAScore[0].split(".");
@@ -794,9 +794,9 @@ export class InnermatchcenterPage {
                     let q4G = parseInt(q1Score[0]) + parseInt(q2Score[0]) + parseInt(q3Score[0]) + parseInt(q4Score[0]);
                     let q4RB = parseInt(q1Score[1]) + parseInt(q2Score[1]) + parseInt(q3Score[1]) + parseInt(q4Score[1]);
                     let q4ATot = (q4G * 6) + q4RB;
-                    // $('.totalAwAyScores').html(q4ATot);  
+                    // $('.totalAwAyScores').html(q4ATot);
                     this.totalAwAyScores = q4ATot;
-                    ////console.log("totalAwAyScores==="+this.totalAwAyScores); 
+                    ////console.log("totalAwAyScores==="+this.totalAwAyScores);
                 } else {
                     this.totalAwAyScores = 0;
                 }
@@ -842,7 +842,7 @@ export class InnermatchcenterPage {
                 // $('.winTeamStatus').html('Draw');
                 // $('.winTeamScore').html('');
 
-                // $('.ResultTabMobApp').css({"color":"#FFCA22"}); 
+                // $('.ResultTabMobApp').css({"color":"#FFCA22"});
 
                 this.winTeamStatus = 'Draw';
                 this.winTeamScore = '';
@@ -1582,7 +1582,7 @@ export class InnermatchcenterPage {
 
             }
         }
-        //console.log("len ::"+qrTimeLimit.length); 
+        //console.log("len ::"+qrTimeLimit.length);
 
         if (Math.abs(minScore) > maxScore) maxScore = Math.abs(minScore);
 
@@ -1606,16 +1606,16 @@ export class InnermatchcenterPage {
                             this.endQuarterValue = value.quater;
                     });
             //alert(this.endQuarterValue);
-    	
+
         if(this.endQuarterValue == 1)
             modifedScore.push([timeDuration*1*60,lastTempValue]);
-    	
+
         if(this.endQuarterValue == 2)
             modifedScore.push([timeDuration*2*60,lastTempValue]);
-        	
+
         if(this.endQuarterValue == 3)
             modifedScore.push([timeDuration*3*60,lastTempValue]);
-        	
+
         if(this.endQuarterValue == 4)
             modifedScore.push([timeDuration*4*60,lastTempValue]);
         */
@@ -1683,7 +1683,7 @@ export class InnermatchcenterPage {
 
         // $(document).ready(function(e) {
         this.showcontent = 'show';
-        //START:Ajax Function      
+        //START:Ajax Function
         // http://queenzend.com/yjfl/score/default/get-player-score
         // http://queenzend.com/yjfl/score/matchscore/get-player-score
         // http://smjfllive.com.au/score/matchscore/get-player-score
@@ -1708,11 +1708,11 @@ export class InnermatchcenterPage {
                 //START:HOME TEAM DATA
                 if (this.data.homeTeamScore != null) {
                     let quaterHScore = ["0.0", "0.0", "0.0", "0.0"];
-                    //START:Home TEam SCORE EACH FUNCTIon                    
+                    //START:Home TEam SCORE EACH FUNCTIon
                     $.each(this.data.homeTeamScore, function (key, obj) {
 
                         if (obj.stat_id == 1 || obj.stat_id == 2 || obj.stat_id == 3) {
-                            if (obj.stat_id == 1) //calculation for total goal  
+                            if (obj.stat_id == 1) //calculation for total goal
                             {
                                 let Q = obj.quater;
                                 let totaValQ1 = quaterHScore[Q - 1];
@@ -1754,11 +1754,11 @@ export class InnermatchcenterPage {
 
                                 }
 
-                            }//END:calculation for total goal  
-                            else //calculation for total RB  
+                            }//END:calculation for total goal
+                            else //calculation for total RB
                             {
 
-                                //Calulation for display total quarter values in 
+                                //Calulation for display total quarter values in
                                 let Q = obj.quater;
                                 let totaValQ1 = quaterHScore[Q - 1];
                                 //alert(totaValQ);
@@ -1806,7 +1806,7 @@ export class InnermatchcenterPage {
 
                                 }
 
-                            }//calculation for total RB  
+                            }//calculation for total RB
                         }
 
                         //START:total scores calculations
@@ -1928,15 +1928,15 @@ export class InnermatchcenterPage {
                             $('.totalHoMeScores').html(q4HTot);
                             //console.log('q4-'+q4HTot);
                         }
-                        //END:total scores calculations   
+                        //END:total scores calculations
 
-                        //END:genrate home team players score                 
+                        //END:genrate home team players score
 
 
                     });//END:Home TEam SCORE EACH FUNCTIon
 
                 }
-                //END:HOME TEAM DATA   
+                //END:HOME TEAM DATA
 
                 //START:AWAY TEAM DATA
                 let quaterAScore = ["0.0", "0.0", "0.0", "0.0"];
@@ -1987,13 +1987,13 @@ export class InnermatchcenterPage {
 
                                 }
 
-                                //END:Calulation for display total quarter values in 
+                                //END:Calulation for display total quarter values in
 
 
                             }
                             else {
 
-                                //Calulation for display total quarter values in 
+                                //Calulation for display total quarter values in
                                 let Q = obj.quater;
                                 let totaValQ1 = quaterAScore[Q - 1];
                                 //alert(totaValQ);
@@ -2041,7 +2041,7 @@ export class InnermatchcenterPage {
 
                                 }
 
-                                //END:Calulation for display total quarter values in 
+                                //END:Calulation for display total quarter values in
 
 
                             }
@@ -2189,7 +2189,7 @@ export class InnermatchcenterPage {
 
                 };
 
-                //sort quater,act_time in ascending 
+                //sort quater,act_time in ascending
                 merged.sort(function (a, b) {
                     //note the minus before -cmp, for descending order
                     return cmp(
@@ -2257,7 +2257,7 @@ export class InnermatchcenterPage {
                     let TotalTime = parseFloat(splitTime[0] + (splitTime[1]) / 60);
 
                     /*
-                      
+
                        if(tempQr == value3.quater)
                        {
                            timeTotalGlobal=parseInt(parseInt(splitTime[0]*60)+parseInt(splitTime[1])+parseInt(tempMin));
@@ -2273,7 +2273,7 @@ export class InnermatchcenterPage {
                             //console.log("tempMin- Q"+value3.quater+" "+tempMin);
                             //console.log('tempQr neq='+timeTotalGlobal);
                             //console.log("================");
-                        
+
                        }*/
 
                     let addQrTime = (value3.quater - 1) * timeDuration * 60;
@@ -2518,7 +2518,7 @@ export class InnermatchcenterPage {
                 //console.log(ticks1[3][0]);
 
                 /*if($("#teamStatus").val()!=10)
-                modifedScore.push([4800,lastTempValue]);	
+                modifedScore.push([4800,lastTempValue]);
                 //ticks1= [[0,'Q1'],[timeDuration*60,'Q2'],[timeDuration*2*60,'Q3'],[timeDuration*3*60,'Q4']];
                 ticks1= [[0,''],[timeDuration*60,'Q1'],[timeDuration*2*60,'Q2'],[timeDuration*3*60,'Q3'],[timeDuration*4*60,'Q4']];*/
 
@@ -2581,7 +2581,7 @@ export class InnermatchcenterPage {
                         ticks: ticks1, min: 0, max: 24 * 4 * 60, color: "rgb(111,124,148)",
                         font: { color: 'rgb(121,133,155)', family: 'Gotham-Bold', size: 11 }
                     },
-                    colors: ["rgba(41, 255, 98, 1)"],
+                    colors: ["rgb(33,186,38)"],
                 };
                 // alert("hh");
 
@@ -2592,16 +2592,16 @@ export class InnermatchcenterPage {
                 $("#scoreChartmin").hide();
                 $("#scoreChartminh").hide();
 
-                //END:SCORE CHART GRAPH  
+                //END:SCORE CHART GRAPH
                 $(".tickLabel").each(function () {
                     let removeMinusText = $(this).text();
                     $(this).text(removeMinusText.replace("-", ""));
 
                 })
 
-                //END:DISPLAY TEAM WIN STATUS   
+                //END:DISPLAY TEAM WIN STATUS
 
-            }//END:RESPONSE NULL OR NOT 
+            }//END:RESPONSE NULL OR NOT
 
 
         }, error => {
@@ -3117,14 +3117,14 @@ export class InnermatchcenterPage {
         this.homeTeamImages = data.homeTeamImages;
         this.awayTeamImages = data.awayTeamImages;
         this.showDataTable = true;
-        //this.hometeamImage=homeTeamImages	
+        //this.hometeamImage=homeTeamImages
 
-        //Team Images (Home + Away)		
+        //Team Images (Home + Away)
         this.homeTeam = data.homeTeam;
         this.awayTeam = data.awayTeam;
 
 
-        //HomeTeam Data       
+        //HomeTeam Data
         this.homeTeamPlayers = data.homeTeamPlayers;
         this.homeTeamPlayers1 = data.homeTeamPlayers;
 
@@ -3147,9 +3147,9 @@ export class InnermatchcenterPage {
         /*angular.forEach(this.awayTeamPlayers,function(value,index){
                //alert(value.type);
                if(value.type == undefined || value.type == '' || value.type == ''){
-               
+
                this.awayTeamPlayers[index].type ="away" ;
-               
+
                }
         });*/
 
