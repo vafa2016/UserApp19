@@ -37,7 +37,7 @@ page-matchcenter {
     }
     
     toolbar-background{
-      background-color: white !important;;   
+      background-color: #eaeaea !important;;   
     }
 
     ion-toolbar{
@@ -54,15 +54,17 @@ page-matchcenter {
     }
     .toolbar-background
     {
-      background-color: white!important;; 
+      background-color: #eaeaea !important;; 
     }
 	ion-segment {
 	  display: block;
 	  overflow-x: scroll;
     white-space: nowrap;
-       height: 40px;
-      background: white;
-      border-bottom: 2px solid #04235C;
+       height: 35px;
+      position: relative;
+      bottom: 3px;
+      background: #eaeaea;
+      
       
 	  ion-segment-button.segment-button {
        border-bottom:none;
@@ -71,7 +73,7 @@ page-matchcenter {
         width: auto;
         padding: 5px;
         height: 36px;
-        color: #04235C;
+        color: #949496;
         font-size: 16px;
         font-family: Gotham-Medium;
         border-top: none;
@@ -128,11 +130,7 @@ page-matchcenter {
 }
 .teamCol {
       text-align: center;
-  img
-  {
-  //  max-width: 56px;
-  //  margin-top:8px;
-  }
+ 
   p{
     color: #04235C;
     font-family: Gotham-Medium;
@@ -245,8 +243,23 @@ page-matchcenter {
   border: 1px solid #dedede !important;
   background-color: #eaeaea;
   height: 30px;
+  margin-top: -7px;
 }
 .line{
   border-bottom: 1.5px solid #dedede ;
  
+}
+.column{
+
+}
+
+.text{
+  font-size: 12px;
+    font-weight: bolder;
+    font-family: sans-serif;
+    position: relative;
+    /* bottom: 0px; */
+    left: 10px;
+    top: -11px;
+    color: #949496;
 }
