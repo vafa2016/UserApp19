@@ -89,7 +89,9 @@ export class MatchcenterPage {
     });
 
     popover.onDidDismiss(data =>{
-       this.selectd_yr = data;
+      if(data != null){
+        this.selectd_yr = data;
+      }
     })
   }
 
