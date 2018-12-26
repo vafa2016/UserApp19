@@ -18,12 +18,11 @@
 			<ion-toolbar #content no-border class="scrollable-segments">
 				<ion-grid>
 					<ion-row>
-							<ion-col col-3 class="columnone">
-								<p class="text">SEASON</p>	
-							
+							<ion-col (click)="presentPopover($event)" col-3 class="columnone">
+                <p class="text">SEASON</p>
+                <p class="selectd_yr">{{selectd_yr}}</p>
+                <ion-icon class="downarrow jd-down-arrow" name="ios-arrow-down"></ion-icon>
 							</ion-col>
-						
-							
 							<ion-col col-9>
 					<ion-segment #scrollMe  *ngIf="totalround" [(ngModel)]="roundNo"  >
 						<ion-segment-button  id='id{{round.round}}'  (click)="selectRound(round.round,competition_id); " value="{{round.round}}" *ngFor="let round of totalround;">
@@ -34,7 +33,7 @@
 			</ion-row>
 		</ion-grid>
 				</ion-toolbar>
-	
+
 
 
 <ion-content class="bgPage-color" no-bounce>
@@ -45,7 +44,7 @@
 							{{key}}
 							</div>
 						</div>
-			
+
 			<ul class="list compitationList" *ngFor="let value1 of roundScores[key]">
 				<li class="item ink" (click)="selectedTeamScore(value1.fixture_id,value1.round,key, value1.match_status, value1.manual_score_recording, value1.name,value1.away_team_id,value1.home_team_id,value1.competition_id);">
 					<ion-row class="row text-center matchCenterHeight">
@@ -101,10 +100,10 @@
 					<img src="{{path}}{{totalRoundsData[0].ad_image}}" (click)="goToAddSite(totalRoundsData[0].ad_url);">
 				</div>
 <div class="line">
-	
+
 </div>
 			</ul>
-			
+
 		</div>
 	</div>
 </ion-content>

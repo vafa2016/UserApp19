@@ -10,6 +10,7 @@ import { MatchcenterPage } from '../pages/matchcenter/matchcenter';
 import { FixturePage } from '../pages/fixture/fixture';
 import { PostmatchPage } from '../pages/postmatch/postmatch';
 import { LadderPage } from '../pages/ladder/ladder';
+// import { YeardropdownPage } from '../pages/yeardropdown/yeardropdown';
 import { GoalkickersPage } from '../pages/goalkickers/goalkickers';
 import { TeamstatPage } from '../pages/teamstat/teamstat';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -49,6 +50,7 @@ import { SQLite } from '@ionic-native/sqlite';
     ListPage,
     MatchreportPage,
     MatchcenterPage,
+    // YeardropdownPage,
     FixturePage,
     PostmatchPage,
     LadderPage,

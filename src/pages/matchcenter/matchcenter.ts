@@ -9,6 +9,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { Content } from 'ionic-angular';
 import * as moment from 'moment';
+import { PopoverController } from 'ionic-angular';
+import {YeardropdownPage} from '../yeardropdown/yeardropdown';
 /**
  * Generated class for the MatchcenterPage page.
  *
@@ -26,7 +28,7 @@ import * as moment from 'moment';
 export class MatchcenterPage {
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   @ViewChild(Content) content: Content;
-  
+
   Interval1:any;
   Interval2:any;
 
@@ -51,7 +53,19 @@ export class MatchcenterPage {
   sysMonth: any;
   sysYear: any;
   secondround:any={};
-  constructor(private inapp: InAppBrowser,public plt:Platform,public ga:GoogleAnalytics, private alertCtrl: AlertController, public ajax: AjaxProvider, private modalCtrl: ModalController, public events: Events, public cmnfun: CommomfunctionProvider, public navCtrl: NavController, public navParams: NavParams) {
+
+  selectd_yr: any = '2017';
+  constructor(private inapp: InAppBrowser,
+    public plt:Platform,
+    public ga:GoogleAnalytics,
+    public popoverCtrl: PopoverController,
+    private alertCtrl: AlertController,
+    public ajax: AjaxProvider,
+    private modalCtrl: ModalController,
+    public events: Events,
+    public cmnfun: CommomfunctionProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams) {
      this.plt.ready().then(() => {
       this.ga.startTrackerWithId('UA-118996199-1')
    .then(() => {
@@ -65,7 +79,19 @@ export class MatchcenterPage {
 
 			this.mobWidth = (window.screen.width) + "px";
   }
- 
+
+  // year_dropdown
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create("YeardropdownPage");
+    popover.present({
+      ev: myEvent
+    });
+
+    popover.onDidDismiss(data =>{
+       this.selectd_yr = data;
+    })
+  }
+
 
   // scrollToBottom(): void {
   //   setTimeout(() => {
@@ -188,9 +214,9 @@ export class MatchcenterPage {
     this.cmnfun.showLoading('Please wait...');
     this.roundNo = roundNo;
     this.competition_id = competitionNo;
-    
+
     if(this.Interval1){ clearInterval(this.Interval1);}
-   
+
   this.Interval2=setInterval(()=>{
     console.log('interval2')
     this.ajax.datalist('get-round-wise-match-score', {

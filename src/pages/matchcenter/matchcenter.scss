@@ -35,16 +35,34 @@ page-matchcenter {
            margin-bottom: 0px;
         }
     }
-    
+
     toolbar-background{
-      background-color: #eaeaea !important;;   
+      background-color: #eaeaea !important;;
     }
 
     ion-toolbar{
      background: transparent !important;
      position: fixed;
     }
-   
+
+    .jd-down-arrow{
+      position: absolute;
+      top: 19px;
+      background-color: #f0f0f0;
+      width: 16%;
+      right: 17px;
+      line-height: 1;
+      color: #04235c;
+      font-size: 18px;
+    }
+
+    .selectd_yr{
+      margin: auto 17px;
+      font-size: 15px;
+      color: #04235c;
+      font-family: 'Gotham-Medium';
+    }
+
   .scrollable-segments {
     height: 45px;
     top:44px !important;
@@ -54,7 +72,7 @@ page-matchcenter {
     }
     .toolbar-background
     {
-      background-color: #eaeaea !important;; 
+      background-color: #eaeaea !important;;
     }
 	ion-segment {
 	  display: block;
@@ -64,8 +82,8 @@ page-matchcenter {
       position: relative;
       bottom: 3px;
       background: #eaeaea;
-      
-      
+
+
 	  ion-segment-button.segment-button {
        border-bottom:none;
     display: inline-block;
@@ -117,11 +135,11 @@ page-matchcenter {
       max-width: 100%;
       }
     }
-    .jb-inner-img{ 
+    .jb-inner-img{
        height: 80px;      /* equals max image height */
     width: 100%;
     white-space: nowrap;
-    text-align: center; margin: 1em 0; 
+    text-align: center; margin: 1em 0;
     }
     .helper {
     display: inline-block;
@@ -130,7 +148,7 @@ page-matchcenter {
 }
 .teamCol {
       text-align: center;
- 
+
   p{
     color: #04235C;
     font-family: Gotham-Medium;
@@ -151,21 +169,21 @@ page-matchcenter {
   }
 }
 .teamCenterDiv h3{
-	
+
     font-family: Gotham-Medium;
-    font-size: 15px; 
+    font-size: 15px;
 	white-space:normal;
 }
 .teamCenterDiv p{
   color: #727c91;
   white-space:normal;
 }
-.dispTable{	
+.dispTable{
 	height:100%;
 	width:100%;
 	max-width:100%;
 	display:table;
-	position:relative;	
+	position:relative;
 
 }
 
@@ -188,14 +206,14 @@ page-matchcenter {
     padding-top: 12px;
     margin: 0px;
   }
-     
+
 }
 .matchStatus {
 	font-family:Gotham-Bold;
   background-color: #86cf85;
   border-radius: 12px;
   color: white;
-  display: inline; 
+  display: inline;
   padding: 3px 15px;
 }
 .class_LIVE{
@@ -203,7 +221,7 @@ page-matchcenter {
   background-color: #86cf85;
   border-radius: 12px;
   color: white;
-  display: inline; 
+  display: inline;
     font-size: 12px;
     padding: 6px 15px;
 }
@@ -212,28 +230,29 @@ page-matchcenter {
   background-color: #667588;
   border-radius: 12px;
   color:white;
-  display: inline; 
+  display: inline;
     font-size: 12px;
     padding: 6px 15px;
 }
 .class_COMPLETE {
     font-family: Gotham-Bold;
-    background-color: #667588;
+    // background-color: #667588;
+    background-color: #f40b0b;
     border-radius: 12px;
     color: white;
     display: inline;
     font-size: 12px;
     padding: 6px 15px;
 }
-  
-  
-  
+
+
+
 }
 .dateOFMatches {
   color: #7d849a;
   margin: 9px 0px;
-  position: unset; 
-  text-align: left; 
+  position: unset;
+  text-align: left;
   width: 100%;
   padding-left: 10px;
   font-size: 11px;
@@ -247,19 +266,19 @@ page-matchcenter {
 }
 .line{
   border-bottom: 1.5px solid #dedede ;
- 
+
 }
 .column{
 
 }
 
 .text{
-  font-size: 12px;
-    font-weight: bolder;
-    font-family: sans-serif;
-    position: relative;
-    /* bottom: 0px; */
-    left: 10px;
-    top: -11px;
-    color: #949496;
+  font-size: 13px;
+  font-family: 'Gotham-Light';
+  /* position: relative; */
+  left: 10px;
+  /* top: -4px; */
+  margin: auto;
+  color: #949496;
+  text-align: center;
 }
