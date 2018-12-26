@@ -64,8 +64,8 @@ page-matchcenter {
     }
 
   .scrollable-segments {
-    height: 45px;
-    top:44px !important;
+    height: 50px;
+    top:45px !important;
     .toolbar-content
     {
       height: 45px;
@@ -251,18 +251,17 @@ page-matchcenter {
 .dateOFMatches {
   color: #7d849a;
   margin: 9px 0px;
-  position: unset;
+  font-family: 'Gotham-Light';
   text-align: left;
   width: 100%;
   padding-left: 10px;
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .box {
   border: 1px solid #dedede !important;
   background-color: #eaeaea;
-  height: 30px;
-  margin-top: -7px;
+  height: 35px;
 }
 .line{
   border-bottom: 1.5px solid #dedede ;
@@ -274,10 +273,7 @@ page-matchcenter {
 
 .text{
   font-size: 13px;
-  font-family: 'Gotham-Light';
-  /* position: relative; */
-  left: 10px;
-  /* top: -4px; */
+  font-family: 'Gotham-Medium';
   margin: auto;
   color: #949496;
   text-align: center;
