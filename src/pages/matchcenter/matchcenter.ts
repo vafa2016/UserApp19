@@ -82,7 +82,8 @@ export class MatchcenterPage {
 
   // year_dropdown
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create("YeardropdownPage");
+    let data = ['2017','2018','2019'];
+    let popover = this.popoverCtrl.create("YeardropdownPage",{ yearData : data });
     popover.present({
       ev: myEvent
     });

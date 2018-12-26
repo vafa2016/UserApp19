@@ -15,11 +15,13 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 
 export class YeardropdownPage {
 
-  YearList: any = ['2017','2018','2019'];
+  YearList: any;
 
   constructor(public navCtrl: NavController,
     public viewCtrl: ViewController,
      public navParams: NavParams) {
+     // yearlist data
+     this.YearList = this.navParams.get('yearData');
   }
 
   ionViewDidLoad() {
