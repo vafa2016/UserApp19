@@ -81,12 +81,12 @@
           <ion-col col-3 class="col teamCol onlyScore">
             <div  class="jb-inner-img"><span class="helper"></span>
             <img src="{{path}}{{homeTeamAbbr.team_image}}" class="full-image img-storke"></div>
-            <p style="margin-top:10px;"> {{homeTeamAbbr.team_name}}</p>
+            <p style="margin:auto;"> {{homeTeamAbbr.team_name}}</p>
 
             <h4 *ngIf="HomeTeamScore == ''">0.0</h4>
             <h4 *ngIf="HomeTeamScore != ''">{{totalHomeQuarerScore}}</h4>
 
-            <h3>{{newTotalHomeTeamScore}}</h3>
+            <h3 class="jd-custom-scoretxt">{{newTotalHomeTeamScore}}</h3>
           </ion-col>
           <ion-col col-6 class="col teamCenterDiv">
             <div class="dispTable">
@@ -106,7 +106,7 @@
                   </div>
                   <div class="qtrTimingContainer" *ngIf="teamStatus == 1">
                     <div class="qtrNo" style="font-family:Gotham-Bold;">Q{{ lastScore.quater_new }}</div>
-                    <div class="qtrNoTime" style="font-family:Gotham-Medium;font-size:14px;">Full Time</div>
+                    <div class="qtrfinished" style="font-family:Gotham-Medium;font-size:14px;">{{ lastScore.act_time_new }}</div>
                   </div>
                 </div>
               </div>
@@ -115,17 +115,17 @@
           <ion-col col-3 class="col teamCol onlyScore">
             <div class="jb-inner-img"><span class="helper"></span>
             <img src="{{path}}{{awayTeamAbbr.team_image}}" class="full-image img-storke"></div>
-            <p style="margin-top:10px;">{{awayTeamAbbr.team_name}}</p>
+            <p style="margin:auto;">{{awayTeamAbbr.team_name}}</p>
             <h4 *ngIf="awayTeamScore == ''">0.0</h4>
             <h4 *ngIf="awayTeamScore != ''">{{totalAwayQuarerScore}}</h4>
 
-            <h3>{{newTotalAwayTeamScore}}</h3>
+            <h3 class="jd-custom-scoretxt">{{newTotalAwayTeamScore}}</h3>
             <!--*ngIf="newTotalAwayTeamScore != ''"-->
           </ion-col>
         </div>
       </li>
     </ul>
-    <div class="forSetColorContainer" style="padding-bottom:50px;">
+    <div class="forSetColorContainer" style="padding-bottom:10px;">
       <!-- style="position:absolute;width: 100%; top:220px" -->
       <div class="qtrScoreContainerRow clearfix">
         <div class="qtrScoreTeam">
@@ -220,6 +220,42 @@
         </div>
       </div>
     </div>
+    <!-- ad section -->
+    <div class="jb-adv jd-ad">
+      <img src="{{path}}{{advertisementFooter.ad_image}}" (click)="goToAddSite(advertisementFooter.ad_url);">
+   </div>
+    <!-- Goalkickers list  -->
+    <div>
+        <div class="jd_gk_head">
+          <p class="jd_gk_txt">GOAL KICKERS</p>
+        </div>
+        <ion-row>
+          <!-- home team -->
+          <ion-col>
+                <p *ngFor="let plyr of Bestplayers" class="jd_home_bstplyr">{{plyr}}</p>
+          </ion-col>
+          <!-- away team -->
+          <ion-col>
+                <p *ngFor="let plyr of Bestplayers" class="jd_away_bstplyr">{{plyr}}</p>
+          </ion-col>
+        </ion-row>
+    </div>
+     <!-- Best players list  -->
+     <div>
+        <div class="jd_gk_head">
+          <p class="jd_gk_txt">BEST PLAYERS</p>
+        </div>
+        <ion-row>
+          <!-- home team -->
+          <ion-col>
+                <p *ngFor="let plyr of Bestplayers" class="jd_home_bstplyr">{{plyr}}</p>
+          </ion-col>
+          <!-- away team -->
+          <ion-col>
+                <p *ngFor="let plyr of Bestplayers" class="jd_away_bstplyr">{{plyr}}</p>
+          </ion-col>
+        </ion-row>
+    </div>
   </div>
   <div *ngIf="showcontent=='show' && type=='ACTION'">
     <div *ngIf="graphImgShowHide==1">
@@ -297,6 +333,18 @@
       <div class="advContainer">
         <img src="{{path}}{{adv[0].ad_image}}" (click)="goToAddSite(adv[0].ad_url);">
       </div>
+
+      <!-- sort with quater functions -->
+      <div class="jd_sort_btns">
+        <ion-row class="jd_sort_rw">
+         <ion-col [ngClass]="{'jd_selectedOptn': selectedOption == 'all'}"  (click)="SelectedSort('all')" col-3 class="jd_btn_border me"><p class="jd_sort_btn">All</p></ion-col>
+          <ion-col  [ngClass]="{'jd_selectedOptn': selectedOption == 'Q1'}" (click)="SelectedSort('Q1')" class="jd_btn_border"><p class="jd_sort_btn">Q1</p></ion-col>
+          <ion-col  [ngClass]="{'jd_selectedOptn': selectedOption == 'Q2'}" (click)="SelectedSort('Q2')"  class="jd_btn_border"><p class="jd_sort_btn">Q2</p></ion-col>
+          <ion-col  [ngClass]="{'jd_selectedOptn': selectedOption == 'Q3'}" (click)="SelectedSort('Q3')"  class="jd_btn_border"><p class="jd_sort_btn">Q3</p></ion-col>
+          <ion-col  [ngClass]="{'jd_selectedOptn': selectedOption == 'Q4'}" (click)="SelectedSort('Q4')" class="me2"><p class="jd_sort_btn">Q4</p></ion-col>
+        </ion-row>
+      </div>
+      <!--  -->
 
       <div *ngFor="let value of modifiedStateSeq;let key=index;">
         <div *ngIf="value.stat_abbrevation!='RB'">
@@ -479,10 +527,10 @@
   </div>
 </ion-content>
  <!-- && -->
-<ion-footer *ngIf="advertisementFooter && type!='ACTION'  && statschoose2!='team' ">
+<!-- <ion-footer *ngIf="advertisementFooter && type!='ACTION'  && statschoose2!='team' ">
   <ion-toolbar class="jb-toolbar">
     <div class="jb-adv">
      	<img src="{{path}}{{advertisementFooter.ad_image}}" (click)="goToAddSite(advertisementFooter.ad_url);">
     </div>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

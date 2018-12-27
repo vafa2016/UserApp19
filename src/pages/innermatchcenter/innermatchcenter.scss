@@ -294,6 +294,15 @@ page-innermatchcenter {
     height: 35px;
     padding-left: 47px;
 }
+
+.qtrfinished {
+  background-color: red;
+  border-radius: 10px;
+  font-family: Gotham-Book;
+  font-size: 15px;
+  height: 35px;
+  padding-left: 47px;
+}
 .qtrNo {
     background-color: #34456c;
     border-bottom-left-radius: 7px;
@@ -2996,6 +3005,77 @@ table.dataTable td {
   font-family: 'Gotham-Medium' !important;
   font-size: 20px !important;
   margin-top: 6px !important;
+}
+
+.jd-ad{
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+.jd_gk_head{
+  text-align: center;
+  background: #ece9e9;
+  color: grey;
+  height: 25px;
+}
+.jd_gk_txt{
+  margin: auto;
+  font-size: 15px;
+  font-family: 'Gotham-Book';
+  padding-top: 4px;
+}
+
+.jd_home_bstplyr{
+  margin: 5px 10px;
+  color: #04235c;
+  font-family: 'Gotham-Medium';
+  font-size: 15px;
+}
+
+.jd_away_bstplyr{
+  margin: 5px 10px;
+  text-align: right;
+  color: #04235c;
+  font-family: 'Gotham-Medium';
+  font-size: 15px;
+}
+
+.jd_sort_btns{
+  margin: 10px 45px 0px;
+  height: 35px;
+  border: 1px solid #bdbdbd;
+  border-radius: 10px;
+}
+
+.jd_sort_rw{
+  height: 35px;
+  text-align: center;
+}
+
+.jd_sort_btn{
+  margin: 4px;
+  font-size: 13px;
+  font-family: 'Gotham-Medium';
+}
+
+.jd_btn_border{
+  border-right: 1px solid #bdbdbd;
+  color: #04235c;
+}
+
+.me{
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.me2{
+  color: #04235c;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.jd_selectedOptn{
+  background: #04235c;
+  color: white !important;
 }
 
 }

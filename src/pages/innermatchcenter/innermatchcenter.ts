@@ -33,6 +33,8 @@ import 'datatables.net-fixedheader';
 export class InnermatchcenterPage {
     @ViewChild(Content) content: Content;
 
+    Bestplayers :any = ['Richards', 'Mark'];
+
     deviceData: any = {
         device_id: ''
     }
@@ -44,6 +46,7 @@ export class InnermatchcenterPage {
     showfooter: any;
     showrest: boolean = false;
     i: number = 0;
+    selectedOption : any;
     statcheck: any = 'SCORE';
     playerStatsTable0: any = 'playerStatsTable';
     btn10: any = 'btn1';
@@ -1104,7 +1107,9 @@ export class InnermatchcenterPage {
                             }
                         }
                         else {
-
+                             alert('a');
+                             this.pamentshow = 1;
+                             this.gotostatspage();
                             // let modal = this.modalCtrl.create('EditUserModelPage');
                             // let me = this;
                             // modal.onDidDismiss(data => {
@@ -1147,7 +1152,7 @@ export class InnermatchcenterPage {
                                     // }
                                 ]
                             });
-                            alertpop.present();
+                            // alertpop.present();
                         }
                     }
                 });
@@ -1170,7 +1175,7 @@ export class InnermatchcenterPage {
     }
     // actionpage///////////////////////////////////////////\
     getgamescorefeeds(res) {
-
+      console.log('feed'+ res.score_feed);
 
         this.actionScoreFeed1 = [];
         this.actionScoreFeed = res.score_feed;
@@ -3397,6 +3402,12 @@ export class InnermatchcenterPage {
 
         //Player End
         this.cmnfun.HideLoading();
+    }
+
+
+    // sort function
+    SelectedSort(val){
+      this.selectedOption = val;
     }
 }
 
