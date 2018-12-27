@@ -113,7 +113,7 @@ page-innermatchcenter {
     }
 }
     .list.compitationList{margin:0;
-        padding: 20px 0;
+        padding: 10px 0;
     color: #04235C;
     text-align: center;
     padding-top: 50px !important;}
@@ -2980,15 +2980,22 @@ table.dataTable td {
       }
     }
     .jb-inner-img{
-       height: 120px;      /* equals max image height */
+       height: 100px;      /* equals max image height */
     width: 100%;
     white-space: nowrap;
-    text-align: center; margin: 1em 0;
+    text-align: center;
+    // margin: 1em 0;
     }
     .helper {
     display: inline-block;
     height: 100%;
     vertical-align: middle;
+}
+
+.jd-custom-scoretxt{
+  font-family: 'Gotham-Medium' !important;
+  font-size: 20px !important;
+  margin-top: 6px !important;
 }
 
 }
