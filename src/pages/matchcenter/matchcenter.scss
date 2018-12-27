@@ -47,10 +47,10 @@ page-matchcenter {
 
     .jd-down-arrow{
       position: absolute;
-      top: 19px;
+      top: 23px;
       background-color: #f0f0f0;
       width: 16%;
-      right: 17px;
+      right: 16px;
       line-height: 1;
       color: #04235c;
       font-size: 18px;
@@ -65,7 +65,7 @@ page-matchcenter {
 
   .scrollable-segments {
     height: 50px;
-    top:45px !important;
+    top:44px !important;
     .toolbar-content
     {
       height: 45px;
@@ -277,8 +277,7 @@ page-matchcenter {
   margin: auto;
   color: #949496;
   text-align: center;
+  margin-bottom: 5px;
 }
 
-.columnone{
-  // border-left: 2px solid grey;
-}
+
