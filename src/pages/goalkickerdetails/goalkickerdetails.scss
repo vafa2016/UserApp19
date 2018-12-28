@@ -1,22 +1,57 @@
 page-goalkickerdetails {
   /*Goal Kickers detail page css*/
+  .gridcomp{
+      background-color: #efefef !important;
+     height: 50px;
+  }
+ 
+.coltxt1{
+    position: relative;
+    bottom: 10px;
+    font-family: Gotham-Bold;
+    font-size: 13px;
+    color: #bab8b6;
+}
+.coltxt2{
+    position: relative;
+    bottom: 10px;
+    font-family: Gotham-Bold;
+    font-size: 13px;
+    color: #bab8b6;
+    text-align: center
+}
+.coltxt3{
+    position: relative;
+    bottom: 10px;
+    font-family: Gotham-Bold;
+    font-size: 13px;
+    color: #bab8b6;
+    text-align: center
+
+}
+
+
 .greenSubTitle{
 	text-align:center;
 	color:#60c465;
     position: relative;
+    bottom:20px;
     font-family: Gotham-Book;font-size: 13px;padding: 5px 0;
+
+  
 }
 .greenSubTitle::after {
-  background-color: #fff;
-  bottom: -7px;
-  content: "";
-  height: 3px;
-  left: 50%;
-  margin-left: -25px;
-  position: absolute;
-  width: 50px;
-  border-radius:2px;
+    background-color: #fff;
+    bottom: -7px;
+    content: "";
+    height: 3px;
+    left: 50%;
+    margin-left: -25px;
+    position: unset;
+    width: 50px;
+    border-radius: 2px;
 }
+
 .goalkickersItemRow .nomalFormMidTitle {
     font-family: Gotham-Bold;
     font-size: 13px;

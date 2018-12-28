@@ -27,19 +27,35 @@
 
 <ion-content class="bgPage-color" no-bounce>
 
-
-	<h3 class="jb-textalign" *ngIf="teamGoal !== ''">GOALS</h3>
-	<p class="greenSubTitle" *ngIf="teamGoal !== ''">Total Goals: {{playerTotalGoal}}</p>
+<ion-grid class="gridcomp"> 
+	<ion-row>
+		<ion-col>
+			<p 	class="greenSubTitle" *ngIf="teamGoal !== ''">Total Goals: {{playerTotalGoal}}</p>
+		</ion-col>
+	</ion-row>
+	<ion-row>
+		<ion-col col-6>
+			<p class="coltxt1">Opponents</p>
+		</ion-col>
+		<ion-col col-3>
+			<p class="coltxt2">Round</p>
+		</ion-col>
+		<ion-col col-3>
+			<p class="coltxt3">Goals</p>
+		</ion-col>
+	</ion-row>
+</ion-grid>
+	
 	<!--repeate  this div-->
 	<div class="jb-color" *ngFor="let value of teamGoal; let i = index">
 		<ion-row class=" goalkickersItemRow">
 			<ion-col col-6 class="col text-left col-50">
-				<p class="nomalFormMidTitle">Opponent</p>
+			
 				<h4>{{value.opponent}}</h4>
 			</ion-col>
 
 			<ion-col col-3 class="col text-center">
-				<p class="nomalFormMidTitle">Round</p>
+				
 				<h4 *ngIf="value.round!='25' && value.round!='26' && value.round!='27'">{{value.round}}</h4>
 				<h4 *ngIf="value.round=='25'">Semi Final - 2</h4>
 				<h4 *ngIf="value.round=='26'">Prelim Final</h4>
@@ -48,8 +64,7 @@
 			<ion-col col-3 class="col text-center">
 				<div class="score-Average-stats">
 					<h3 class="stats-Score jb-margin text-center">{{value.goal}}</h3>
-					<span class="greenbg" style="padding-top: 4px;" *ngIf="value.goal >1">GOALS</span>
-					<span class="greenbg" style="padding-top: 4px;" *ngIf="value.goal == 1">GOAL</span>
+					
 				</div>
 			</ion-col>
 		</ion-row>
