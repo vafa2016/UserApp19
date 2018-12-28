@@ -1107,7 +1107,8 @@ z-index: -1;
   border-radius: 50%;
   float: left;
   margin: 0 0.1em 0.1em 0;
-  background-color: #04235c;
+  // background-color: #04235c;
+  background-color: #e0e0e091;
 }
 .c100 *,
 .c100 *:before,
@@ -1135,7 +1136,9 @@ z-index: -1;
   width: 5em;
   line-height: 5em;
   font-size: 0.2em;
-  color: #cccccc;
+  font-family: 'Gotham-Medium';
+  // color: #cccccc;
+  color: #04235c;
   display: block;
   text-align: center;
   white-space: nowrap;
@@ -1159,7 +1162,8 @@ z-index: -1;
   display: block;
   content: " ";
   border-radius: 50%;
-  background-color: #101931 ;
+  // background-color: #101931 ;
+  background-color: white;
   width: 0.84em;
   height: 0.84em;
   -webkit-transition-property: all;
@@ -3076,6 +3080,34 @@ table.dataTable td {
 .jd_selectedOptn{
   background: #04235c;
   color: white !important;
+}
+
+.sortTeamImg{
+  height: 50px;
+}
+
+.jd_toggle_switch{
+  margin: 1px;
+}
+
+.toggle-ios .toggle-icon{
+  height: 65% !important;
+  background-color: #bdbdbd !important;
+}
+
+.toggle-ios .toggle-icon::before{
+  background-color: #bdbdbd !important;
+}
+
+.jd_circle{
+    position: relative;
+    font-size: 35px;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    float: left;
+    margin: 0 0.1em 0.1em 0;
+    background-color: #e0e0e091;
 }
 
 }

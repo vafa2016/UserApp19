@@ -303,39 +303,62 @@
 
   <div class="jb-stats" *ngIf=" type=='stats' && pamentshow==1" style="background-color: transparent;">
     <div *ngIf="statschoose=='team'">
-      <ul class="list compitationList">
-        <li class="item">
-          <ion-row class="row text-center" style="padding: 17px 0;">
-            <ion-col col-4 class="col teamCol">
-               <div class="jb-inner-img"><span class="helper"></span>
-              <img src="{{path}}{{homeTeam.team_image}}" class="full-image img-storke "></div>
-              <p style="margin-top: 10px;">{{homeTeam.team_abbrevation}}</p>
-              <h3>{{newTotalHomeTeamScore}}</h3>
-            </ion-col>
-            <ion-col col-4 class="col teamCenterDiv">
-              <div class="dispTable">
-                <div class="dispTableCell" style="margin-top: 60px;">
-                  <h3>
-                    <b>VS</b>
-                  </h3>
-                </div>
+        <ul class="list compitationList">
+            <li class="item ink">
+              <div class="row text-center">
+                <ion-col col-3 class="col teamCol onlyScore">
+                  <div  class="jb-inner-img"><span class="helper"></span>
+                  <img src="{{path}}{{homeTeamAbbr.team_image}}" class="full-image img-storke"></div>
+                  <p style="margin:auto;"> {{homeTeamAbbr.team_name}}</p>
+
+                  <h4 *ngIf="HomeTeamScore == ''">0.0</h4>
+                  <h4 *ngIf="HomeTeamScore != ''">{{totalHomeQuarerScore}}</h4>
+
+                  <h3 class="jd-custom-scoretxt">{{newTotalHomeTeamScore}}</h3>
+                </ion-col>
+                <ion-col col-6 class="col teamCenterDiv">
+                  <div class="dispTable">
+                    <div class="dispTableCell">
+                      <div class="teamScoreContainer">
+                        <!--<h3 style="margin-top:-10px"><b>{{winTeamStatus}} </b> <br/><span style="font-family:Gotham-Book;"  [innerHTML]=-html="changeWinning(winTeamScore)"> </span></h3>-->
+
+                        <h3 style="padding:5px 0;">
+                          <b style="font-family: Gotham-Bold;">{{winTeamStatus}} </b>
+                          <br/>
+                          <span style="font-family:Gotham-Book;"> {{winTeamScore}}</span>
+                        </h3>
+
+                        <div class="qtrTimingContainer" *ngIf="teamStatus == 10">
+                          <div class="qtrNo" style="font-family:Gotham-Bold;">Q{{ lastScore.quater_new }}</div>
+                          <div class="qtrNoTime" style="font-family:Gotham-Medium;">{{ lastScore.act_time_new }}</div>
+                        </div>
+                        <div class="qtrTimingContainer" *ngIf="teamStatus == 1">
+                          <div class="qtrNo" style="font-family:Gotham-Bold;">Q{{ lastScore.quater_new }}</div>
+                          <div class="qtrfinished" style="font-family:Gotham-Medium;font-size:14px;">{{ lastScore.act_time_new }}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ion-col>
+                <ion-col col-3 class="col teamCol onlyScore">
+                  <div class="jb-inner-img"><span class="helper"></span>
+                  <img src="{{path}}{{awayTeamAbbr.team_image}}" class="full-image img-storke"></div>
+                  <p style="margin:auto;">{{awayTeamAbbr.team_name}}</p>
+                  <h4 *ngIf="awayTeamScore == ''">0.0</h4>
+                  <h4 *ngIf="awayTeamScore != ''">{{totalAwayQuarerScore}}</h4>
+
+                  <h3 class="jd-custom-scoretxt">{{newTotalAwayTeamScore}}</h3>
+                  <!--*ngIf="newTotalAwayTeamScore != ''"-->
+                </ion-col>
               </div>
-            </ion-col>
-            <ion-col col-4 class="col teamCol">
-               <div class="jb-inner-img"><span class="helper"></span>
-              <img src="{{path}}{{awayTeam.team_image}}" class="full-image img-storke"></div>
-              <p style="margin-top: 10px;">{{awayTeam.team_abbrevation}}</p>
-              <h3>{{newTotalAwayTeamScore}}</h3>
-            </ion-col>
-          </ion-row>
-        </li>
-      </ul>
+            </li>
+          </ul>
       <div class="advContainer">
         <img src="{{path}}{{adv[0].ad_image}}" (click)="goToAddSite(adv[0].ad_url);">
       </div>
 
       <!-- sort with quater functions -->
-      <div class="jd_sort_btns">
+      <!-- <div class="jd_sort_btns">
         <ion-row class="jd_sort_rw">
          <ion-col [ngClass]="{'jd_selectedOptn': selectedOption == 'all'}"  (click)="SelectedSort('all')" col-3 class="jd_btn_border me"><p class="jd_sort_btn">All</p></ion-col>
           <ion-col  [ngClass]="{'jd_selectedOptn': selectedOption == 'Q1'}" (click)="SelectedSort('Q1')" class="jd_btn_border"><p class="jd_sort_btn">Q1</p></ion-col>
@@ -343,7 +366,22 @@
           <ion-col  [ngClass]="{'jd_selectedOptn': selectedOption == 'Q3'}" (click)="SelectedSort('Q3')"  class="jd_btn_border"><p class="jd_sort_btn">Q3</p></ion-col>
           <ion-col  [ngClass]="{'jd_selectedOptn': selectedOption == 'Q4'}" (click)="SelectedSort('Q4')" class="me2"><p class="jd_sort_btn">Q4</p></ion-col>
         </ion-row>
-      </div>
+      </div> -->
+      <!--  -->
+      <!-- Toggle switch -->
+      <!-- <div>
+          <ion-row>
+              <ion-col col-5 style="text-align: right;">
+                <img src="{{path}}{{homeTeam.team_image}}" class="sortTeamImg">
+              </ion-col>
+              <ion-col>
+                  <ion-toggle  [(ngModel)]="isToggled" (ionChange)="notify()" class="jd_toggle_switch"></ion-toggle>
+              </ion-col>
+              <ion-col col-5  style="text-align: left;">
+                <img src="{{path}}{{awayTeam.team_image}}" class="sortTeamImg">
+              </ion-col>
+            </ion-row>
+      </div> -->
       <!--  -->
 
       <div *ngFor="let value of modifiedStateSeq;let key=index;">
@@ -358,9 +396,16 @@
                 <div class="fillBar greenFill" [style.background-color]="value.homeTeamColor" [style.width]="value.homeTeamWidth" style="font-size:19px; font-family:Gotham-Medium;">
                   {{homeTeamScoreStat[value.stat_abbrevation]}}
                 </div>
-
-
               </ion-col>
+              <!-- <ion-col col-2>
+                  <div class="jd_circle p{{homeEFFWidth}} {{hColor}}" style="float:right;margin-right: 7px;">
+                      <span> {{ homeEFF }}%</span>
+                      <div class="slice">
+                        <div class="bar1"></div>
+                        <div class="fill"></div>
+                      </div>
+                    </div>
+              </ion-col> -->
               <ion-col class="col col-40">
                 <div class="fillBar" [style.background-color]="value.awayTeamColor" [style.width]="value.awayTeamWidth" style="font-size:19px; font-family:Gotham-Medium;">
                   {{awayTeamScoreStat[value.stat_abbrevation]}}

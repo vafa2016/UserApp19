@@ -27,10 +27,10 @@ import 'datatables.net-fixedheader';
 
 @IonicPage()
 @Component({
-    selector: 'page-innermatchcenter',
-    templateUrl: 'innermatchcenter.html',
+  selector: 'page-stat-team-game-coach',
+  templateUrl: 'stat-team-game-coach.html',
 })
-export class InnermatchcenterPage {
+export class StatTeamGameCoachPage {
     @ViewChild(Content) content: Content;
 
     Bestplayers :any = ['Richards', 'Mark'];
