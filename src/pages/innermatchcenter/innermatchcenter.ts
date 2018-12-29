@@ -3100,7 +3100,8 @@ export class InnermatchcenterPage {
 
     callAlert(name) { alert(name); return name; };
     sortBYType(name) {
-        alert('a');
+      // alert('aaaa')
+        // alert('a');
         console.log('Sortby' + name);
         this.orderByFieldName = 'type';
         if (this.reverse) this.reverse = false; else this.reverse = true;
@@ -3247,6 +3248,7 @@ export class InnermatchcenterPage {
                     scrollCollapse: true,
                     paging: false,
                     "columnDefs": [{
+
                         "targets": 0,
                         "orderable": true
                     }],
@@ -3280,6 +3282,33 @@ export class InnermatchcenterPage {
 
             $(".homeTeam").parent().removeClass("sorting_asc");
 
+            $('.allTeam').on('click', function(){
+              if ($(this).hasClass("activated1")) {
+                console.log("kjkjnbjjhhh----home");
+                $(this).removeClass("activated1");
+                $(".homeTeam").addClass("activated1");
+                $("#playerStatsTable tbody tr").each(function () {
+                    // alert($(this).children("td").eq(0).attr('data-t'));
+                    //    this.homeTeamPlayers1.forEach(obj => {
+                    //     if(obj.type=='home'){
+                    //         this.homeTeamPlayers1.push(obj);
+                    //         console.log(this.homeTeamPlayers1);
+                    //     }
+                    // })
+                    if ($(this).children("td").eq(0).attr('data-t') == 'home') {
+                        $(this).show();
+
+
+
+                    } else {
+
+                        $(this).hide();
+                    }
+
+                })
+
+            }
+            })
 
 
             $('.homeTeam').on('click', function () {
@@ -3287,7 +3316,7 @@ export class InnermatchcenterPage {
                 console.log("hhjhjh");
 
                 if ($(this).hasClass("activated1")) {
-                    console.log("kjkjnbjjhhh");
+                    console.log("kjkjnbjjhhh----home");
                     $(this).removeClass("activated1");
                     $(".homeTeam").addClass("activated1");
                     $("#playerStatsTable tbody tr").each(function () {
@@ -3311,7 +3340,7 @@ export class InnermatchcenterPage {
                     })
 
                 } else {
-                    console.log("hhhmjkjjl");
+                    console.log("hhhmjkjjl--away");
                     $(this).addClass("activated1");
 
                     $("#playerStatsTable tbody tr").each(function () {
@@ -3346,12 +3375,11 @@ export class InnermatchcenterPage {
 
                 console.log("hhh");
                 if ($(this).hasClass("activated1")) {
-                    console.log("hhh");
+                    console.log("hhh----away");
 
                     $(this).removeClass("activated1");
                     $(".awayTeam1").addClass("activated1");
                     $("#playerStatsTable tbody tr").each(function () {
-
 
                         if ($(this).children("td").eq(0).attr('data-t') == 'away') {
                             $(this).show();
@@ -3394,6 +3422,18 @@ export class InnermatchcenterPage {
                 // this.sortBYType("away");
             });
 
+            $('.allTeam').on('click', function(){
+              console.log("all--");
+              if ($(this).hasClass("activated2")) {
+                console.log("all--");
+                $(this).removeClass("activated2");
+                $(".allTeam").addClass("activated2");
+                $("#playerStatsTable tbody tr").each(function () {
+                        $(this).show();
+                })
+            }
+            })
+
 
 
 
@@ -3416,5 +3456,9 @@ export class InnermatchcenterPage {
       console.log("Toggled: "+ this.isToggled);
       console.log('statvalues'+ JSON.stringify(this.modifiedStateSeq))
     }
+
+
+    // filter by all teams function
+
 }
 

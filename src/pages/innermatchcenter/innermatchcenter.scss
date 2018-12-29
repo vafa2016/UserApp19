@@ -2173,11 +2173,11 @@ element.style {
   }
 .jb-sorting-gb
    {
-        padding-left: 35px !important;
+        padding-left: 50px !important;
    }
 .jb-plaer
 {
-        padding-top: 65px;
+        padding-top: 56px;
         .button.button-clear.playerStatLeftTeam {
         border-radius: 6px;
         background-color: #233351;
@@ -2255,13 +2255,13 @@ table.dataTable.stripe tbody tr td {
 
 .DTFC_LeftBodyLiner
 {
-      width: 145px !important;
+      width: 195px !important;
       padding-right: 0px !important;
 }
 
-.DTFC_LeftBodyWrapper{width: 135px !important;}
+.DTFC_LeftBodyWrapper{width: 194px !important;}
 
-.DTFC_LeftHeadWrapper{ width: 132px !important;margin-top: 6px;}
+.DTFC_LeftHeadWrapper{ width: 194px !important;margin-top: 6px;}
 // table.dataTable th:nth-child(1),
 // table.dataTable th:nth-child(2),
 // table.dataTable th:nth-child(3) {
@@ -3108,6 +3108,15 @@ table.dataTable td {
     float: left;
     margin: 0 0.1em 0.1em 0;
     background-color: #e0e0e091;
+}
+
+
+.allTeam{
+  height: 38px;
+    width: 45px;
+    margin-right: 10px;
+    background: white;
+    border: 1px solid grey;
 }
 
 }

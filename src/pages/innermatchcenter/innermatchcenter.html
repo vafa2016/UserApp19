@@ -450,53 +450,63 @@
       </div>
     </div>
     <div *ngIf="statschoose=='Player'" class="jb-plaer">
-      <table [id]="playerStatsTable0" class="stripe row-border order-column playerStatsTable " width="100%" cellspacing="0" *ngIf="showDataTable==true">
+      <table [id]="playerStatsTable0" class="stripe row-border order-column playerStatsTable "  cellspacing="0" *ngIf="showDataTable==true">
         <thead>
           <tr>
-            <th class="jb-sorting">
-              <button [id]="btn10" class="button button-clear playerStatLeftTeam homeTeam activated1" (click)="sortBYType('home')">
-                <img src="{{path}}{{homeTeam.team_image}}" class="img-storke" />
-              </button>
 
-              <button [id]="btn20" class="button button-clear playerStatRightTeam awayTeam1 activated1 " (click)="sortBYType('away')">
-                <img src="{{path}}{{awayTeam.team_image}}" class="img-storke" />
-              </button>
-            </th>
-            <th class="jb-sorting-gb">
-              <button (click)="sortBY('GB')" [id]="GB0" class="button button-clear tableColumSortStyle gbClass ">
-                G.B
-              </button>
-            </th>
-            <th [id]="buttonId0">
-              <button class="button button-clear tableColumSortStyle">
-                D
-              </button>
-            </th>
-            <th>
-              <button (click)="sortBY('K')" class="button button-clear tableColumSortStyle">
-                K
-              </button>
-            </th>
-            <th (click)="sortBY('H')">
-              <button class="button button-clear tableColumSortStyle">
-                H
-              </button>
-            </th>
-            <th (click)="sortBY('M')">
-              <button class="button button-clear tableColumSortStyle">
-                M
-              </button>
-            </th>
-            <th (click)="sortBY('T')">
-              <button class="button button-clear tableColumSortStyle">
-                T
-              </button>
-            </th>
-            <th (click)="sortBY('HO')">
-              <button class="button button-clear tableColumSortStyle">
-                HO
-              </button>
-            </th>
+
+                  <th class="jb-sorting">
+                      <button  class="button button-clear allTeam activated2" (click)="sortBYType('all')">
+                        All
+                        </button>
+
+                      <button [id]="btn10" class="button button-clear playerStatLeftTeam homeTeam activated1" (click)="sortBYType('home')">
+                        <img src="{{path}}{{homeTeam.team_image}}" class="img-storke" />
+                      </button>
+
+                      <button [id]="btn20" class="button button-clear playerStatRightTeam awayTeam1 activated1 " (click)="sortBYType('away')">
+                        <img src="{{path}}{{awayTeam.team_image}}" class="img-storke" />
+                      </button>
+                    </th>
+
+                  <th class="jb-sorting-gb">
+                      <button (click)="sortBY('GB')" [id]="GB0" class="button button-clear tableColumSortStyle gbClass ">
+                        G.B
+                      </button>
+                    </th>
+                    <th [id]="buttonId0">
+                      <button class="button button-clear tableColumSortStyle">
+                        D
+                      </button>
+                    </th>
+                    <th>
+                      <button (click)="sortBY('K')" class="button button-clear tableColumSortStyle">
+                        K
+                      </button>
+                    </th>
+                    <th (click)="sortBY('H')">
+                      <button class="button button-clear tableColumSortStyle">
+                        H
+                      </button>
+                    </th>
+                    <th (click)="sortBY('M')">
+                      <button class="button button-clear tableColumSortStyle">
+                        M
+                      </button>
+                    </th>
+                    <th (click)="sortBY('T')">
+                      <button class="button button-clear tableColumSortStyle">
+                        T
+                      </button>
+                    </th>
+                    <th (click)="sortBY('HO')">
+                      <button class="button button-clear tableColumSortStyle">
+                        HO
+                      </button>
+                    </th>
+
+
+
           </tr>
 
         </thead>
