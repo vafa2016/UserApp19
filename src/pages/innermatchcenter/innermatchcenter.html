@@ -452,7 +452,7 @@
     <div *ngIf="statschoose=='Player'" class="jb-plaer">
       <table [id]="playerStatsTable0" class="stripe row-border order-column playerStatsTable "  cellspacing="0" *ngIf="showDataTable==true">
         <thead>
-          <tr>
+      <tr>
 
 
                   <th class="jb-sorting">
@@ -460,7 +460,7 @@
                         All
                         </button>
 
-                      <button [id]="btn10" class="button button-clear playerStatLeftTeam homeTeam activated1" (click)="sortBYType('home')">
+                      <button [id]="btn10" class="button button-clear playerStatLeftTeam   activated1" (click)="sortBYType('home')">
                         <img src="{{path}}{{homeTeam.team_image}}" class="img-storke" />
                       </button>
 

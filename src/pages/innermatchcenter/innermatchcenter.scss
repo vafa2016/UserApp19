@@ -2261,7 +2261,9 @@ table.dataTable.stripe tbody tr td {
 
 .DTFC_LeftBodyWrapper{width: 194px !important;}
 
-.DTFC_LeftHeadWrapper{ width: 194px !important;margin-top: 6px;}
+.DTFC_LeftHeadWrapper{ width: 194px !important;
+  border-right: 5px solid white;
+  margin-top: 6px;}
 // table.dataTable th:nth-child(1),
 // table.dataTable th:nth-child(2),
 // table.dataTable th:nth-child(3) {
