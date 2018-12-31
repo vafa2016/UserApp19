@@ -3247,7 +3247,7 @@ export class InnermatchcenterPage {
 
 
                 let table = $('#playerStatsTable').DataTable({
-                    scrollY: windowHeight,
+                    scrollY: true,
                     scrollX: true,
                     scrollCollapse: true,
                     paging: false,
