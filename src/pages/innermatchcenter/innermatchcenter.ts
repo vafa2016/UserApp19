@@ -952,7 +952,7 @@ export class InnermatchcenterPage {
          //test
          this.pamentshow = 1;
          this.gotostatspage();
-         
+
         this.platform.ready().then(() => {
             this.ga.startTrackerWithId('UA-118996199-1')
                 .then(() => {

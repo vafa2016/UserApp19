@@ -5,7 +5,7 @@ page-innermatchcenter {
   .watchbtn{
     background-color: green;
     border-radius: 5px;
-   
+
   }
   .listenbtn
   {
@@ -3142,6 +3142,29 @@ table.dataTable td {
     margin-right: 10px;
     background: white;
     border: 1px solid grey;
+}
+
+.jd_qtrfinished{
+  background-color: red;
+  border-radius: 10px;
+  font-family: Gotham-Book;
+  font-size: 15px;
+  height: 35px;
+}
+
+.jd_qtrbreak{
+  background-color: #86cf85;
+  border-radius: 10px;
+  font-family: Gotham-Book;
+  font-size: 15px;
+  height: 35px;
+}
+
+.jd_qtrtmg{
+  color: white;
+  line-height: 35px;
+  margin: 0 auto;
+  max-width: 140px;
 }
 
 }
