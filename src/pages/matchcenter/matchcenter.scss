@@ -37,29 +37,29 @@ page-matchcenter {
     }
 
     toolbar-background{
-      background-color: #eaeaea !important;;
+      background-color: white !important;;
     }
 
     ion-toolbar{
-      background: #eaeaea !important;
+      background: white !important;
      position: fixed;
     }
 
     .jd-down-arrow{
       position: absolute;
-      top: 23px;
-      background-color: #f0f0f0;
+      top: 24px;
+      background-color: rgba(255, 255, 255, 0.7);
       width: 16%;
       right: 16px;
       line-height: 1;
-      color: #04235c;
+      color: #424242;
       font-size: 18px;
     }
 
     .selectd_yr{
       margin: auto 17px;
       font-size: 15px;
-      color: #04235c;
+      color: #424242;
       font-family: 'Gotham-Medium';
     }
 
@@ -72,16 +72,17 @@ page-matchcenter {
     }
     .toolbar-background
     {
-      background-color: #eaeaea !important;;
+      background-color: white !important;;
     }
+
 	ion-segment {
 	  display: block;
 	  overflow-x: scroll;
     white-space: nowrap;
        height: 35px;
-      position: relative;
-      bottom: 3px;
-      background: #eaeaea;
+       top: 5px !important;
+       position: absolute !important;
+      background: white;
 
 
 	  ion-segment-button.segment-button {
@@ -107,10 +108,15 @@ page-matchcenter {
       }
      .segment-button.segment-activated
      {
-       border-bottom: 3px solid #04235C !important;
-       background: transparent !important;
-       color:#04235C;
-       border-radius: 0px;
+           /* border-bottom: 3px solid #04235C !important; */
+    background: #04235c !important;
+    color: #f4f4f4;
+    /* border-radius: 28px; */
+    border-radius: 8px;
+      //  border-bottom: 3px solid #04235C !important;
+      //  background: transparent !important;
+      //  color:#04235C;
+      //  border-radius: 0px;
      }
 	}
 }
@@ -219,7 +225,7 @@ page-matchcenter {
 .class_LIVE{
 	font-family:Gotham-Bold;
   background-color: #86cf85;
-  border-radius: 12px;
+  border-radius: 3px;
   color: white;
   display: inline;
     font-size: 12px;
@@ -229,7 +235,7 @@ page-matchcenter {
 	font-family:Gotham-Bold;
   // background-color: #667588;
   background-color: #dedede;
-  border-radius: 12px;
+  border-radius: 3px;
   color:white;
   display: inline;
     font-size: 12px;
@@ -239,7 +245,7 @@ page-matchcenter {
     font-family: Gotham-Bold;
     // background-color: #667588;
     background-color: #f40b0b;
-    border-radius: 12px;
+    border-radius: 3px;
     color: white;
     display: inline;
     font-size: 12px;
@@ -250,18 +256,22 @@ page-matchcenter {
 
 }
 .dateOFMatches {
-  color: #7d849a;
+  color: #111;
   margin: 9px 0px;
-  font-family: 'Gotham-Light';
+  font-family: 'Gotham-Medium';
   text-align: left;
   width: 100%;
   padding-left: 10px;
-  font-size: 14px;
+  font-size: 13px;
+}
+
+.dateOFMatches::after{
+  border: none !important;
 }
 
 .box {
-  border: 1px solid #c8c7cc !important;
-  background-color: #eaeaea;
+  border-top: 1px solid #bdbdbd !important;
+  background-color: #e0e0e09c;
   height: 35px;
 }
 .line{
@@ -273,10 +283,10 @@ page-matchcenter {
 }
 
 .text{
-  font-size: 13px;
+  font-size: 14px;
   font-family: 'Gotham-Medium';
   margin: auto;
-  color: #949496;
+  color: #424242;
   text-align: center;
   margin-bottom: 5px;
 }
