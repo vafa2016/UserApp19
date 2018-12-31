@@ -949,6 +949,10 @@ export class InnermatchcenterPage {
         // $state.go('app.action',{fixture_id: this.fixture_id, roundNo: this.stateRoundNo, homeTeamScore: this.totalHoMeScores, awayTeamScore : this.totalAwAyScores, match_status:this.statusName});
     }
     goTostats() {
+         //test
+         this.pamentshow = 1;
+         this.gotostatspage();
+         
         this.platform.ready().then(() => {
             this.ga.startTrackerWithId('UA-118996199-1')
                 .then(() => {
