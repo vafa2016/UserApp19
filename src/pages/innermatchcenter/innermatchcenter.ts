@@ -2588,13 +2588,13 @@ export class InnermatchcenterPage {
                     yaxis: { min: -maxScore, max: maxScore, position: "right", color: "rgb(111,124,148)" },
                     tooltip: true,
                     xaxis: {
-                        ticks: ticks1, min: 0, max: 24 * 4 * 60, color: "rgb(111,124,148)",
+                        ticks: ticks1, min: 0, max: timeDuration * 4 * 60, color: "rgb(111,124,148)",
                         font: { color: 'rgb(121,133,155)', family: 'Gotham-Bold', size: 11 }
                     },
                     colors: ["rgb(33,186,38)"],
                 };
                 // alert("hh");
-
+                console.log(ticks1);
                 console.log(modifedScore);
                 let plotObj = $.plot($("#scoreChart"), [{ data: modifedScore }], options);
                 let plotObj1 = $.plot($("#scoreChartmin"), [{ data: modifedScore }], options);
