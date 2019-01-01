@@ -79,27 +79,30 @@ page-matchcenter {
 	  display: block;
 	  overflow-x: scroll;
     white-space: nowrap;
-       height: 35px;
-       top: 5px !important;
+       height: 55px;
+       width: 230px;
+       top: 3px !important;
        position: absolute !important;
       background: white;
 
 
 	  ion-segment-button.segment-button {
-       border-bottom:none;
-    display: inline-block;
-        top:3px;
-        width: auto;
-        padding: 5px;
-        height: 36px;
-        color: #949496;
-        font-size: 16px;
-        font-family: Gotham-Medium;
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        line-height: 1.5;
-        max-width: 200px;
+      border-bottom: none;
+      display: inline-block;
+      top: 5px;
+      width: auto;
+      padding: 2px;
+      height: 30px;
+      color: #949496;
+      font-size: 16px;
+      font-family: Gotham-Medium;
+      border-top: none;
+      margin-right: 10px;
+      border-left: none;
+      border-right: none;
+      line-height: 1.5;
+      max-width: 200px;
+      min-width: 30px;
         // border-bottom: none !important ;
       }
       ion-segment-button.segment-button:hover:not(.segment-activated)
