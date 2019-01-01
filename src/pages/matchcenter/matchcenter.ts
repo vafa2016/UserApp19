@@ -54,7 +54,9 @@ export class MatchcenterPage {
   sysYear: any;
   secondround:any={};
 
-  selectd_yr: any = '2017';
+  YearList: any = [];
+
+  selectd_yr: any = '';
   constructor(private inapp: InAppBrowser,
     public plt:Platform,
     public ga:GoogleAnalytics,
@@ -82,7 +84,7 @@ export class MatchcenterPage {
 
   // year_dropdown
   presentPopover(myEvent) {
-    let data = ['2017','2018','2019'];
+    let data = this.YearList;
     let popover = this.popoverCtrl.create("YeardropdownPage",{ yearData : data });
     popover.present({
       ev: myEvent
@@ -121,6 +123,20 @@ export class MatchcenterPage {
       console.log(this.comptitionlists);
       this.selectables = this.comptitionlists[0].competitions_name;
       this.competition_id = this.comptitionlists[0].competition_id;
+
+      // year listing api
+      this.ajax.post('custom/get-competition-years', {
+        competition_id: this.competition_id
+      }).subscribe((res) => {
+        let ResponseData = res;
+         if(ResponseData.status == 200){
+             this.YearList = ResponseData.years;
+             this.selectd_yr = this.YearList[0];
+         }
+      }, error => {
+        // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+      })
+      //
 
       if (this.roundNo == '') {
         console.log(this.competition_id);
