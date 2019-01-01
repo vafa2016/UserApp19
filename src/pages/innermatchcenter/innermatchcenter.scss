@@ -3167,6 +3167,23 @@ table.dataTable td {
   max-width: 140px;
 }
 
+div.xAxis >div.tickLabel:first-child{
+  left: 0px !important;
+  mix-blend-mode: darken;
+}
+div.xAxis >div.tickLabel:nth-child(2){
+  left: 76px !important;
+  mix-blend-mode: darken;
+}
+div.xAxis >div.tickLabel:nth-child(3){
+  left: 151px !important;
+  mix-blend-mode: darken;
+}
+div.xAxis >div.tickLabel:last-child{
+  left: 229px !important;
+  mix-blend-mode: darken;
+}
+
 }
 
 
