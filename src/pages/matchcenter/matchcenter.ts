@@ -93,6 +93,16 @@ export class MatchcenterPage {
     popover.onDidDismiss(data =>{
       if(data != null){
         this.selectd_yr = data;
+        // get matches by year
+        this.ajax.datalist('get-competition-wise-match-score-by-year', {
+          accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+          competition_id: this.competition_id,
+          year : data
+        }).subscribe((res) => {
+          this.getroundwise(res);
+        }, error => {
+          // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+        })
       }
     })
   }
@@ -132,6 +142,9 @@ export class MatchcenterPage {
          if(ResponseData.status == 200){
              this.YearList = ResponseData.years;
              this.selectd_yr = this.YearList[0];
+            //  get matches
+            this.GetMatchesByYear(this.YearList[0],this.competition_id);
+            //
          }
       }, error => {
         // this.cmnfun.showToast('Some thing Unexpected happen please try again');
@@ -139,20 +152,20 @@ export class MatchcenterPage {
       //
 
       if (this.roundNo == '') {
-        console.log(this.competition_id);
-        this.ajax.datalist('get-competition-wise-match-score', {
-          accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
-          competition_id: this.competition_id
-        }).subscribe((res) => {
-          this.getroundwise(res);
-          if(this.Interval2){clearInterval(this.Interval2)}
-          this.Interval1=setInterval(()=>{
-            console.log('interval1')
-            this.getroundwise(res);
-          },5000)
-        }, error => {
-          // this.cmnfun.showToast('Some thing Unexpected happen please try again');
-        })
+        // console.log(this.competition_id +'called');
+        // this.ajax.datalist('get-competition-wise-match-score', {
+        //   accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+        //   competition_id: this.competition_id
+        // }).subscribe((res) => {
+        //   this.getroundwise(res);
+        //   if(this.Interval2){clearInterval(this.Interval2)}
+        //   this.Interval1=setInterval(()=>{
+        //     console.log('interval1')
+        //     this.getroundwise(res);
+        //   },5000)
+        // }, error => {
+        //   // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+        // })
 
       }
       else {
@@ -263,9 +276,10 @@ export class MatchcenterPage {
       this.selectables = data.competitions_name
       this.competition_id = data.competition_id;
       this.roundNo = '';
-      this.ajax.datalist('get-competition-wise-match-score', {
+      this.ajax.datalist('get-competition-wise-match-score-by-year', {
         accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
-        competition_id: this.competition_id
+        competition_id: this.competition_id,
+        year : this.selectd_yr
       }).subscribe((res) => {
         this.getroundwise(res);
       }, error => {
@@ -309,5 +323,24 @@ export class MatchcenterPage {
       //  $state.go('app.score',);
     }
 
+  }
+
+
+  // get matches by year function
+  GetMatchesByYear(year, competitionid){
+    this.ajax.datalist('get-competition-wise-match-score-by-year', {
+      accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+      competition_id: competitionid,
+      year : year
+    }).subscribe((res) => {
+      this.getroundwise(res);
+      if(this.Interval2){clearInterval(this.Interval2)}
+      this.Interval1=setInterval(()=>{
+        console.log('interval1')
+        this.getroundwise(res);
+      },5000)
+    }, error => {
+      // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+    })
   }
 }
