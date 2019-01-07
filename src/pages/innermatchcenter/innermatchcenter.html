@@ -78,15 +78,7 @@
   <div *ngIf="showcontent=='show' && type=='SCORE'">
     <ul class="list compitationList">
         <div class="stream_btn_div" >
- <button ion-button class="watchbtn">
-    <ion-icon class="play" name="md-play"></ion-icon>
-    Watch
-  </button>
-  <button ion-button class="listenbtn">
-      <ion-icon class="headset" name="ios-headset"></ion-icon>
-      Listen
-    </button>
-
+ 
   </div>
 
       <li class="item ink">
@@ -124,6 +116,16 @@
                   <!-- new completed -->
                   <div class="jd_qtrtmg" *ngIf="teamStatus == 1">
                     <div class="jd_qtrfinished">FULL TIME</div>
+
+                    <button ion-button class="watchbtn">
+                      <ion-icon class="play" name="md-play"></ion-icon>
+                      Watch
+                    </button>
+                    <button ion-button class="listenbtn">
+                        <ion-icon class="headset" name="ios-headset"></ion-icon>
+                        Listen
+                      </button>
+                  
                   </div>
                   <!--  -->
                    <!-- new qtr break -->
