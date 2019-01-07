@@ -17,13 +17,13 @@
 
 			<ion-toolbar #content no-border class="scrollable-segments">
 				<ion-grid>
-					<ion-row style="margin-top: -6px;">
-							<ion-col (click)="presentPopover($event)" col-3 class="columnone" style="border-right: 1px solid #bdbdbd;">
+					<ion-row style="margin-top: 2px !important;">
+							<ion-col (click)="presentPopover($event)" col-3 class="columnone" style="border-right: 1px solid #bdbdbd;padding-top: 7px;">
                 <p class="text">SEASON</p>
                 <p class="selectd_yr">{{selectd_yr}}</p>
                 <ion-icon class="downarrow jd-down-arrow" name="ios-arrow-down"></ion-icon>
 							</ion-col>
-							<ion-col col-9>
+							<ion-col col-9 style="padding-top: 7px;">
 					<ion-segment #scrollMe  *ngIf="totalround" [(ngModel)]="roundNo" style="margin-left: 15px;">
 						<ion-segment-button  id='id{{round.round}}'  (click)="selectRound(round.round,competition_id); " value="{{round.round}}" *ngFor="let round of totalround;">
 							{{round.round}}
@@ -68,10 +68,13 @@
 											Q{{value1.live_quater}}
 											<span *ngIf="value1.live_quater_time!=null">&nbsp; {{value1.live_quater_time}} </span>
 											<span *ngIf="value1.live_quater_time==null">&nbsp; 00:00 </span>
+                    </div>
+                    <div class="matchStatus class_{{value1.match_status}} class_{{value1.match_status}}" *ngIf=" value1.match_status =='UPCOMING'">
+										   <span class="jd_prematch_note">{{value1.upcoming_days_status}}</span>
 										</div>
-										<div class="matchStatus class_{{value1.match_status}} class_{{value1.match_status}}" *ngIf=" value1.match_status =='UPCOMING'">
+										<!-- <div class="matchStatus class_{{value1.match_status}} class_{{value1.match_status}}" *ngIf=" value1.match_status =='UPCOMING'">
 											Prematch
-										</div>
+										</div> -->
 										<div class="matchStatus class_{{value1.match_status}} class_{{value1.match_status}}" *ngIf=" value1.match_status =='COMPLETE'">
 											Full Time
 										</div>

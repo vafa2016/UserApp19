@@ -50,6 +50,7 @@
     <div class="jb-class-back-top">
       <div class='graph' id="scoreChartmin" style="height:100px;width:100% !important; margin-left:35px;   vertical-align: middle;font-size:14px;"></div>
     </div>
+
     <div [style.display]="shortAdvhideshow==0 ? 'block' : 'none'" class="advContainer" style="position:absolute; margin: 5px auto 0 0px; width: 104%;">
       <img src="{{path}}{{advertisementHeader[0].ad_image}}"  (click)="goToAddSite(advertisementHeader[0].ad_url);">
     </div>
@@ -254,11 +255,11 @@
         <ion-row>
           <!-- home team -->
           <ion-col>
-                <p *ngFor="let plyr of Bestplayers" class="jd_home_bstplyr">{{plyr}}</p>
+                <p *ngFor="let hplyr of HomeGoalKickers" class="jd_home_bstplyr">{{hplyr.player_name}} {{hplyr.goal}}</p>
           </ion-col>
           <!-- away team -->
           <ion-col>
-                <p *ngFor="let plyr of Bestplayers" class="jd_away_bstplyr">{{plyr}}</p>
+                <p *ngFor="let awplyr of  AwayGoalKickers" class="jd_away_bstplyr">{{awplyr.player_name}} {{awplyr.goal}}</p>
           </ion-col>
         </ion-row>
     </div>
@@ -270,11 +271,11 @@
         <ion-row>
           <!-- home team -->
           <ion-col>
-                <p *ngFor="let plyr of Bestplayers" class="jd_home_bstplyr">{{plyr}}</p>
+                <p *ngFor="let bplyr of HomeBestplayers" class="jd_home_bstplyr">{{bplyr}}</p>
           </ion-col>
           <!-- away team -->
           <ion-col>
-                <p *ngFor="let plyr of Bestplayers" class="jd_away_bstplyr">{{plyr}}</p>
+                <p *ngFor="let aplyr of AwayBestplayers" class="jd_away_bstplyr">{{aplyr}}</p>
           </ion-col>
         </ion-row>
     </div>
@@ -312,8 +313,8 @@
               <!-- <span style="font-family:Gotham-Medium;color: #c3c6cc;" *ngIf="data.player_name.length > 14"> {{data.player_name }}</span>    -->
             </h2>
             <p style="padding-top:5px;">Q{{data.quater}} {{data.act_time}}</p>
+            <img *ngIf="data.player_image != ''" class="jd_scorefd_Pimg"  src="{{path}}{{data.player_image}}">
           </a>
-
         </div>
       </ion-col>
 
@@ -536,6 +537,12 @@
                         HO
                       </button>
                     </th>
+                    <th>
+                      <button class="button button-clear tableColumSortStyle">
+                        I50
+                      </button>
+                    </th>
+
 
 
 
@@ -570,7 +577,7 @@
             <td [innerHTML]="obj.M"> </td>
             <td [innerHTML]="obj.T"> </td>
             <td [innerHTML]="obj.HO"> </td>
-
+            <td [innerHTML]="obj.I50"></td>
           </tr>
 
         </tbody>

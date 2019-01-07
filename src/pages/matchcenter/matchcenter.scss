@@ -47,7 +47,7 @@ page-matchcenter {
 
     .jd-down-arrow{
       position: absolute;
-      top: 24px;
+      top: 26px;
       background-color: rgba(255, 255, 255, 0.7);
       width: 16%;
       right: 16px;
@@ -55,6 +55,11 @@ page-matchcenter {
       color: #424242;
       font-size: 20px;
       font-weight: bold;
+    }
+
+    .jd_prematch_note{
+      color: black !important;
+      font-size: 12px !important;
     }
 
     .selectd_yr{
@@ -65,7 +70,7 @@ page-matchcenter {
     }
 
   .scrollable-segments {
-    height: 50px;
+    height: 51px;
     top:44px !important;
     .toolbar-content
     {
@@ -80,9 +85,9 @@ page-matchcenter {
 	  display: block;
 	  overflow-x: scroll;
     white-space: nowrap;
-       height: 55px;
+      //  height: 55px;
        width: 230px;
-       top: 3px !important;
+       top: 8px !important;
        position: absolute !important;
       background: white;
 
@@ -115,6 +120,7 @@ page-matchcenter {
            /* border-bottom: 3px solid #04235C !important; */
     background: #04235c !important;
     color: #f4f4f4;
+    padding: 3px !important;
     /* border-radius: 28px; */
     border-radius: 8px;
       //  border-bottom: 3px solid #04235C !important;
@@ -149,7 +155,7 @@ page-matchcenter {
        height: 80px;      /* equals max image height */
     width: 100%;
     white-space: nowrap;
-    text-align: center; margin: 1em 0;
+    text-align: center; margin: 1em 0 -3px;
     }
     .helper {
     display: inline-block;

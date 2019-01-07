@@ -33,7 +33,11 @@ import 'datatables.net-fixedheader';
 export class InnermatchcenterPage {
     @ViewChild(Content) content: Content;
 
-    Bestplayers :any = ['Richards', 'Mark'];
+    AwayBestplayers :any = [];
+    HomeBestplayers :any = [];
+    AwayGoalKickers :any =[];
+    HomeGoalKickers :any = [];
+
     isToggled: boolean = false;
 
     deviceData: any = {
@@ -102,9 +106,12 @@ export class InnermatchcenterPage {
         //
     }
     ionViewWillLeave() {
-
         clearInterval(this.id);
         clearInterval(this.scoreid);
+    }
+    ionViewDidLeave(){
+      clearInterval(this.id);
+      clearInterval(this.scoreid);
     }
     goToAddSite(ad_url) {
         this.ga.trackEvent('Advertisement', 'Viewed', 'Score', 1);
@@ -214,6 +221,12 @@ export class InnermatchcenterPage {
         }
         this.newTotalHomeTeamScore = res.totalHomeTeamScore;
         this.newTotalAwayTeamScore = res.totalAwayTeamScore;
+
+        this.AwayBestplayers = res.awayTeamBestplayers;
+        this.HomeBestplayers = res.homeTeamBestplayers;
+        this.AwayGoalKickers = res.awayTeamGoalkickers;
+        this.HomeGoalKickers = res.homeTeamGoalkickers;
+
         //ADVERTISEMENT::
         this.advertisementHeader = res.adv.headerAdv;
         this.advertisementFooter = res.adv.footerAdv[0];
@@ -404,7 +417,7 @@ export class InnermatchcenterPage {
                     //$('.totalHomeQuarerScore').html(q3Total);
                     this.q3HomeScore = q3Total;
                     this.totalHomeQuarerScore = q3Total;
-                    ////console.log(this.q3HomeScore); ////console.log(this.totalHomeQuarerScore);
+                    // console.log('q3score'+this.q3HomeScore); ////console.log(this.totalHomeQuarerScore);
                 }
                 else {
 
@@ -950,9 +963,6 @@ export class InnermatchcenterPage {
     }
     goTostats() {
          //test
-         this.pamentshow = 1;
-         this.gotostatspage();
-
         this.platform.ready().then(() => {
             this.ga.startTrackerWithId('UA-118996199-1')
                 .then(() => {
@@ -1112,9 +1122,6 @@ export class InnermatchcenterPage {
                             }
                         }
                         else {
-                             alert('a');
-                             this.pamentshow = 1;
-                             this.gotostatspage();
                             // let modal = this.modalCtrl.create('EditUserModelPage');
                             // let me = this;
                             // modal.onDidDismiss(data => {
@@ -1157,7 +1164,7 @@ export class InnermatchcenterPage {
                                     // }
                                 ]
                             });
-                            // alertpop.present();
+                            alertpop.present();
                         }
                     }
                 });
@@ -1206,6 +1213,7 @@ export class InnermatchcenterPage {
                 stat_id: value.stat_id,
                 team_type: value.team_type,
                 stat_title: this.stat_title,
+                player_image: value.player_image,
                 player_name: value.player_name,
                 quater_id: value.quater_id,
                 fixture_id: value.fixture_id,
@@ -2567,6 +2575,7 @@ export class InnermatchcenterPage {
                 modifedScore.push([timeDuration*60,lastTempValue]);*/
 
                 ticks1 = [[timeDuration * 60, 'Q1'], [timeDuration * 2 * 60, 'Q2'], [timeDuration * 3 * 60, 'Q3'], [timeDuration * 4 * 60, 'Q4']];
+               let QtrScore = [[3.2],[2.3]];
 
                 let options = {
                     canvas: false,
@@ -2589,7 +2598,7 @@ export class InnermatchcenterPage {
                     tooltip: true,
                     xaxis: {
                         ticks: ticks1, min: 0, max: timeDuration * 4 * 60, color: "rgb(111,124,148)",
-                        font: { color: 'rgb(121,133,155)', family: 'Gotham-Bold', size: 11 }
+                        font: { color: 'rgb(121,133,155)', family: 'Gotham-Bold', size: 10 }
                     },
                     colors: ["rgb(33,186,38)"],
                 };
@@ -3257,6 +3266,7 @@ export class InnermatchcenterPage {
                         "orderable": true
                     }],
                     "aoColumns": [
+                        { "orderSequence": ["desc", "asc"] },
                         { "orderSequence": ["desc", "asc"] },
                         { "orderSequence": ["desc", "asc"] },
                         { "orderSequence": ["desc", "asc"] },
