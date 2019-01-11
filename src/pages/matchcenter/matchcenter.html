@@ -18,11 +18,12 @@
 			<ion-toolbar #content no-border class="scrollable-segments" style="border-bottom: 1px solid #bdbdbd">
 				<ion-grid>
 					<ion-row style="margin-top: 2px !important;">
-							<ion-col (click)="presentPopover($event)" col-3 class="columnone" style="border-right: 1px solid #bdbdbd;padding-top: 7px;">
+							<ion-col (click)="presentPopover($event)" col-3 class="columnone" style="padding-top: 7px;">
                 <p class="text">SEASON</p>
                 <p class="selectd_yr">{{selectd_yr}}</p>
                 <ion-icon class="downarrow jd-down-arrow" name="ios-arrow-down"></ion-icon>
-							</ion-col>
+                <div class="jd_line"></div>
+              </ion-col>
 							<ion-col col-9 style="padding-top: 7px;">
 					<ion-segment #scrollMe  *ngIf="totalround" [(ngModel)]="roundNo" style="margin-left: 15px;">
 						<ion-segment-button  id='id{{round.round}}'  (click)="selectRound(round.round,competition_id); " value="{{round.round}}" *ngFor="let round of totalround;">

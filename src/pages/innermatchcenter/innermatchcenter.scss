@@ -1,5 +1,13 @@
 page-innermatchcenter {
 
+
+  .jd_scroll_line{
+    position: absolute;
+    border: 1px solid red;
+    height: 100px;
+    z-index: 10;
+  }
+
   .segment-ios .segment-button:last-of-type {
     border-top-left-radius: 0;
     border-top-right-radius: 4px;
@@ -2291,7 +2299,7 @@ element.style {
     padding: 0;
     background-color: white;
     border: 1px solid #999;
-    margin-left: -6px;
+    margin-left: -9px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     // border-radius: 6px;

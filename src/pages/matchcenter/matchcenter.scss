@@ -82,12 +82,20 @@ page-matchcenter {
       background-color: white !important;;
     }
 
+    .jd_line{
+      position: absolute;
+    border: 1px solid #bdbdbd;
+    height: 50px;
+    top: 3px;
+    right: 0;
+    }
+
 	ion-segment {
 	  display: block;
 	  overflow-x: scroll;
     white-space: nowrap;
       //  height: 55px;
-      width: 80%;
+      width: 85%;
        top: 8px !important;
        position: absolute !important;
       background: white;

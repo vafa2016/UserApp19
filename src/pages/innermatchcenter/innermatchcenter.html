@@ -563,9 +563,6 @@
         </thead>
         <tbody class=''>
           <tr *ngFor="let obj of homeTeamPlayers1;let key=index">
-            <!-- <div *ngIf="key==2">
-                  <img src="{{path}}{{advertisementHeader[0].ad_image}}"  (click)="goToAddSite(advertisementHeader[0].ad_url);">
-                </div> -->
             <td [attr.data-t]="obj.type" style="text-align:left !important;">
               <div class="ladderTableLeftSide" *ngIf="obj.type=='home'">
                 <img src="{{path}}{{baseUrl}}{{homeTeamImages[0].image_value}}" class="laderTeamIcon" />

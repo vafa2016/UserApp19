@@ -171,7 +171,6 @@ export class InnermatchcenterPage {
             this.zone.run(() => {
                 this.shortAdvhideshow = 1;
                 this.graphImgShowHide = 1;
-
             });
             this.headerImg = 0;
             this.fullGraph = 0;
@@ -972,8 +971,6 @@ export class InnermatchcenterPage {
     }
     goTostats() {
          //test
-         this.pamentshow = 1;
-         this.gotostatspage();
         this.platform.ready().then(() => {
             this.ga.startTrackerWithId('UA-118996199-1')
                 .then(() => {
