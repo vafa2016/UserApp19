@@ -56,7 +56,7 @@ export class MatchcenterPage {
 
   YearList: any = [];
 
-  selectd_yr: any = '';
+  selectd_yr: any = '2018';
   constructor(private inapp: InAppBrowser,
     public plt:Platform,
     public ga:GoogleAnalytics,
@@ -92,17 +92,11 @@ export class MatchcenterPage {
 
     popover.onDidDismiss(data =>{
       if(data != null){
-        this.selectd_yr = data;
+        this.selectd_yr = data.competition_year;
+        this.competition_id = data.competition_id;
         // get matches by year
-        this.ajax.datalist('get-competition-wise-match-score-by-year', {
-          accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
-          competition_id: this.competition_id,
-          year : data
-        }).subscribe((res) => {
-          this.getroundwise(res);
-        }, error => {
-          // this.cmnfun.showToast('Some thing Unexpected happen please try again');
-        })
+          this.roundNo = '';
+          this.GetMatchesByYear(data.competition_year, data.competition_id)
       }
     })
   }
@@ -130,27 +124,16 @@ export class MatchcenterPage {
     this.events.subscribe('competitionlistmatchcenter:changed', res => {
 
       this.comptitionlists = res.competition;
-      console.log(this.comptitionlists);
+      console.log(this.comptitionlists[0].seasons[0].competition_id);
       this.selectables = this.comptitionlists[0].competitions_name;
-      this.competition_id = this.comptitionlists[0].competition_id;
-
-      // year listing api
-      this.ajax.post('custom/get-competition-years', {
-        competition_id: this.competition_id
-      }).subscribe((res) => {
-        let ResponseData = res;
-         if(ResponseData.status == 200){
-             this.YearList = ResponseData.years;
-             this.selectd_yr = this.YearList[0];
-            //  get matches
-            this.GetMatchesByYear(this.YearList[0],this.competition_id);
-            //
-         }
-      }, error => {
-        // this.cmnfun.showToast('Some thing Unexpected happen please try again');
-      })
-      //
-
+      this.competition_id = this.comptitionlists[0].seasons[0].competition_id;
+      let compId = this.comptitionlists[0].seasons[0].competition_id;
+      // year listing
+      this.YearList =this.comptitionlists[0].seasons;
+      this.selectd_yr = this.YearList[0].competition_year;
+     //  get matches
+     this.GetMatchesByYear(this.selectd_yr,compId);
+     //
       if (this.roundNo == '') {
         // console.log(this.competition_id +'called');
         // this.ajax.datalist('get-competition-wise-match-score', {
@@ -180,30 +163,36 @@ export class MatchcenterPage {
   getroundwise(res) {
     console.log(res);
     if(res.message=='No Data Found')
-      {
+      { if(this.Interval1){clearInterval(this.Interval1);}
+      if(this.Interval2){clearInterval(this.Interval2);}
         this.cmnfun.HideLoading();
-         this.ajax.datalist('get-all-round-and-score', {
-          accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
-          competition_id: '-'
-        }).subscribe((res) => {
-          this.secondround=res;
-          if (this.roundNo == '') {
-              this.roundNo = this.secondround.current_round;
-              this.totalround = this.secondround.totalRounds;
-              // this.scrollToBottom();
-              setTimeout(() => {
-                this.scrolround(this.roundNo);
-              }, 100);
-            }
-            console.log(this.totalround);
-            this.totalRoundsData = this.secondround.footerAdv;
-            // console.log("add" + this.totalRoundsData[0].ad_image);
-            this.roundScores = this.secondround.roundScores;
-            console.log(this.roundScores);
-            console.log(this.roundNo);
-        }, error => {
-          // this.cmnfun.showToast('Some thing Unexpected happen please try again');
-        })
+        this.totalRoundsData=[];
+        this.roundNo = '';
+        this.totalround = [];
+        this.roundScores = [];
+         this.cmnfun.showToast('No data');
+        //  this.ajax.datalist('get-all-round-and-score', {
+        //   accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+        //   competition_id: '-'
+        // }).subscribe((res) => {
+        //   this.secondround=res;
+        //   if (this.roundNo == '') {
+        //       this.roundNo = this.secondround.current_round;
+        //       this.totalround = this.secondround.totalRounds;
+        //       // this.scrollToBottom();
+        //       setTimeout(() => {
+        //         this.scrolround(this.roundNo);
+        //       }, 100);
+        //     }
+        //     console.log(this.totalround);
+        //     this.totalRoundsData = this.secondround.footerAdv;
+        //     // console.log("add" + this.totalRoundsData[0].ad_image);
+        //     this.roundScores = this.secondround.roundScores;
+        //     console.log(this.roundScores);
+        //     console.log(this.roundNo);
+        // }, error => {
+        //   // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+        // })
       }
       else{
          this.cmnfun.HideLoading();
@@ -251,12 +240,15 @@ export class MatchcenterPage {
 
   this.Interval2=setInterval(()=>{
     console.log('interval2')
-    this.ajax.datalist('get-round-wise-match-score', {
+    this.ajax.datalist('get-round-wise-match-score-by-year', {
       accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
       round: this.roundNo,
-      competition_id: this.competition_id
+      year :  this.selectd_yr,
+      competition_id:  this.competition_id
     }).subscribe((res) => {
-      this.getroundwise(res);
+      if(res.message != 'round value is empty' || res.message != 'No Data Found'){
+        this.getroundwise(res);
+      }
     }, error => {
       // this.cmnfun.showToast('Some thing Unexpected happen please try again');
     })
@@ -273,18 +265,32 @@ export class MatchcenterPage {
     let me = this;
     modal.onDidDismiss(data => {
       this.cmnfun.showLoading('Please wait...');
+      console.log(data);
       this.selectables = data.competitions_name
-      this.competition_id = data.competition_id;
+      this.competition_id =data.seasons[0].competition_id;
+      this.YearList =data.seasons;
+      this.selectd_yr = this.YearList[0].competition_year;
+      //
       this.roundNo = '';
       this.ajax.datalist('get-competition-wise-match-score-by-year', {
         accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
-        competition_id: this.competition_id,
+        competition_id: data.seasons[0].competition_id,
         year : this.selectd_yr
       }).subscribe((res) => {
         this.getroundwise(res);
+        if(this.Interval1){clearInterval(this.Interval1)}
+        if(this.Interval2){clearInterval(this.Interval2)}
+        if(res.message!='No Data Found'){
+          this.Interval1=setInterval(()=>{
+            console.log('interval1')
+            this.getroundwise(res);
+          },5000)
+         }
+
       }, error => {
         // this.cmnfun.showToast('Some thing Unexpected happen please try again');
       })
+
     });
     modal.present();
   }
@@ -328,6 +334,8 @@ export class MatchcenterPage {
 
   // get matches by year function
   GetMatchesByYear(year, competitionid){
+    if(this.Interval1){clearInterval(this.Interval1);}
+    if(this.Interval2){clearInterval(this.Interval2);}
     this.ajax.datalist('get-competition-wise-match-score-by-year', {
       accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
       competition_id: competitionid,
@@ -335,10 +343,12 @@ export class MatchcenterPage {
     }).subscribe((res) => {
       this.getroundwise(res);
       if(this.Interval2){clearInterval(this.Interval2)}
-      this.Interval1=setInterval(()=>{
-        console.log('interval1')
-        this.getroundwise(res);
-      },5000)
+      if(res.message != 'No Data Found'){
+        this.Interval1=setInterval(()=>{
+          console.log('interval1')
+          this.getroundwise(res);
+        },5000)
+      }
     }, error => {
       // this.cmnfun.showToast('Some thing Unexpected happen please try again');
     })

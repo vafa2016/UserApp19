@@ -37,6 +37,11 @@ export class InnermatchcenterPage {
     HomeBestplayers :any = [];
     AwayGoalKickers :any =[];
     HomeGoalKickers :any = [];
+    QuaterBreakstatus:any = 0;
+    BreakQuater:any = 0;
+
+    jd_active :any = '';
+
 
     isToggled: boolean = false;
 
@@ -166,6 +171,7 @@ export class InnermatchcenterPage {
             this.zone.run(() => {
                 this.shortAdvhideshow = 1;
                 this.graphImgShowHide = 1;
+
             });
             this.headerImg = 0;
             this.fullGraph = 0;
@@ -226,6 +232,9 @@ export class InnermatchcenterPage {
         this.HomeBestplayers = res.homeTeamBestplayers;
         this.AwayGoalKickers = res.awayTeamGoalkickers;
         this.HomeGoalKickers = res.homeTeamGoalkickers;
+
+        this.QuaterBreakstatus = res.quaterBreak.quater_break;
+        this.BreakQuater = res.quaterBreak.quater;
 
         //ADVERTISEMENT::
         this.advertisementHeader = res.adv.headerAdv;
@@ -963,6 +972,8 @@ export class InnermatchcenterPage {
     }
     goTostats() {
          //test
+         this.pamentshow = 1;
+         this.gotostatspage();
         this.platform.ready().then(() => {
             this.ga.startTrackerWithId('UA-118996199-1')
                 .then(() => {
@@ -2982,6 +2993,7 @@ export class InnermatchcenterPage {
         else {
             this.ga.trackView('Stats Players - Game');
             if (this.statschoose2 != 'Player') {
+                this.jd_active = '';
                 this.statschoose2 = 'Player';
                 this.statschoose = 'Player';
                 this.cmnfun.showLoading('Please wait...');
@@ -3048,8 +3060,16 @@ export class InnermatchcenterPage {
 
     }
     sortBY(stat) {
+        // sort by stat features in sortBy
+        if(stat == 'gb'){
+          this.jd_active = stat;
+          stat = 'GB';
+        }else if(stat == 'GB'){
 
-        //alert(stat+"----"+this.reverse)
+        }else{
+          this.jd_active = stat;
+        }
+        console.log('stat'+stat+'jd_active'+this.jd_active);
         if (this.reverse == true) {
             this.reverse = false;
             this.orderByFieldName = stat;
@@ -3253,8 +3273,6 @@ export class InnermatchcenterPage {
             let windowWidth = (window.innerWidth);
             let windowHeight = (window.innerHeight) - 129;
             $(document).ready(function () {
-
-
                 let table = $('#playerStatsTable').DataTable({
                     scrollY: true,
                     scrollX: true,
@@ -3290,46 +3308,23 @@ export class InnermatchcenterPage {
 
                 });
 
-
             });
 
 
             $(".homeTeam").parent().removeClass("sorting_asc");
 
-            $('.allTeam').on('click', function(){
-              if ($(this).hasClass("activated1")) {
-                console.log("kjkjnbjjhhh----home");
-                $(this).removeClass("activated1");
-                $(".homeTeam").addClass("activated1");
-                $("#playerStatsTable tbody tr").each(function () {
-                    // alert($(this).children("td").eq(0).attr('data-t'));
-                    //    this.homeTeamPlayers1.forEach(obj => {
-                    //     if(obj.type=='home'){
-                    //         this.homeTeamPlayers1.push(obj);
-                    //         console.log(this.homeTeamPlayers1);
-                    //     }
-                    // })
-                    if ($(this).children("td").eq(0).attr('data-t') == 'home') {
-                        $(this).show();
-
-
-
-                    } else {
-
-                        $(this).hide();
-                    }
-
-                })
-
-            }
-            })
-
-
             $('.homeTeam').on('click', function () {
+              if ($('.awayTeam1').hasClass("jd_active_sort")) {
+                $('.awayTeam1').removeClass("jd_active_sort");
+               }else if($('.allTeam').hasClass("jd_active_sort")){
+                $('.allTeam').removeClass("jd_active_sort");
+               }
+               $(this).addClass("jd_active_sort");
                 // this.sortBYType("home");  home players
                 console.log("hhjhjh");
 
                 if ($(this).hasClass("activated1")) {
+                  $(this).addClass("jd_active_sort");
                     console.log("kjkjnbjjhhh----home");
                     $(this).removeClass("activated1");
                     $(".homeTeam").addClass("activated1");
@@ -3354,6 +3349,7 @@ export class InnermatchcenterPage {
                     })
 
                 } else {
+                  $(this).addClass("jd_active_sort");
                     console.log("hhhmjkjjl--away");
                     $(this).addClass("activated1");
 
@@ -3386,11 +3382,17 @@ export class InnermatchcenterPage {
             });
 
             $('.awayTeam1').on('click', function () {
+              if ($('.homeTeam').hasClass("jd_active_sort")) {
 
+                $('.homeTeam').removeClass("jd_active_sort");
+               }else if($('.allTeam').hasClass("jd_active_sort")){
+                $('.allTeam').removeClass("jd_active_sort");
+
+               }
                 console.log("hhh");
                 if ($(this).hasClass("activated1")) {
                     console.log("hhh----away");
-
+                    $(this).addClass("jd_active_sort");
                     $(this).removeClass("activated1");
                     $(".awayTeam1").addClass("activated1");
                     $("#playerStatsTable tbody tr").each(function () {
@@ -3408,7 +3410,7 @@ export class InnermatchcenterPage {
 
 
                 } else {
-
+                  $(this).addClass("jd_active_sort");
                     console.log("hhuhijh");
                     $(this).addClass("activated1");
 
@@ -3437,6 +3439,12 @@ export class InnermatchcenterPage {
             });
 
             $('.allTeam').on('click', function(){
+              if ($('.homeTeam').hasClass("jd_active_sort")) {
+                $('.homeTeam').removeClass("jd_active_sort");
+               }else if($('.awayTeam1').hasClass("jd_active_sort")){
+                $('.awayTeam1').removeClass("jd_active_sort");
+               }
+              $('.allTeam').addClass("jd_active_sort");
               console.log("all--");
               if ($(this).hasClass("activated2")) {
                 console.log("all--");
@@ -3465,7 +3473,7 @@ export class InnermatchcenterPage {
       this.selectedOption = val;
     }
 
-    // toggle switch
+    // toggle function for quater wise sort function
     notify(){
       console.log("Toggled: "+ this.isToggled);
       console.log('statvalues'+ JSON.stringify(this.modifiedStateSeq))

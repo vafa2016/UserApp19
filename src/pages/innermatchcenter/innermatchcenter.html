@@ -77,9 +77,7 @@
 
   <div *ngIf="showcontent=='show' && type=='SCORE'">
     <ul class="list compitationList">
-        <div class="stream_btn_div" >
- 
-  </div>
+
 
       <li class="item ink">
         <div class="row text-center">
@@ -88,10 +86,10 @@
             <img src="{{path}}{{homeTeamAbbr.team_image}}" class="full-image img-storke"></div>
             <p style="margin:auto;"> {{homeTeamAbbr.team_name}}</p>
 
-            <h4 *ngIf="HomeTeamScore == ''">0.0</h4>
-            <h4 *ngIf="HomeTeamScore != ''">{{totalHomeQuarerScore}}</h4>
+            <!-- <h4 *ngIf="HomeTeamScore == ''">0.0</h4> -->
+            <!-- <h4 *ngIf="HomeTeamScore != ''">{{totalHomeQuarerScore}}</h4> -->
 
-            <h3 class="jd-custom-scoretxt">{{newTotalHomeTeamScore}}</h3>
+            <h3 class="jd-custom-scoretxt" style="margin-top: 14px !important;">{{newTotalHomeTeamScore}}</h3>
           </ion-col>
           <ion-col col-6 class="col teamCenterDiv">
             <div class="dispTable">
@@ -99,13 +97,13 @@
                 <div class="teamScoreContainer">
                   <!--<h3 style="margin-top:-10px"><b>{{winTeamStatus}} </b> <br/><span style="font-family:Gotham-Book;"  [innerHTML]=-html="changeWinning(winTeamScore)"> </span></h3>-->
 
-                  <h3 style="padding:5px 0;">
+                  <h3 style="margin-top: 0px;">
                     <b style="font-family: Gotham-Bold;">{{winTeamStatus}} </b>
                     <br/>
                     <span style="font-family:Gotham-Book;"> {{winTeamScore}}</span>
                   </h3>
 
-                  <div class="qtrTimingContainer" *ngIf="teamStatus == 10">
+                  <div class="qtrTimingContainer" *ngIf="teamStatus == 10 && QuaterBreakstatus == 0">
                     <div class="qtrNo" style="font-family:Gotham-Bold;">Q{{ lastScore.quater_new }}</div>
                     <div class="qtrNoTime" style="font-family:Gotham-Medium;">{{ lastScore.act_time_new }}</div>
                   </div>
@@ -116,35 +114,35 @@
                   <!-- new completed -->
                   <div class="jd_qtrtmg" *ngIf="teamStatus == 1">
                     <div class="jd_qtrfinished">FULL TIME</div>
-
-                    <button ion-button class="watchbtn">
-                      <ion-icon class="play" name="md-play"></ion-icon>
-                      Watch
-                    </button>
-                    <button ion-button class="listenbtn">
-                        <ion-icon class="headset" name="ios-headset"></ion-icon>
-                        Listen
-                      </button>
-                  
                   </div>
                   <!--  -->
                    <!-- new qtr break -->
-                   <div class="jd_qtrtmg" *ngIf="teamStatus == 2">
-                    <div class="jd_qtrbreak"></div>
+                   <div class="jd_qtrtmg" *ngIf="teamStatus == 10 && QuaterBreakstatus == 1">
+                    <div class="jd_qtrbreak" *ngIf="BreakQuater == '1'">QTR TIME</div>
+                    <div class="jd_qtrbreak" *ngIf="BreakQuater == '2'">HALF TIME</div>
+                    <div class="jd_qtrbreak" *ngIf="BreakQuater == '3'">3 QTR TIME</div>
                   </div>
                   <!--  -->
                 </div>
               </div>
+              <button ion-button class="watchbtn">
+                <ion-icon class="play" name="md-play"></ion-icon>
+                <span style="padding-left: 5px;">WATCH</span>
+              </button>
+              <button ion-button class="listenbtn">
+                  <ion-icon class="headset" name="ios-headset"></ion-icon>
+                 <span style="padding-left: 5px;">LISTEN</span>
+                </button>
             </div>
           </ion-col>
           <ion-col col-3 class="col teamCol onlyScore">
             <div class="jb-inner-img"><span class="helper"></span>
             <img src="{{path}}{{awayTeamAbbr.team_image}}" class="full-image img-storke"></div>
             <p style="margin:auto;">{{awayTeamAbbr.team_name}}</p>
-            <h4 *ngIf="awayTeamScore == ''">0.0</h4>
-            <h4 *ngIf="awayTeamScore != ''">{{totalAwayQuarerScore}}</h4>
+            <!-- <h4 *ngIf="awayTeamScore == ''">0.0</h4> -->
+            <!-- <h4 *ngIf="awayTeamScore != ''">{{totalAwayQuarerScore}}</h4> -->
 
-            <h3 class="jd-custom-scoretxt">{{newTotalAwayTeamScore}}</h3>
+            <h3 class="jd-custom-scoretxt" style="margin-top: 14px !important;">{{newTotalAwayTeamScore}}</h3>
             <!--*ngIf="newTotalAwayTeamScore != ''"-->
           </ion-col>
         </div>
@@ -296,6 +294,18 @@
     <div class="jb-class-back">
       <div class='graph' id="scoreChart" style="height:200px; width:inherit !important;  margin-left:35px; vertical-align: middle;font-size:17px;margin-top: 43px;"></div>
     </div>
+    <div class="HomeTeam_qScore" *ngIf="statusName == 'COMPLETE' && graphImgShowHide==1">
+     <span class="hmq1">{{q1HomeScore}}</span>
+     <span class="hmq2">{{q2HomeScore}}</span>
+     <span class="hmq3">{{q3HomeScore}}</span>
+     <span class="hmq4">{{q4HomeScore}}</span>
+    </div>
+    <div class="AwayTeam_qScore" *ngIf="statusName == 'COMPLETE' && graphImgShowHide==1">
+      <span class="hmq1">{{q1AwayScore}}</span>
+      <span class="hmq2">{{q2AwayScore}}</span>
+      <span class="hmq3">{{q3AwayScore}}</span>
+      <span class="hmq4">{{q4AwayScore}}</span>
+     </div>
     <div class="advContainer " *ngIf="graphImgShowHide==1">
       <img src="{{path}}{{advertisementHeader[0].ad_image}}"  (click)="goToAddSite(advertisementHeader[0].ad_url);">
     </div>
@@ -495,7 +505,7 @@
                         All
                         </button>
 
-                      <button [id]="btn10" class="button button-clear playerStatLeftTeam   activated1" (click)="sortBYType('home')">
+                      <button [id]="btn10" class="button button-clear playerStatLeftTeam homeTeam activated1" (click)="sortBYType('home')">
                         <img src="{{path}}{{homeTeam.team_image}}" class="img-storke" />
                       </button>
 
@@ -505,42 +515,42 @@
                     </th>
 
                   <th class="jb-sorting-gb">
-                      <button (click)="sortBY('GB')" [id]="GB0" class="button button-clear tableColumSortStyle gbClass ">
+                      <button  [ngClass]="{'jd_active_sort': jd_active == 'gb'}" (click)="sortBY('gb')" [id]="GB0" class="button button-clear tableColumSortStyle gbClass jd_gb">
                         G.B
                       </button>
                     </th>
                     <th [id]="buttonId0">
-                      <button class="button button-clear tableColumSortStyle">
+                      <button  [ngClass]="{'jd_active_sort': jd_active == 'D'}" (click)="sortBY('D')" class="button button-clear tableColumSortStyle jd_mid">
                         D
                       </button>
                     </th>
                     <th>
-                      <button (click)="sortBY('K')" class="button button-clear tableColumSortStyle">
+                      <button [ngClass]="{'jd_active_sort': jd_active == 'K'}" (click)="sortBY('K')" class="button button-clear tableColumSortStyle jd_mid">
                         K
                       </button>
                     </th>
                     <th (click)="sortBY('H')">
-                      <button class="button button-clear tableColumSortStyle">
+                      <button [ngClass]="{'jd_active_sort': jd_active == 'H'}" class="button button-clear tableColumSortStyle jd_mid">
                         H
                       </button>
                     </th>
                     <th (click)="sortBY('M')">
-                      <button class="button button-clear tableColumSortStyle">
+                      <button [ngClass]="{'jd_active_sort': jd_active == 'M'}" class="button button-clear tableColumSortStyle jd_mid">
                         M
                       </button>
                     </th>
                     <th (click)="sortBY('T')">
-                      <button class="button button-clear tableColumSortStyle">
+                      <button [ngClass]="{'jd_active_sort': jd_active == 'T'}" class="button button-clear tableColumSortStyle jd_mid">
                         T
                       </button>
                     </th>
                     <th (click)="sortBY('HO')">
-                      <button class="button button-clear tableColumSortStyle">
+                      <button [ngClass]="{'jd_active_sort': jd_active == 'HO'}" class="button button-clear tableColumSortStyle jd_mid">
                         HO
                       </button>
                     </th>
-                    <th>
-                      <button class="button button-clear tableColumSortStyle">
+                    <th (click)="sortBY('I50')">
+                      <button [ngClass]="{'jd_active_sort': jd_active == 'I50'}" class="button button-clear tableColumSortStyle jd_bEnd">
                         I50
                       </button>
                     </th>
@@ -553,6 +563,9 @@
         </thead>
         <tbody class=''>
           <tr *ngFor="let obj of homeTeamPlayers1;let key=index">
+              <!-- <div *ngIf="key==2">
+                  <img src="{{path}}{{advertisementHeader[0].ad_image}}"  (click)="goToAddSite(advertisementHeader[0].ad_url);">
+                </div> -->
             <td [attr.data-t]="obj.type" style="text-align:left !important;">
               <div class="ladderTableLeftSide" *ngIf="obj.type=='home'">
                 <img src="{{path}}{{baseUrl}}{{homeTeamImages[0].image_value}}" class="laderTeamIcon" />
@@ -572,6 +585,7 @@
               </div>
 
             </td>
+
             <td class="jb-sorting-gb">{{ getGBData(obj.G,obj.B,obj.RB,key,obj, obj.K, obj.H) }}</td>
             <td [innerHTML]="obj.D"> </td>
             <td [innerHTML]="obj.K"> </td>
