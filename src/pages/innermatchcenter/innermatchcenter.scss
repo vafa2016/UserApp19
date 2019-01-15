@@ -171,7 +171,7 @@ border-bottom:.4px solid black;
           font-size: 10px;
           line-height: normal;
           max-height: 15.5px;
-          padding: 3px 8px 3px 3px;
+          padding: 1px 10px 2px 4px;
           position: absolute;
           top: 3px;
           left: 13%;
@@ -797,7 +797,8 @@ a.item {
 }
 .jb-list
 {
-    margin-bottom: 10px !important;
+    // margin-bottom: 10px !important;
+    height: 65px !important;
 }
 .item.item-thumbnail-left.ONTeam-Select.onlyForAction > h2{
 	 padding: 8px 22px;
@@ -1199,7 +1200,8 @@ z-index: -1;
   float: left;
   margin: 0 0.1em 0.1em 0;
   // background-color: #04235c;
-  background-color: #e0e0e091;
+  // background-color: #e0e0e091;
+    background-color: #60ba7252;
 }
 .c100 *,
 .c100 *:before,
@@ -2086,7 +2088,7 @@ z-index: -1;
      .nomalFormMidTitle {
     color: #7d849a;
     padding: 5px 0 0;
-    font-family: Gotham-Medium;
+    font-family: Gotham-Medium !important;
     font-size: 13px;
     text-align: center;
     margin: 0;
@@ -3131,13 +3133,13 @@ table.dataTable td {
   text-align: center;
   background: #ece9e9;
   color: grey;
-  height: 25px;
+  // height: 25px;
 }
 .jd_gk_txt{
   margin: auto;
   font-size: 15px;
   font-family: 'Gotham-Book';
-  padding-top: 4px;
+  padding: 3px 0px 3px 0px;
 }
 
 .jd_home_bstplyr{
@@ -3281,11 +3283,16 @@ div.xAxis >div.tickLabel:last-child{
 }
 
 .jd_scorefd_Pimg{
-  height: 76px;
+  height: 70px;
   position: absolute;
   right: -6px;
-  top: -5px;
-  width: 76px;
+  top: 0px;
+  width: 70px;
+  // height: 76px;
+  // position: absolute;
+  // right: -6px;
+  // top: -5px;
+  // width: 76px;
 }
 
 

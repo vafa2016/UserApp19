@@ -16,7 +16,7 @@
 </ion-header>
 
 <ion-toolbar #content no-border class="scrollable-segments" style="border-bottom: 1px solid #bdbdbd">
-  <ion-grid>
+  <ion-grid style="padding: none;">
     <ion-row style="margin-top: 2px !important;">
       <ion-col (click)="presentPopover($event)" col-3 class="columnone" style="padding-top: 7px;">
         <p class="text">SEASON</p>
@@ -42,7 +42,7 @@
   <div class="jb-content">
     <div *ngFor="let key of objectKeys(roundScores);let i=index;">
       <div class="box">
-        <div class="dateOFMatches">
+        <div class="jd_dateOFMatches">
           {{key}}
         </div>
       </div>

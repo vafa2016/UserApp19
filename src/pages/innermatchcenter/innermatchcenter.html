@@ -431,26 +431,26 @@
         <div *ngIf="value.stat_abbrevation!='RB'">
           <div class="">
             <p class="nomalFormMidTitle ">
-              <span>{{value.stat_name}}</span>
+              <span style="font-family: Gotham-Medium !important;">{{value.stat_name}}</span>
             </p>
 
             <ion-row class="row progressBarstyle">
-              <ion-col class="col col-40">
+              <ion-col col-5>
                 <div class="fillBar greenFill" [style.background-color]="value.homeTeamColor" [style.width]="value.homeTeamWidth"
                   style="font-size:19px; font-family:Gotham-Medium;">
                   {{homeTeamScoreStat[value.stat_abbrevation]}}
                 </div>
               </ion-col>
-              <!-- <ion-col col-2>
-                  <div class="jd_circle p{{homeEFFWidth}} {{hColor}}" style="float:right;margin-right: 7px;">
+              <ion-col>
+                  <!-- <div class="jd_circle p{{homeEFFWidth}} {{hColor}}" style="float:right;margin-right: 7px;">
                       <span> {{ homeEFF }}%</span>
                       <div class="slice">
                         <div class="bar1"></div>
                         <div class="fill"></div>
                       </div>
-                    </div>
-              </ion-col> -->
-              <ion-col class="col col-40">
+                    </div> -->
+              </ion-col>
+              <ion-col col-5>
                 <div class="fillBar" [style.background-color]="value.awayTeamColor" [style.width]="value.awayTeamWidth"
                   style="font-size:19px; font-family:Gotham-Medium;">
                   {{awayTeamScoreStat[value.stat_abbrevation]}}
@@ -460,8 +460,8 @@
 
           </div>
           <div class="" *ngIf="value.stat_abbrevation =='I50'">
-            <p class="nomalFormMidTitle ">
-              <span>Efficiency Inside 50s</span>
+            <p class="nomalFormMidTitle">
+              <span style="font-family: Gotham-Medium !important;">EFF Inside 50s</span>
             </p>
             <ion-row class="row progressBarstyle">
               <ion-col col-5 class="col col-40">
@@ -476,7 +476,7 @@
               </ion-col>
 
               <ion-col col-2 class="col col-10">
-                <div class="height-Border"></div>
+                <!-- <div class="height-Border"></div> -->
               </ion-col>
               <ion-col col-5 class="col col-40">
                 <div class="c100 p{{awayEFFWidth}} {{aColor}}" style=" margin-left: 9px;">

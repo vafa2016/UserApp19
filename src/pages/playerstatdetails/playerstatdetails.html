@@ -31,8 +31,21 @@
           </ion-col>
         </ion-row>
       </div> -->
-  <h4 class="titleWithBgStrip" style=" font-family: Gotham-Medium;font-size: 15px;color: #04235c;">GAMES: {{playerDetail.totalPlayed}}</h4>
-  <ion-row>
+      <div class="jd_subtitiles">
+          <ion-row class="text-center ">
+              <ion-col>
+                  <span class="jd_teamSpan">{{playerDetail.team_team}}</span>
+              </ion-col>
+              <ion-col>
+
+              </ion-col>
+              <ion-col>
+                  <span class="jd_playerSpan">{{firstName}} {{lastName}}</span>
+              </ion-col>
+            </ion-row>
+      </div>
+  <!-- <h4 class="titleWithBgStrip" style=" font-family: Gotham-Medium;font-size: 15px;color: #04235c;">GAMES: {{playerDetail.totalPlayed}}</h4> -->
+  <!-- <ion-row>
     <ion-col style="text-align:center;">
       <p style="color:#04235c;font-family: Gotham-Light;font-size: 22px;margin-left: 0; margin-top: 22px;">Season</p>
     </ion-col>
@@ -41,23 +54,25 @@
     <ion-col style="text-align:center;">
       <p style="color: #04235c;font-family: Gotham-Light;font-size: 22px;margin-left: 0; margin-top: 22px;">Average</p>
     </ion-col>
-  </ion-row>
+  </ion-row> -->
 
-  <div *ngFor="let value of playerStatDetailsData; let i = index">
-    <ion-row class="text-center MatchFormContainer adjstHeight">
+  <div *ngFor="let value of playerStatDetailsData; let i = index" class="jd_hitdiv">
+    <ion-row class="text-center MatchFormContainer adjstHeight jd_scorediv">
       <ion-col>
-        <h4 style="font-family: Gotham-Light;font-size: 26px; color:#04235c;margin-left: -18px; margin-top: 3px;"> {{ value[value.stat_name] }}</h4>
+        <h4 class="jd_h4" style="font-family: Gotham-Medium;font-size: 26px; color:#04235c;margin-left: -18px; margin-top: 3px;"> {{ value[value.stat_name] }}</h4>
+        <div class="jd_circle"></div>
       </ion-col>
-      <ion-col>
+      <ion-col col-4>
         <div class="TeamFormMidTitle">
           <span>{{value.stat_name}}</span>
         </div>
       </ion-col>
       <ion-col>
-        <h4 style="color: #04235c;font-family: Gotham-Light;font-size: 26px;margin-left: -8px; margin-top: 3px;">{{value.avg}} </h4>
+          <div class="jd2_circle"></div>
+        <h4  class="jd2_h4" style="color: #04235c;font-family: Gotham-Medium;font-size: 26px;margin-left: 8px; margin-top: 3px;">{{value.avg}} </h4>
       </ion-col>
     </ion-row>
-    <div class="advContainer" *ngIf="i==1" style="margin: 0 auto 0 -7px; width: 104%;">
+    <div class="advContainer" *ngIf="i==1" style="margin: 0 auto 25px -7px; width: 104%;">
       <img src="{{path}}{{advertisementHeader[0].ad_image}}" class="full-image" (click)="goToAddSite(advertisementHeader[0].ad_url);">
     </div>
   </div>

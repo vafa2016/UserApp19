@@ -3306,7 +3306,6 @@ export class InnermatchcenterPage {
                     }
 
                 });
-
             });
 
 

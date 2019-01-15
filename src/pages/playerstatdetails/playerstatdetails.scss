@@ -63,7 +63,7 @@ page-playerstatdetails {
         width: 100px;
         text-align:left;
     }
-    
+
     .col.teamCol h4 {
         font-family: Gotham-Book;
         font-size: 16px !important;
@@ -82,12 +82,12 @@ page-playerstatdetails {
         }
     }
     /*Goal kicker details dropdown arrow control css */
-    
+
     .bar.OnlyTransparent {
         box-shadow: none;
         background-image: none !important;
         }
-        
+
     .displayImgContent
     {
         padding-top: 20px;
@@ -102,18 +102,18 @@ page-playerstatdetails {
         vertical-align: bottom;
         width: 100px;
     }
-    
+
     .back-button
     {
         position: absolute;
         top:10px;
     }
-    
+
     .playerHeroSection >.col{
         text-align:center;
     }
-    .playerHeroSection{ 
-    //   background: url('../assets/imgs/PlayerDetailsBG.png'); 
+    .playerHeroSection{
+    //   background: url('../assets/imgs/PlayerDetailsBG.png');
     //   -webkit-background-size: cover;
     //   -moz-background-size: cover;
     //   -o-background-size: cover;
@@ -161,12 +161,37 @@ page-playerstatdetails {
         margin: 0 auto 2px;
         padding: 2px 8px;
         text-align: center;
-        
+
     }
     .toolbar-background
     {
         background-color: #04235C;
         border: none !important;
+        //      background: url('../assets/imgs/PlayerDetailsBG.png');
+        // background-position: center;
+        // background-size: cover;
+    }
+    .jd_subtitiles{
+      background-color: #e0e0e0;
+      margin-bottom: 20px;
+    }
+
+
+
+    .jd_scorediv{
+      margin-bottom: 25px;
+    }
+
+    .jd_teamSpan{
+      font-size: 16px;
+      font-family: Gotham-Bold;
+      color: #424242;
+    }
+    .jd_playerSpan{
+      font-size: 15px;
+      font-family: Gotham-Book;
+      color: #424242;
+      white-space: nowrap;
     }
     .advContainer{
         text-align: center;
@@ -180,7 +205,7 @@ page-playerstatdetails {
     }
 
     .TeamFormMidTitle{
-        position:relative;	
+        position:relative;
         text-align:center;
     }
     /*.nomalFormMidTitle{
@@ -190,41 +215,90 @@ page-playerstatdetails {
         text-align:center;
         margin:0;
     }*/
-    
+
     .TeamFormMidTitle span {
-        background-color: #101931;
+        // background-color: #101931;
         color: #7d849a;
         font-family: Gotham-Medium;
-        font-size: 13px;
+        font-size: 14px;
         padding: 0 5px;
+        vertical-align: middle;
     }
-    
-    
-    .TeamFormMidTitle span::after {
-      background-color: #565e73;
+
+    .jd_circle{
+      display: inline-block;
+      vertical-align: middle;
+      width: 9px;
+      height: 9px;
+      background-color: #04235c;
+      border: solid 1px #04235c;
       border-radius: 50%;
-      content: "";
-      height: 8px;
-      left: -9px;
-      opacity: 0.5;
       position: absolute;
-      top: 8px;
-      width: 8px;
-    
+      top: 12px;
+      right: 25px;
     }
-    
-    .TeamFormMidTitle span::before {
-        background-color: #565e73;
-        border-radius: 50%;
-        content: "";
-        height: 8px;			  
-        opacity: 0.5;
-        position: absolute;
-        right: -9px;
-        top: 8px;
-        width: 8px;
+
+    .jd_circle::after{
+      content: " ";
+      display: block;
+      position: absolute;
+      height: 2px;
+      background: #dedede;
+      width: 44px;
+      left: 108%;
+      top: 3px;
     }
-    
+
+
+    .jd2_circle{
+      display: inline-block;
+      vertical-align: middle;
+      width: 9px;
+      height: 9px;
+      background-color: #04235c;
+      border: solid 1px #04235c;
+      border-radius: 50%;
+      position: absolute;
+      top: 12px;
+      left: 25px;
+    }
+
+    .jd2_circle::before{
+      content: " ";
+      display: block;
+      position: absolute;
+      height: 2px;
+      background: #dedede;
+      width: 44px;
+      right: 108%;
+      top: 3px;
+    }
+
+    // .TeamFormMidTitle span::after {
+    //   background-color: #565e73;
+    //   border-radius: 50%;
+    //   content: "";
+    //   height: 8px;
+    //   left: -9px;
+    //   opacity: 0.5;
+    //   position: absolute;
+    //   top: 8px;
+    //   width: 8px;
+
+    // }
+
+    // .TeamFormMidTitle span::before {
+    //     background-color: #565e73;
+    //     border-radius: 50%;
+    //     content: "";
+    //     height: 8px;
+    //     opacity: 0.5;
+    //     position: absolute;
+    //     right: -9px;
+    //     top: 8px;
+    //     width: 8px;
+    // }
+
     .MatchFormContainer h4{
         margin:0;
     }
