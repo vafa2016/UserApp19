@@ -176,17 +176,17 @@ border-bottom:.4px solid black;
  }
 
  .premium1{
-  font-size: 9px;
-  position: absolute;
-  padding: 2px 8px 0px 3px;
-  font-family: Gotham-Book;
-  top: 4px;
-  background-image: url(../assets/imgs/premiumBG.png);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  height: 13px;
-  line-height: normal;
-  color: white;
+  font-size: 9px !important;
+    position: absolute;
+    padding: 1px 10px 0px 4px;
+    font-family: Gotham-Book;
+    top: 4px;
+    background-image: url(../assets/imgs/premiumBG.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 12px;
+    line-height: normal;
+    color: white;
  }
 
 .jb-segment
@@ -222,10 +222,10 @@ border-bottom:.4px solid black;
           font-size: 10px;
           line-height: normal;
           max-height: 15.5px;
-          padding: 3px 8px 2px 3px;
+          padding: 2px 8px 2px 3px;
           position: absolute;
           top: 3px;
-          left: 10%;
+          // left: 10%;
           font-family: Gotham-Book;
         }
       }
@@ -3209,7 +3209,8 @@ table.dataTable td {
 }
 
 .jd_sort_btnsCoach1{
-  margin: 8px auto;
+  margin: auto;
+  padding-top: 8px;
   font-size: 14px;
   font-family: Gotham-Medium;
 }
@@ -3239,9 +3240,10 @@ table.dataTable td {
 }
 
 .jd_sort_btn{
-  margin: 9px;
+  margin: auto;
   font-size: 13px;
   font-family: 'Gotham-Medium';
+  padding-top: 6px;
 }
 
 .jd_btn_border{
@@ -3270,7 +3272,8 @@ table.dataTable td {
   white-space: nowrap;
   font-family: Gotham-Bold;
   text-align: center;
-  margin-top: 9px;
+  margin: auto;
+  padding-top: 9px;
 }
 
 .sortTeamImg{
@@ -3333,6 +3336,11 @@ table.dataTable td {
     border-bottom: none !important;
 }
 
+.item-ios.item-block .item-inner{
+  padding-right: 0px !important;
+  border-bottom: none !important;
+}
+
 .toggle-md{
   position: relative;
   width: 40px !important;
@@ -3343,13 +3351,12 @@ table.dataTable td {
   padding: 12px;
 }
 
-.jd_toggle_switch{
-  // margin: 1px;
-}
+
 
 .toggle-ios .toggle-icon{
-  height: 65% !important;
+  height: 80% !important;
   background-color: #bdbdbd !important;
+  width: 45px !important;
 }
 
 .toggle-ios .toggle-icon::before{
