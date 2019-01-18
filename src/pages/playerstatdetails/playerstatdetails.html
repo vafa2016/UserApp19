@@ -64,7 +64,8 @@
       </ion-col>
       <ion-col col-4>
         <div class="TeamFormMidTitle">
-          <span>{{value.stat_name}}</span>
+          <span *ngIf="value.stat_name != 'inside50'">{{value.stat_name}}</span>
+          <span *ngIf="value.stat_name == 'inside50'">Inside 50</span>
         </div>
       </ion-col>
       <ion-col>

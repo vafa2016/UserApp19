@@ -33,12 +33,16 @@ import 'datatables.net-fixedheader';
 export class InnermatchcenterPage {
     @ViewChild(Content) content: Content;
 
+
+    ShowCoach: boolean = true;
+
     AwayBestplayers :any = [];
     HomeBestplayers :any = [];
     AwayGoalKickers :any =[];
     HomeGoalKickers :any = [];
     QuaterBreakstatus:any = 0;
     BreakQuater:any = 0;
+    showAd:boolean = false;
 
     jd_active :any = '';
 
@@ -3014,7 +3018,6 @@ export class InnermatchcenterPage {
             fixtureId: this.fixture_id,
             adv_title: 'Stats-Club'
         }).subscribe((res) => {
-
             console.log('1' + res);
             $('#playerStatsTable').dataTable().fnDestroy();
             this.getplayerscoreplayer(res);
@@ -3059,6 +3062,10 @@ export class InnermatchcenterPage {
 
     }
     sortBY(stat) {
+
+      // $(document).ready(function(){
+        // $("tr:nth-child(3) td,").addClass("jd_test");
+      // });
         // sort by stat features in sortBy
         if(stat == 'gb'){
           this.jd_active = stat;
@@ -3267,11 +3274,12 @@ export class InnermatchcenterPage {
         });
 
         console.log(this.homeTeamPlayers1);
-
         setTimeout(() => {
+
             let windowWidth = (window.innerWidth);
             let windowHeight = (window.innerHeight) - 129;
             $(document).ready(function () {
+              $('#playerStatsTable').DataTable().destroy();
                 let table = $('#playerStatsTable').DataTable({
                     scrollY: true,
                     scrollX: true,
@@ -3308,10 +3316,13 @@ export class InnermatchcenterPage {
                 });
             });
 
-
+             this.showAd= !this.showAd;
             $(".homeTeam").parent().removeClass("sorting_asc");
 
             $('.homeTeam').on('click', function () {
+
+
+
               if ($('.awayTeam1').hasClass("jd_active_sort")) {
                 $('.awayTeam1').removeClass("jd_active_sort");
                }else if($('.allTeam').hasClass("jd_active_sort")){
@@ -3474,7 +3485,6 @@ export class InnermatchcenterPage {
     // toggle function for quater wise sort function
     notify(){
       console.log("Toggled: "+ this.isToggled);
-      console.log('statvalues'+ JSON.stringify(this.modifiedStateSeq))
     }
 
 

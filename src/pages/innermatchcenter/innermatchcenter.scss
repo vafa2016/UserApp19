@@ -1,5 +1,33 @@
 page-innermatchcenter {
 
+  .jd_advContainer{
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    top: 260px;
+    border-bottom: 1px solid grey;
+  }
+
+.jd_test{
+  background: brown !important;
+    padding-top: 60px !important;
+}
+
+.jd_t{
+  color: #04235C;
+  font-family: Gotham-Medium !important;
+  font-size: 16px !important;
+  text-align: center;
+   height: 1.2em !important;
+  line-height: 1.1;
+  overflow: hidden;
+}
+
+
+  .jb-plaer table.dataTable tbody tr:nth-child(3) td, {
+   padding-top: 60px !important;
+  }
+
 
   .jd_scroll_line{
     position: absolute;
@@ -171,10 +199,10 @@ border-bottom:.4px solid black;
           font-size: 10px;
           line-height: normal;
           max-height: 15.5px;
-          padding: 1px 10px 2px 4px;
+          padding: 3px 8px 2px 3px;
           position: absolute;
           top: 3px;
-          left: 13%;
+          left: 10%;
           font-family: Gotham-Book;
         }
       }
@@ -1201,7 +1229,7 @@ z-index: -1;
   margin: 0 0.1em 0.1em 0;
   // background-color: #04235c;
   // background-color: #e0e0e091;
-    background-color: #60ba7252;
+    background-color: #e0e0e0;
 }
 .c100 *,
 .c100 *:before,
@@ -3159,18 +3187,18 @@ table.dataTable td {
 
 .jd_sort_btns{
   margin: 10px 45px 0px;
-  height: 35px;
+  height: 45px;
   border: 1px solid #bdbdbd;
   border-radius: 10px;
 }
 
 .jd_sort_rw{
-  height: 35px;
+  height: 45px;
   text-align: center;
 }
 
 .jd_sort_btn{
-  margin: 4px;
+  margin: 9px;
   font-size: 13px;
   font-family: 'Gotham-Medium';
 }
@@ -3196,12 +3224,74 @@ table.dataTable td {
   color: white !important;
 }
 
+.jd_scoreBoard{
+  font-size: 16px;
+  white-space: nowrap;
+  font-family: Gotham-Bold;
+  text-align: center;
+  margin-top: 9px;
+}
+
 .sortTeamImg{
   height: 50px;
 }
 
+.jd_Eff{
+  margin-top: 50px;
+}
+
+.jd_Efftext{
+  font-size: 20px;
+  white-space: nowrap;
+  font-family: Gotham-Bold;
+  text-align: center;
+  margin-top: 7px;
+}
+
+.toggle-inner{
+  top: 2px !important;
+  width: 21px !important;
+  height: 21px !important;
+}
+
+.jd_scoreCycle{
+  border-radius: 50%;
+  border: 3px solid;
+  height: 43px;
+  margin: auto;
+  width: 43px;
+}
+
+.Jd_span{
+  position: absolute;
+    top: 50px;
+    left: 19px;
+    font-size: 20px;
+    font-family: Gotham-Medium;
+}
+
+.jd_switchClass{
+  margin-top: 59px;
+  margin-left: -14px;
+}
+
+.item-md.item-block .item-inner {
+     padding-right: 0px !important;
+    border-bottom: none !important;
+}
+
+.toggle-md{
+  position: relative;
+  width: 40px !important;
+  height: 26px !important;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  contain: strict;
+  padding: 12px;
+}
+
 .jd_toggle_switch{
-  margin: 1px;
+  // margin: 1px;
 }
 
 .toggle-ios .toggle-icon{
