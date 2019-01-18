@@ -3240,6 +3240,18 @@ table.dataTable td {
   margin-top: 50px;
 }
 
+.toggle-md.toggle-checked .toggle-inner{
+  background-color: white !important;
+}
+
+.toggle-md .toggle-icon{
+  background-color: #bdbdbd !important;
+}
+
+.toggle-md.toggle-checked .toggle-icon{
+  background-color: #bdbdbd !important;
+}
+
 .jd_Efftext{
   font-size: 20px;
   white-space: nowrap;
