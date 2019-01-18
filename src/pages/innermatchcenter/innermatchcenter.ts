@@ -35,6 +35,7 @@ export class InnermatchcenterPage {
 
 
     ShowCoach: boolean = true;
+    CoachQ: any = '';
 
     AwayBestplayers :any = [];
     HomeBestplayers :any = [];
@@ -2975,8 +2976,10 @@ export class InnermatchcenterPage {
 
     }
     selectstats(item) {
+      this.showAd = false;
         //   alert("hh");
         if (item == 'team') {
+          this.selectedOption = '';
             this.ga.trackView('Stats Teams - Game');
             if (this.statschoose2 != 'team') {
                 this.statschoose2 = 'team';
@@ -2997,6 +3000,7 @@ export class InnermatchcenterPage {
             this.ga.trackView('Stats Players - Game');
             if (this.statschoose2 != 'Player') {
                 this.jd_active = '';
+                this.CoachQ = '';
                 this.statschoose2 = 'Player';
                 this.statschoose = 'Player';
                 this.cmnfun.showLoading('Please wait...');
@@ -3317,6 +3321,7 @@ export class InnermatchcenterPage {
             });
 
              this.showAd= !this.showAd;
+             console.log(this.showAd);
             $(".homeTeam").parent().removeClass("sorting_asc");
 
             $('.homeTeam').on('click', function () {
@@ -3487,8 +3492,11 @@ export class InnermatchcenterPage {
       console.log("Toggled: "+ this.isToggled);
     }
 
+// Coach section sort function by quater
 
-    // filter by all teams function
+  CoachSort(val){
+    this.CoachQ = val;
+  }
 
 }
 
