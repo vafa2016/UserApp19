@@ -597,19 +597,19 @@
       <!-- sort with quater functions -->
       <div class="jd_sort_Coach">
         <ion-row class="jd_sort_rwCoach">
-          <ion-col [ngClass]="{'jd_selectedOptn': CoachQ == 'all'}" (click)="CoachSort('all')" col-3 class="jd_btn_border me">
+          <ion-col [ngClass]="{'jd_selectedOptn': CoachQ.indexOf('all') > -1}" (click)="CoachSort('all')" col-3 class="jd_btn_border me">
             <p class="jd_sort_btnsCoach1">All</p>
           </ion-col>
-          <ion-col [ngClass]="{'jd_selectedOptn': CoachQ == 'Q1'}" (click)="CoachSort('Q1')" class="jd_btn_border">
+          <ion-col [ngClass]="{'jd_selectedOptn': CoachQ.indexOf('Q1') > -1 }" (click)="CoachSort('Q1')" class="jd_btn_border">
             <p class="jd_sort_btnsCoach1">Q1</p>
           </ion-col>
-          <ion-col [ngClass]="{'jd_selectedOptn': CoachQ == 'Q2'}" (click)="CoachSort('Q2')" class="jd_btn_border">
+          <ion-col [ngClass]="{'jd_selectedOptn': CoachQ.indexOf('Q2') > -1 }" (click)="CoachSort('Q2')" class="jd_btn_border">
             <p class="jd_sort_btnsCoach1">Q2</p>
           </ion-col>
-          <ion-col [ngClass]="{'jd_selectedOptn': CoachQ == 'Q3'}" (click)="CoachSort('Q3')" class="jd_btn_border">
+          <ion-col [ngClass]="{'jd_selectedOptn': CoachQ.indexOf('Q3') > -1 }" (click)="CoachSort('Q3')" class="jd_btn_border">
             <p class="jd_sort_btnsCoach1">Q3</p>
           </ion-col>
-          <ion-col [ngClass]="{'jd_selectedOptn': CoachQ == 'Q4'}" (click)="CoachSort('Q4')" class="me2">
+          <ion-col [ngClass]="{'jd_selectedOptn': CoachQ.indexOf('Q4') > -1 }" (click)="CoachSort('Q4')" class="me2">
             <p class="jd_sort_btnsCoach1">Q4</p>
           </ion-col>
         </ion-row>
@@ -757,19 +757,19 @@
       <!-- sort with quater functions -->
       <div class="jd_sort_btns">
         <ion-row class="jd_sort_rw">
-          <ion-col [ngClass]="{'jd_selectedOptn': selectedOption == 'all'}" (click)="SelectedSort('all')" col-3 class="jd_btn_border me">
+          <ion-col [ngClass]="{'jd_selectedOptn': selectedOption.indexOf('all') > -1 }" (click)="SelectedSort('all')" col-3 class="jd_btn_border me">
             <p class="jd_sort_btn">All</p>
           </ion-col>
-          <ion-col [ngClass]="{'jd_selectedOptn': selectedOption == 'Q1'}" (click)="SelectedSort('Q1')" class="jd_btn_border">
+          <ion-col [ngClass]="{'jd_selectedOptn': selectedOption.indexOf('Q1') > -1}" (click)="SelectedSort('Q1')" class="jd_btn_border">
             <p class="jd_sort_btn">Q1</p>
           </ion-col>
-          <ion-col [ngClass]="{'jd_selectedOptn': selectedOption == 'Q2'}" (click)="SelectedSort('Q2')" class="jd_btn_border">
+          <ion-col [ngClass]="{'jd_selectedOptn': selectedOption.indexOf('Q2') > -1}" (click)="SelectedSort('Q2')" class="jd_btn_border">
             <p class="jd_sort_btn">Q2</p>
           </ion-col>
-          <ion-col [ngClass]="{'jd_selectedOptn': selectedOption == 'Q3'}" (click)="SelectedSort('Q3')" class="jd_btn_border">
+          <ion-col [ngClass]="{'jd_selectedOptn': selectedOption.indexOf('Q3') > -1}" (click)="SelectedSort('Q3')" class="jd_btn_border">
             <p class="jd_sort_btn">Q3</p>
           </ion-col>
-          <ion-col [ngClass]="{'jd_selectedOptn': selectedOption == 'Q4'}" (click)="SelectedSort('Q4')" class="me2">
+          <ion-col [ngClass]="{'jd_selectedOptn': selectedOption.indexOf('Q4') > -1}" (click)="SelectedSort('Q4')" class="me2">
             <p class="jd_sort_btn">Q4</p>
           </ion-col>
         </ion-row>

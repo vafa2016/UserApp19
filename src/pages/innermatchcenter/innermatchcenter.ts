@@ -35,7 +35,7 @@ export class InnermatchcenterPage {
 
 
     ShowCoach: boolean = true;
-    CoachQ: any = '';
+    CoachQ: any = ['all'];
 
     AwayBestplayers :any = [];
     HomeBestplayers :any = [];
@@ -61,7 +61,7 @@ export class InnermatchcenterPage {
     showfooter: any;
     showrest: boolean = false;
     i: number = 0;
-    selectedOption : any;
+    selectedOption : any =['all'];
     statcheck: any = 'SCORE';
     playerStatsTable0: any = 'playerStatsTable';
     btn10: any = 'btn1';
@@ -2885,6 +2885,7 @@ export class InnermatchcenterPage {
         });
 
         // alert(JSON.stringify(this.modifiedStateSeq));
+        console.log(this.modifiedStateSeq);
         this.cmnfun.HideLoading();
 
 
@@ -2979,7 +2980,7 @@ export class InnermatchcenterPage {
       this.showAd = false;
         //   alert("hh");
         if (item == 'team') {
-          this.selectedOption = '';
+          this.selectedOption = ['all'];
             this.ga.trackView('Stats Teams - Game');
             if (this.statschoose2 != 'team') {
                 this.statschoose2 = 'team';
@@ -3000,7 +3001,7 @@ export class InnermatchcenterPage {
             this.ga.trackView('Stats Players - Game');
             if (this.statschoose2 != 'Player') {
                 this.jd_active = '';
-                this.CoachQ = '';
+                this.CoachQ = ['all'];
                 this.statschoose2 = 'Player';
                 this.statschoose = 'Player';
                 this.cmnfun.showLoading('Please wait...');
@@ -3481,10 +3482,63 @@ export class InnermatchcenterPage {
         this.cmnfun.HideLoading();
     }
 
+     // sort players stat by quater function
+     CoachSort(val){
+      if(val == 'all' && this.CoachQ.indexOf('all') > -1){
+        this.CoachQ = [];
+        this.CoachQ.push('all');
+      }else if(val == 'all' && this.CoachQ.indexOf('all') == -1){
+       this.CoachQ = [];
+       this.CoachQ.push('all');
+      }else if(val != 'all' && this.CoachQ.indexOf('all') > -1){
+       this.CoachQ = [];
+       this.CoachQ.push(val);
+      }else{
+       if(this.CoachQ.indexOf(val) == -1){
+         this.CoachQ.push(val);
+       }else{
+         var index = this.CoachQ.indexOf(val);
+         this.CoachQ.splice(index, 1);
+         if(this.CoachQ.length == 0){
+          this.CoachQ.push('all');
+         }
+       }
+     }
+    if(this.CoachQ.length > 3){
+      this.CoachQ = [];
+      this.CoachQ.push('all');
+    }
+    console.log(this.CoachQ.length);
+  }
 
-    // sort function
+
+    // sort team stat by quater function
     SelectedSort(val){
-      this.selectedOption = val;
+        if(val == 'all' && this.selectedOption.indexOf('all') > -1){
+          this.selectedOption = [];
+          this.selectedOption.push('all');
+        }else if(val == 'all' && this.selectedOption.indexOf('all') == -1){
+         this.selectedOption = [];
+         this.selectedOption.push('all');
+        }else if(val != 'all' && this.selectedOption.indexOf('all') > -1){
+         this.selectedOption = [];
+         this.selectedOption.push(val);
+        }else{
+         if(this.selectedOption.indexOf(val) == -1){
+           this.selectedOption.push(val);
+         }else{
+           var index = this.selectedOption.indexOf(val);
+           this.selectedOption.splice(index, 1);
+           if(this.selectedOption.length == 0){
+            this.selectedOption.push('all');
+           }
+         }
+       }
+      if(this.selectedOption.length > 3){
+        this.selectedOption = [];
+        this.selectedOption.push('all');
+      }
+      console.log(this.selectedOption.length);
     }
 
     // toggle function for quater wise sort function
@@ -3492,11 +3546,7 @@ export class InnermatchcenterPage {
       console.log("Toggled: "+ this.isToggled);
     }
 
-// Coach section sort function by quater
 
-  CoachSort(val){
-    this.CoachQ = val;
-  }
 
 }
 
