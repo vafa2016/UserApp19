@@ -15,10 +15,10 @@ page-fixture {
               top:22px !important;
             }
         }
-     
+
       .jb-content
     {
-        padding-top: 95px;
+        padding-top: 92px;
         ul{
            padding: 0px !important;
            margin-top: 0px;
@@ -26,12 +26,14 @@ page-fixture {
         }
     }
     toolbar-background{
-      background-color: #101931 !important;;   
+      background-color: #101931 !important;;
     }
 
     ion-toolbar{
      background: transparent !important;
          position: fixed;
+         border-bottom: 1px solid #bdbdbd;
+         border-top: 1px solid #bdbdbd;
     }
         .fixtureList
         {
@@ -44,23 +46,29 @@ page-fixture {
         }
     .jb-segment
     {
-     position: fixed;
-      z-index: 10;
-      top: 45px !important;
-      background: white;
-      border-bottom:none !important;
-       width: 55%;
-       left: 23%;
+    position: fixed;
+    z-index: 10;
+    top: 43px !important;
+    background: white;
+    border-bottom: none !important;
+    width: 75%;
+    //  position: fixed;
+    //   z-index: 10;
+    //   top: 45px !important;
+    //   background: white;
+    //   border-bottom:none !important;
+    //    width: 55%;
+    //    left: 23%;
        ion-segment-button.segment-button {
 	    	display: inline-block;
         width: auto;
-        padding: 5px;
-        min-height: 44px;
-        color: #565e73;
+        padding: 4px;
+        min-height: 46px;
+        color: #bdbdbd;
         font-family: Gotham-Medium;
-        font-size: 16px;
+        font-size: 18px;
         border: none;
-        line-height: 2.6;
+        line-height: 2;
       }
       // ion-segment-button.segment-button:hover:not(.segment-activated)
       // {
@@ -69,59 +77,65 @@ page-fixture {
       // }
      .segment-button.segment-activated
      {border-radius: 0px !important;
-          border-bottom: 3px solid #04235C !important;
-       background: transparent !important;
-       color: #04235C;
+          // border-bottom: 3px solid #04235C !important;
+       background: #04235C !important;
+       color: white;
+       min-height: 46px !important;
      }
     }
   .scrollable-segments {
-    height: 45px;
-    top: 88px;
+    height: 48px;
+    top: 89px;
     .toolbar-content
     {
       height: 45px;
     }
     .toolbar-background
     {
-      background-color: rgb(145, 152, 170) !important;; 
+      // background-color: rgb(145, 152, 170) !important;;
+      background-color: white;
     }
 	ion-segment {
 	  display: block;
 	  overflow-x: scroll;
     white-space: nowrap;
-       height: 45px;
+    width: 90%;
+       height: 46px;
+       background-color: white;
       // background: #101931;
-      background-color: rgb(145, 152, 170);
-      border-top: none !important;
-      border-bottom: 1px solid #04235C;
+      // background-color: rgb(145, 152, 170);
 	  ion-segment-button.segment-button {
 		display: inline-block;
-        width: auto;
-        padding: 8px;
-        height: 40px;
-        max-width: 200px;
-        color: #d3cfd4;
-        font-family: Gotham-Medium;
-        font-size: 14px;
-        border-top: none;
-         border-left: none;
-          border-right: none;
-        line-height: 2.3;
-        background-color: rgb(145, 152, 170);
-        border-bottom: none !important;
+    width: auto;
+    height: 32px;
+    min-width: 32px;
+    max-width: 200px;
+    color: #343434;
+    font-family: Gotham-Medium;
+    text-transform: capitalize !important;
+    font-size: 16px;
+    border-top: none;
+    border-left: none;
+    margin-top: 7px;
+    border-right: none;
+    line-height: 2;
+    background-color: white;
+    border-bottom: none !important;
+    margin-left: 5px;
+    margin-right: 5px;
       }
       ion-segment-button.segment-button:hover:not(.segment-activated)
       {
         //  border-bottom: 3px solid white !important;
-             background-color: rgb(145, 152, 170);
+            //  background-color: rgb(145, 152, 170);
         //  color:white;
       }
      .segment-button.segment-activated
      {
       //  border-bottom: 3px solid white !important;
-      border-radius: 0px !important;
-          background-color: rgb(145, 152, 170);
-       color:white;
+     border-radius: 7px !important;
+    background-color: #04235c;
+    color: white;
      }
 	}
 }
@@ -157,7 +171,7 @@ page-fixture {
 }
 .OnlyFixtureContainer{
       display: block;
-    margin: 28px auto 0;
+    margin: 18px auto 0;
     max-width: 100%;
     text-align: center;
   p{
@@ -168,18 +182,18 @@ page-fixture {
   }
 }
 .teamCenterDiv h3{
-	
+
     font-family: Gotham-Medium;
-    font-size: 15px; 
+    font-size: 15px;
 	white-space:normal;
 }
 
-.dispTable{	
+.dispTable{
 	height:100%;
 	width:100%;
 	max-width:100%;
 	display:table;
-	position:relative;	
+	position:relative;
 
 }
 
@@ -194,14 +208,14 @@ page-fixture {
            color:#7D8390;
            padding-top: 12px;
     }
-     
+
 }
 .matchStatus {
 	font-family:Gotham-Bold;
   background-color: #86cf85;
   border-radius: 12px;
   color: #04235C;
-  display: inline; 
+  display: inline;
   padding: 3px 15px;
 }
 .class_LIVE{
@@ -209,7 +223,7 @@ page-fixture {
   background-color: #86cf85;
   border-radius: 12px;
   color: #04235C;
-  display: inline; 
+  display: inline;
     font-size: 12px;
     padding: 6px 15px;
 }
@@ -218,7 +232,7 @@ page-fixture {
   background-color: #667588;
   border-radius: 12px;
   color: #04235C;
-  display: inline; 
+  display: inline;
     font-size: 12px;
     padding: 6px 15px;
 }
@@ -227,7 +241,7 @@ page-fixture {
   background-color: #667588;
   border-radius: 12px;
   color: #04235C;
-  display: inline; 
+  display: inline;
     font-size: 12px;
     padding: 6px 15px;
 }
@@ -237,5 +251,128 @@ page-fixture {
   padding-right: 20px !important;
 }
 
+.jd_fixtureYear{
+  text-align: center !important;
+      border-right: 1px solid#bdbdbd;
+}
 
+.jd_seasonTxt{
+  margin: 1px;
+  font-size: 16px;
+  font-family: Gotham-Bold;
+  color: black;
+  white-space: nowrap;
+}
+
+.jd_yr{
+    font-size: 15px;
+    margin: auto 0px 0px -10px;
+    font-family: Gotham-Bold;
+    white-space: nowrap;
+}
+
+.jd-down-arrow{
+  position: absolute;
+  bottom: 2px;
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 16%;
+  right: 16px;
+  line-height: 1;
+  color: #424242;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.scrollable-segments_jd {
+  height: 48px;
+  top: 89px;
+  .toolbar-content
+  {
+    height: 45px;
+  }
+  .toolbar-background
+  {
+    background-color: white;
+  }
+ion-segment {
+  display: block;
+  overflow-x: scroll;
+  white-space: nowrap;
+  height: 46px;
+  background-color: white;
+  ion-segment-button.segment-button {
+  display: inline-block;
+  width: auto;
+  height: 38px;
+  max-width: 200px;
+  color: #bdbdbd;
+  font-family: Gotham-Medium;
+  text-transform: capitalize;
+  font-size: 16px;
+  border-top: none;
+  border-left: none;
+  margin-top: 7px;
+  border-right: none;
+  line-height: 2;
+  background-color: white;
+  border-bottom: none !important;
+  margin-left: 5px;
+  margin-right: 5px;
+    }
+   .segment-button.segment-activated
+   {
+    //  border-bottom: 3px solid #04235c !important;
+     color: #04235c !important;
+  //  border-radius: 7px !important;
+  background-color: white !important;
+   }
+}
+}
+
+.dateOFMATCHES_jd1{
+  height: 25px;
+  background: #e0e0e09e;
+  color: #04235c;
+  font-family: Gotham-Medium !important;
+  font-size: 15px;
+  text-align: center;
+  padding-top: 4px;
+}
+
+
+.dateOFMATCHES_jd{
+  height: 25px;
+  background: #e0e0e09e;
+  color: black;
+  font-family: Gotham-Medium !important;
+  font-size: 15px;
+  position: relative;
+}
+
+.dateOFMATCHES_jd span{
+  position: absolute;
+  top: 5px;
+  left: 15px;
+}
+
+.advContainer{
+  border-bottom: 1px solid #bdbdbd !important;
+  border-top: 1px solid #bdbdbd !important;
+}
+
+.advContainer1{
+  border-bottom:none !important;
+  border-top: 1px solid #bdbdbd !important;
+  text-align: center;
+  background: white;
+img{
+  padding-top: 5px;
+  max-height: 45px;
+  max-width: 100% !important;
+}
+}
+
+
+
+//
 }
