@@ -325,6 +325,16 @@ ion-segment {
      color: #04235c !important;
   //  border-radius: 7px !important;
   background-color: white !important;
+
+  .jd_CurveborderDiv{
+    display: block;
+    width: 80px;
+    text-align: center;
+    background-color: #04235c;
+    height: 5px;
+    margin: auto;
+    border-radius: 10px;
+}
    }
 }
 }
@@ -371,6 +381,8 @@ img{
   max-width: 100% !important;
 }
 }
+
+
 
 
 

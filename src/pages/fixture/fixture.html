@@ -43,7 +43,8 @@
 <ion-toolbar ion-scroll no-border class="scrollable-segments_jd" *ngIf="type=='Club'">
 	<ion-segment *ngIf="totalround" [(ngModel)]="team_id">
 		<ion-segment-button class="jb-club-seg" (click)="selecteClub(club.team_id,competition_id); " value="{{club.team_id}}" *ngFor="let club of totalClub">
-			{{club.team_name}}
+      {{club.team_name}}
+      <div class="jd_CurveborderDiv"></div>
 		</ion-segment-button>
 	</ion-segment>
 </ion-toolbar>
