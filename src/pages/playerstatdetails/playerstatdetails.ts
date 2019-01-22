@@ -15,7 +15,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 })
 export class PlayerstatdetailsPage {
   @ViewChild(Content) content: Content;
- 
+
   path: any = 'http://vafalive.com.au';
   player_id:any='';
   resData:any='';
@@ -30,6 +30,8 @@ export class PlayerstatdetailsPage {
   advertisementHeader:any=[];
   advertisementFooter:any=[];
   hideHeader:boolean=false;
+
+  selectedOption: any =['all'];
 
   constructor(public navCtrl: NavController,
     public ajax: AjaxProvider,
@@ -57,7 +59,7 @@ export class PlayerstatdetailsPage {
   ionViewDidLoad() {
     this.showhide=0;
   console.log('ionViewDidLoad PlayerstatdetailsPage');
-//getStatDetailsByPlayerId          
+//getStatDetailsByPlayerId
      this.cmfn.showLoading('Please Wait..');
      this.ajax.datalist('get-player-stats-detail', {
        accessKey: "QzEnDyPAHT12asHb4On6HH2016",
@@ -71,21 +73,21 @@ export class PlayerstatdetailsPage {
        } else {
          this.GetStatDetailsByPlayerId(this.resData);
        }
- 
+
      }, error => {
        this.cmfn.HideLoading();
      })
   }
 
   onScroll()
-  {	
+  {
     var moveData =this.content.scrollTop;
     if(moveData >= 80)
-    { 
+    {
       this.zone.run(() => {
         this.hideHeader=true;
-      });  			
-    }				
+      });
+    }
     else
       {
         this.zone.run(() => {
@@ -96,7 +98,7 @@ export class PlayerstatdetailsPage {
 
 
   GetStatDetailsByPlayerId(data){
-    console.log(data.player.player);		
+    console.log(data.player.player);
 		this.playerDetail=data.player.player;
 		console.log(this.playerDetail.player_name);
     var playerFullName = this.playerDetail.player_name.split(' ');
@@ -104,9 +106,9 @@ export class PlayerstatdetailsPage {
     this.lastName = playerFullName[1];
     console.log(this.firstName);
     console.log(this.lastName);
-    this.playerstats=data.player.playerstat; 
+    this.playerstats=data.player.playerstat;
     this.playerstatsData=data.player.playerstat;
-    console.log(this.playerstatsData);		
+    console.log(this.playerstatsData);
     // .forEach(item => {
     //   this.playerStatDetailsData.push(item);
     // });
@@ -129,5 +131,34 @@ export class PlayerstatdetailsPage {
     this.ga.trackEvent('Advertisement', 'Viewed', 'Player Stats Individual - Season', 1);
     const browser = this.inapp.create(ad_url);
   }
+
+   // sort player stat by quater function
+   SelectedSort(val){
+    if(val == 'all' && this.selectedOption.indexOf('all') > -1){
+      this.selectedOption = [];
+      this.selectedOption.push('all');
+    }else if(val == 'all' && this.selectedOption.indexOf('all') == -1){
+     this.selectedOption = [];
+     this.selectedOption.push('all');
+    }else if(val != 'all' && this.selectedOption.indexOf('all') > -1){
+     this.selectedOption = [];
+     this.selectedOption.push(val);
+    }else{
+     if(this.selectedOption.indexOf(val) == -1){
+       this.selectedOption.push(val);
+     }else{
+       var index = this.selectedOption.indexOf(val);
+       this.selectedOption.splice(index, 1);
+       if(this.selectedOption.length == 0){
+        this.selectedOption.push('all');
+       }
+     }
+   }
+  if(this.selectedOption.length > 3){
+    this.selectedOption = [];
+    this.selectedOption.push('all');
+  }
+  console.log(this.selectedOption.length);
+}
 
 }

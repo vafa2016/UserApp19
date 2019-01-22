@@ -7,6 +7,8 @@ import { KeysPipe } from '../../pipes/keys/keys';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { ReversePipe } from '../../pipes/reverse/reverse';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
+import { PopoverController } from 'ionic-angular';
+import {YeardropdownPage} from '../yeardropdown/yeardropdown';
 
 /**
  * Generated class for the FixturePage page.
@@ -52,8 +54,21 @@ export class FixturePage {
   scrollTop: any;
   fisttime: number = 0;
   test: number = 0;
-  constructor(private zone: NgZone,public plt:Platform,public ga:GoogleAnalytics, private inapp: InAppBrowser, public ajax: AjaxProvider, private modalCtrl: ModalController, public events: Events, public cmnfun: CommomfunctionProvider, public navCtrl: NavController, public navParams: NavParams) {
-     
+
+  YearList: any = [];
+  selectd_yr: any = '';
+
+  constructor(private zone: NgZone,
+    public plt:Platform,
+    public ga:GoogleAnalytics,
+    public popoverCtrl: PopoverController,
+    private inapp: InAppBrowser,
+    public ajax: AjaxProvider,
+    private modalCtrl: ModalController,
+    public events: Events,
+    public cmnfun: CommomfunctionProvider,
+    public navCtrl: NavController, public navParams: NavParams) {
+
      this.plt.ready().then(() => {
       this.ga.startTrackerWithId('UA-118996199-1')
    .then(() => {
@@ -66,6 +81,25 @@ export class FixturePage {
        })
 
   }
+
+    // year_dropdown
+    presentPopover(myEvent) {
+      let data = this.YearList;
+      let popover = this.popoverCtrl.create("YeardropdownPage",{ yearData : data });
+      popover.present({
+        ev: myEvent
+      });
+
+      popover.onDidDismiss(data =>{
+        if(data != null){
+          console.log(data);
+          // this.selectd_yr = data.competition_year;
+          // this.competition_id = data.competition_id;
+        }
+      })
+    }
+
+
   onScroll() {
     //   this.content.ionScrollEnd.subscribe((data)=>{
     this.scrollTop = this.content.scrollTop;
@@ -127,8 +161,10 @@ export class FixturePage {
     this.events.subscribe('competitionlistfixtures:changed', res => {
 
       this.comptitionlists = res.competition;
+      this.YearList = this.comptitionlists[0].seasons;
+      this.selectd_yr = this.YearList[0].competition_year;
       this.selectables = this.comptitionlists[0].competitions_name;
-      this.competition_id = this.comptitionlists[0].competition_id;
+      this.competition_id = this.comptitionlists[0].seasons[0].competition_id;
       this.ajax.datalist('get-round-competition-fixture', {
         accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
         competition_id: this.competition_id,

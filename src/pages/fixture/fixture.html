@@ -14,24 +14,33 @@
 	</ion-navbar>
 </ion-header>
 <ion-header style="z-index: 999;background: white; top: 43px; position: fixed; height: 46px;">
-	<ion-segment [(ngModel)]="type" class="jb-segment">
-		<ion-segment-button style="margin-right: 40px;" (click)="selectedFixtureType(type); " value="Round">
-			Round
-		</ion-segment-button>
-		<ion-segment-button (click)="selectedFixtureType(type); " value="Club">
-			Club
-		</ion-segment-button>
-	</ion-segment>
+<ion-row>
+  <ion-col (click)="presentPopover($event)" col-3 class="jd_fixtureYear">
+    <p class="jd_seasonTxt">SEASON</p>
+    <p class="jd_yr">{{selectd_yr}}</p>
+    <ion-icon class="downarrow jd-down-arrow" name="ios-arrow-down"></ion-icon>
+  </ion-col>
+  <ion-col style="padding: 0px;">
+    <ion-segment [(ngModel)]="type" class="jb-segment">
+    <ion-segment-button style="text-transform: capitalize;"  (click)="selectedFixtureType(type); " value="Round">
+      Round
+    </ion-segment-button>
+    <ion-segment-button style="text-transform: capitalize;" (click)="selectedFixtureType(type); " value="Club">
+      Club
+    </ion-segment-button>
+    </ion-segment>
+  </ion-col>
+</ion-row>
 </ion-header>
 <ion-toolbar ion-scroll no-border class="scrollable-segments" *ngIf="type=='Round'">
-	<ion-segment #scrollMe *ngIf="totalround" [(ngModel)]="roundNo">
+	<ion-segment style="margin-left: 20px;" #scrollMe *ngIf="totalround" [(ngModel)]="roundNo">
 		<ion-segment-button  id='id{{round.round}}'  (click)="selectRound(round.round,competition_id); " value="{{round.round}}" *ngFor="let round of totalround">
-			{{round.name}}
+			{{round.round}}
 		</ion-segment-button>
 	</ion-segment>
 
 </ion-toolbar>
-<ion-toolbar ion-scroll no-border class="scrollable-segments " *ngIf="type=='Club'">
+<ion-toolbar ion-scroll no-border class="scrollable-segments_jd" *ngIf="type=='Club'">
 	<ion-segment *ngIf="totalround" [(ngModel)]="team_id">
 		<ion-segment-button class="jb-club-seg" (click)="selecteClub(club.team_id,competition_id); " value="{{club.team_id}}" *ngFor="let club of totalClub">
 			{{club.team_name}}
@@ -47,15 +56,15 @@
 
 	<div *ngIf="type=='Round'" class="jb-content">
 		<div *ngFor="let key of roundScores | keys; let j = index">
-			<div class="dateOFMatches">
+			<div class="dateOFMATCHES_jd">
 				<span>{{key}}</span>
-			</div>
-			<ul class="list compitationList" *ngFor="let value1 of roundScores[key] ; let i = index">
+      </div>
+			<ul style="border-bottom: 1px solid #bdbdbd;" class="list compitationList" *ngFor="let value1 of roundScores[key] ; let i = index">
 				<li class="item ">
 					<ion-row class="text-center fixtureList">
 						<ion-col col-3 class="teamCol">
 							<img src="{{path}}{{value1.home_team_image}}" class="img-size full-image img-storke">
-							<p *ngIf="type == 'Round'">{{value1.home_team_name}}</p>
+							<!-- <p *ngIf="type == 'Round'">{{value1.home_team_name}}</p> -->
 							<p *ngIf="type == 'Club'">{{value1.home_team}}</p>
 							<h3></h3>
 						</ion-col>
@@ -76,12 +85,12 @@
 						</ion-col>
 						<ion-col col-3 class=" teamCol">
 							<img src="{{path}}{{value1.away_team_image}}" class="img-size full-image img-storke">
-							<p *ngIf="type == 'Round'">{{value1.away_team_name}}</p>
+							<!-- <p *ngIf="type == 'Round'">{{value1.away_team_name}}</p> -->
 							<p *ngIf="type == 'Club'">{{value1.away_team}}</p>
 							<h3></h3>
 						</ion-col>
 					</ion-row>
-					<div class="advContainer" [style.display]="advDisplay=='show' ? 'block' : 'none'" *ngIf="i==1 && j==0" style="margin: 0 auto 0 -7px; width: 104%;">
+					<div class="advContainer1" [style.display]="advDisplay=='show' ? 'block' : 'none'" *ngIf="i==1 && j==0" style="margin: 0 auto 0 -7px; width: 104%;">
 						<img src="{{path}}{{footerAdv[0].ad_image}}"  (click)="goToAddSite(footerAdv[0].ad_url);">
 					</div>
 				</li>
@@ -93,14 +102,14 @@
 			<ul class="list compitationList">
 				<li class="item ">
 
-					<div class="dateOFMatches">
-						<span>{{value1.planned_date}}</span>
+					<div class="dateOFMATCHES_jd1">
+						<span style="font-family: Gotham-book !important;">{{value1.round}}</span>
 					</div>
 					<ion-row class="row text-center fixtureList1">
 						<ion-col col-3 class="teamCol">
 							<img src="{{path}}{{value1.home_team_image}}" class="img-size full-image img-storke">
-							<p *ngIf="fixtureType == 1" style="font-family:Gotham-Medium;font-size:12px;">{{value1.home_team_name}}</p>
-							<p *ngIf="fixtureType == 2" style="font-family:Gotham-Medium;font-size:12px;">{{value1.home_team}}</p>
+							<!-- <p *ngIf="fixtureType == 1" style="font-family:Gotham-Medium;font-size:12px;">{{value1.home_team_name}}</p>
+							<p *ngIf="fixtureType == 2" style="font-family:Gotham-Medium;font-size:12px;">{{value1.home_team}}</p> -->
 							<h3></h3>
 						</ion-col>
 						<ion-col col-6 class="teamCenterDiv">
@@ -110,8 +119,9 @@
 										<!--<div class="matchStatus">
 										Completed-H
 									</div>	-->
-									</div>
-									<p (click)="openMap(value1.game_location)">{{value1.planned_time}} &nbsp;{{value1.ground}}</p>
+                  </div>
+                  <p style="margin-bottom: 0px;">{{value1.ground}}</p>
+									<p style="margin-top: 0px;" (click)="openMap(value1.game_location)">{{value1.planned_time}} &nbsp;{{value1.planned_date}}</p>
 									<!--<p *ngIf="fixtureType == 2" style="font-family:Gotham-Medium; color:#7D8390;font-size:12px;margin-top: -13px;padding-bottom: 5px;" >{{value1.planned_time}},&nbsp;{{value1.planned_date}}</p>
 								<h3 *ngIf="fixtureType == 2"style="font-family:Gotham-Bold; color:#fff; font-size: 14px;padding-top:2px" (click)="openMap(value1.game_location)">{{value1.ground}}</h3>-->
 
@@ -120,12 +130,12 @@
 						</ion-col>
 						<ion-col col-3 class="teamCol">
 							<img src="{{path}}{{value1.away_team_image}}" class="img-size full-image img-storke">
-							<p *ngIf="fixtureType == 1" style="font-family:Gotham-Medium;font-size:12px;">{{value1.away_team_name}}</p>
-							<p *ngIf="fixtureType == 2" style="font-family:Gotham-Medium;font-size:12px;">{{value1.away_team}}</p>
+							<!-- <p *ngIf="fixtureType == 1" style="font-family:Gotham-Medium;font-size:12px;">{{value1.away_team_name}}</p>
+							<p *ngIf="fixtureType == 2" style="font-family:Gotham-Medium;font-size:12px;">{{value1.away_team}}</p> -->
 							<h3></h3>
 						</ion-col>
 					</ion-row>
-					<div [style.display]="advDisplay=='show' ? 'block' : 'none'" class="advContainer" *ngIf="i==1" style="margin: 0 auto 0 -7px; width: 104%;">
+					<div [style.display]="advDisplay=='show' ? 'block' : 'none'" class="advContainer1" *ngIf="i==1" style="margin: 0 auto 0 -7px; width: 104%;">
 						<img src="{{path}}{{footerAdv[0].ad_image}}"(click)="goToAddSite(footerAdv[0].ad_url);">
 					</div>
 				</li>
