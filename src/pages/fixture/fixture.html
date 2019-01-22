@@ -103,7 +103,7 @@
 				<li class="item ">
 
 					<div class="dateOFMATCHES_jd1">
-						<span>{{value1.round}}</span>
+						<span style="font-family: Gotham-book !important;">{{value1.round}}</span>
 					</div>
 					<ion-row class="row text-center fixtureList1">
 						<ion-col col-3 class="teamCol">
@@ -120,8 +120,8 @@
 										Completed-H
 									</div>	-->
                   </div>
-                  <p>{{value1.ground}}</p>
-									<p (click)="openMap(value1.game_location)">{{value1.planned_time}} &nbsp;{{value1.planned_date}}</p>
+                  <p style="margin-bottom: 0px;">{{value1.ground}}</p>
+									<p style="margin-top: 0px;" (click)="openMap(value1.game_location)">{{value1.planned_time}} &nbsp;{{value1.planned_date}}</p>
 									<!--<p *ngIf="fixtureType == 2" style="font-family:Gotham-Medium; color:#7D8390;font-size:12px;margin-top: -13px;padding-bottom: 5px;" >{{value1.planned_time}},&nbsp;{{value1.planned_date}}</p>
 								<h3 *ngIf="fixtureType == 2"style="font-family:Gotham-Bold; color:#fff; font-size: 14px;padding-top:2px" (click)="openMap(value1.game_location)">{{value1.ground}}</h3>-->
 
