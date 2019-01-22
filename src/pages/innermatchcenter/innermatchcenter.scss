@@ -236,10 +236,20 @@ border-bottom:.4px solid black;
          background-color: transparent !important;
       }
      .segment-button.segment-activated
-     {border-radius: 0px !important;
-          border-bottom: 2px solid  #04235c !important;
-       background: transparent !important;
-       color: #04235C;
+     {
+      //  border-radius: 0px !important;
+      //     border-bottom: 2px solid  #04235c !important;
+      //  background: transparent !important;
+      //  color: #04235C;
+      .CurvedBorder{
+        height: 4px;
+        width: 50px;
+        position: absolute;
+        bottom: 0;
+        left: 15%;
+        background-color: #04235c;
+        border-radius: 10px;
+      }
      }
     }
     .list.compitationList .item{

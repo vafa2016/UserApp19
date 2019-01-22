@@ -27,12 +27,15 @@
 <ion-segment [(ngModel)]="type" class="jb-segment">
   <ion-segment-button (click)="goToActionPage(type); " value="SCORE">
     SCORE
+    <div class="CurvedBorder"></div>
   </ion-segment-button>
   <ion-segment-button (click)="goToActionPage(type); " value="ACTION" style="margin-left: 30px;margin-right: 30px;">
     ACTION
+    <div class="CurvedBorder"></div>
   </ion-segment-button>
   <ion-segment-button (click)="goTostats(type); " value="stats">
     <span style="font-size: 9px !important;" class="premium">PREMIUM</span> STATS
+    <div class="CurvedBorder"></div>
   </ion-segment-button>
 </ion-segment>
 <ion-header class="jb-grapheader" *ngIf="showcontent=='show' && type=='ACTION'">
