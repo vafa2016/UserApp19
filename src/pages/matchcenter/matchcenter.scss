@@ -54,14 +54,14 @@ page-matchcenter {
 
           .jd-down-arrow-md{
             position: absolute;
-            bottom: 2px;
-            background-color: rgba(255, 255, 255, 0.7);
-            width: 16%;
-            right: 16px;
-            line-height: 1;
-            color: #424242;
-            font-size: 20px;
-            font-weight: bold;
+    bottom: 3px;
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 16%;
+    right: 16px;
+    line-height: 1;
+    color: #04235C;
+    font-size: 20px;
+    font-weight: bold;
           }
 
     //
@@ -84,18 +84,18 @@ page-matchcenter {
   }
 
     .box {
-      border-top: 1px solid #bdbdbd !important;
+      border-top: 0px solid #bdbdbd !important;
       background-color: #e0e0e0;
       // height: 35px;
     }
     .jd-down-arrow{
       position: absolute;
-      bottom: 2px;
+      bottom: 3px;
       background-color: rgba(255, 255, 255, 0.7);
       width: 16%;
       right: 16px;
       line-height: 1;
-      color: #424242;
+      color: #04235C;
       font-size: 20px;
       font-weight: bold;
     }
@@ -104,7 +104,7 @@ page-matchcenter {
       position: absolute;
     border: 1px solid #bdbdbd;
     height: 50px;
-    top: 2px;
+    top: 0px;
     right: 0;
     }
 
@@ -121,11 +121,13 @@ page-matchcenter {
       // color: #424242;
       // font-family: 'Gotham-Medium';
 
-      margin: auto 0px 0px -9px;
+      margin: auto 2px 4px -9px;
     font-size: 15px;
     color: #424242;
     font-family: 'Gotham-Medium';
     text-align: center;
+    position: relative;
+    top: 5px;
     }
 
   .scrollable-segments {
@@ -164,7 +166,7 @@ page-matchcenter {
       font-size: 16px;
       font-family: Gotham-Medium;
       border-top: none;
-      margin-right: 10px;
+      // margin-right: 10px;
       border-left: none;
       border-right: none;
       line-height: 2;
@@ -362,13 +364,21 @@ page-matchcenter {
 
 .text{
   font-size: 14px;
-  font-family: 'Gotham-Medium';
-  margin: auto;
-  color: #424242;
-  text-align: center;
-  margin-bottom: 5px;
+    font-family: 'Gotham-Medium';
+    margin: auto;
+    color: #04235C;
+    text-align: center;
+    margin-bottom: 7px;
+    font-weight: bold;
+    position: relative;
+    top: 5px;
 }
 
 
-
+.advContainer {
+  text-align: center;
+  border-top: .55px solid #dedede;
+  border-bottom: .55px solid #dedede;
+  background: white;
+}
 

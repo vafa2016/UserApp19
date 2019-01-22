@@ -126,11 +126,11 @@
               </div>
               <button ion-button class="watchbtn">
                 <ion-icon class="play" name="md-play"></ion-icon>
-                <span style="padding-left: 5px;">WATCH</span>
+                <span style="padding-left: 5px; font-family: Gotham-medium;">WATCH</span>
               </button>
               <button ion-button class="listenbtn">
                 <ion-icon class="headset" name="ios-headset"></ion-icon>
-                <span style="padding-left: 5px;">LISTEN</span>
+                <span style="padding-left: 5px; font-family: Gotham-medium;">LISTEN</span>
               </button>
             </div>
           </ion-col>
@@ -252,11 +252,11 @@
       </div>
       <ion-row>
         <!-- home team -->
-        <ion-col>
+        <ion-col class="colone">
           <p *ngFor="let hplyr of HomeGoalKickers" class="jd_home_bstplyr">{{hplyr.player_name}} {{hplyr.goal}}</p>
         </ion-col>
         <!-- away team -->
-        <ion-col>
+        <ion-col class="coltwo">
           <p *ngFor="let awplyr of  AwayGoalKickers" class="jd_away_bstplyr">{{awplyr.player_name}} {{awplyr.goal}}</p>
         </ion-col>
       </ion-row>
@@ -268,11 +268,11 @@
       </div>
       <ion-row>
         <!-- home team -->
-        <ion-col>
+        <ion-col class="colthree">
           <p *ngFor="let bplyr of HomeBestplayers" class="jd_home_bstplyr">{{bplyr}}</p>
         </ion-col>
         <!-- away team -->
-        <ion-col>
+        <ion-col class="colfour">
           <p *ngFor="let aplyr of AwayBestplayers" class="jd_away_bstplyr">{{aplyr}}</p>
         </ion-col>
       </ion-row>
@@ -324,7 +324,7 @@
               <!-- <span style="font-family:Gotham-Medium;color: #c3c6cc;" *ngIf="data.player_name.length > 14"> {{data.player_name }}</span>    -->
             </h2>
             <p style="padding-top:5px;">Q{{data.quater}} {{data.act_time}}</p>
-            <img *ngIf="data.player_image != ''" class="jd_scorefd_Pimg" src="{{path}}{{data.player_image}}">
+            <img *ngIf="data.player_image != '' && data.player_image != '/web/images/default_player.png'" class="jd_scorefd_Pimg" src="{{path}}{{data.player_image}}">
           </a>
         </div>
       </ion-col>
