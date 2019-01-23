@@ -76,26 +76,28 @@ page-innermatchcenter {
 }
 .hmq1{
   position: absolute;
-  left: 72px;
-  top:2px;
+  margin-left: 63px;
+  top: 2px;
   font-family: Gotham-Bold !important;
 }
 .hmq2{
   position: absolute;
-  left: 156px;
-  top:2px;
+  margin-left: 138px;
+  top: 2px;
   font-family: Gotham-Bold !important;
 }
 .hmq3{
   position: absolute;
-  right: 149px;
-  top:2px;
+  margin-left: 211px;
+  top: 2px;
   font-family: Gotham-Bold !important;
 }
 .hmq4{
   position: absolute;
-  right: 63px;
-  top:2px;
+  /* padding-right: 60px; */
+  /* padding-right: 38px; */
+  margin-left: 290px;
+  top: 2px;
   font-family: Gotham-Bold !important;
 }
 
@@ -145,7 +147,7 @@ border-bottom:.4px solid black;
   font-size: 13px;
   height: 30px;
   left: 50%;
-  line-height: 34px;
+  line-height: 29px;
   margin-left: -15px;
   position: absolute;
   text-align: center;
@@ -170,7 +172,7 @@ border-bottom:.4px solid black;
   font-size: 13px;
   height: 30px;
   left: 50%;
-  line-height: px;
+  line-height: 29px;
   margin-left: -15px;
   position: absolute;
   text-align: center;
@@ -3453,7 +3455,7 @@ div.xAxis >div.tickLabel:last-child{
 .jd_scorefd_Pimg{
   height: 70px;
   position: absolute;
-  right: 10px;
+  right: 20px;
   top: 0px;
   width: 70px;
   // height: 76px;
@@ -3490,12 +3492,11 @@ div.xAxis >div.tickLabel:last-child{
 
 .overlay {
   position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 92%;
-  border-left: 1px solid #bdbdbd;
-  border-right: 1px solid #bdbdbd;
-  height: 177px;
+    left: 5px;
+    top: 0px;
+    border-left: 1px solid #e3e5ea;
+    border-right: 1px solid #e3e5ea;
+    height: 180px;
 }
 
 
