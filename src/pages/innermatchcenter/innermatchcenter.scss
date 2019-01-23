@@ -77,21 +77,25 @@ page-innermatchcenter {
 .hmq1{
   position: absolute;
   left: 72px;
+  top:2px;
   font-family: Gotham-Bold !important;
 }
 .hmq2{
   position: absolute;
-  left: 150px;
+  left: 156px;
+  top:2px;
   font-family: Gotham-Bold !important;
 }
 .hmq3{
   position: absolute;
-  right: 140px;
+  right: 149px;
+  top:2px;
   font-family: Gotham-Bold !important;
 }
 .hmq4{
   position: absolute;
-  right: 72px;
+  right: 63px;
+  top:2px;
   font-family: Gotham-Bold !important;
 }
 
@@ -133,19 +137,6 @@ border-bottom:.4px solid black;
   }
   .circularMidQtr {
     background-color: #e0e0e0;
-<<<<<<< HEAD
-    border-radius: 50%;
-    color: #04235c;
-    font-family: Gotham-Bold;
-    font-size: 13px;
-    height: 30px;
-    left: 50%;
-    line-height: 33px;
-    margin-left: -15px;
-    position: absolute;
-    text-align: center;
-    width: 30px;
-=======
   // background-color: #3d4d70;
   border-radius: 50%;
   // color: white;
@@ -159,7 +150,6 @@ border-bottom:.4px solid black;
   position: absolute;
   text-align: center;
   width: 30px;
->>>>>>> ff512f38b816d4fdb3c000903b0cd301c641d4f7
 }
 .xAxis{
   .tickLabel{
@@ -180,18 +170,14 @@ border-bottom:.4px solid black;
   font-size: 13px;
   height: 30px;
   left: 50%;
-<<<<<<< HEAD
-  line-height: 33px;
-=======
   line-height: 29px;
->>>>>>> ff512f38b816d4fdb3c000903b0cd301c641d4f7
   margin-left: -15px;
   position: absolute;
   text-align: center;
   width: 30px;
 }
  .jb-grapheader{
-  top:87px;
+  top:85px;
  }
 
  .premium1{
