@@ -3000,7 +3000,7 @@ export class InnermatchcenterPage {
         else {
             this.ga.trackView('Stats Players - Game');
             if (this.statschoose2 != 'Player') {
-                this.jd_active = '';
+                this.jd_active = 'gb';
                 this.CoachQ = ['all'];
                 this.statschoose2 = 'Player';
                 this.statschoose = 'Player';
@@ -3067,19 +3067,18 @@ export class InnermatchcenterPage {
 
     }
     sortBY(stat) {
-
       // $(document).ready(function(){
         // $("tr:nth-child(3) td,").addClass("jd_test");
       // });
         // sort by stat features in sortBy
-        if(stat == 'gb'){
+        // if(stat == 'gb'){
           this.jd_active = stat;
-          stat = 'GB';
-        }else if(stat == 'GB'){
+        //   stat = 'GB';
+        // }else if(stat == 'GB'){
 
-        }else{
-          this.jd_active = stat;
-        }
+        // }else{
+        //   this.jd_active = stat;
+        // }
         console.log('stat'+stat+'jd_active'+this.jd_active);
         if (this.reverse == true) {
             this.reverse = false;
@@ -3323,6 +3322,7 @@ export class InnermatchcenterPage {
 
              this.showAd= !this.showAd;
              console.log(this.showAd);
+             $('.allTeam').addClass("jd_active_sort");
             $(".homeTeam").parent().removeClass("sorting_asc");
 
             $('.homeTeam').on('click', function () {

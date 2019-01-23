@@ -639,7 +639,7 @@
             </th>
 
             <th class="jb-sorting-gb">
-              <button [ngClass]="{'jd_active_sort': jd_active == 'gb'}" (click)="sortBY('gb')" [id]="GB0" class="button button-clear tableColumSortStyle gbClass jd_gb">
+              <button [ngClass]="{'jd_active_sort': jd_active == 'GB'}" (click)="sortBY('GB')" [id]="GB0" class="button button-clear tableColumSortStyle gbClass jd_gb">
                 G.B
               </button>
             </th>
@@ -789,7 +789,7 @@
             <ion-row class="row progressBarstyle">
               <ion-col col-5>
                 <div class="fillBar greenFill" [style.background-color]="value.homeTeamColor" [style.width]="value.homeTeamWidth"
-                  style="font-size:19px; font-family:Gotham-Medium;">
+                  style="font-size:19px; font-family:Gotham-Medium; margin-top: 6px;">
                   {{homeTeamScoreStat[value.stat_abbrevation]}}
                 </div>
               </ion-col>
@@ -807,7 +807,7 @@
               </ion-col>
               <ion-col col-5>
                 <div class="fillBar" [style.background-color]="value.awayTeamColor" [style.width]="value.awayTeamWidth"
-                  style="font-size:19px; font-family:Gotham-Medium;">
+                  style="font-size:19px; font-family:Gotham-Medium; margin-top: 6px;">
                   {{awayTeamScoreStat[value.stat_abbrevation]}}
                 </div>
               </ion-col>
