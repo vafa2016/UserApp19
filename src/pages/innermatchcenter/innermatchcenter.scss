@@ -133,19 +133,17 @@ border-bottom:.4px solid black;
   }
   .circularMidQtr {
     background-color: #e0e0e0;
-  // background-color: #3d4d70;
-  border-radius: 50%;
-  // color: white;
-  color: #04235c;
-  font-family: Gotham-Bold;
-  font-size: 13px;
-  height: 30px;
-  left: 50%;
-  line-height: 36px;
-  margin-left: -15px;
-  position: absolute;
-  text-align: center;
-  width: 30px;
+    border-radius: 50%;
+    color: #04235c;
+    font-family: Gotham-Bold;
+    font-size: 13px;
+    height: 30px;
+    left: 50%;
+    line-height: 33px;
+    margin-left: -15px;
+    position: absolute;
+    text-align: center;
+    width: 30px;
 }
 .xAxis{
   .tickLabel{
@@ -166,7 +164,7 @@ border-bottom:.4px solid black;
   font-size: 13px;
   height: 30px;
   left: 50%;
-  line-height: 36px;
+  line-height: 33px;
   margin-left: -15px;
   position: absolute;
   text-align: center;
@@ -770,18 +768,18 @@ a.item {
 .Grapgh-Border
 {
   // border: 1px solid #3d4963;
-  border: 1px solid  #bdbdbd;
-    position: absolute;
-    width: 12%;
-    top: 135px;
+  border: .5px solid #e0e2e8;
+  position: absolute;
+  width: 12%;
+  top: 129px;
 }
 
 .Grapgh-BorderHeader
 {
   // border: 1px solid #3d4963;
-  border: 1px solid  #bdbdbd;
+  border: .5px solid #e0e2e7;
     position: absolute;
-    top: 40px;
+    top: 37px;
     width: 14%;
 }
 
