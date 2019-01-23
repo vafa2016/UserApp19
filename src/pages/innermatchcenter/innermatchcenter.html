@@ -60,10 +60,10 @@
 </ion-header>
 <ion-toolbar ion-scroll no-border class="scrollable-segments " *ngIf=" type=='stats' && pamentshow==1">
   <ion-segment [(ngModel)]="statschoose">
-    <ion-segment-button class="jb-club-seg" (click)="selectstats('team'); " value="team">
+    <ion-segment-button style="text-transform: capitalize;" class="jb-club-seg" (click)="selectstats('team'); " value="team">
       Teams
     </ion-segment-button>
-    <ion-segment-button class="jb-club-seg" (click)="selectstats('Player'); " value="Player">
+    <ion-segment-button style="text-transform: capitalize;" class="jb-club-seg" (click)="selectstats('Player'); " value="Player">
       Players
     </ion-segment-button>
   </ion-segment>

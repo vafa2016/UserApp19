@@ -2291,10 +2291,8 @@ element.style {
 	  display: block;
 	  overflow-x: scroll;
     white-space: nowrap;
-       height: 47px;
-      // background: #101931;
-      // background-color: #1c253c;
-      border: none ;
+    height: 45px;
+    border-bottom: 1px solid #bdbdbd !important;
 	  ion-segment-button.segment-button {
         display: inline-block;
         width: 50%;
@@ -2319,11 +2317,13 @@ element.style {
       }
      .segment-button.segment-activated
      {border-radius: 0px !important;
-      //  border-bottom: 3px solid white !important;
-      //     background-color: #dbdbdf;
-      //  color:#04235c;
       background-color: #04235c;
       color: white;
+      margin-left: -3px;
+      margin-right: -3px;
+       //  border-bottom: 3px solid white !important;
+      //     background-color: #dbdbdf;
+      //  color:#04235c;
      }
     }
 
