@@ -3000,7 +3000,7 @@ export class InnermatchcenterPage {
         else {
             this.ga.trackView('Stats Players - Game');
             if (this.statschoose2 != 'Player') {
-                this.jd_active = 'gb';
+                this.jd_active = 'GB';
                 this.CoachQ = ['all'];
                 this.statschoose2 = 'Player';
                 this.statschoose = 'Player';
