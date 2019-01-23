@@ -232,14 +232,14 @@ border-bottom:.4px solid black;
           padding: 2px 8px 2px 3px;
           position: absolute;
           top: 3px;
-          // left: 10%;
+          left: 16%;
           font-family: Gotham-Book;
         }
       }
       ion-segment-button.segment-button:hover:not(.segment-activated)
       {
         //  border-bottom: 3px solid white !important;
-         background-color: transparent !important;
+        //  background-color: transparent !important;
       }
      .segment-button.segment-activated
      {
@@ -2313,7 +2313,7 @@ element.style {
       ion-segment-button.segment-button:hover:not(.segment-activated)
       {
         //  border-bottom: 3px solid white !important;
-             background-color: #dbdbdf;
+            //  background-color: #dbdbdf;
 
         //  color:white;
       }
@@ -3398,7 +3398,7 @@ table.dataTable td {
 .allTeam{
   height: 45px;
   width: 45px;
-  /* margin-right: 10px; */
+  margin-right: -1px;
   background: white;
   border: 1px solid #bdbdbd;
   border-right: none;

@@ -58,7 +58,7 @@
 	<div *ngIf="type=='Round'" class="jb-content">
 		<div *ngFor="let key of roundScores | keys; let j = index">
 			<div class="dateOFMATCHES_jd">
-				<span>{{key}}</span>
+				{{key}}
       </div>
 			<ul style="border-bottom: 1px solid #bdbdbd;" class="list compitationList" *ngFor="let value1 of roundScores[key] ; let i = index">
 				<li class="item ">
@@ -101,10 +101,9 @@
 	<div *ngIf="type=='Club'" class="jb-content">
 		<div *ngFor="let value1 of clubScoresNew | reverse; let i = index">
 			<ul class="list compitationList">
-				<li class="item ">
-
+				<li class="item">
 					<div class="dateOFMATCHES_jd1">
-						<span style="font-family: Gotham-book !important;">{{value1.round}}</span>
+					{{value1.round}}
 					</div>
 					<ion-row class="row text-center fixtureList1">
 						<ion-col col-3 class="teamCol">

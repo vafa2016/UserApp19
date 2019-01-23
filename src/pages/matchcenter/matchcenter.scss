@@ -90,7 +90,7 @@ page-matchcenter {
     }
     .jd-down-arrow{
       position: absolute;
-      bottom: 3px;
+      bottom: 1px;
       background-color: rgba(255, 255, 255, 0.7);
       width: 16%;
       right: 16px;
@@ -364,14 +364,14 @@ page-matchcenter {
 
 .text{
   font-size: 14px;
-    font-family: 'Gotham-Medium';
-    margin: auto;
-    color: #04235C;
-    text-align: center;
-    margin-bottom: 7px;
-    font-weight: bold;
-    position: relative;
-    top: 5px;
+  font-family: 'Gotham-Medium';
+  margin: auto;
+  color: #04235C;
+  text-align: center;
+  /* margin-bottom: 7px; */
+  font-weight: bold;
+  /* position: relative; */
+  // /* top: 5px;
 }
 
 
