@@ -257,7 +257,7 @@ page-fixture {
 
 .jd_fixtureYear{
   text-align: center !important;
-      border-right: 1px solid#bdbdbd;
+  // border-right: 1px solid#bdbdbd;
 }
 
 .jd_seasonTxt{
@@ -335,8 +335,8 @@ ion-segment {
     width: 80px;
     text-align: center;
     background-color: #04235c;
-    height: 5px;
-    margin: auto;
+    height: 4px;
+    margin: 2px auto;
     border-radius: 10px;
 }
    }
@@ -374,6 +374,7 @@ ion-segment {
 .advContainer{
   border-bottom: 1px solid #bdbdbd !important;
   border-top: 1px solid #bdbdbd !important;
+  margin: 3px auto 0 -7px !important;
 }
 
 .advContainer1{
