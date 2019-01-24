@@ -18,6 +18,11 @@
 					<p class="jb-p1">{{goalKickersTeamName}}
 					</p>
 					<p class="jb-p3">No. {{goalKickersNumber}}</p>
+					
+					<button ion-button class="goalbtn">
+						<p 	class="greenSubTitle" *ngIf="teamGoal !== ''">Goals: {{playerTotalGoal}}</p>
+					  </button>
+
 				</ion-col>
 			</ion-row>
 		</div>
@@ -28,11 +33,11 @@
 <ion-content class="bgPage-color" no-bounce>
 
 <ion-grid class="gridcomp"> 
-	<ion-row>
+	<!-- <ion-row>
 		<ion-col>
 			<p 	class="greenSubTitle" *ngIf="teamGoal !== ''">Total Goals: {{playerTotalGoal}}</p>
 		</ion-col>
-	</ion-row>
+	</ion-row> -->
 	<ion-row>
 		<ion-col col-6>
 			<p class="coltxt1">Opponents</p>

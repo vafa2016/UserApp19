@@ -9,14 +9,14 @@ page-goalkickerdetails {
     position: relative;
     bottom: 10px;
     font-family: Gotham-Bold;
-    font-size: 13px;
+    font-size: 20px;
     color: #bab8b6;
 }
 .coltxt2{
     position: relative;
     bottom: 10px;
     font-family: Gotham-Bold;
-    font-size: 13px;
+    font-size: 20px;
     color: #bab8b6;
     text-align: center
 }
@@ -24,7 +24,7 @@ page-goalkickerdetails {
     position: relative;
     bottom: 10px;
     font-family: Gotham-Bold;
-    font-size: 13px;
+    font-size: 20px;
     color: #bab8b6;
     text-align: center
 
@@ -32,13 +32,30 @@ page-goalkickerdetails {
 
 
 .greenSubTitle{
-	text-align:center;
-	color:#60c465;
+    text-align: center;
+    color: white;
     position: relative;
-    bottom:20px;
-    font-family: Gotham-Book;font-size: 13px;padding: 5px 0;
+    bottom: 0px;
+    right: 0px;
+    left: -12px;
+    top: 1px;
+    font-family: Gotham-Bold;
+    font-size: 13px;
+    /* border: 1px; */
+    border-radius: -2px;
+    border-radius: 20px;
+    padding: 5px 0;
 
   
+}
+.goalbtn{
+    background-color: #6ce00d;
+    width: 84px;
+    height: 22px;
+    bottom: 4px;
+    position: relative;
+    left: 11px;
+    border-radius: 13px;
 }
 .greenSubTitle::after {
     background-color: #fff;
