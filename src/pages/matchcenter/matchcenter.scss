@@ -52,17 +52,17 @@ page-matchcenter {
             border-radius: 8px !important;
           }
 
-  .jd-down-arrow-md{
-    position: absolute;
-    bottom: 3px;
-    background-color: rgba(255, 255, 255, 0.7);
-    width: 16%;
-    right: 16px;
-    line-height: 1;
-    color: #04235C;
-    font-size: 20px;
-    font-weight: bold;
-          }
+  // .jd-down-arrow-md{
+  //   position: absolute;
+  //   bottom: 3px;
+  //   background-color: rgba(255, 255, 255, 0.7);
+  //   width: 16%;
+  //   right: 16px;
+  //   line-height: 1;
+  //   color: #04235C;
+  //   font-size: 20px;
+  //   font-weight: bold;
+  //         }
 
     //
 
@@ -90,7 +90,7 @@ page-matchcenter {
     }
     .jd-down-arrow{
       position: absolute;
-      bottom: 2px;
+      top: 24px;
       background-color: rgba(255, 255, 255, 0.7);
       width: 16%;
       right: 16px;
@@ -103,7 +103,7 @@ page-matchcenter {
     .jd_line{
       position: absolute;
     border: 1px solid #bdbdbd;
-    height: 50px;
+    height: 55px;
     top: 0px;
     right: 0;
     }
@@ -124,7 +124,7 @@ page-matchcenter {
       margin: auto 2px 4px -9px;
     font-size: 15px;
     color: #424242;
-    font-family: 'Gotham-Medium';
+    font-family: 'Gotham-Medium' !important;
     text-align: center;
     position: relative;
     top: 5px;

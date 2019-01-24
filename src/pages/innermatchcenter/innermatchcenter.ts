@@ -1009,6 +1009,7 @@ export class InnermatchcenterPage {
             this.type = 'stats';
             this.statschoose = 'team';
             if (res == 'true' && this.PurchaseData.payment_status!= 1) {
+               // condition when free trial period true and not purchased pass
                 this.Storage.get('onetimeenterdate').then((val) => {
                     if (!val) {
                         // this.Storage.set('onetimeenterdate', 1);
@@ -1042,6 +1043,7 @@ export class InnermatchcenterPage {
                 });
             }else if(res == 'true' && this.processproduct.GetProductType(this.PurchaseData.product) == 'Premium' && this.PurchaseData.competition_id == this.details.competion_id && (this.PurchaseData.team_id != this.details.awateam_id && this.PurchaseData.team_id != this.details.hometeam_id)){
                 console.log('aaaa');
+                 // condition when free trial period true and purchased pass with premium and not the team purchased
                 this.Storage.get('1timeenterdate').then((val) => {
                     if(!val){
                         let alert = this.alertCtrl.create({
@@ -1075,6 +1077,7 @@ export class InnermatchcenterPage {
                 this.gotostatspage();
             }
             else {
+              // trial period false condition and purchase checking conditions.
                 this.Storage.get('UserDeviceData').then((val) => {
                     if (val) {
                         let Details = val.devicedata;
@@ -1084,6 +1087,7 @@ export class InnermatchcenterPage {
                             let product = this.processproduct.GetProductType(Details.product);
                             console.log(product)
                             if (product == 'Premium') {
+                              //  user purchased premium pass and checking for the team matches the team he purchased condition.
                                 if (Details.competition_id == this.details.competion_id && (Details.team_id == this.details.awateam_id || Details.team_id == this.details.hometeam_id)) {
                                     this.pamentshow = 1;
                                     this.gotostatspage();
@@ -1137,6 +1141,8 @@ export class InnermatchcenterPage {
                             }
                         }
                         else {
+                          // condition user not purchased pass.
+
                             // let modal = this.modalCtrl.create('EditUserModelPage');
                             // let me = this;
                             // modal.onDidDismiss(data => {
@@ -3322,12 +3328,13 @@ export class InnermatchcenterPage {
 
              this.showAd= !this.showAd;
              console.log(this.showAd);
+             $('.jb-plaer table.dataTable tbody tr:nth-child(3) td').addClass('jd_warning');
              $('.allTeam').addClass("jd_active_sort");
             $(".homeTeam").parent().removeClass("sorting_asc");
 
             $('.homeTeam').on('click', function () {
 
-
+              $('.jb-plaer table.dataTable tbody tr:nth-child(3) td').removeClass('jd_warning');
 
               if ($('.awayTeam1').hasClass("jd_active_sort")) {
                 $('.awayTeam1').removeClass("jd_active_sort");
@@ -3404,6 +3411,7 @@ export class InnermatchcenterPage {
                 $('.allTeam').removeClass("jd_active_sort");
 
                }
+               $('.jb-plaer table.dataTable tbody tr:nth-child(3) td').removeClass('jd_warning');
                 console.log("hhh");
                 if ($(this).hasClass("activated1")) {
                     console.log("hhh----away");
@@ -3460,20 +3468,19 @@ export class InnermatchcenterPage {
                 $('.awayTeam1').removeClass("jd_active_sort");
                }
               $('.allTeam').addClass("jd_active_sort");
+              $('.jb-plaer table.dataTable tbody tr:nth-child(3) td').removeClass('jd_warning');
               console.log("all--");
               if ($(this).hasClass("activated2")) {
                 console.log("all--");
                 $(this).removeClass("activated2");
                 $(".allTeam").addClass("activated2");
-                $("#playerStatsTable tbody tr").each(function () {
+                $("#playerStatsTable tbody tr").each(function (item) {
+                  console.log(item);
                         $(this).show();
                 })
+
             }
             })
-
-
-
-
         }, 1000);
         // $ionicLoading.hide();
 
