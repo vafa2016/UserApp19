@@ -73,6 +73,7 @@ page-matchcenter {
       height: 55px !important;
       top: 0px !important;
       right: 0;
+      z-index: 10;
     }
 
     .box{
@@ -90,7 +91,7 @@ page-matchcenter {
     }
     .jd-down-arrow{
       position: absolute;
-      top: 24px;
+      bottom: 6px;
       background-color: rgba(255, 255, 255, 0.7);
       width: 16%;
       right: 16px;
@@ -102,10 +103,11 @@ page-matchcenter {
 
     .jd_line{
       position: absolute;
-    border: 1px solid #bdbdbd;
-    height: 55px;
-    top: 0px;
-    right: 0;
+      border: 0.55px solid #bdbdbd;
+      height: 55px;
+      top: 0px;
+      right: 0;
+      z-index: 10;
     }
 
 
@@ -122,12 +124,12 @@ page-matchcenter {
       // font-family: 'Gotham-Medium';
 
       margin: auto 2px 4px -9px;
-    font-size: 15px;
-    color: #424242;
-    font-family: 'Gotham-Medium' !important;
-    text-align: center;
-    position: relative;
-    top: 5px;
+      font-size: 15px;
+      color: #424242;
+      font-family: 'Gotham-Medium' !important;
+      text-align: center;
+      position: relative;
+      top: 5px;
     }
 
   .scrollable-segments {
@@ -368,10 +370,7 @@ page-matchcenter {
   margin: auto;
   color: #04235C;
   text-align: center;
-  /* margin-bottom: 7px; */
   font-weight: bold;
-  /* position: relative; */
-  // /* top: 5px;
 }
 
 
@@ -380,5 +379,9 @@ page-matchcenter {
   border-top: .55px solid #dedede;
   border-bottom: .55px solid #dedede;
   background: white;
+}
+
+.jd_bClass {
+  border-bottom: 0.55px solid #bdbdbd;
 }
 
