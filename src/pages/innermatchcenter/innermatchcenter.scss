@@ -80,26 +80,59 @@ page-innermatchcenter {
 }
 .hmq1{
   position: absolute;
-  margin-left: 63px;
-  top: 4px;
+  left: 17%;
+  top: 8px;
+  color: #04235c;
   font-family: Gotham-Bold !important;
 }
 .hmq2{
   position: absolute;
-  margin-left: 142px;
-  top: 4px;
+  left: 38%;
+  top: 8px;
+  color: #04235c;
   font-family: Gotham-Bold !important;
 }
 .hmq3{
   position: absolute;
-  margin-left: 221px;
-  top: 4px;
+  right: 36%;
+  top: 8px;
+  color: #04235c;
   font-family: Gotham-Bold !important;
 }
 .hmq4{
   position: absolute;
-  margin-left: 295px;
-  top: 4px;
+  right: 15%;
+  top: 8px;
+  color: #04235c;
+  font-family: Gotham-Bold !important;
+}
+
+.awq1{
+  position: absolute;
+  left: 17%;
+  top: 9px;
+  color: #04235c;
+  font-family: Gotham-Bold !important;
+}
+.awq2{
+  position: absolute;
+  left: 38%;
+  top: 9px;
+  color: #04235c;
+  font-family: Gotham-Bold !important;
+}
+.awq3{
+  position: absolute;
+  right: 36%;
+  top: 9px;
+  color: #04235c;
+  font-family: Gotham-Bold !important;
+}
+.awq4{
+  position: absolute;
+  right: 15%;
+  top: 9px;
+  color: #04235c;
   font-family: Gotham-Bold !important;
 }
 
@@ -163,6 +196,13 @@ border-bottom:.4px solid black;
     font-weight: 700 !important;
   }
 }
+
+.tickLabel1{
+  top: 24 !important;
+  font-size: 25px !important;
+    color: #ddd !important;
+    font-weight: 700 !important;
+}
  .circularMidQtr1 {
   background-color: #e0e0e0;
   color: #04235c;
@@ -181,7 +221,7 @@ border-bottom:.4px solid black;
   width: 30px;
 }
  .jb-grapheader{
-  top:85px;
+  top:94px;
  }
 
  .premium1{
@@ -781,7 +821,7 @@ a.item {
   border: .5px solid #e0e2e8;
   position: absolute;
   width: 12%;
-  top: 134px;
+  top: 137px;
 }
 
 .Grapgh-BorderHeader
@@ -798,7 +838,7 @@ a.item {
   // border: 1px solid #3d4963;
   border: 1px solid #dedede;
     position: absolute;
-    top: 221px;
+    top: 232px;
     width: 100%;
     z-index: 1;
 
@@ -2383,7 +2423,7 @@ element.style {
     padding: 0;
     background-color: white;
     border: 1px solid #bdbdbd;
-    margin-left: -6px;
+    margin-left: -8px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     // border-radius: 6px;
@@ -3442,19 +3482,19 @@ border-top: 1px solid #dedede;
 }
 
 div.xAxis >div.tickLabel:first-child{
-  left: 0px !important;
+  left: 0% !important;
   mix-blend-mode: darken;
 }
 div.xAxis >div.tickLabel:nth-child(2){
-  left: 76px !important;
+  left: 23% !important;
   mix-blend-mode: darken;
 }
 div.xAxis >div.tickLabel:nth-child(3){
-  left: 151px !important;
+  left: 46% !important;
   mix-blend-mode: darken;
 }
 div.xAxis >div.tickLabel:last-child{
-  left: 229px !important;
+  left: 68% !important;
   mix-blend-mode: darken;
 }
 
@@ -3504,11 +3544,15 @@ div.xAxis >div.tickLabel:last-child{
 
 .overlay {
   position: absolute;
-    left: 5px;
+    left: 3px !important;
     top: 0px;
     border-left: 1px solid #e3e5ea;
     border-right: 1px solid #e3e5ea;
-    height: 180px;
+    height: 182px !important;
+}
+
+.overlay1{
+  height: 104px !important;
 }
 
 

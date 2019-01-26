@@ -293,7 +293,7 @@
       <div class="Grapgh-Border-Ends"></div>
     </div>
     <div class="jb-class-back">
-      <div class='graph' id="scoreChart" style="height:200px; width:inherit !important;  margin-left:35px; vertical-align: middle;font-size:17px;margin-top: 43px;"></div>
+      <div class='graph' id="scoreChart" style="height:200px; width:inherit !important;  margin-left:35px; vertical-align: middle;font-size:17px;margin-top: 52px;"></div>
     </div>
     <div class="HomeTeam_qScore" *ngIf="statusName == 'COMPLETE' && graphImgShowHide==1">
       <span class="hmq1">{{q1HomeScore}}</span>
@@ -302,10 +302,10 @@
       <span class="hmq4">{{q4HomeScore}}</span>
     </div>
     <div class="AwayTeam_qScore" *ngIf="statusName == 'COMPLETE' && graphImgShowHide==1">
-      <span class="hmq1">{{q1AwayScore}}</span>
-      <span class="hmq2">{{q2AwayScore}}</span>
-      <span class="hmq3">{{q3AwayScore}}</span>
-      <span class="hmq4">{{q4AwayScore}}</span>
+      <span class="awq1">{{q1AwayScore}}</span>
+      <span class="awq2">{{q2AwayScore}}</span>
+      <span class="awq3">{{q3AwayScore}}</span>
+      <span class="awq4">{{q4AwayScore}}</span>
     </div>
     <div class="advContainer " *ngIf="graphImgShowHide==1">
       <img src="{{path}}{{advertisementHeader[0].ad_image}}" (click)="goToAddSite(advertisementHeader[0].ad_url);">

@@ -95,6 +95,7 @@ export class InnermatchcenterPage {
     constructor(public platform: Platform, public processproduct: ProductListProvider, public ga: GoogleAnalytics, public localdata: LocalDataProvider,
         private alertCtrl: AlertController, private streamingMedia: StreamingMedia, private modalCtrl: ModalController, private zone: NgZone, private inapp: InAppBrowser, public Storage: Storage, public ajax: AjaxProvider, public events: Events, public cmnfun: CommomfunctionProvider, public navCtrl: NavController, public navParams: NavParams) {
 
+
         this.details = navParams.get('details');
         console.log(this.details);
 
@@ -150,6 +151,8 @@ export class InnermatchcenterPage {
 
         if (storeData > 0) {
 
+           $('.overlay').addClass('overlay1');
+
             console.log("80");
             console.log(storeData);
             this.fullGraph = 1;
@@ -166,6 +169,7 @@ export class InnermatchcenterPage {
             $("#scoreChartminh").show();
         }
         else {
+          $('.overlay').removeClass('overlay1');
             //  if(this.i>=10)
             // {
             //    this.i=0;
@@ -185,6 +189,8 @@ export class InnermatchcenterPage {
             $("#scoreChart").show();
             $("#scoreChartmin").hide();
             $("#scoreChartminh").hide();
+
+            $('.overlay').addClass('overlay');
             //         }
             // this.i++;
         }
