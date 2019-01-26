@@ -80,28 +80,26 @@ page-innermatchcenter {
 }
 .hmq1{
   position: absolute;
-  margin-left: 69px;
-  top: 7px;
+  margin-left: 63px;
+  top: 4px;
   font-family: Gotham-Bold !important;
 }
 .hmq2{
   position: absolute;
-  margin-left: 156px;
-  top: 7px;
+  margin-left: 142px;
+  top: 4px;
   font-family: Gotham-Bold !important;
 }
 .hmq3{
   position: absolute;
-  margin-left: 237px;
-    top: 7px;
+  margin-left: 221px;
+  top: 4px;
   font-family: Gotham-Bold !important;
 }
 .hmq4{
   position: absolute;
-  /* padding-right: 60px; */
-  /* padding-right: 38px; */
-  margin-left: 324px;
-    top: 7px;
+  margin-left: 295px;
+  top: 4px;
   font-family: Gotham-Bold !important;
 }
 
@@ -151,7 +149,7 @@ border-bottom:.4px solid black;
   font-size: 13px;
   height: 30px;
   left: 50%;
-  line-height: 29px;
+  line-height: 31px;
   margin-left: -15px;
   position: absolute;
   text-align: center;
@@ -176,7 +174,7 @@ border-bottom:.4px solid black;
   font-size: 13px;
   height: 30px;
   left: 50%;
-  line-height: 29px;
+  line-height: 31px;
   margin-left: -15px;
   position: absolute;
   text-align: center;
@@ -206,7 +204,7 @@ border-bottom:.4px solid black;
       z-index: 10;
       background: white;
       top: 42px;
-      height: 51px;
+      height: 52px;
       border-bottom: 1px solid #bdbdbd;
       // border-bottom: 1px solid #04235c;
        ion-segment-button.segment-button {
@@ -223,20 +221,20 @@ border-bottom:.4px solid black;
         // min-width: 25vw;
         font-weight: 900;
         border: none;
-        line-height: 2.8;
+        line-height: 2.5;
         .premium {
-          font-family: Gotham-Black;
+          // font-family: Gotham-Black;
           background-image: url(../assets/imgs/premiumpro.png);
           background-repeat: no-repeat;
           background-size: 100% 100%;
           color: white;
           font-size: 10px;
           line-height: normal;
-          max-height: 15.5px;
-          padding: 2px 8px 2px 3px;
+          max-height: 13.5px;
+          padding: 3px 8px 3px 3px;
           position: absolute;
-          top: 3px;
-          left: 16%;
+          top: 2px;
+          left: 15%;
           font-family: Gotham-Book;
         }
       }
@@ -798,7 +796,7 @@ a.item {
 .Grapgh-Border-Ends
 {
   // border: 1px solid #3d4963;
-  border: 1px solid  #bdbdbd;
+  border: 1px solid #dedede;
     position: absolute;
     top: 221px;
     width: 100%;
@@ -2190,8 +2188,17 @@ element.style {
     width: 100%;
 
 }
+
+.advContainer3 {
+  text-align: center;
+  border-top: .55px solid #dedede;
+  border-bottom: .55px solid #dedede;
+  background: white;
+}
   .advContainer{
-    margin: 8px auto 0 -7px !important;
+    position: fixed;
+    margin: 9px auto 0 -7px !important;
+    width: 104%;
     // border-bottom: 1px solid #04235c;
     .full-image {
    height: 100% !important;
@@ -2284,7 +2291,7 @@ element.style {
 }
  .scrollable-segments {
     height: 45px;
-    top: 93px;
+    top: 94px;
     .toolbar-content
     {
       height: 45px;
@@ -2351,7 +2358,7 @@ element.style {
         .button.button-clear.playerStatLeftTeam {
     min-height: 45px;
     min-width: 45px;
-    margin-left: -4px;
+    margin-left: -3px;
     padding: 0;
     background-color: white;
     border: 1px solid#bdbdbd;
@@ -3212,10 +3219,10 @@ border-top: 1px solid #dedede;
 }
 .jd_gk_txt{
   margin: auto;
-  font-size: 15px;
-  font-weight: bold;
-  font-family: 'Gotham-Book';
+  font-size: 14px;
+  font-family: 'Gotham-Medium';
   padding: 3px 0px 3px 0px;
+  font-weight: 900;
 }
 
 .jd_home_bstplyr{
@@ -3403,7 +3410,7 @@ border-top: 1px solid #dedede;
 .allTeam{
   height: 45px;
   width: 45px;
-  margin-right: -1px;
+  margin-right: -3px;
   background: white;
   border: 1px solid #bdbdbd;
   border-right: none;

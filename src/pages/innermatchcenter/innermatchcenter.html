@@ -70,7 +70,7 @@
 </ion-toolbar>
 <ion-header *ngIf="headerimage!='' && type=='stats'  && pamentshow==1" [style.display]="advDisplay=='hide' ? 'block' : 'none'"
   class="bar-sub-subheader" style="height: 50px;position:relative; top:85px; background-color: transparent; border: 0px !important; border-bottom-color: transparent !important; background-image: none !important; border-bottom: none !important; ">
-  <div class="advContainer" style="position:fixed;margin: 0 auto 0 -7px; width: 104%;">
+  <div class="advContainer" style="position:fixed;margin: 9px auto 0 -7px; width: 104%;">
     <!-- <img src="{{path}}{{headerimage}}" class="full-image" (click)="goToAddSite(headerurl);"> -->
     <img src="{{path}}{{adv[0].ad_image}}" (click)="goToAddSite(adv[0].ad_url);">
   </div>
@@ -754,7 +754,7 @@
           </div>
         </li>
       </ul>
-      <div class="advContainer">
+      <div class="advContainer3">
         <img src="{{path}}{{adv[0].ad_image}}" (click)="goToAddSite(adv[0].ad_url);">
       </div>
 
@@ -788,9 +788,9 @@
             </p>
 
             <ion-row class="row progressBarstyle">
-              <ion-col col-5>
+              <ion-col col-5 no-padding>
                 <div class="fillBar greenFill" [style.background-color]="value.homeTeamColor" [style.width]="value.homeTeamWidth"
-                  style="font-size:19px; font-family:Gotham-Medium; margin-top: 6px;">
+                  style="font-size:19px; font-family:Gotham-Medium; margin-top: 10px;">
                   {{homeTeamScoreStat[value.stat_abbrevation]}}
                 </div>
               </ion-col>
@@ -806,9 +806,9 @@
                     ''}}{{homeTeamScoreStat[value.stat_abbrevation] - awayTeamScoreStat[value.stat_abbrevation]}}</p>
                 </div>
               </ion-col>
-              <ion-col col-5>
+              <ion-col col-5 no-padding>
                 <div class="fillBar" [style.background-color]="value.awayTeamColor" [style.width]="value.awayTeamWidth"
-                  style="font-size:19px; font-family:Gotham-Medium; margin-top: 6px;">
+                  style="font-size:19px; font-family:Gotham-Medium; margin-top: 10px;">
                   {{awayTeamScoreStat[value.stat_abbrevation]}}
                 </div>
               </ion-col>
