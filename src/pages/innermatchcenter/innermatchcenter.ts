@@ -3091,6 +3091,8 @@ export class InnermatchcenterPage {
         // }else{
         //   this.jd_active = stat;
         // }
+        $('.jd_advContainer1').addClass('jd_rmBorder');
+        $('.jb-plaer table.dataTable tbody tr:nth-child(3) td').removeClass('jd_warning');
         console.log('stat'+stat+'jd_active'+this.jd_active);
         if (this.reverse == true) {
             this.reverse = false;
