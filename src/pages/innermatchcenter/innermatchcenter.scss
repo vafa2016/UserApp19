@@ -81,28 +81,28 @@ page-innermatchcenter {
 .hmq1{
   position: absolute;
   left: 17%;
-  top: 8px;
+  top: 7px;
   color: #04235c;
   font-family: Gotham-Bold !important;
 }
 .hmq2{
   position: absolute;
   left: 38%;
-  top: 8px;
+  top: 7px;
   color: #04235c;
   font-family: Gotham-Bold !important;
 }
 .hmq3{
   position: absolute;
   right: 36%;
-  top: 8px;
+  top: 7px;
   color: #04235c;
   font-family: Gotham-Bold !important;
 }
 .hmq4{
   position: absolute;
   right: 15%;
-  top: 8px;
+  top: 7px;
   color: #04235c;
   font-family: Gotham-Bold !important;
 }
@@ -110,28 +110,28 @@ page-innermatchcenter {
 .awq1{
   position: absolute;
   left: 17%;
-  top: 9px;
+  top: 7px;
   color: #04235c;
   font-family: Gotham-Bold !important;
 }
 .awq2{
   position: absolute;
   left: 38%;
-  top: 9px;
+  top: 7px;
   color: #04235c;
   font-family: Gotham-Bold !important;
 }
 .awq3{
   position: absolute;
   right: 36%;
-  top: 9px;
+  top: 7px;
   color: #04235c;
   font-family: Gotham-Bold !important;
 }
 .awq4{
   position: absolute;
   right: 15%;
-  top: 9px;
+  top: 7px;
   color: #04235c;
   font-family: Gotham-Bold !important;
 }
@@ -2373,8 +2373,8 @@ element.style {
      {border-radius: 0px !important;
       background-color: #04235c;
       color: white;
-      margin-left: -3px;
-      margin-right: -3px;
+      // margin-left: -3px;
+      // margin-right: -3px;
        //  border-bottom: 3px solid white !important;
       //     background-color: #dbdbdf;
       //  color:#04235c;
@@ -3261,7 +3261,7 @@ border-top: 1px solid #dedede;
   margin: auto;
   font-size: 14px;
   font-family: 'Gotham-Medium';
-  padding: 3px 0px 3px 0px;
+  padding-bottom: 2px;
   font-weight: 900;
 }
 
@@ -3551,8 +3551,12 @@ div.xAxis >div.tickLabel:last-child{
     height: 182px !important;
 }
 
-.overlay1{
+.overlay1 {
   height: 104px !important;
+}
+
+.jd_rmBorder {
+  border-bottom: none !important;
 }
 
 

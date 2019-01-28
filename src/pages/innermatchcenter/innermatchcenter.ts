@@ -3290,6 +3290,7 @@ export class InnermatchcenterPage {
         });
 
         console.log(this.homeTeamPlayers1);
+        $('.allTeam').addClass("jd_active_sort");
         setTimeout(() => {
 
             let windowWidth = (window.innerWidth);
@@ -3330,6 +3331,13 @@ export class InnermatchcenterPage {
                     }
 
                 });
+                 // Enable THEAD scroll bars
+    $('.dataTables_scrollHead').css('overflow', 'auto');
+
+    // Sync THEAD scrolling with TBODY
+    $('.dataTables_scrollHead').on('scroll', function () {
+        $('.dataTables_scrollBody').scrollLeft($(this).scrollLeft());
+    });
             });
 
              this.showAd= !this.showAd;
@@ -3339,7 +3347,7 @@ export class InnermatchcenterPage {
             $(".homeTeam").parent().removeClass("sorting_asc");
 
             $('.homeTeam').on('click', function () {
-
+              $('.jd_advContainer1').addClass('jd_rmBorder');
               $('.jb-plaer table.dataTable tbody tr:nth-child(3) td').removeClass('jd_warning');
 
               if ($('.awayTeam1').hasClass("jd_active_sort")) {
@@ -3410,6 +3418,7 @@ export class InnermatchcenterPage {
             });
 
             $('.awayTeam1').on('click', function () {
+              $('.jd_advContainer1').addClass('jd_rmBorder');
               if ($('.homeTeam').hasClass("jd_active_sort")) {
 
                 $('.homeTeam').removeClass("jd_active_sort");
@@ -3468,6 +3477,7 @@ export class InnermatchcenterPage {
             });
 
             $('.allTeam').on('click', function(){
+              $('.jd_advContainer1').addClass('jd_rmBorder');
               if ($('.homeTeam').hasClass("jd_active_sort")) {
                 $('.homeTeam').removeClass("jd_active_sort");
                }else if($('.awayTeam1').hasClass("jd_active_sort")){

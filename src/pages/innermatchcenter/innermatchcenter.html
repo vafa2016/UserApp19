@@ -59,7 +59,7 @@
   </div>
 </ion-header>
 <ion-toolbar ion-scroll no-border class="scrollable-segments " *ngIf=" type=='stats' && pamentshow==1">
-  <ion-segment [(ngModel)]="statschoose">
+  <ion-segment [(ngModel)]="statschoose" style="background-color: #ffffff !important;">
     <ion-segment-button style="text-transform: capitalize;" class="jb-club-seg" (click)="selectstats('team'); " value="team">
       Teams
     </ion-segment-button>
@@ -783,18 +783,18 @@
       <div *ngFor="let value of modifiedStateSeq;let key=index;">
         <div *ngIf="value.stat_abbrevation!='RB'">
           <div class="">
-            <p class="nomalFormMidTitle ">
+            <p class="nomalFormMidTitle " style="padding-bottom: 5px;">
               <span style="font-family: Gotham-Medium !important;">{{value.stat_name}}</span>
             </p>
 
-            <ion-row class="row progressBarstyle">
+            <ion-row class="row progressBarstyle" style="padding-bottom: 5px;">
               <ion-col col-5 no-padding>
                 <div class="fillBar greenFill" [style.background-color]="value.homeTeamColor" [style.width]="value.homeTeamWidth"
-                  style="font-size:19px; font-family:Gotham-Medium; margin-top: 10px;">
+                  style="font-size:19px; font-family:Gotham-Medium; margin-top: 6px;">
                   {{homeTeamScoreStat[value.stat_abbrevation]}}
                 </div>
               </ion-col>
-              <ion-col>
+              <ion-col no-padding>
                 <div *ngIf="isToggled" class="jd_scoreCycle" [style.border-color]="value.awayTeamColor">
                   <p class="jd_scoreBoard">{{awayTeamScoreStat[value.stat_abbrevation] -
                     homeTeamScoreStat[value.stat_abbrevation] > 0 ? '+' :
@@ -808,7 +808,7 @@
               </ion-col>
               <ion-col col-5 no-padding>
                 <div class="fillBar" [style.background-color]="value.awayTeamColor" [style.width]="value.awayTeamWidth"
-                  style="font-size:19px; font-family:Gotham-Medium; margin-top: 10px;">
+                  style="font-size:19px; font-family:Gotham-Medium; margin-top: 6px;">
                   {{awayTeamScoreStat[value.stat_abbrevation]}}
                 </div>
               </ion-col>
