@@ -110,30 +110,43 @@ page-innermatchcenter {
 .awq1{
   position: absolute;
   left: 17%;
-  top: 7px;
+  top: 10px;
   color: #04235c;
   font-family: Gotham-Bold !important;
 }
 .awq2{
   position: absolute;
   left: 38%;
-  top: 7px;
+  top: 10px;
   color: #04235c;
   font-family: Gotham-Bold !important;
 }
 .awq3{
   position: absolute;
   right: 36%;
-  top: 7px;
+  top: 10px;
   color: #04235c;
   font-family: Gotham-Bold !important;
 }
 .awq4{
   position: absolute;
   right: 15%;
-  top: 7px;
+  top: 10px;
   color: #04235c;
   font-family: Gotham-Bold !important;
+}
+
+.gk{
+  text-align: center;
+  background: #ece9e9;
+  color: grey;
+  width: 100%;
+  padding: 2px 0px 3px;
+ span{
+  font-family: Gotham-Medium !important;
+  font-size: 14px;
+  font-weight: 900;
+ }
 }
 
 .watchbtn{
@@ -189,19 +202,16 @@ border-bottom:.4px solid black;
   width: 30px;
 }
 .xAxis{
-  .tickLabel{
+  font-size: 25px !important;
+  color: #ddd !important;
+  font-weight: 700 !important;
+  .tickLabel {
     top: 74px !important;
-    font-size: 25px !important;
-    color: #ddd !important;
-    font-weight: 700 !important;
   }
 }
 
 .tickLabel1{
-  top: 24 !important;
-  font-size: 25px !important;
-    color: #ddd !important;
-    font-weight: 700 !important;
+  top: 20 !important;
 }
  .circularMidQtr1 {
   background-color: #e0e0e0;
@@ -3255,13 +3265,12 @@ border-top: 1px solid #dedede;
   text-align: center;
   background: #ece9e9;
   color: grey;
-  // height: 25px;
+  height: 17px;
 }
 .jd_gk_txt{
   margin: auto;
   font-size: 14px;
   font-family: 'Gotham-Medium';
-  padding-bottom: 2px;
   font-weight: 900;
 }
 
@@ -3517,6 +3526,14 @@ div.xAxis >div.tickLabel:last-child{
   // width: 76px;
 }
 
+.jb-plaer .dataTables_scrollHead::-webkit-scrollbar {
+  display: none;
+  }
+
+.activated2{
+  background-color: #04235c;
+  color:white;
+}
 
 .jd_active_sort{
   background-color: #04235c !important;
@@ -3557,6 +3574,7 @@ div.xAxis >div.tickLabel:last-child{
 
 .jd_rmBorder {
   border-bottom: none !important;
+  height: 59px;
 }
 
 

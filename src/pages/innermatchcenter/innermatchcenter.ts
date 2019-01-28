@@ -152,6 +152,8 @@ export class InnermatchcenterPage {
         if (storeData > 0) {
 
            $('.overlay').addClass('overlay1');
+           $('xAxis').removeClass('tickLabel');
+           $('xAxis').addClass('tickLabel1');
 
             console.log("80");
             console.log(storeData);
@@ -3051,6 +3053,7 @@ export class InnermatchcenterPage {
     }
     getGBData(g_value, b_value, rb_value, key, obj, k_value, h_value) {
 
+
         let goal = 0;
         let b = 0;
         let rb = 0;
@@ -3071,12 +3074,11 @@ export class InnermatchcenterPage {
         //this.homeTeamPlayers1[key].D = parseInt(k_value + h_value) ;
 
         let GB_score = goal + "." + parseInt(b + rb);
+        console.log(GB_score);
         if (GB_score == 0)
             return "0.0";
         else
             return GB_score;
-
-
     }
     sortBY(stat) {
       // $(document).ready(function(){
@@ -3165,6 +3167,7 @@ export class InnermatchcenterPage {
 
     }
     getplayerscoreplayer(data) {
+      $('.allTeam').addClass("jd_active_sort");
         this.newTotalHomeTeamScore = data.totalHomeTeamScore;
         this.newTotalAwayTeamScore = data.totalAwayTeamScore;
 
@@ -3292,9 +3295,8 @@ export class InnermatchcenterPage {
         });
 
         console.log(this.homeTeamPlayers1);
-        $('.allTeam').addClass("jd_active_sort");
         setTimeout(() => {
-
+          $('.allTeam').removeClass("activated2");
             let windowWidth = (window.innerWidth);
             let windowHeight = (window.innerHeight) - 129;
             $(document).ready(function () {
@@ -3326,7 +3328,7 @@ export class InnermatchcenterPage {
                     "bInfo": false,
                     "bSortable": true,
                     "ordering": true,
-                    "order": [0, "desc"],
+                    "order": [1, "desc"],
                     fixedColumns: {
                         leftColumns: 1,
                         rightColumns: 0
@@ -3334,7 +3336,7 @@ export class InnermatchcenterPage {
 
                 });
                  // Enable THEAD scroll bars
-    $('.dataTables_scrollHead').css('overflow', 'auto');
+    $('.dataTables_scrollHead').css('overflow', 'scroll');
 
     // Sync THEAD scrolling with TBODY
     $('.dataTables_scrollHead').on('scroll', function () {

@@ -250,8 +250,8 @@
     </div>
     <!-- Goalkickers list  -->
     <div>
-      <div class="jd_gk_head">
-        <p class="jd_gk_txt">GOAL KICKERS</p>
+      <div class="gk">
+        <span>GOAL KICKERS</span>
       </div>
       <ion-row>
         <!-- home team -->
@@ -266,8 +266,8 @@
     </div>
     <!-- Best players list  -->
     <div>
-      <div class="jd_gk_head">
-        <p class="jd_gk_txt">BEST PLAYERS</p>
+      <div class="gk">
+        <span>BEST PLAYERS</span>
       </div>
       <ion-row>
         <!-- home team -->
@@ -703,7 +703,7 @@
 
             </td>
 
-            <td class="jb-sorting-gb">{{ getGBData(obj.G,obj.B,obj.RB,key,obj, obj.K, obj.H) }}</td>
+            <td class="jb-sorting-gb" [innerHTML]="getGBData(obj.G,obj.B,obj.RB,key,obj, obj.K, obj.H)" ></td>
             <td [innerHTML]="obj.D"> </td>
             <td [innerHTML]="obj.K"> </td>
             <td [innerHTML]="obj.H"> </td>
