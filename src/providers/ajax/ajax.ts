@@ -10,6 +10,10 @@ import { Events } from 'ionic-angular';
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
+// Main base url http://vafalive.com.au
+// development test server url  http://54.244.98.247/
+
+
 @Injectable()
 export class AjaxProvider {
 
@@ -21,17 +25,17 @@ export class AjaxProvider {
     console.log(category);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-      .post('http://vafalive.com.au/score/default/' + category,
+      .post('http://54.244.98.247/score/default/' + category,
       params, config)
       .map(res => res)
       .catch(error => error)
   }
-    
+
   post(category, params) {
     console.log(category);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-      .post('http://vafalive.com.au/score/' + category,
+      .post('http://54.244.98.247/score/' + category,
       params, config)
       .map(res => res)
       .catch(error => error)
@@ -39,7 +43,7 @@ export class AjaxProvider {
   getcompetionlist(category, params, key) {
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     this.http
-      .post('http://vafalive.com.au/score/default/' + category,
+      .post('http://54.244.98.247/score/default/' + category,
       params, config)
       .subscribe((res) => {
         console.log(res);
@@ -52,7 +56,7 @@ export class AjaxProvider {
   data(category, params) {
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     this.http
-      .post('http://vafalive.com.au/score/default/' + category,
+      .post('http://54.244.98.247/score/default/' + category,
       params, config)
       .subscribe((res) => {
         console.log(res);
@@ -65,15 +69,15 @@ export class AjaxProvider {
   datalist(category, params) {
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-      .post('http://vafalive.com.au/score/default/' + category,
+      .post('http://54.244.98.247/score/default/' + category,
       params, config)
       .map(res => res)
-      .catch(error => error) 
+      .catch(error => error)
   }
   datalistaction(category, params, Type) {
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     this.http
-      .post('http://vafalive.com.au/score/default/' + category,
+      .post('http://54.244.98.247/score/default/' + category,
       params, config)
       .subscribe((res) => {
         console.log(res);
@@ -88,7 +92,7 @@ export class AjaxProvider {
     console.log(category);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-      .post('http://vafalive.com.au/score/matchscore/' + category,
+      .post('http://54.244.98.247/score/matchscore/' + category,
       params, config)
       .map(res => res)
       .catch(error => error)
@@ -98,7 +102,7 @@ export class AjaxProvider {
     console.log(category);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-    .post('http://vafalive.com.au/score/default/'+category,
+    .post('http://54.244.98.247/score/default/'+category,
         {accessKey: 'QzEnDyPAHT12asHb4On6HH2016',}, config)
         .map(res => res)
         .catch(error=>error)
@@ -108,7 +112,7 @@ export class AjaxProvider {
      console.log(params)
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-      .post('http://vafalive.com.au/score/custom/save-payment-email',
+      .post('http://54.244.98.247/score/custom/save-payment-email',
       params, config)
       .map(res => res)
       .catch(error => error)
@@ -118,7 +122,7 @@ export class AjaxProvider {
      console.log(params)
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-      .post('http://vafalive.com.au/score/custom/login-webuser-deviceid-payment',
+      .post('http://54.244.98.247/score/custom/login-webuser-deviceid-payment',
       params, config)
       .map(res => res)
       .catch(error => error)
@@ -128,7 +132,7 @@ export class AjaxProvider {
      console.log(params)
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-      .post('http://vafalive.com.au/score/custom/save-data-email',
+      .post('http://54.244.98.247/score/custom/save-data-email',
       params, config)
       .map(res => res)
       .catch(error => error)
@@ -138,12 +142,12 @@ export class AjaxProvider {
     console.log(params)
    var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
    return this.http
-     .post('http://vafalive.com.au/score/custom/check-trial-period',
+     .post('http://54.244.98.247/score/custom/check-trial-period',
      params, config)
      .map(res => res)
      .catch(error => error)
  }
 
- 
+
 
 }

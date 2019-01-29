@@ -26,22 +26,22 @@ export class PlayerStatPage {
   items:any=[];
 
   numberOfItemsToDisplay = 10;
-  offset=0; 
+  offset=0;
   ResData:any='';
-
-   path: any = 'http://vafalive.com.au';
+  path: any = 'http://54.244.98.247/';
+  //  path: any = 'http://vafalive.com.au';
   getAllCompititions:any;selectables:any=[];getAllTeams:any;allTeamData:any;selectablesTeam:any=[];details:any;
 allCompetionData:any;selectedOption:any;someModel:any;compitionId:any;compitition_id:any;team_id:any;
 disposalDropData:any=[];someModelDisposal:any;selectablesDisposals:any=[];disposalId:any;disposalData:any=[];
 teamselect:any;headerAdv:any=[];footerAdv:any;sleectablescompetionname:any;sleectablesteamname:any;sleectablesstatname:any;
-  constructor(private zone: NgZone,  
+  constructor(private zone: NgZone,
     public plt:Platform,
-    public ga:GoogleAnalytics, 
-    public ajax: AjaxProvider, 
+    public ga:GoogleAnalytics,
+    public ajax: AjaxProvider,
     private inapp: InAppBrowser,
     private modalCtrl: ModalController,
-    public cmnfun: CommomfunctionProvider, 
-    public navCtrl: NavController, 
+    public cmnfun: CommomfunctionProvider,
+    public navCtrl: NavController,
     public navParams: NavParams) {
     this.plt.ready().then(() => {
       this.ga.startTrackerWithId('UA-118996199-1')
@@ -63,8 +63,8 @@ teamselect:any;headerAdv:any=[];footerAdv:any;sleectablescompetionname:any;sleec
     }).subscribe((res) => {
       console.log(res);
       this.getAllCompititions = res;
-			 
-			 
+
+
 			           this.allCompetionData = this.getAllCompititions.competition;
 						this.sleectablescompetionname = this.allCompetionData[0].competitions_name;
             // this.allCompetionData.forEach(item => {
@@ -74,10 +74,10 @@ teamselect:any;headerAdv:any=[];footerAdv:any;sleectablescompetionname:any;sleec
             // });
             console.log(this.selectables);
 						// this.selectedOption=this.allCompetionData[0];
-						this.someModel = this.allCompetionData[0]; 
+						this.someModel = this.allCompetionData[0];
 						console.log(this.someModel);
-						// window.localSto("rage.setItem("playerStatsCompitionId", this.selectedOption.competition_id ); 
-						this.compitionId=this.someModel.competition_id; 
+						// window.localSto("rage.setItem("playerStatsCompitionId", this.selectedOption.competition_id );
+						this.compitionId=this.someModel.competition_id;
 							this.selectedCompetitionName(this.compitionId)
     }, error => {
       // this.cmnfun.showToast('Some thing Unexpected happen please try again');
@@ -121,13 +121,13 @@ teamselect:any;headerAdv:any=[];footerAdv:any;sleectablescompetionname:any;sleec
     else {
       this.items = this.disposalData;
     }
-    
+
   }
 	selectedCompetitionName(selectedItem){
 			  // console.log(this.compitionId);
 				  this.compitition_id = selectedItem;
-					// window.localStorage.setItem("playerStatsCompitionId", this.compitition_id ); 
-					// this.compitition_id=this.compitition_id; 
+					// window.localStorage.setItem("playerStatsCompitionId", this.compitition_id );
+					// this.compitition_id=this.compitition_id;
 					this.ajax.datalist('get-all-teams-by-competitions', {
           accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
           competition_id: this.compitition_id
@@ -143,9 +143,9 @@ teamselect:any;headerAdv:any=[];footerAdv:any;sleectablescompetionname:any;sleec
           //     });
           //     console.log(this.selectablesTeam);
           //  });
-					
+
 						this.selectedOption=this.allTeamData[0];
-            this.team_id=this.selectedOption.team_id; 
+            this.team_id=this.selectedOption.team_id;
           this.disposalDropDown()
             }, error => {
               // this.cmnfun.showToast('Some thing Unexpected happen please try again');
@@ -156,7 +156,7 @@ teamselect:any;headerAdv:any=[];footerAdv:any;sleectablescompetionname:any;sleec
         accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
           }).subscribe((data) => {
       console.log(data);
-            
+
             this.details=data
       this.disposalDropData=this.details.score_feed;
       this.sleectablesstatname = this.disposalDropData[0].stat_name;
@@ -166,14 +166,14 @@ teamselect:any;headerAdv:any=[];footerAdv:any;sleectablescompetionname:any;sleec
         });
       });
       // this.selectedOption=this.disposalDropData[0];
-      this.someModelDisposal = this.disposalDropData[0]; 
+      this.someModelDisposal = this.disposalDropData[0];
       console.log(this.someModelDisposal);
       this.disposalId=this.someModelDisposal.id;
       this.selectedTeamName(this.team_id);
 
-      });	
-      }	
-			    //Select Compition Name			
+      });
+      }
+			    //Select Compition Name
 	selectedTeamName(selectedItem){
 			     //alert(selectedItem)
 			     if(selectedItem == '0_0' || selectedItem == '' || selectedItem == null){
@@ -191,13 +191,13 @@ teamselect:any;headerAdv:any=[];footerAdv:any;sleectablescompetionname:any;sleec
                       this.items=this.disposalData;
                       //ADVERTISEMENT:
                      this.headerAdv=this.teamselect.headerAdv;
-                     
-                      
+
+
                      this.footerAdv=this.teamselect.footerAdv;
-                     
+
                     });
 				}else{
-				 
+
 				    this.team_id = selectedItem;
               //  UserManagement.dropDownFilter(this.disposalId,this.team_id,this.compitition_id);
                 this.ajax.datalist('get-teams-player-disposals-filter', {
@@ -210,13 +210,13 @@ teamselect:any;headerAdv:any=[];footerAdv:any;sleectablescompetionname:any;sleec
                       this.teamselect=data
                      this.disposalData=this.teamselect.teamStat;
                      this.items=this.disposalData;
-                      
+
                       //ADVERTISEMENT:
                      this.headerAdv=this.teamselect.headerAdv;
-                     
-                      
+
+
                      this.footerAdv=this.teamselect.footerAdv;
-                     
+
                     });
 
 		}
@@ -235,14 +235,14 @@ teamselect:any;headerAdv:any=[];footerAdv:any;sleectablescompetionname:any;sleec
                       this.items=this.disposalData;
                       //ADVERTISEMENT:
                      this.headerAdv=this.teamselect.headerAdv;
-                     
-                      
+
+
                      this.footerAdv=this.teamselect.footerAdv;
-                     
+
                     });
-					
+
 				}else{
-				 
+
 				    this.disposalId = selectedItem;
 					   this.ajax.datalist('get-teams-player-disposals-filter', {
                   accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
@@ -255,13 +255,13 @@ teamselect:any;headerAdv:any=[];footerAdv:any;sleectablescompetionname:any;sleec
                       this.items=this.disposalData;
                       //ADVERTISEMENT:
                      this.headerAdv=this.teamselect.headerAdv;
-                     
-                      
+
+
                      this.footerAdv=this.teamselect.footerAdv;
-                     
+
                     });
 
-    }	
+    }
     }
   selectedType(type) {
     if (type == 'competion') {
@@ -285,10 +285,10 @@ teamselect:any;headerAdv:any=[];footerAdv:any;sleectablescompetionname:any;sleec
                       this.items=this.disposalData;
                       //ADVERTISEMENT:
                      this.headerAdv=this.teamselect.headerAdv;
-                     
-                      
+
+
                      this.footerAdv=this.teamselect.footerAdv;
-                     
+
                     });
       });
       modal.present();
@@ -314,12 +314,12 @@ teamselect:any;headerAdv:any=[];footerAdv:any;sleectablescompetionname:any;sleec
                       this.items=this.disposalData;
                       //ADVERTISEMENT:
                      this.headerAdv=this.teamselect.headerAdv;
-                     
-                      
+
+
                      this.footerAdv=this.teamselect.footerAdv;
-                     
+
                     });
-      
+
       });
       modal.present();
     }
@@ -344,12 +344,12 @@ teamselect:any;headerAdv:any=[];footerAdv:any;sleectablescompetionname:any;sleec
                       this.items=this.disposalData;
                       //ADVERTISEMENT:
                      this.headerAdv=this.teamselect.headerAdv;
-                     
-                      
+
+
                      this.footerAdv=this.teamselect.footerAdv;
-                     
+
                     });
-      
+
       });
       modal.present();
     }
@@ -368,7 +368,7 @@ teamselect:any;headerAdv:any=[];footerAdv:any;sleectablescompetionname:any;sleec
 
 
     doInfinite(infiniteScroll){
-      this.offset=this.offset+1; 
+      this.offset=this.offset+1;
       console.log(this.offset);
       this.ajax.datalist('get-teams-player-disposals-filter-load-more', {
         accessKey: 'QzEnDyPAHT12asHb4On6HH2016',

@@ -14,8 +14,9 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 })
 export class TeamstatdetailsPage {
   @ViewChild(Content) content: Content;
-  
-  path = 'http://vafalive.com.au';
+
+  // path = 'http://vafalive.com.au';
+  path: any = 'http://54.244.98.247/';
   advHide: boolean = false;
   advDisplay: boolean = true;
   team_id: any = '';
@@ -40,7 +41,7 @@ export class TeamstatdetailsPage {
   Ftrimg:any='';
   modifiedState: any = [];
   sortedStated: any = [];
-  
+
 
   constructor(public navCtrl: NavController,
     public ajax: AjaxProvider,
@@ -52,7 +53,7 @@ export class TeamstatdetailsPage {
     public cmfn: CommomfunctionProvider,
     public navParams: NavParams) {
     this.team_id = navParams.get('team_id');
-   
+
     this.plt.ready().then(() => {
       this.ga.startTrackerWithId('UA-118996199-1')
      .then(() => {
@@ -66,7 +67,7 @@ export class TeamstatdetailsPage {
   }
 
   ionViewDidLoad() {
-    //getStatDetailsByTeamId          
+    //getStatDetailsByTeamId
     this.cmfn.showLoading('Please Wait..');
     this.ajax.datalist('get-team-stats-details', {
       accessKey: "QzEnDyPAHT12asHb4On6HH2016",
@@ -88,15 +89,15 @@ export class TeamstatdetailsPage {
 
 
   onScroll()
-		{	
+		{
       var moveData =this.content.scrollTop;
 				if(moveData >= 375)
-				{      
+				{
           this.zone.run(() => {
             this.advHide= true;
 						this.advDisplay= false;
         });
-				}				
+				}
 				else
 					{
             this.zone.run(() => {

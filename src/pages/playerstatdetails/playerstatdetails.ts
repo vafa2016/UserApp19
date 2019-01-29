@@ -16,7 +16,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 export class PlayerstatdetailsPage {
   @ViewChild(Content) content: Content;
 
-  path: any = 'http://vafalive.com.au';
+  // path: any = 'http://vafalive.com.au';
+  path: any = 'http://54.244.98.247/';
   player_id:any='';
   resData:any='';
   showhide: any;

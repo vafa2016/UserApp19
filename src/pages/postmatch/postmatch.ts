@@ -30,7 +30,8 @@ export class PostmatchPage {
   headerimage: any = '';
   advDisplay: any = 'show';
   headerurl: any;
-  path: any = 'http://vafalive.com.au';
+  // path: any = 'http://vafalive.com.au';
+  path: any = 'http://54.244.98.247/';
   scrollTop: any;
   constructor(private zone: NgZone, private inapp: InAppBrowser, public events: Events,public plt:Platform,public ga:GoogleAnalytics, private youtube: YoutubeVideoPlayer, private modalCtrl: ModalController, public ajax: AjaxProvider, public cmnfun: CommomfunctionProvider, public navCtrl: NavController, public navParams: NavParams) {
     this.plt.ready().then(() => {

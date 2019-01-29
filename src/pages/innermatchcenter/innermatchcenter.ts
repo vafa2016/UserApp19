@@ -55,7 +55,8 @@ export class InnermatchcenterPage {
     }
     isLogin:boolean = false;
     ApiResponse: any;
-    path: any = 'http://vafalive.com.au';
+    // path: any = 'http://vafalive.com.au';
+    path: any = 'http://54.244.98.247/';
     type: any = 'SCORE';
     showcontent: any = 'hide';
     showfooter: any;
@@ -152,8 +153,6 @@ export class InnermatchcenterPage {
         if (storeData > 0) {
 
            $('.overlay').addClass('overlay1');
-           $('xAxis').removeClass('tickLabel');
-           $('xAxis').addClass('tickLabel1');
 
             console.log("80");
             console.log(storeData);

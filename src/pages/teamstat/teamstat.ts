@@ -24,7 +24,8 @@ export class TeamstatPage {
 	selectables = [];
 	selectablesRound = [];
 	selectablesDisposals = [];
-	path = 'http://vafalive.com.au';
+	// path = 'http://vafalive.com.au';
+	path: any = 'http://54.244.98.247/';
 
 	getAllCompititions: any;
 	allCompetionData = [];

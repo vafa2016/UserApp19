@@ -30,7 +30,8 @@ export class MatchreportPage {
  footerAdv:any;
  headerimage:any='';
  headerurl:any;
- path:any='http://vafalive.com.au'
+//  path:any='http://vafalive.com.au';
+ path: any = 'http://54.244.98.247/';
   constructor(private zone: NgZone,private inapp: InAppBrowser,public plt:Platform,public ga:GoogleAnalytics,public ajax:AjaxProvider, public cmnfun: CommomfunctionProvider,private modalCtrl:ModalController,public events: Events,public navCtrl: NavController, public navParams: NavParams) {
      this.plt.ready().then(() => {
       this.ga.startTrackerWithId('UA-118996199-1')
@@ -43,7 +44,7 @@ export class MatchreportPage {
    .catch(e => console.log('Error starting GoogleAnalytics', e));
        })
   }
-   
+
   scrollToTop() {
     this.content.scrollToTop();
   }
@@ -62,13 +63,13 @@ export class MatchreportPage {
            this.zone.run(() => {
             this.advDisplay='hide';
             });
-				}				
+				}
 				else
 					{
             this.zone.run(() => {
              this.advDisplay='show';
             });
-           
+
           }
       }
  ionViewWillLeave()
@@ -92,9 +93,9 @@ export class MatchreportPage {
     console.log("res");
       this.events.subscribe('competitionlistmatchreport:changed', res => {
           if(res !== undefined && res !== ""){
-          this.comptitionlists=res.competition;  
-          if(this.comptitionlists.length!=0)  
-            {      
+          this.comptitionlists=res.competition;
+          if(this.comptitionlists.length!=0)
+            {
           this.selectables=this.comptitionlists[0].competitions_name
           this.competition_id=this.comptitionlists[0].competition_id
             }
@@ -108,10 +109,10 @@ export class MatchreportPage {
             if(this.MatchreportData.code==2){
               this.cmnfun.showLoading('Match Report Not Found!');
 						}else{
-							
+
 						// 	angular.forEach( this.postMatchData.potmatch,function(v,k){
 						// 	var cDate = v.pm_date;
-						// 	$scope.pmdate = cDate.split(" "); 
+						// 	$scope.pmdate = cDate.split(" ");
 						// 	$scope.pmTime = $scope.pmdate[1].split(":");
 						//  });
 						      if(this.MatchreportData.match_report){
@@ -132,7 +133,7 @@ export class MatchreportPage {
      })
   }
     goToMatchReportDetail(reportId){
-			this.navCtrl.push('MatchreportdetailsPage',{repordid:reportId});  
+			this.navCtrl.push('MatchreportdetailsPage',{repordid:reportId});
       }
     gotomodel()
     {
@@ -146,7 +147,7 @@ export class MatchreportPage {
                   accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
                   competition_id:this.competition_id
                 }).subscribe((res) => {
-                  
+
                     this.cmnfun.HideLoading();
                     this.MatchreportData =res;
                     console.log(this.MatchreportData);

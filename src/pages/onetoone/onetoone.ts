@@ -14,7 +14,8 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
   templateUrl: 'onetoone.html',
 })
 export class OnetoonePage {
-   path = 'http://vafalive.com.au';
+  //  path = 'http://vafalive.com.au';
+  path: any = 'http://54.244.98.247/';
    teamMtach:any=[];
    teamSelection:any;
    resData:any=[];
@@ -70,7 +71,7 @@ export class OnetoonePage {
      })
      .catch(e => console.log('Error starting GoogleAnalytics', e));
          })
-        
+
 	}
 
   ionViewDidLoad() {
@@ -79,8 +80,8 @@ export class OnetoonePage {
     setTimeout(() => {
       this.cmfn.HideLoading();
     }, 7000);
-    
-  // get all teams    
+
+  // get all teams
     this.ajax.datalist('get-all-teams',{ accessKey: "QzEnDyPAHT12asHb4On6HH2016" }).subscribe((res) => {
       // this.cmfn.HideLoading();
      console.log(res);
@@ -121,7 +122,7 @@ export class OnetoonePage {
          this.resData=res;
         if (this.resData.code == 2) {
            return false;
-          } else{               
+          } else{
             // console.log("getAllPlayers"+JSON.stringify(this.resData));
             this.getAllPlayers = this.resData.players;
             this.advertisementFooter=this.resData.footerAdv;
@@ -209,7 +210,7 @@ export class OnetoonePage {
           this.resData=res;
          if (this.resData.code == 2) {
             return false;
-           } else{               
+           } else{
              console.log("getAllPlayers"+JSON.stringify(this.resData));
              this.getAllPlayers = this.resData.players;
              this.advertisementFooter=this.resData.footerAdv;
@@ -218,7 +219,7 @@ export class OnetoonePage {
           this.cmfn.HideLoading();
          console.log(error);
        })
-      }else{    
+      }else{
         this.cmfn.showLoading('Please wait..');
         this.ajax.datalist('get-team-compitition-wise-players',{ accessKey: "QzEnDyPAHT12asHb4On6HH2016",
         team_id: this.team_id,
@@ -290,17 +291,17 @@ openPlayerSelectionModal(){
     console.log(data);
    if(data){
      this.localdata.StorePlayerOne(data);
-    this.playerName1=data.player_name;    
+    this.playerName1=data.player_name;
     if(data.player_name == null || data.player_name == 'null'){
       this.playerName1 =  'Player Not Found';
-    } 
+    }
     this.imagePlayer= data.player_image;
     this.playerImage1=data.player_image;
     this.playeronedata=this.localdata.GetPlayerOne();
-    this.playertwodata=this.localdata.GetPlayerTwo();				
+    this.playertwodata=this.localdata.GetPlayerTwo();
     console.log(this.playeronedata);
     console.log(this.playertwodata);
-   
+
     if(this.playeronedata.player_id == "" || this.playeronedata.player_id ==undefined || this.playeronedata.player_id == null || this.playertwodata.player_id == undefined|| this.playertwodata.player_id == "" || this.playertwodata.player_id == null){
       // alert('please select players');
     }else if(this.playeronedata.player_id == this.playertwodata.player_id){
@@ -311,7 +312,7 @@ openPlayerSelectionModal(){
     }
    }
   });
-  modal.present();			     
+  modal.present();
 }
 
 
@@ -328,12 +329,12 @@ openPlayerSelectionModalTwo(){
     }
     this.imagePlayer2 = data.player_image;
     this.playerImage2=data.player_image;
-    
+
     this.playeronedata=this.localdata.GetPlayerOne();
-    this.playertwodata=this.localdata.GetPlayerTwo();				
+    this.playertwodata=this.localdata.GetPlayerTwo();
     console.log(this.playeronedata);
     console.log(this.playertwodata);
-   
+
     if(this.playeronedata.player_id == "" || this.playeronedata.player_id ==undefined || this.playeronedata.player_id == null || this.playertwodata.player_id == undefined|| this.playertwodata.player_id == "" || this.playertwodata.player_id == null){
       // alert('please select players');
     }else if(this.playeronedata.player_id == this.playertwodata.player_id){
@@ -344,7 +345,7 @@ openPlayerSelectionModalTwo(){
     }
    }
   });
-  modal.present();	
+  modal.present();
 }
 
 }

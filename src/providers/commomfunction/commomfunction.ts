@@ -17,7 +17,7 @@ export class CommomfunctionProvider {
   loading: any;
   userdetails: any;
   ImgRes:any;
-  
+
   constructor(public toastCtrl: ToastController,
     private transfer: FileTransfer,
     public localData:LocalDataProvider,
@@ -63,7 +63,7 @@ export class CommomfunctionProvider {
       alert.present();
   }
 
-  
+
   showLoading(msg) {
     this.loading = this.loadingCtrl.create({
       spinner: 'hide',
@@ -71,7 +71,7 @@ export class CommomfunctionProvider {
       // content: msg
     });
     this.loading.present();
-    
+
     setTimeout(() => {
       this.loading.dismiss();
     }, 12000);
@@ -115,9 +115,9 @@ export class CommomfunctionProvider {
           return;
         }
         let data=this.localData.GetData();
-       
+
       const fileTransfer: FileTransferObject = this.transfer.create();
-      
+
        let imgpath = url.toString();
        let imageName =imgpath.substring(imgpath.lastIndexOf('/') + 1);
 
@@ -129,7 +129,7 @@ export class CommomfunctionProvider {
         params: { 'id': data.id},
         headers: {}
       }
-      fileTransfer.upload(imgpath,'http://vafalive.com.au/score/custom/save-image-email', options)
+      fileTransfer.upload(imgpath,'http://54.244.98.247/score/custom/save-image-email', options)
         .then((data) => {
         this.ImgRes=data.response;
         this.ImgRes=JSON.parse(this.ImgRes);
@@ -139,12 +139,12 @@ export class CommomfunctionProvider {
         this.storage.set('FullData',this.ImgRes);
         this.events.publish('LocalImageUpdated',this.ImgRes.webuser.user_image);
         }, (err) => {
-        
+
       });
       }
-  
 
- 
+
+
 
 
 }

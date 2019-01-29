@@ -15,7 +15,8 @@ export class HomePage {
   comptitionlists: any = [];
   headerimage: any = '';
   headerurl: any;
-  path: any = 'http://vafalive.com.au';
+  // path: any = 'http://vafalive.com.au';
+  path: any = 'http://54.244.98.247/';
   constructor(private inapp: InAppBrowser,public plt:Platform,public ga:GoogleAnalytics, public events: Events, public ajax: AjaxProvider, public cmnfun: CommomfunctionProvider, public navCtrl: NavController) {
 
    this.plt.ready().then(() => {

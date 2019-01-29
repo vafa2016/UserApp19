@@ -41,7 +41,8 @@ export class StatTeamGameCoachPage {
     }
     isLogin:boolean = false;
     ApiResponse: any;
-    path: any = 'http://vafalive.com.au';
+    // path: any = 'http://vafalive.com.au';
+    path: any = 'http://54.244.98.247/';
     type: any = 'SCORE';
     showcontent: any = 'hide';
     showfooter: any;

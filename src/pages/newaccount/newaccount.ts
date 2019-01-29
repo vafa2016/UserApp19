@@ -28,7 +28,8 @@ const TermsLink = 'http://vafalive.com.au/termsconds';
 export class NewaccountPage {
   isLogin: boolean = false;
   defaulturl: 'assets/imgs/logo.png';
-  path: any = 'http://vafalive.com.au/web/';
+  // path: any = 'http://vafalive.com.au/web/';
+  path: any = 'http://54.244.98.247/web/';
   Dataresponse: any;
   resData: any = [];
   userSubscription: any;
@@ -170,7 +171,7 @@ export class NewaccountPage {
     events.subscribe('LocalImageUpdated', (Image) => {
       this.imageURI = Image;
     });
-    // 
+    //
 
     this.plt.ready().then(() => {
       this.ga.startTrackerWithId('UA-118996199-1')
@@ -221,7 +222,7 @@ export class NewaccountPage {
   Terms() {
     this.navCtrl.push('CustomBrowserPage');
   }
-  // 
+  //
 
   Purchasehistory() {
     this.navCtrl.push('PurchasehistoryPage');
@@ -536,7 +537,7 @@ export class NewaccountPage {
       // Error!
     });
   }
-  // 
+  //
 
 
   // Profile image upload functions
