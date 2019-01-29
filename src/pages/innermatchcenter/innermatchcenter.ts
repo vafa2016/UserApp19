@@ -3073,7 +3073,6 @@ export class InnermatchcenterPage {
         //this.homeTeamPlayers1[key].D = parseInt(k_value + h_value) ;
 
         let GB_score = goal + "." + parseInt(b + rb);
-        console.log(GB_score);
         if (GB_score == 0)
             return "0.0";
         else
@@ -3166,7 +3165,6 @@ export class InnermatchcenterPage {
 
     }
     getplayerscoreplayer(data) {
-      $('.allTeam').addClass("jd_active_sort");
         this.newTotalHomeTeamScore = data.totalHomeTeamScore;
         this.newTotalAwayTeamScore = data.totalAwayTeamScore;
 

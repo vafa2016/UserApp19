@@ -295,17 +295,48 @@
     <div class="jb-class-back">
       <div class='graph' id="scoreChart" style="height:200px; width:inherit !important;  margin-left:35px; vertical-align: middle;font-size:17px;margin-top: 52px;"></div>
     </div>
-    <div class="HomeTeam_qScore" *ngIf="statusName == 'COMPLETE' && graphImgShowHide==1">
-      <span class="hmq1">{{q1HomeScore}}</span>
-      <span class="hmq2">{{q2HomeScore}}</span>
-      <span class="hmq3">{{q3HomeScore}}</span>
-      <span class="hmq4">{{q4HomeScore}}</span>
+    <div class="HomeTeam_qScore" *ngIf="graphImgShowHide==1">
+      <span class="hmq1" >{{q1HomeScore}}</span>
+       <!-- hometeam q1 -->
+       <span class="hmq1" *ngIf="HomeTeamScore != ''">{{q1HomeScore}}</span>
+       <span class="hmq1"  *ngIf="HomeTeamScore == ''">0.0</span>
+       <!--  -->
+       <!-- hometeam q2 -->
+       <span class="hmq2" *ngIf="HomeTeamScore != '' &&  lastScore.quater_new >=2">{{q2HomeScore}}</span>
+       <span class="hmq2"  *ngIf="HomeTeamScore == ''  && lastScore.quater_new>=2">0.0</span>
+       <span class="hmq2"  *ngIf="lastScore.quater_new  < 2">-</span>
+       <!--  -->
+      <!-- hometeam q3 -->
+      <span class="hmq3" *ngIf="HomeTeamScore != '' &&  lastScore.quater_new >=3">{{q3HomeScore}}</span>
+      <span class="hmq3"  *ngIf="HomeTeamScore == ''  && lastScore.quater_new>=3">0.0</span>
+      <span class="hmq3"  *ngIf="lastScore.quater_new  < 3">-</span>
+      <!--  -->
+       <!-- hometeam q4 -->
+       <span class="hmq4" *ngIf="HomeTeamScore != '' &&  lastScore.quater_new >=4">{{q4HomeScore}}</span>
+       <span class="hmq4"  *ngIf="HomeTeamScore == ''  && lastScore.quater_new>=4">0.0</span>
+       <span class="hmq4"  *ngIf="lastScore.quater_new  < 4">-</span>
+       <!--  -->
     </div>
-    <div class="AwayTeam_qScore" *ngIf="statusName == 'COMPLETE' && graphImgShowHide==1">
-      <span class="awq1">{{q1AwayScore}}</span>
-      <span class="awq2">{{q2AwayScore}}</span>
-      <span class="awq3">{{q3AwayScore}}</span>
-      <span class="awq4">{{q4AwayScore}}</span>
+    <div class="AwayTeam_qScore" *ngIf="graphImgShowHide==1">
+         <!-- Awayteam q1 -->
+         <span class="awq1" *ngIf="awayTeamScore != ''">{{q1AwayScore}}</span>
+         <span class="awq1"  *ngIf="awayTeamScore == ''">0.0</span>
+         <!--  -->
+         <!-- hometeam q2 -->
+         <span class="awq2" *ngIf="awayTeamScore != '' &&  lastScore.quater_new >=2">{{q2AwayScore}}</span>
+         <span class="awq2"  *ngIf="awayTeamScore == ''  && lastScore.quater_new>=2">0.0</span>
+         <span class="awq2"  *ngIf="lastScore.quater_new  < 2">-</span>
+         <!--  -->
+        <!-- hometeam q3 -->
+        <span class="awq3" *ngIf="awayTeamScore != '' &&  lastScore.quater_new >=3">{{q3AwayScore}}</span>
+        <span class="awq3"  *ngIf="awayTeamScore == ''  && lastScore.quater_new>=3">0.0</span>
+        <span class="awq3"  *ngIf="lastScore.quater_new  < 3">-</span>
+        <!--  -->
+         <!-- hometeam q4 -->
+         <span class="awq4" *ngIf="awayTeamScore != '' &&  lastScore.quater_new >=4">{{q4AwayScore}}</span>
+         <span class="awq4"  *ngIf="awayTeamScore == ''  && lastScore.quater_new>=4">0.0</span>
+         <span class="awq4"  *ngIf="lastScore.quater_new  < 4">-</span>
+         <!--  -->
     </div>
     <div class="advContainer " *ngIf="graphImgShowHide==1">
       <img src="{{path}}{{advertisementHeader[0].ad_image}}" (click)="goToAddSite(advertisementHeader[0].ad_url);">
