@@ -32,11 +32,11 @@ export class LadderPage {
   headerurl: any;
   ladderDataa: any = [];
   // path: any = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247/';
+  path: any = 'http://54.244.98.247';
 
 
   constructor(private inapp: InAppBrowser,public plt:Platform,public ga:GoogleAnalytics, public ajax: AjaxProvider, public cmnfun: CommomfunctionProvider, private modalCtrl: ModalController, public events: Events, public navCtrl: NavController, public navParams: NavParams) {
-   
+
     // $.plot($("#placeholder"), [ [[0, 0], [1, 1]] ], { yaxis: { max: 1 } });
      this.plt.ready().then(() => {
       this.ga.startTrackerWithId('UA-118996199-1')

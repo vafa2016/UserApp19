@@ -15,12 +15,12 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
   templateUrl: 'onetooneresult.html',
 })
 export class OnetooneresultPage {
-  
+
   // path = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247/';
-  
+  path: any = 'http://54.244.98.247';
+
   teamSelection:boolean;
-  
+
   ftrad:any='';
   team1_id:any='';
   team2_id:any='';
@@ -160,12 +160,12 @@ console.log('ionViewDidLoad OnetooneresultPage');
 			// this.teamSelection=false;
 		}
   }
-  
+
   goToAddSite(ad_url) {
     this.ga.trackEvent('Advertisement', 'Viewed', '1 on 1 – Team Comparison', 1);
     const browser = this.inapp.create(ad_url);
   }
-	   
+
 
 // One on one team stat
  GetOneOnOneTeamStat(get1on1TeamStats){
@@ -175,7 +175,7 @@ console.log('ionViewDidLoad OnetooneresultPage');
   this.get1on1TeamStats = get1on1TeamStats;
 
  this.get1on1TeamStatsTeamOne = get1on1TeamStats.team1.team;
- 
+
   console.log("1"+ this.get1on1TeamStatsTeamOne);
 
   this.get1on1TeamStatsTeamTwo = get1on1TeamStats.team2.team;
@@ -185,7 +185,7 @@ console.log('ionViewDidLoad OnetooneresultPage');
   this.lastmatch = get1on1TeamStats.team1.lastmatch;
   this.ladder = get1on1TeamStats.team1.ladder;
   this.teamstat = get1on1TeamStats.team1.teamstat;
-  
+
   this.eff_inside50 = get1on1TeamStats.team1.eff_inside50;
   var eff_inside50_1 = this.eff_inside50.knob;
   eff_inside50_1 = eff_inside50_1.split("%");
@@ -202,7 +202,7 @@ console.log('ionViewDidLoad OnetooneresultPage');
   this.team1Data = get1on1TeamStats.team1.teamstat;
   this.team2Data = get1on1TeamStats.team2.teamstat;
 console.log(this.team1Data);
-  
+
 this.modifiedState = ["Goals",
 "Behinds",
 "Rush Behinds",
@@ -214,8 +214,8 @@ this.modifiedState = ["Goals",
 "Tackles",
 "Frees For",
 "Hit Outs" ];
-this.team1RushBehind_Behind =  0 ;	
-this.team2RushBehind_Behind =  0 ;				  
+this.team1RushBehind_Behind =  0 ;
+this.team2RushBehind_Behind =  0 ;
 
     this.modifiedState.forEach(item => {
       console.log(item)
@@ -224,7 +224,7 @@ this.team2RushBehind_Behind =  0 ;
     });
 
 this.team1Data = this.team1DataM;
-this.team2Data = this.team2DataM;  
+this.team2Data = this.team2DataM;
 console.log(this.team2Data)
 this.team1Data.forEach((item,index) => {
      this.team2Data.forEach((item1,index1) => {
@@ -250,9 +250,9 @@ if(stateName==item.stat_name){
   return item ;
   }
 });
-}	
- 
- 
+}
+
+
  getObject2(stateName)
  {
   this.team2Data.forEach((item,index) => {
@@ -260,58 +260,58 @@ if(stateName==item.stat_name){
       if(stateName == "Behinds" || stateName == "Rush Behinds")
     {
      this.team2RushBehind_Behind= parseInt(this.team2RushBehind_Behind+(item[item.stat_name]));
-     item[item.stat_name] = this.team2RushBehind_Behind;  
+     item[item.stat_name] = this.team2RushBehind_Behind;
     }
     this.team2DataM.push(item);
     return item ;
     }
-  });   
+  });
  }
- 
- 
+
+
  getColorWidth(key,homeTeamValue,awayTeamValue){
   // alert(homeTeamValue+"-----"+awayTeamValue)
        var barValueH = homeTeamValue;
        var barValueA = awayTeamValue;
        var homeBarsSpanVal = homeTeamValue;
        var awayBarsSpanVal = awayTeamValue;
- 
+
       if(homeTeamValue != undefined && awayTeamValue != undefined){
- 
+
          //alert(homeTeamValue+"-----"+awayTeamValue);
           barValueH = homeTeamValue;
           barValueA = awayTeamValue;
           homeBarsSpanVal = homeTeamValue;
           awayBarsSpanVal = awayTeamValue;
       var maxAway = 4;
-   
+
      if(parseInt(homeBarsSpanVal) > parseInt(awayBarsSpanVal) ){
-         
+
          this.team1Data[key].homeTeamColor ='#60BA72';
          this.team1Data[key].awayTeamColor ='#596682';
          this.team1Data[key].homeTeamOnlyColor ='green';
          this.team1Data[key].awayTeamOnlyColor ='gray';
      if(homeBarsSpanVal>20)
      var modifedMaxValue = parseInt(barValueA)+parseInt(barValueH);
-     else	
+     else
      var modifedMaxValue = parseInt(barValueH)+maxAway;
-     
+
        var percentageUnit = (100/modifedMaxValue);
-       
-       
-       
-          
+
+
+
+
            this.team1Data[key].homeTeamWidth  = (percentageUnit*barValueH)+"%";
-       
-      
+
+
        if(parseInt(barValueA)==0)
        {
-       this.team1Data[key].awayTeamWidth  =  "22%";   
-       }	  
+       this.team1Data[key].awayTeamWidth  =  "22%";
+       }
        else if(barValueA.length>2 && (percentageUnit*barValueA)<33)
        {
-        this.team1Data[key].awayTeamWidth  =  "35%"; 
-         
+        this.team1Data[key].awayTeamWidth  =  "35%";
+
        }
        else
        {
@@ -319,12 +319,12 @@ if(stateName==item.stat_name){
          this.team1Data[key].awayTeamWidth  =  "35%";
          else
          this.team1Data[key].awayTeamWidth  = (percentageUnit*barValueA)+"%";
-       
+
        }
-         
- 
+
+
       }
-       //alert(barValueH.toString().length+"---"+barValueA.toString().length); 
+       //alert(barValueH.toString().length+"---"+barValueA.toString().length);
    else if(parseInt(homeBarsSpanVal) < parseInt(awayBarsSpanVal) ){
          //alert(barValueH.toString().length+"---"+barValueA.toString().length);
          this.team1Data[key].awayTeamColor ='#60BA72';
@@ -333,46 +333,46 @@ if(stateName==item.stat_name){
          this.team1Data[key].homeTeamOnlyColor ='gray';
      if(awayBarsSpanVal>100)
      var modifedMaxValue = parseInt(barValueA)+parseInt(barValueH);
-     else	
+     else
      var modifedMaxValue = parseInt(barValueA)+(maxAway);
-     
+
        percentageUnit = (100/modifedMaxValue);
-            
+
            this.team1Data[key].awayTeamWidth  = (percentageUnit*barValueA)+"%";
-       
-      
+
+
        if(parseInt(barValueH)==0)
        {
-       this.team1Data[key].homeTeamWidth  =  "22%";   
-       }	  
+       this.team1Data[key].homeTeamWidth  =  "22%";
+       }
        else if(barValueH.length>2 && (percentageUnit*barValueH)<33)
        {
-        this.team1Data[key].HomeTeamWidth  =  "35%"; 
-         
+        this.team1Data[key].HomeTeamWidth  =  "35%";
+
        }
        else{
          if(percentageUnit*barValueH<27)
          this.team1Data[key].homeTeamWidth  =  "33%";
          else
           this.team1Data[key].homeTeamWidth  = (percentageUnit*barValueH)+"%";
-       
+
        }
-         
-       
- 
+
+
+
       }
     else {
-      
+
        this.team1Data[key].awayTeamColor ='Orange';
-      this.team1Data[key].homeTeamColor ='Orange'; 
+      this.team1Data[key].homeTeamColor ='Orange';
       this.team1Data[key].homeTeamWidth  = "30%";
       this.team1Data[key].awayTeamWidth  =  "30%";
-           
-      
+
+
     }
-      
- 
-  }   
+
+
+  }
  }
 
 //  Get one on one player stat
@@ -392,17 +392,17 @@ GetOneOnOnePlayerStat(get1on1PlayerStats){
   this.ladder = get1on1PlayerStats.player1.ladder;
   this.playerstat = get1on1PlayerStats.player1.playerstat;
   this.eff_inside50 = get1on1PlayerStats.player1.eff_inside50;
-  
+
   this.lastmatch2 = get1on1PlayerStats.player2.lastmatch;
   this.ladder2 = get1on1PlayerStats.player2.ladder;
   this.playerstat2 = get1on1PlayerStats.player2.playerstat;
   this.eff_inside50_2 = get1on1PlayerStats.player2.eff_inside50;
-  
+
   this.player1Data = get1on1PlayerStats.player1.playerstat;
   this.player2Data = get1on1PlayerStats.player2.playerstat;
-  
 
-  
+
+
 this.modifiedState1 = [
 "Goals",
 "Behinds",
@@ -415,7 +415,7 @@ this.modifiedState1 = [
 "Tackles",
 "Frees For",
 "Hit Outs" ];
-this.player1RushBehind_Behind =  0 ;	
+this.player1RushBehind_Behind =  0 ;
 this.player2RushBehind_Behind =  0 ;
 
 this.modifiedState1.forEach((item,index) => {
@@ -425,7 +425,7 @@ this.modifiedState1.forEach((item,index) => {
 
 
 this.player1Data =  this.player1DataM;
-this.player2Data =  this.player2DataM;  
+this.player2Data =  this.player2DataM;
 
 this.player1Data.forEach((item,index) => {
   this.player2Data.forEach((item1,index1) => {
@@ -444,14 +444,14 @@ getPlayerObject1(stateName)
       {
       this.player1RushBehind_Behind= parseInt(this.player1RushBehind_Behind+(item[item.stat_name]));
        item[item.stat_name] = this.player1RushBehind_Behind ;
-        
+
       }
      this.player1DataM.push(item);
       return item ;
-      
+
       }
-  }); 
-}	
+  });
+}
 
 
 getPlayerObject2(stateName)
@@ -462,13 +462,13 @@ getPlayerObject2(stateName)
     {
      this.player2RushBehind_Behind= parseInt(this.player2RushBehind_Behind+(item[item.stat_name]));
      item[item.stat_name] = this.player2RushBehind_Behind ;
-      
+
     }
     this.player2DataM.push(item);
     return item;
-    } 
+    }
   });
-  
+
 }
 
 getColorWidth_player(key,homeTeamValue,awayTeamValue){
@@ -485,31 +485,31 @@ getColorWidth_player(key,homeTeamValue,awayTeamValue){
           homeBarsSpanVal = homeTeamValue;
           awayBarsSpanVal = awayTeamValue;
            var maxAway = 4;
-       //alert(barValueH.toString().length+"---"+barValueA.toString().length); 
+       //alert(barValueH.toString().length+"---"+barValueA.toString().length);
    if(parseInt(homeBarsSpanVal) > parseInt(awayBarsSpanVal))
    {
      this.player1Data[key].homeTeamColor ='#60BA72';
      this.player1Data[key].awayTeamColor ='#596682';
      this.player1Data[key].homeTeamOnlyColor ='green';
      this.player1Data[key].awayTeamOnlyColor ='gray';
-     
+
      if(homeBarsSpanVal>20)
        var modifedMaxValue = parseInt(barValueA)+parseInt(barValueH);
-       else  
+       else
        var modifedMaxValue = parseInt(barValueH)+maxAway;
-       
+
          var percentageUnit = (100/modifedMaxValue);
          this.player1Data[key].homeTeamWidth  =  (percentageUnit*barValueH)+"%";
-         
-        
+
+
          if(parseInt(barValueA)==0)
          {
-         this.player1Data[key].awayTeamWidth  =  "22%";   
-         }   
+         this.player1Data[key].awayTeamWidth  =  "22%";
+         }
          else if(barValueA.length>2 && (percentageUnit*barValueA)<33)
          {
-          this.player1Data[key].awayTeamWidth  =  "35%"; 
-           
+          this.player1Data[key].awayTeamWidth  =  "35%";
+
          }
          else
          {
@@ -517,8 +517,8 @@ getColorWidth_player(key,homeTeamValue,awayTeamValue){
            this.player1Data[key].awayTeamWidth  =  "35%";
            else
                 this.player1Data[key].awayTeamWidth  = (percentageUnit*barValueA)+"%";
-         
-         }   
+
+         }
   }else if(parseInt(homeBarsSpanVal) < parseInt(awayBarsSpanVal) ){
       //alert(barValueH.toString().length+"---"+barValueA.toString().length);
            this.player1Data[key].awayTeamColor ='#60BA72';
@@ -527,39 +527,39 @@ getColorWidth_player(key,homeTeamValue,awayTeamValue){
            this.player1Data[key].homeTeamOnlyColor ='gray';
        if(awayBarsSpanVal>100)
        var modifedMaxValue = parseInt(barValueA)+parseInt(barValueH);
-       else  
+       else
        var modifedMaxValue = parseInt(barValueA)+(maxAway);
-       
+
          var percentageUnit = (100/modifedMaxValue);
-              
+
         this.player1Data[key].awayTeamWidth  = (percentageUnit*barValueA)+"%";
-         
-        
+
+
          if(parseInt(barValueH)==0)
          {
-         this.player1Data[key].homeTeamWidth  =  "22%";   
-         }   
+         this.player1Data[key].homeTeamWidth  =  "22%";
+         }
          else if(barValueH.length>2 && (percentageUnit*barValueH)<33)
          {
-          this.player1Data[key].HomeTeamWidth  =  "35%"; 
+          this.player1Data[key].HomeTeamWidth  =  "35%";
          }
          else{
            if(percentageUnit*barValueH<27)
            this.player1Data[key].homeTeamWidth  ="33%";
            else
           this.player1Data[key].homeTeamWidth  = (percentageUnit*barValueH)+"%";
-         
+
          }
 
   }else {
          this.player1Data[key].awayTeamColor ='Orange';
-         this.player1Data[key].homeTeamColor ='Orange'; 
+         this.player1Data[key].homeTeamColor ='Orange';
          this.player1Data[key].homeTeamWidth  = "30%";
-         this.player1Data[key].awayTeamWidth  =  "30%";  
+         this.player1Data[key].awayTeamWidth  =  "30%";
     }
 
-     
-  }   
+
+  }
  }
 
 

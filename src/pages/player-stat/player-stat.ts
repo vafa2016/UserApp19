@@ -28,7 +28,7 @@ export class PlayerStatPage {
   numberOfItemsToDisplay = 10;
   offset=0;
   ResData:any='';
-  path: any = 'http://54.244.98.247/';
+  path: any = 'http://54.244.98.247';
   //  path: any = 'http://vafalive.com.au';
   getAllCompititions:any;selectables:any=[];getAllTeams:any;allTeamData:any;selectablesTeam:any=[];details:any;
 allCompetionData:any;selectedOption:any;someModel:any;compitionId:any;compitition_id:any;team_id:any;

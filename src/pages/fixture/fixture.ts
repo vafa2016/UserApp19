@@ -35,7 +35,7 @@ export class FixturePage {
   roundNo: any = '0_0';
   team_id: any = '0_0';
   // path: any = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247/';
+  path: any = 'http://54.244.98.247';
   competition_id: any;
   comptitionlists: any = [];
   selectables: any = []

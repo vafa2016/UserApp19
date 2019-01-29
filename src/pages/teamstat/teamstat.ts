@@ -25,7 +25,7 @@ export class TeamstatPage {
 	selectablesRound = [];
 	selectablesDisposals = [];
 	// path = 'http://vafalive.com.au';
-	path: any = 'http://54.244.98.247/';
+	path: any = 'http://54.244.98.247';
 
 	getAllCompititions: any;
 	allCompetionData = [];
@@ -128,7 +128,7 @@ export class TeamstatPage {
 		  }, 150);
 		}
 	  }
-	
+
 	  triggerInput(ev: any) {
 		// Reset items back to all of the items
 		// this.initializeItems();
@@ -169,7 +169,7 @@ export class TeamstatPage {
 		this.someModel = this.allCompetionData[0];
 		this.sleectablescompetionname = this.allCompetionData[0].competitions_name;
 		console.log(this.someModel);
-		// this.selectedCompetitionName(this.someModel.competition_id); 
+		// this.selectedCompetitionName(this.someModel.competition_id);
 		console.log("$scope.selectedOption11" + this.selectedOption.competition_id);
 		this.selectedCompetitionName(this.someModel.competition_id);
 		this.storage.set("teamPlayersCompitionId", this.selectedOption.competition_id);
@@ -207,7 +207,7 @@ export class TeamstatPage {
 		this.selectedRoundName('0_0');
 		//console.log("$scope.selectedOption11"+$scope.selectedOption.competition_id);
 		this.storage.set("teamPlayersRoundId", this.selectedOption.round);
-		// this.round_id=this.storage.get("teamPlayersRoundId"); 
+		// this.round_id=this.storage.get("teamPlayersRoundId");
 	}
 
 
@@ -216,7 +216,7 @@ export class TeamstatPage {
 		this.compitition_id = selectedItem;
 
 		this.storage.set("teamPlayersCompitionId", this.compitition_id);
-		// this.compitition_id=this.storage.get("teamPlayersCompitionId"); 	
+		// this.compitition_id=this.storage.get("teamPlayersCompitionId");
 		// alert(this.compitition_id);
 		this.ajax.datalist('get-game-rounds-by-compitition', {
 			accessKey: "QzEnDyPAHT12asHb4On6HH2016",
@@ -251,7 +251,7 @@ export class TeamstatPage {
 		this.someModelDisposal = this.disposalDropData[0];
 		this.sleectablesstatname = this.disposalDropData[0].stat_name;
 		console.log(this.disposalDropData[0])
-		// alert(this.selectedOption.stat_name); 
+		// alert(this.selectedOption.stat_name);
 		//console.log("$scope.selectedOption11"+$scope.selectedOption.competition_id);
 		this.storage.set("disposalId", this.selectedOption.stat_name);
 		this.disposalId = this.selectedOption.id;
@@ -260,18 +260,18 @@ export class TeamstatPage {
 	}
 
 
-	//Select Compition Name			
+	//Select Compition Name
 	selectedRoundName(selectedItem) {
 		// alert(selectedItem)
 		if (selectedItem == '0_0' || selectedItem == '' || selectedItem == null) {
-			//window.localStorage.setItem("teamPlayersCompitionId", '0_0' ); 
+			//window.localStorage.setItem("teamPlayersCompitionId", '0_0' );
 			// alert('a')
-			//$scope.compitition_id=window.localStorage.getItem("teamPlayersCompitionId"); 
+			//$scope.compitition_id=window.localStorage.getItem("teamPlayersCompitionId");
 			// this.compitition_id=this.storage.get("teamPlayersCompitionId");
 			this.storage.set("teamPlayersRoundId", '0_0');
 			this.sleectablesteamname='All';
 			this.round_id='0_0';
-			// this.round_id=this.storage.get("teamPlayersRoundId"); 
+			// this.round_id=this.storage.get("teamPlayersRoundId");
 
 			// this.disposalId=this.storage.get("disposalId");
 
@@ -304,7 +304,7 @@ export class TeamstatPage {
 			this.storage.set("teamPlayersRoundId", this.round_id);
 			//  this.storage.get('teamPlayersRoundId').then((val) => {
 			//         this.round_id=val;
-			//  }); 
+			//  });
 			// this.storage.get("teamPlayersCompitionId").then((val)=>{
 			// 	this.compitition_id=val;
 			// });
@@ -348,7 +348,7 @@ export class TeamstatPage {
 			// this.round_id=this.storage.get("teamPlayersRoundId");
 
 			this.storage.set("disposalId", '0_0');
-			// this.disposalId=this.storage.get("disposalId"); 
+			// this.disposalId=this.storage.get("disposalId");
 			this.cmfn.showLoading('Please wait..');
 			// alert(this.disposalId)
 			// alert(this.round_id)
@@ -378,7 +378,7 @@ export class TeamstatPage {
 			this.disposalId = selectedItem;
 			//alert($scope.team_id+"====="+$scope.compitition_id);
 			this.storage.set("disposalId", this.disposalId);
-			// this.disposalId=this.storage.get("disposalId"); 
+			// this.disposalId=this.storage.get("disposalId");
 
 			// this.compitition_id=this.storage.get("teamPlayersCompitionId");
 			// this.round_id=this.storage.get("teamPlayersRoundId");
@@ -421,14 +421,14 @@ export class TeamstatPage {
 	}
 
 
-	//go To goToTeamStatsDetailPage 
+	//go To goToTeamStatsDetailPage
 	goToTeamStatsDetailPage(team_id) {
 		console.log("team_id" + team_id);
 		console.log(this.round_id)
 		this.navCtrl.push('TeamstatdetailsPage',{team_id: team_id,round_id:this.round_id });
 	}
 
-	//go To goToGoalKickerpage     
+	//go To goToGoalKickerpage
 	goToGoalKickerpagefunction() {
 		// $state.go('app.goalKickers');
 	}

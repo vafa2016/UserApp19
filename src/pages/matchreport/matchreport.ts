@@ -31,7 +31,7 @@ export class MatchreportPage {
  headerimage:any='';
  headerurl:any;
 //  path:any='http://vafalive.com.au';
- path: any = 'http://54.244.98.247/';
+ path: any = 'http://54.244.98.247';
   constructor(private zone: NgZone,private inapp: InAppBrowser,public plt:Platform,public ga:GoogleAnalytics,public ajax:AjaxProvider, public cmnfun: CommomfunctionProvider,private modalCtrl:ModalController,public events: Events,public navCtrl: NavController, public navParams: NavParams) {
      this.plt.ready().then(() => {
       this.ga.startTrackerWithId('UA-118996199-1')

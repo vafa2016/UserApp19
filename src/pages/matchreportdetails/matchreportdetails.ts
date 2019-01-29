@@ -25,7 +25,7 @@ export class MatchreportdetailsPage {
   fixtureReport: any = [];
   matchReportFixtureScore: any = [];
   // path: any = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247/';
+  path: any = 'http://54.244.98.247';
   fixture_user: any;
   fixture_planned_time: any;
   fixture_ground: any;

@@ -28,7 +28,7 @@ export class GoalkickersPage {
   searchTerm: String = '';
   items: any = [];
   // path: any = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247/';
+  path: any = 'http://54.244.98.247';
   competition_id: any;
   comptitionlists: any = [];
   selectables: any = [];

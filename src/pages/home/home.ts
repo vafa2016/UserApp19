@@ -16,7 +16,7 @@ export class HomePage {
   headerimage: any = '';
   headerurl: any;
   // path: any = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247/';
+  path: any = 'http://54.244.98.247';
   constructor(private inapp: InAppBrowser,public plt:Platform,public ga:GoogleAnalytics, public events: Events, public ajax: AjaxProvider, public cmnfun: CommomfunctionProvider, public navCtrl: NavController) {
 
    this.plt.ready().then(() => {
@@ -48,7 +48,7 @@ export class HomePage {
     //  this.events.subscribe('competitionlist:changed', res => {
     //    console.log(res);
     //   if(res !== undefined && res !== ""){
-    // this.comptitionlists=res.competition;          
+    // this.comptitionlists=res.competition;
     // get-all-competition-news
     // competition_id:this.comptitionlists[0].competition_id
     // console.log(this.comptitionlists[0].competition_id);
@@ -58,7 +58,7 @@ export class HomePage {
       accessKey: 'QzEnDyPAHT12asHb4On6HH2016'
     }).subscribe((res) => {
       this.cmnfun.HideLoading();
-    
+
       this.newsData = res;
       if(this.newsData.code==1)
         {

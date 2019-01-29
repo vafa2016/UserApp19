@@ -104,7 +104,7 @@ export class LandingpagePage {
         this.isLogin = true;
       }
     });
-    // 
+    //
 
     this.LocalUserDevice = this.localData.GetUserDeviceData();
     if (this.LocalUserDevice) {
@@ -143,7 +143,7 @@ export class LandingpagePage {
         });
       }
     }
-    // 
+    //
 
     this.plt.ready().then(() => {
       this.iap.getProducts([proId0, proId1, proId2, proId3, proId4, proId5, proId6, proId7, PremiumPlus])

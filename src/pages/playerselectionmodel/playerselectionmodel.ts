@@ -25,7 +25,7 @@ export class PlayerselectionmodelPage {
   getAllCompititions:any=[];
   getAllTeams:any=[];
   // path = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247/';
+  path: any = 'http://54.244.98.247';
   getAllPlayers:any=[];
   playertype:any;
   constructor(public navCtrl: NavController,
@@ -118,7 +118,7 @@ this.ajax.datalist('get-all-competitions',{ accessKey: "QzEnDyPAHT12asHb4On6HH20
     else {
       this.items = this.getAllPlayers;
     }
-    
+
   }
 
 
@@ -230,7 +230,7 @@ selectedType(type) {
           this.resData=res;
          if (this.resData.code == 2) {
             return false;
-           } else{               
+           } else{
              console.log("getAllPlayers"+JSON.stringify(this.resData));
              this.getAllPlayers = this.resData.players;
              this.items=this.getAllPlayers;
@@ -239,7 +239,7 @@ selectedType(type) {
           this.cmfn.HideLoading();
          console.log(error);
        })
-      }else{    
+      }else{
         this.cmfn.showLoading('Please wait..');
         this.ajax.datalist('get-team-compitition-wise-players',{ accessKey: "QzEnDyPAHT12asHb4On6HH2016",
         team_id: this.team_id,

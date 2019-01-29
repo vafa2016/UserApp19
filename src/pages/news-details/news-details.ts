@@ -20,7 +20,7 @@ export class NewsDetailsPage {
   @ViewChild(Slides) slides: Slides;
   newsdetails: any = {};
   // path: any = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247/';
+  path: any = 'http://54.244.98.247';
   constructor(public navCtrl: NavController, private youtube: YoutubeVideoPlayer,public plt:Platform,public ga:GoogleAnalytics, public navParams: NavParams, private socialSharing: SocialSharing, public cmnfun: CommomfunctionProvider) {
     this.newsdetails = navParams.get('newdetails');
     console.log(this.newsdetails);

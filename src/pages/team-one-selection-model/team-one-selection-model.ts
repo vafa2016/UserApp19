@@ -24,7 +24,7 @@ export class TeamOneSelectionModelPage {
   getAllCompititions:any=[];
   teamtype:any;
   // path = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247/';
+  path: any = 'http://54.244.98.247';
   constructor(public navCtrl: NavController,
     public viewCtrl:ViewController,
     public ajax: AjaxProvider,
@@ -57,10 +57,10 @@ export class TeamOneSelectionModelPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TeamOneSelectionModelPage');
-  
+
   }
-  
-  // search 
+
+  // search
   toggleSearch() {
 		this.searchTerm='';
 		this.toggled = this.toggled ? false : true;
@@ -80,7 +80,7 @@ export class TeamOneSelectionModelPage {
 		  }, 150);
 		}
 	  }
-	
+
 	  triggerInput(ev: any) {
 		// Reset items back to all of the items
 		// this.initializeItems();
@@ -122,9 +122,9 @@ export class TeamOneSelectionModelPage {
          team_img:team_img
        }
        this.viewCtrl.dismiss(TeamTwo);
-   } 
+   }
  }
- 
+
  selectedType(type) {
   if (type == 'competion') {
     let modal = this.modalCtrl.create('CommommodelPage', { items: this.getAllCompititions });

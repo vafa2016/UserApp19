@@ -15,7 +15,7 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
 })
 export class OnetoonePage {
   //  path = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247/';
+  path: any = 'http://54.244.98.247';
    teamMtach:any=[];
    teamSelection:any;
    resData:any=[];
