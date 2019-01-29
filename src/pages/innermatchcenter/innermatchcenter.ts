@@ -3487,10 +3487,10 @@ export class InnermatchcenterPage {
               $('.allTeam').addClass("jd_active_sort");
               $('.jb-plaer table.dataTable tbody tr:nth-child(3) td').removeClass('jd_warning');
               console.log("all--");
-              if ($(this).hasClass("activated2")) {
+              if ($(this).hasClass("activated3")) {
                 console.log("all--");
-                $(this).removeClass("activated2");
-                $(".allTeam").addClass("activated2");
+                $(this).removeClass("activated3");
+                $(".allTeam").addClass("activated3");
                 $("#playerStatsTable tbody tr").each(function (item) {
                   console.log(item);
                         $(this).show();
