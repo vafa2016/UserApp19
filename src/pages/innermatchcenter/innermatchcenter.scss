@@ -62,8 +62,15 @@ page-innermatchcenter {
 }
 
 .HomeTeam_qScore{
+  // position: absolute;
+  // top: 44px;
+  // width: 100%;
+  // font-size: 15px;
+  // color: black;
+  // font-family: Gotham-Bold !important;
+
   position: absolute;
-  top: 44px;
+  top: 51px;
   width: 100%;
   font-size: 15px;
   color: black;
@@ -71,9 +78,15 @@ page-innermatchcenter {
 }
 
 .AwayTeam_qScore{
+    // position: absolute;
+    // width: 100%;
+    // top: 200px;
+    // font-size: 15px;
+    // color: black;
+    // font-family: Gotham-Bold !important;
     position: absolute;
     width: 100%;
-    top: 200px;
+    top: 227px;
     font-size: 15px;
     color: black;
     font-family: Gotham-Bold !important;
@@ -829,9 +842,9 @@ a.item {
 {
   // border: 1px solid #3d4963;
   border: .5px solid #e0e2e8;
-  position: absolute;
-  width: 12%;
-  top: 137px;
+    position: absolute;
+    width: 12%;
+    top: 155px;
 }
 
 .Grapgh-BorderHeader
@@ -846,12 +859,17 @@ a.item {
 .Grapgh-Border-Ends
 {
   // border: 1px solid #3d4963;
+  // border: 1px solid #dedede;
+  //   position: absolute;
+  //   top: 232px;
+  //   width: 100%;
+  //   z-index: 1;
   border: 1px solid #dedede;
     position: absolute;
-    top: 232px;
+    top: 272px;
     width: 100%;
     z-index: 1;
-
+    display: none;
 }
 .tableColumSortStyle
 {
@@ -3218,7 +3236,7 @@ table.dataTable td {
     }
    .jb-class-back{
     background: white;
-         height: 180px;
+         height: 192px;
    }
     .jb-class-back-top{
      background: white;
@@ -3565,7 +3583,7 @@ div.xAxis >div.tickLabel:last-child{
     top: 0px;
     border-left: 1px solid #e3e5ea;
     border-right: 1px solid #e3e5ea;
-    height: 182px !important;
+    height: 180px !important;
 }
 
 .overlay1 {

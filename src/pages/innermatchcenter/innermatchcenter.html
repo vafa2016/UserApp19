@@ -282,7 +282,8 @@
     </div>
   </div>
   <div *ngIf="showcontent=='show' && type=='ACTION'">
-    <div *ngIf="graphImgShowHide==1">
+    <div *ngIf="graphImgShowHide==1" style=" top: 30px;
+    margin-top: 62px;">
       <div class="MobAppawayTeam">
         <img class="graphImg graphTextContaineraway img-storke" src="{{path}}{{homeTeamData.team_image}}">
       </div>
@@ -293,7 +294,7 @@
       <div class="Grapgh-Border-Ends"></div>
     </div>
     <div class="jb-class-back">
-      <div class='graph' id="scoreChart" style="height:200px; width:inherit !important;  margin-left:35px; vertical-align: middle;font-size:17px;margin-top: 52px;"></div>
+      <div class='graph' id="scoreChart" style="height:200px; width:inherit !important;  margin-left:35px; vertical-align: middle;font-size:17px;margin-top: 69px;"></div>
     </div>
     <div class="HomeTeam_qScore" *ngIf="graphImgShowHide==1">
       <span class="hmq1" >{{q1HomeScore}}</span>
