@@ -2669,6 +2669,7 @@ export class InnermatchcenterPage {
         this.ajax.postaction('get-player-score-for-stat-team', {
             accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
             fixtureId: this.fixture_id,
+            quaters: this.selectedOption,
             adv_title: 'Stats-Club'
         }).subscribe((res) => {
             this.getplayerscoreforstatteam(res);
@@ -2689,6 +2690,7 @@ export class InnermatchcenterPage {
                 this.ajax.datalist('get-player-score-for-stat-team', {
                     accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
                     fixtureId: this.fixture_id,
+                    quaters: this.selectedOption,
                     adv_title: 'Stats-Club'
                 }).subscribe((res) => {
                     this.getplayerscoreforstatteam(res);
@@ -3034,6 +3036,7 @@ export class InnermatchcenterPage {
         this.ajax.postaction('get-player-score', {
             accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
             fixtureId: this.fixture_id,
+            quaters:this.CoachQ,
             adv_title: 'Stats-Club'
         }).subscribe((res) => {
             console.log('1' + res);
@@ -3092,6 +3095,7 @@ export class InnermatchcenterPage {
         //   this.jd_active = stat;
         // }
         $('.jd_advContainer1').addClass('jd_rmBorder');
+        $('.jd_advContainer2').addClass('jd_rmBorder');
         $('.jb-plaer table.dataTable tbody tr:nth-child(3) td').removeClass('jd_warning');
         console.log('stat'+stat+'jd_active'+this.jd_active);
         if (this.reverse == true) {
@@ -3341,7 +3345,7 @@ export class InnermatchcenterPage {
     });
             });
 
-             this.showAd= !this.showAd;
+             this.showAd= true;
              console.log(this.showAd);
              $('.jb-plaer table.dataTable tbody tr:nth-child(3) td').addClass('jd_warning');
              $('.allTeam').addClass("jd_active_sort");
@@ -3349,6 +3353,7 @@ export class InnermatchcenterPage {
 
             $('.homeTeam').on('click', function () {
               $('.jd_advContainer1').addClass('jd_rmBorder');
+              $('.jd_advContainer2').addClass('jd_rmBorder');
               $('.jb-plaer table.dataTable tbody tr:nth-child(3) td').removeClass('jd_warning');
 
               if ($('.awayTeam1').hasClass("jd_active_sort")) {
@@ -3420,6 +3425,7 @@ export class InnermatchcenterPage {
 
             $('.awayTeam1').on('click', function () {
               $('.jd_advContainer1').addClass('jd_rmBorder');
+              $('.jd_advContainer2').addClass('jd_rmBorder');
               if ($('.homeTeam').hasClass("jd_active_sort")) {
 
                 $('.homeTeam').removeClass("jd_active_sort");
@@ -3479,6 +3485,7 @@ export class InnermatchcenterPage {
 
             $('.allTeam').on('click', function(){
               $('.jd_advContainer1').addClass('jd_rmBorder');
+              $('.jd_advContainer2').addClass('jd_rmBorder');
               if ($('.homeTeam').hasClass("jd_active_sort")) {
                 $('.homeTeam').removeClass("jd_active_sort");
                }else if($('.awayTeam1').hasClass("jd_active_sort")){
@@ -3506,7 +3513,7 @@ export class InnermatchcenterPage {
         this.cmnfun.HideLoading();
     }
 
-     // sort players stat by quater function
+     // sort players stat by quater function datatable
      CoachSort(val){
       if(val == 'all' && this.CoachQ.indexOf('all') > -1){
         this.CoachQ = [];
@@ -3532,7 +3539,20 @@ export class InnermatchcenterPage {
       this.CoachQ = [];
       this.CoachQ.push('all');
     }
-    console.log(this.CoachQ.length);
+    console.log(this.CoachQ);
+    this.cmnfun.showLoading('Please wait...');
+    this.ajax.postaction('get-player-score', {
+      accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+      fixtureId: this.fixture_id,
+      quaters:this.CoachQ,
+      adv_title: 'Stats-Club'
+  }).subscribe((res) => {
+      $('#playerStatsTable').dataTable().fnDestroy();
+      this.cmnfun.HideLoading();
+      this.getplayerscoreplayer(res);
+  }, error => {
+      // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+  })
   }
 
 
@@ -3562,7 +3582,19 @@ export class InnermatchcenterPage {
         this.selectedOption = [];
         this.selectedOption.push('all');
       }
-      console.log(this.selectedOption.length);
+      console.log(this.selectedOption);
+      this.cmnfun.showLoading('Please wait...');
+      this.ajax.postaction('get-player-score-for-stat-team', {
+        accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+        fixtureId: this.fixture_id,
+        quaters: this.selectedOption,
+        adv_title: 'Stats-Club'
+    }).subscribe((res) => {
+        this.cmnfun.HideLoading();
+        this.getplayerscoreforstatteam(res);
+    }, error => {
+        // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+    })
     }
 
     // toggle function for quater wise sort function
