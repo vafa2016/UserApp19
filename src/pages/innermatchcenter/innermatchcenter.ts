@@ -3603,6 +3603,25 @@ export class InnermatchcenterPage {
       console.log("Toggled: "+ this.isToggled);
     }
 
+    // stat difference gett
+
+    StatDiff (homeTeamStat, awayTeamStat){
+      let StatVal = awayTeamStat - homeTeamStat;
+      if(StatVal > 0) {
+        return '+'+StatVal;
+      }else{
+        return StatVal;
+      }
+    }
+
+    StatDiff2 (homeTeamStat, awayTeamStat){
+      let StatVal = homeTeamStat - awayTeamStat;
+      if(StatVal > 0) {
+        return '+'+StatVal;
+      }else{
+        return StatVal;
+      }
+    }
 
 
 }

@@ -788,25 +788,29 @@
             <ion-row class="row progressBarstyle" style="padding-bottom: 5px;">
               <ion-col col-5 no-padding>
                 <div class="fillBar greenFill" [style.background-color]="value.homeTeamColor" [style.width]="value.homeTeamWidth"
-                  style="font-size:19px; font-family:Gotham-Medium; margin-top: 6px;">
+                  style="font-size:19px; font-family:Gotham-Medium; margin-top: 6px; margin-right: -8px;">
                   {{homeTeamScoreStat[value.stat_abbrevation]}}
                 </div>
               </ion-col>
               <ion-col no-padding>
                 <div *ngIf="isToggled" class="jd_scoreCycle" [style.border-color]="value.awayTeamColor">
-                  <p class="jd_scoreBoard">{{awayTeamScoreStat[value.stat_abbrevation] -
+                  <p class="jd_scoreBoard" [innerHTML]="StatDiff(homeTeamScoreStat[value.stat_abbrevation], awayTeamScoreStat[value.stat_abbrevation])">
+                    <!-- {{awayTeamScoreStat[value.stat_abbrevation] -
                     homeTeamScoreStat[value.stat_abbrevation] > 0 ? '+' :
-                    ''}}{{awayTeamScoreStat[value.stat_abbrevation] - homeTeamScoreStat[value.stat_abbrevation]}}</p>
+                    ''}}{{awayTeamScoreStat[value.stat_abbrevation] - homeTeamScoreStat[value.stat_abbrevation]}} -->
+                  </p>
                 </div>
                 <div *ngIf="!isToggled" class="jd_scoreCycle" [style.border-color]="value.homeTeamColor">
-                  <p class="jd_scoreBoard">{{homeTeamScoreStat[value.stat_abbrevation] -
+                  <p class="jd_scoreBoard" [innerHTML]="StatDiff2(homeTeamScoreStat[value.stat_abbrevation], awayTeamScoreStat[value.stat_abbrevation])">
+                    <!-- {{homeTeamScoreStat[value.stat_abbrevation] -
                     awayTeamScoreStat[value.stat_abbrevation] > 0 ? '+' :
-                    ''}}{{homeTeamScoreStat[value.stat_abbrevation] - awayTeamScoreStat[value.stat_abbrevation]}}</p>
+                    ''}}{{homeTeamScoreStat[value.stat_abbrevation] - awayTeamScoreStat[value.stat_abbrevation]}} -->
+                  </p>
                 </div>
               </ion-col>
               <ion-col col-5 no-padding>
                 <div class="fillBar" [style.background-color]="value.awayTeamColor" [style.width]="value.awayTeamWidth"
-                  style="font-size:19px; font-family:Gotham-Medium; margin-top: 6px;">
+                  style="font-size:19px; font-family:Gotham-Medium; margin-top: 6px; margin-left: -8px;">
                   {{awayTeamScoreStat[value.stat_abbrevation]}}
                 </div>
               </ion-col>
