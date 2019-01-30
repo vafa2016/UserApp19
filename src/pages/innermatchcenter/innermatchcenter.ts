@@ -153,6 +153,8 @@ export class InnermatchcenterPage {
         if (storeData > 0) {
 
            $('.overlay').addClass('overlay1');
+           $('.border-left-graph').addClass('rm_h');
+           $('.border-right-graph').addClass('rm_h');
 
             console.log("80");
             console.log(storeData);
@@ -171,6 +173,8 @@ export class InnermatchcenterPage {
         }
         else {
           $('.overlay').removeClass('overlay1');
+          $('.border-left-graph').removeClass('rm_h');
+          $('.border-right-graph').removeClass('rm_h');
             //  if(this.i>=10)
             // {
             //    this.i=0;
@@ -3041,7 +3045,7 @@ export class InnermatchcenterPage {
             adv_title: 'Stats-Club'
         }).subscribe((res) => {
             console.log('1' + res);
-            $('#playerStatsTable').dataTable().fnDestroy();
+            $('#playerStatsTable').DataTable().destroy();
             this.getplayerscoreplayer(res);
         }, error => {
             // this.cmnfun.showToast('Some thing Unexpected happen please try again');
@@ -3185,7 +3189,7 @@ export class InnermatchcenterPage {
         //Player Jumper Image
         this.homeTeamImages = data.homeTeamImages;
         this.awayTeamImages = data.awayTeamImages;
-        this.showDataTable = true;
+        // this.showDataTable = true;
         //this.hometeamImage=homeTeamImages
 
         //Team Images (Home + Away)
@@ -3295,7 +3299,6 @@ export class InnermatchcenterPage {
 
             }
         });
-
         console.log(this.homeTeamPlayers1);
         setTimeout(() => {
           $('.allTeam').removeClass("activated2");
@@ -3309,8 +3312,7 @@ export class InnermatchcenterPage {
                     scrollCollapse: true,
                     paging: false,
                     "columnDefs": [{
-
-                        "targets": 0,
+                        "targets": 1,
                         "orderable": true
                     }],
                     "aoColumns": [
@@ -3333,7 +3335,7 @@ export class InnermatchcenterPage {
                     "order": [1, "desc"],
                     fixedColumns: {
                         leftColumns: 1,
-                        rightColumns: 0
+                        // rightColumns: 0
                     }
 
                 });
@@ -3506,12 +3508,11 @@ export class InnermatchcenterPage {
 
             }
             })
-        }, 1000);
+            this.cmnfun.HideLoading();
+        }, 100);
         // $ionicLoading.hide();
-
-
         //Player End
-        this.cmnfun.HideLoading();
+        this.showDataTable = true;
     }
 
      // sort players stat by quater function datatable
@@ -3548,7 +3549,7 @@ export class InnermatchcenterPage {
       quaters:this.CoachQ,
       adv_title: 'Stats-Club'
   }).subscribe((res) => {
-      $('#playerStatsTable').dataTable().fnDestroy();
+    $('#playerStatsTable').DataTable().destroy();
       this.cmnfun.HideLoading();
       this.getplayerscoreplayer(res);
   }, error => {
@@ -3604,7 +3605,6 @@ export class InnermatchcenterPage {
     }
 
     // stat difference gett
-
     StatDiff (homeTeamStat, awayTeamStat){
       let StatVal = awayTeamStat - homeTeamStat;
       if(StatVal > 0) {

@@ -332,6 +332,18 @@ export class MatchcenterPage {
 
   }
 
+  ShowRound (round){
+    if(round.round == 25){
+      return round.name;
+    }else if(round.round == 38){
+      return round.name;
+    }else if(round.round == 41){
+      return round.name;
+    }else{
+      return round.round;
+    }
+  }
+
 
   // get matches by year function
   GetMatchesByYear(year, competitionid){

@@ -163,6 +163,8 @@ page-matchcenter {
       // top: 5px;
       width: auto;
       padding: 0px;
+      margin-left: 2px;
+      margin-right: 2px;
       height: 30px;
       color: #949496;
       font-size: 16px;
@@ -182,6 +184,10 @@ page-matchcenter {
       }
      .segment-button.segment-activated
      {
+      padding-left: 2px;
+      padding-right: 2px;
+      margin-left: 5px;
+      margin-right: 5px;
            /* border-bottom: 3px solid #04235C !important; */
     background: #04235c !important;
     color: #f4f4f4;
@@ -376,8 +382,8 @@ page-matchcenter {
 
 .advContainer {
   text-align: center;
-  border-top: .55px solid #dedede;
-  border-bottom: .55px solid #dedede;
+  border-top: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
   background: white;
 }
 

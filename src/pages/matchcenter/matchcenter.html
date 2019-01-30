@@ -27,8 +27,8 @@
       <ion-col col-9 style="padding-top: 8px;">
         <ion-segment #scrollMe *ngIf="totalround" [(ngModel)]="roundNo" style="margin-left: 15px;">
           <ion-segment-button id='id{{round.round}}' (click)="selectRound(round.round,competition_id); " value="{{round.round}}"
-            *ngFor="let round of totalround;">
-            {{round.round}}
+            *ngFor="let round of totalround;" [innerHTML] = "ShowRound(round)">
+            <!-- {{round.round}} -->
           </ion-segment-button>
         </ion-segment>
       </ion-col>

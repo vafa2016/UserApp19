@@ -51,9 +51,13 @@
     </div>
     <div class="jb-class-back-top">
       <div class='graph' id="scoreChartmin" style="height:100px;width:100% !important; margin-left:35px;   vertical-align: middle;font-size:14px;"></div>
+      <div class="border-under-graph">        </div>
+      <div class="border-top-graph">        </div>
+ <div class="border-left-graph">    </div>
+    <div class="border-right-graph">    </div>
     </div>
 
-    <div [style.display]="shortAdvhideshow==0 ? 'block' : 'none'" class="advContainer" style="position:absolute; margin: 5px auto 0 0px; width: 104%;">
+    <div [style.display]="shortAdvhideshow==0 ? 'block' : 'none'" class="advContainer" style="position:absolute; margin: 2px auto 0 0px; width: 104%;">
       <img src="{{path}}{{advertisementHeader[0].ad_image}}" (click)="goToAddSite(advertisementHeader[0].ad_url);">
     </div>
   </div>
@@ -250,9 +254,16 @@
     </div>
     <!-- Goalkickers list  -->
     <div>
-      <div class="gk">
-        <span>GOAL KICKERS</span>
-      </div>
+        <div style="    height: 15px;
+        background-color: #e0e0e0;
+        text-align: center;
+        vertical-align: middle;">
+          <p style="margin: auto;
+          font-size: 14px;
+          padding-top: 1px;
+          font-family: Gotham-Medium;
+          color: grey;">GOAL KICKERS</p>
+        </div>
       <ion-row>
         <!-- home team -->
         <ion-col class="colone">
@@ -266,8 +277,15 @@
     </div>
     <!-- Best players list  -->
     <div>
-      <div class="gk1">
-        <p>BEST PLAYERS</p>
+      <div style="    height: 15px;
+      background-color: #e0e0e0;
+      text-align: center;
+      vertical-align: middle;">
+        <p style="margin: auto;
+        font-size: 14px;
+        padding-top: 1px;
+        font-family: Gotham-Medium;
+        color: grey;">BEST PLAYERS</p>
       </div>
       <ion-row>
         <!-- home team -->
@@ -294,8 +312,12 @@
       <div class="Grapgh-Border-Ends"></div>
     </div>
     <div class="jb-class-back">
-      <div class='graph' id="scoreChart" style="height:200px; width:inherit !important;  margin-left:35px; vertical-align: middle;font-size:17px;margin-top: 69px;"></div>
+      <div class='graph' id="scoreChart" style="height:200px; width:inherit !important;  margin-left:35px; vertical-align: middle;font-size:17px;margin-top: 80px;"></div>
     </div>
+    <div class="border-under-graph">        </div>
+      <div class="border-top-graph">        </div>
+ <div class="border-left-graph">    </div>
+    <div class="border-right-graph">    </div>
     <div class="HomeTeam_qScore" *ngIf="graphImgShowHide==1">
       <span class="hmq1" >{{q1HomeScore}}</span>
        <!-- hometeam q1 -->
@@ -620,7 +642,7 @@
       <div class="jd_advContainer1" *ngIf="showAd">
         <img src="{{path}}{{adv[0].ad_image}}" (click)="goToAddSite(adv[0].ad_url);">
       </div>
-      <table [id]="playerStatsTable0" class="stripe row-border order-column playerStatsTable " cellspacing="0" *ngIf="showDataTable==true">
+      <table [id]="playerStatsTable0" class="stripe row-border order-column playerStatsTable " cellspacing="0" *ngIf="showDataTable">
         <thead>
           <tr>
             <th class="jb-sorting">
@@ -794,18 +816,10 @@
               </ion-col>
               <ion-col no-padding>
                 <div *ngIf="isToggled" class="jd_scoreCycle" [style.border-color]="value.awayTeamColor">
-                  <p class="jd_scoreBoard" [innerHTML]="StatDiff(homeTeamScoreStat[value.stat_abbrevation], awayTeamScoreStat[value.stat_abbrevation])">
-                    <!-- {{awayTeamScoreStat[value.stat_abbrevation] -
-                    homeTeamScoreStat[value.stat_abbrevation] > 0 ? '+' :
-                    ''}}{{awayTeamScoreStat[value.stat_abbrevation] - homeTeamScoreStat[value.stat_abbrevation]}} -->
-                  </p>
+                  <p class="jd_scoreBoard" [innerHTML]="StatDiff(homeTeamScoreStat[value.stat_abbrevation], awayTeamScoreStat[value.stat_abbrevation])"></p>
                 </div>
                 <div *ngIf="!isToggled" class="jd_scoreCycle" [style.border-color]="value.homeTeamColor">
-                  <p class="jd_scoreBoard" [innerHTML]="StatDiff2(homeTeamScoreStat[value.stat_abbrevation], awayTeamScoreStat[value.stat_abbrevation])">
-                    <!-- {{homeTeamScoreStat[value.stat_abbrevation] -
-                    awayTeamScoreStat[value.stat_abbrevation] > 0 ? '+' :
-                    ''}}{{homeTeamScoreStat[value.stat_abbrevation] - awayTeamScoreStat[value.stat_abbrevation]}} -->
-                  </p>
+                  <p class="jd_scoreBoard" [innerHTML]="StatDiff2(homeTeamScoreStat[value.stat_abbrevation], awayTeamScoreStat[value.stat_abbrevation])"></p>
                 </div>
               </ion-col>
               <ion-col col-5 no-padding>
