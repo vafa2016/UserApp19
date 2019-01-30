@@ -149,12 +149,28 @@ page-innermatchcenter {
   font-family: Gotham-Bold !important;
 }
 
+.gk1{
+  text-align: center;
+  background: #ece9e9;
+  color: grey;
+  width: 100%;
+  height: 17px;
+  vertical-align: middle;
+ p{
+  font-family: Gotham-Medium !important;
+  font-size: 14px;
+  margin: auto;
+  font-weight: 900;
+ }
+}
+
 .gk{
   text-align: center;
   background: #ece9e9;
   color: grey;
   width: 100%;
-  padding: 2px 0px 3px;
+  height: 17px;
+  vertical-align: middle;
  span{
   font-family: Gotham-Medium !important;
   font-size: 14px;
@@ -3583,7 +3599,7 @@ div.xAxis >div.tickLabel:last-child{
     top: 0px;
     border-left: 1px solid #e3e5ea;
     border-right: 1px solid #e3e5ea;
-    height: 180px !important;
+    height: 182px !important;
 }
 
 .overlay1 {

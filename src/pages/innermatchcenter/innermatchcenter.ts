@@ -3003,6 +3003,7 @@ export class InnermatchcenterPage {
                 this.statschoose = 'team';
                 this.ajax.postaction('get-player-score-for-stat-team', {
                     accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+                    quaters: this.selectedOption,
                     fixtureId: this.fixture_id,
                     adv_title: 'Stats-Club'
                 }).subscribe((res) => {

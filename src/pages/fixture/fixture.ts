@@ -94,8 +94,8 @@ export class FixturePage {
       popover.onDidDismiss(data =>{
         if(data != null){
           console.log(data);
-          // this.selectd_yr = data.competition_year;
-          // this.competition_id = data.competition_id;
+          this.selectd_yr = data.competition_year;
+          this.competition_id = data.competition_id;
         }
       })
     }

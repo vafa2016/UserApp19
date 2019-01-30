@@ -18,6 +18,7 @@ export class PlayerstatdetailsPage {
 
   // path: any = 'http://vafalive.com.au';
   path: any = 'http://54.244.98.247';
+  Coach: boolean = true;
   player_id:any='';
   resData:any='';
   showhide: any;
@@ -64,6 +65,7 @@ export class PlayerstatdetailsPage {
      this.cmfn.showLoading('Please Wait..');
      this.ajax.datalist('get-player-stats-detail', {
        accessKey: "QzEnDyPAHT12asHb4On6HH2016",
+       quaters: this.selectedOption,
        player_id: this.player_id
      }).subscribe((res) => {
        this.cmfn.HideLoading();
@@ -99,17 +101,21 @@ export class PlayerstatdetailsPage {
 
 
   GetStatDetailsByPlayerId(data){
-    console.log(data.player.player);
+    this.playerStatDetailsData = [];
+    this.playerDetail = [];
+    this.playerstats = [];
+    this.playerstatsData = [];
+    // console.log(data.player.player);
 		this.playerDetail=data.player.player;
-		console.log(this.playerDetail.player_name);
+		// console.log(this.playerDetail.player_name);
     var playerFullName = this.playerDetail.player_name.split(' ');
 		this.firstName = playerFullName[0];
     this.lastName = playerFullName[1];
-    console.log(this.firstName);
-    console.log(this.lastName);
+    // console.log(this.firstName);
+    // console.log(this.lastName);
     this.playerstats=data.player.playerstat;
     this.playerstatsData=data.player.playerstat;
-    console.log(this.playerstatsData);
+    // console.log(this.playerstatsData);
     // .forEach(item => {
     //   this.playerStatDetailsData.push(item);
     // });
@@ -117,9 +123,10 @@ export class PlayerstatdetailsPage {
       this.playerStatDetailsData.push(item);
       // console.log(key);
     });
+    console.log(this.playerStatDetailsData)
 		//Advertisement::
 		this.advertisementHeader=data.headerAdv;
-    console.log(this.advertisementHeader[0].ad_image);
+    // console.log(this.advertisementHeader[0].ad_image);
     this.advertisementFooter=data.footerAdv;
 
   }
@@ -160,6 +167,24 @@ export class PlayerstatdetailsPage {
     this.selectedOption.push('all');
   }
   console.log(this.selectedOption.length);
+  this.cmfn.showLoading('Please Wait..');
+  this.ajax.datalist('get-player-stats-detail', {
+    accessKey: "QzEnDyPAHT12asHb4On6HH2016",
+    quaters: this.selectedOption,
+    player_id: this.player_id
+  }).subscribe((res) => {
+    this.cmfn.HideLoading();
+    console.log(res);
+    this.resData = res;
+    if (this.resData.code == 2 || this.resData.code == 3) {
+      return false;
+    } else {
+      this.GetStatDetailsByPlayerId(this.resData);
+    }
+
+  }, error => {
+    this.cmfn.HideLoading();
+  })
 }
 
 }
