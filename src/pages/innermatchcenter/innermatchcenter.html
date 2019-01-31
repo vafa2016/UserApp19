@@ -99,7 +99,7 @@
           </ion-col>
           <ion-col col-6 class="col teamCenterDiv">
             <div class="dispTable">
-              <div class="dispTableCell">
+              <div class="dispTableCell" style="margin: 50px auto 0 !important;">
                 <div class="teamScoreContainer">
                   <!--<h3 style="margin-top:-10px"><b>{{winTeamStatus}} </b> <br/><span style="font-family:Gotham-Book;"  [innerHTML]=-html="changeWinning(winTeamScore)"> </span></h3>-->
 
@@ -131,14 +131,14 @@
                   <!--  -->
                 </div>
               </div>
-              <button ion-button class="watchbtn">
+              <!-- <button ion-button class="watchbtn">
                 <ion-icon class="play" name="md-play"></ion-icon>
                 <span style="padding-left: 5px; font-family: Gotham-medium;">WATCH</span>
               </button>
               <button ion-button class="listenbtn">
                 <ion-icon class="headset" name="ios-headset"></ion-icon>
                 <span style="padding-left: 5px; font-family: Gotham-medium;">LISTEN</span>
-              </button>
+              </button> -->
             </div>
           </ion-col>
           <ion-col col-3 class="col teamCol onlyScore">
@@ -647,7 +647,7 @@
         <thead>
           <tr>
             <th class="jb-sorting">
-              <button style="color: 04235C !important;" class="button button-clear allTeam activated2 activated3" (click)="sortBYType('all')">
+              <button style="color: 04235C !important;" class="button button-clear" (click)="sortBYType('all')">
                 All
               </button>
 

@@ -13,8 +13,10 @@ page-innermatchcenter {
     position: absolute;
     z-index: 10;
     width: 100%;
-    top: 325px;
+    top: 323px;
+    height: 60px;
     border-bottom: 1px solid grey;
+    border-top: 0.55px solid grey;
   }
 
 .jd_test{
@@ -3806,7 +3808,7 @@ div.xAxis >div.tickLabel:last-child{
 
 .jd_rmBorder {
   border-bottom: none !important;
-  height: 59px;
+  height: 63px;
 }
 
 .jd_advContainer2{

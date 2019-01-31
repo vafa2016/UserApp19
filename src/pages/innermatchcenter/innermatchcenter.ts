@@ -3168,7 +3168,7 @@ export class InnermatchcenterPage {
 
     callAlert(name) { alert(name); return name; };
     sortBYType(name) {
-      // alert('aaaa')
+      alert('aaaa')
         // alert('a');
         console.log('Sortby' + name);
         this.orderByFieldName = 'type';
@@ -3503,12 +3503,12 @@ export class InnermatchcenterPage {
                 console.log("all--");
                 $(this).removeClass("activated3");
                 $(".allTeam").addClass("activated3");
-                $("#playerStatsTable tbody tr").each(function (item) {
-                  console.log(item);
-                        $(this).show();
+                $("#playerStatsTable tbody tr").each(function (index,value) {
+                      $(this).show();
                 })
 
             }
+
             })
             this.cmnfun.HideLoading();
         }, 100);
@@ -3516,6 +3516,8 @@ export class InnermatchcenterPage {
         //Player End
         this.showDataTable = true;
     }
+
+
 
      // sort players stat by quater function datatable
      CoachSort(val){
