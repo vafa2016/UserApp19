@@ -391,13 +391,14 @@ border-bottom:.4px solid black;
   font-size: 25px !important;
   color: #f4f4f4 !important;
   font-weight: 700 !important;
-  .tickLabel {
-    top: 74px !important;
-  }
 }
 
-.tickLabel1{
-  top: 20 !important;
+.xAxis .tickLabel {
+  top: 74px !important;
+}
+
+.xAxis .tickLabel1{
+  top: 20px !important;
 }
  .circularMidQtr1 {
   background-color: #e0e0e0;
@@ -3686,6 +3687,28 @@ border-top: 1px solid #dedede;
   margin: 0 auto;
   max-width: 140px;
 }
+
+div.xAxis >div.tickLabel1:first-child{
+  left: 0% !important;
+  mix-blend-mode: darken;
+  font-family: Gotham-Bold !important;
+}
+div.xAxis >div.tickLabel1:nth-child(2){
+  left: 23% !important;
+  mix-blend-mode: darken;
+  font-family: Gotham-Bold !important;
+}
+div.xAxis >div.tickLabel1:nth-child(3){
+  left: 46% !important;
+  mix-blend-mode: darken;
+  font-family: Gotham-Bold !important;
+}
+div.xAxis >div.tickLabel1:last-child{
+  left: 68% !important;
+  mix-blend-mode: darken;
+  font-family: Gotham-Bold !important;
+}
+
 
 div.xAxis >div.tickLabel:first-child{
   left: 0% !important;

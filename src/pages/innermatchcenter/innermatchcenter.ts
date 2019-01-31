@@ -151,6 +151,7 @@ export class InnermatchcenterPage {
 
 
         if (storeData > 0) {
+          $('.xAxis .tickLabel').removeClass('tickLabel').addClass('tickLabel1');
 
            $('.overlay').addClass('overlay1');
            $('.border-left-graph').addClass('rm_h');
@@ -172,6 +173,7 @@ export class InnermatchcenterPage {
             $("#scoreChartminh").show();
         }
         else {
+          $('.xAxis .tickLabel1').removeClass('tickLabel1').addClass('tickLabel');
           $('.overlay').removeClass('overlay1');
           $('.border-left-graph').removeClass('rm_h');
           $('.border-right-graph').removeClass('rm_h');
@@ -3606,21 +3608,29 @@ export class InnermatchcenterPage {
 
     // stat difference gett
     StatDiff (homeTeamStat, awayTeamStat){
+      if(homeTeamStat != undefined && awayTeamStat != undefined){
       let StatVal = awayTeamStat - homeTeamStat;
       if(StatVal > 0) {
         return '+'+StatVal;
       }else{
         return StatVal;
+       }
+      }else{
+        return 0;
       }
     }
 
     StatDiff2 (homeTeamStat, awayTeamStat){
+     if(homeTeamStat != undefined && awayTeamStat != undefined){
       let StatVal = homeTeamStat - awayTeamStat;
       if(StatVal > 0) {
         return '+'+StatVal;
       }else{
         return StatVal;
       }
+     }else{
+       return 0;
+     }
     }
 
 
