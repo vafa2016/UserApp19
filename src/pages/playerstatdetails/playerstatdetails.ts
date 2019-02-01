@@ -45,6 +45,7 @@ export class PlayerstatdetailsPage {
     public cmfn: CommomfunctionProvider,
      public navParams: NavParams) {
     this.player_id= navParams.get('player_id');
+    this.Coach= navParams.get('CoachValue');
 
     this.plt.ready().then(() => {
       this.ga.startTrackerWithId('UA-118996199-1')

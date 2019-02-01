@@ -3257,7 +3257,8 @@ export class InnermatchcenterPage {
             let res = first_name.split(" ");
             let playerName = first_name.substring(0, 1) + ". " + value.surname;
             let playerNameLen = playerName.length;
-            let playerFName = ((playerName.length <= 8) ? playerName : playerName.substr(0, 8) + '..');
+            let playerFName = playerName;
+            // let playerFName = ((playerName.length <= 8) ? playerName : playerName.substr(0, 8) + '..');
             let playerNo = value.player_number;
             let playerId = value.player_id;
             let type = 'home';
@@ -3278,7 +3279,8 @@ export class InnermatchcenterPage {
             let res = first_name.split(" ");
             let playerName = first_name.substring(0, 1) + ". " + value.surname;
             let playerNameLen = playerName.length;
-            let playerFName = ((playerName.length <= 8) ? playerName : playerName.substr(0, 8) + '..');
+            let playerFName = playerName;
+            // let playerFName = ((playerName.length <= 8) ? playerName : playerName.substr(0, 8) + '..');
             let playerNo = value.player_number;
             let playerId = value.player_id;
             let type = 'away';
@@ -3633,6 +3635,12 @@ export class InnermatchcenterPage {
      }else{
        return 0;
      }
+    }
+
+    // goto individual player
+    GotoIndividual (playerid){
+     console.log(playerid);
+    //  this.navCtrl.push('PlayerstatdetailsPage',{player_id:playerid,CoachValue: true});
     }
 
 
