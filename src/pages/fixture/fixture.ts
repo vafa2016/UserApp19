@@ -96,6 +96,8 @@ export class FixturePage {
           console.log(data);
           this.selectd_yr = data.competition_year;
           this.competition_id = data.competition_id;
+          this.selectedCompetitionName(this.competition_id);
+
         }
       })
     }

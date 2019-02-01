@@ -32,6 +32,8 @@ export class MatchcenterPage {
   Interval1:any;
   Interval2:any;
 
+  AdShown: boolean = true;
+
   objectKeys = Object.keys
   totalround: any = [];
   totalRoundsData: any;
@@ -342,6 +344,11 @@ export class MatchcenterPage {
     }else{
       return round.round;
     }
+  }
+
+  //
+  getLength(){
+    return true;
   }
 
 
