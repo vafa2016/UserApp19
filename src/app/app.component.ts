@@ -90,8 +90,8 @@ export class MyApp {
       { title: 'Match Report', component: MatchreportPage, icon: 'assets/imgs/menuIcon/MatchReportIcon.png', itemseleted: 'notseleted' },
       { title: 'Goal Kickers', component: GoalkickersPage, icon: 'assets/imgs/menuIcon/GoalKickersIcon.png', itemseleted: 'notseleted' },
       { title: 'Player Stats', component: 'PlayerStatPage', icon: 'assets/imgs/menuIcon/PlayerStatsIconWhiteBg.png', itemseleted: 'notseleted' },
-      // { title: 'Team Stats', component: TeamstatPage, icon: 'assets/imgs/menuIcon/TeamStatsIcon.png', itemseleted: 'notseleted' },
-      // { title: '1 on 1', component: 'OnetoonePage', icon: 'assets/imgs/menuIcon/1on1Icon.png', itemseleted: 'notseleted' }
+      { title: 'Team Stats', component: TeamstatPage, icon: 'assets/imgs/menuIcon/TeamStatsIcon.png', itemseleted: 'notseleted' },
+      { title: '1 on 1', component: 'OnetoonePage', icon: 'assets/imgs/menuIcon/1on1Icon.png', itemseleted: 'notseleted' }
     ];
     this.initializeApp();
   }

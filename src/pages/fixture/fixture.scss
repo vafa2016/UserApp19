@@ -262,27 +262,30 @@ page-fixture {
 
 .jd_seasonTxt{
   margin: 1px;
-  font-size: 16px;
-  font-family: Gotham-Bold;
-  color: black;
+  font-size: 14px;
+  font-family: Gotham-Medium;
   white-space: nowrap;
+  color: #04235C;
 }
 
 .jd_yr{
-    font-size: 15px;
+  font-size: 15px;
+  color: #424242;
+  font-family: 'Gotham-Medium' !important;
     margin: auto 0px 0px -10px;
-    font-family: Gotham-Bold;
     white-space: nowrap;
 }
 
 .jd-down-arrow{
   position: absolute;
-  bottom: 2px;
+  bottom: 4px;
   background-color: rgba(255, 255, 255, 0.7);
   width: 16%;
-  right: 16px;
+  right: 20px;
   line-height: 1;
-  color: #424242;
+  font-size: 20px;
+  font-weight: bold;
+  color: #04235C;
   font-size: 20px;
   font-weight: bold;
 }
@@ -372,14 +375,14 @@ ion-segment {
 }
 
 .advContainer{
-  border-bottom: 1px solid #bdbdbd !important;
-  border-top: 1px solid #bdbdbd !important;
+  border-bottom:  0.55px solid #dedede;
+  border-top:  0.55px solid #dedede;
   margin: 3px auto 0 -7px !important;
 }
 
 .advContainer1{
   border-bottom:none !important;
-  border-top: 1px solid #bdbdbd !important;
+  border-top:  0.55px solid #dedede !important;
   text-align: center;
   background: white;
 img{

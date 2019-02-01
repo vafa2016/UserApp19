@@ -288,6 +288,22 @@ export class FixturePage {
     // this.events.unsubscribe('datalist_get-competition-clubs:changed');
     // this.events.unsubscribe('datalist_get-club-wise-fixture:changed');
   }
+
+  // round display
+  ShowRound (round){
+    if(round.round == 25){
+      return round.name;
+    }else if(round.round == 38){
+      return round.name;
+    }else if(round.round == 41){
+      return round.name;
+    }else{
+      return round.round;
+    }
+  }
+  //
+
+
   selectedCompetitionName = function (competition_id) {
     //alert(competition_id);
     this.competition_id = competition_id;
