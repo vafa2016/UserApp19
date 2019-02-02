@@ -705,7 +705,7 @@
         </thead>
         <tbody class=''>
           <tr *ngFor="let obj of homeTeamPlayers1;let key=index">
-            <td [attr.data-t]="obj.type" style="text-align:left !important;" (click)="GotoIndividual(obj.player_id)">
+            <td [attr.data-t]="obj.type" [attr.data-t1]="obj.player_id" style="text-align:left !important;" (click)="GotoIndividual(obj.player_id)">
               <div class="ladderTableLeftSide" *ngIf="obj.type=='home'">
                 <img src="{{path}}{{baseUrl}}{{homeTeamImages[0].image_value}}" class="laderTeamIcon" />
                 <div class="Player_number">

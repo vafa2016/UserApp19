@@ -3490,6 +3490,26 @@ export class InnermatchcenterPage {
                 // this.sortBYType("away");
             });
 
+            function shuffle(array) {
+              var currentIndex = array.length, temporaryValue, randomIndex;
+
+              // While there remain elements to shuffle...
+              while (0 !== currentIndex) {
+
+                // Pick a remaining element...
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                // And swap it with the current element.
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+              }
+
+              return array;
+            }
+
+            var selfarr = this;
             $('.allTeam').on('click', function(){
               $('.jd_advContainer1').addClass('jd_rmBorder');
               $('.jd_advContainer2').addClass('jd_rmBorder');
@@ -3505,13 +3525,29 @@ export class InnermatchcenterPage {
                 console.log("all--");
                 $(this).removeClass("activated3");
                 $(".allTeam").addClass("activated3");
-                $("#playerStatsTable tbody tr").each(function (index,value) {
+                // $("#playerStatsTable tbody tr").each(function (index,value) {
+                //       $(this).show();
+                // })
+                  var arr = $("#playerStatsTable tbody tr");
+                  arr = shuffle(arr);
+                  arr.each(function (index,value) {
                       $(this).show();
                 })
-
-            }
+                  // console.log(arr);
+                }
 
             })
+            // get individual player id from datatable function
+            var self = this;
+            $("tr[role='row']").on("click",function() {
+              var plyId = ($(this).children("td").eq(0).attr('data-t1'));
+              console.log(plyId)
+              if(plyId != undefined){
+                self.GotoIndividual(plyId);
+              }
+            });
+            //
+
             this.cmnfun.HideLoading();
         }, 100);
         // $ionicLoading.hide();
@@ -3640,7 +3676,7 @@ export class InnermatchcenterPage {
     // goto individual player
     GotoIndividual (playerid){
      console.log(playerid);
-    //  this.navCtrl.push('PlayerstatdetailsPage',{player_id:playerid,CoachValue: true});
+     this.navCtrl.push('PlayerstatdetailsPage',{player_id:playerid,CoachValue: true});
     }
 
 

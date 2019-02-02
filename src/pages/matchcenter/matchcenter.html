@@ -101,7 +101,10 @@
           </ion-row>
 
         </li>
-        <div class="advContainer"  *ngIf="value1.fixture_count==2 && roundScores[key].length > 2 || value1.fixture_count==1 && roundScores[key].length < 2" style="margin: 0 auto 0 -7px; width: 104%;">
+        <div class="advContainer"  *ngIf="value1.fixture_count==2 && roundScores[key].length >= 2" style="margin: 0 auto 0 -7px; width: 104%;">
+          <img src="{{path}}{{totalRoundsData[0].ad_image}}" (click)="goToAddSite(totalRoundsData[0].ad_url);">
+        </div>
+        <div class="advContainerB"  *ngIf="value1.fixture_count==1 && roundScores[key].length < 2" style="margin: 0 auto 0 -7px; width: 104%;">
           <img src="{{path}}{{totalRoundsData[0].ad_image}}" (click)="goToAddSite(totalRoundsData[0].ad_url);">
         </div>
 
