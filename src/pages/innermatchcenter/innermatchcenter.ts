@@ -3176,7 +3176,7 @@ export class InnermatchcenterPage {
 
     callAlert(name) { alert(name); return name; };
     sortBYType(name) {
-      alert('aaaa')
+  //    alert('aaaa')
         // alert('a');
         console.log('Sortby' + name);
         this.orderByFieldName = 'type';
@@ -3342,7 +3342,7 @@ export class InnermatchcenterPage {
                     "bPaginate": false,
                     "bFilter": false,
                     "bInfo": false,
-                    "bSortable": true,
+                    "bSortable": false,
                     "ordering": true,
                     "order": [1, "desc"],
                     fixedColumns: {
@@ -3354,9 +3354,9 @@ export class InnermatchcenterPage {
                   }
 
                 });
-              //   table.order.fixed( {
-              //     pre: [ 1, 'desc' ]
-              // } );
+            //     table.order.fixed( {
+            //       pre: [ 1, 'desc' ]
+            //   } );
                  // Enable THEAD scroll bars
     $('.dataTables_scrollHead').css('overflow', 'scroll');
 
@@ -3441,10 +3441,11 @@ export class InnermatchcenterPage {
 
                 }
 
-
+                setTimeout(function(){  selfval.sortBYval(selfval.jd_active); }, 200);
             });
-
+            var selfval = this;
             $('.awayTeam1').on('click', function () {
+                
               $('.jd_advContainer1').addClass('jd_rmBorder');
               $('.jd_advContainer2').addClass('jd_rmBorder');
               if ($('.homeTeam').hasClass("jd_active_sort")) {
@@ -3461,18 +3462,21 @@ export class InnermatchcenterPage {
                     $(this).addClass("jd_active_sort");
                     $(this).removeClass("activated1");
                     $(".awayTeam1").addClass("activated1");
+                    
                     $("#playerStatsTable tbody tr").each(function () {
-
+                        
+                        console.log('foreach');
                         if ($(this).children("td").eq(0).attr('data-t') == 'away') {
                             $(this).show();
+                        
                         } else {
 
                             $(this).hide();
                         }
-
+                        
                     })
 
-
+                   
                 } else {
                   $(this).addClass("jd_active_sort");
                     console.log("hhuhijh");
@@ -3480,7 +3484,7 @@ export class InnermatchcenterPage {
 
                     $("#playerStatsTable tbody tr").each(function () {
                         // alert($(this).children("td").eq(0).attr('data-t'));
-
+                        
                         if ($(this).children("td").eq(0).attr('data-t') == 'home') {
 
                             $(this).show();
@@ -3499,9 +3503,11 @@ export class InnermatchcenterPage {
                     }
 
                 }
+                 setTimeout(function(){  selfval.sortBYval(selfval.jd_active); }, 200);
+               
                 // this.sortBYType("away");
             });
-
+            
             function shuffle(array) {
               var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -3539,6 +3545,7 @@ export class InnermatchcenterPage {
                 $(".allTeam").addClass("activated3");
                 $("#playerStatsTable tbody tr").each(function (index,value) {
                       $(this).show();
+                     
                 })
                 // $('.jd_advContainer1').removeClass('jd_rmBorder');
                 // selfarr.SortAll();
@@ -3548,9 +3555,11 @@ export class InnermatchcenterPage {
                 //       $(this).show();
                 // })
                   // console.log(arr);
+                  setTimeout(function(){  selfval.sortBYval(selfval.jd_active); }, 200);
                 }
 
             })
+          
             // get individual player id from datatable function
             var self = this;
             $("tr[role='row']").on("click",function() {
@@ -3568,8 +3577,35 @@ export class InnermatchcenterPage {
         //Player End
         this.showDataTable = true;
     }
-
-
+    clickhunk(){
+      alert('hello');         
+    }
+    sortBYval(val) {
+        // this.sortBY('GB');
+        var idname=this.jd_active;
+        $( "."+idname ).trigger( "click" );
+        $("."+idname).click(function(){
+         
+          });
+//   this.sortBY(this.jd_active);
+          // }else{
+          //   this.jd_active = stat;
+          // }
+          $('.jd_advContainer1').addClass('jd_rmBorder');
+          $('.jd_advContainer2').addClass('jd_rmBorder');
+          $('.jb-plaer table.dataTable tbody tr:nth-child(3) td').removeClass('jd_warning');
+          console.log('stat'+this.jd_active+'jd_active'+this.jd_active);
+          if (this.reverse == true) {
+              this.reverse = false;
+              this.orderByFieldName = this.jd_active;
+              //	$(this).addClass("active1");
+          } else {
+              this.reverse = false;
+              this.orderByFieldName = this.jd_active;
+              //$(this).addClass("active1");
+          }
+  
+      }
 
      // sort players stat by quater function datatable
      CoachSort(val){
@@ -3690,7 +3726,7 @@ export class InnermatchcenterPage {
     // goto individual player
     GotoIndividual (playerid){
      console.log(playerid);
-     this.navCtrl.push('PlayerstatindividualPage',{player_id:playerid, fixture_id: this.fixture_id, CoachValue: true});
+    //  this.navCtrl.push('PlayerstatindividualPage',{player_id:playerid, fixture_id: this.fixture_id, CoachValue: true});
     }
 
     // all sort datatable function

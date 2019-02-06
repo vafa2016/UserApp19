@@ -514,42 +514,42 @@
               </button>
             </th>
 
-            <th class="jb-sorting-gb">
+            <th class="jb-sorting-gb GB" >
               <button [ngClass]="{'jd_active_sort': jd_active == 'GB'}" (click)="sortBY('GB')" [id]="GB0" class="button button-clear tableColumSortStyle gbClass jd_gb">
                 G.B
               </button>
             </th>
-            <th [id]="buttonId0">
+            <th [id]="buttonId0" class="D">
               <button [ngClass]="{'jd_active_sort': jd_active == 'D'}" (click)="sortBY('D')" class="button button-clear tableColumSortStyle jd_mid">
                 D
               </button>
             </th>
-            <th>
-              <button [ngClass]="{'jd_active_sort': jd_active == 'K'}" (click)="sortBY('K')" class="button button-clear tableColumSortStyle jd_mid">
+            <th id='K' class="K">
+              <button  [ngClass]="{'jd_active_sort': jd_active == 'K'}" (click)="sortBY('K')" class="button button-clear tableColumSortStyle jd_mid">
                 K
               </button>
             </th>
-            <th (click)="sortBY('H')">
+            <th (click)="sortBY('H')" class="H">
               <button [ngClass]="{'jd_active_sort': jd_active == 'H'}" class="button button-clear tableColumSortStyle jd_mid">
                 H
               </button>
             </th>
-            <th (click)="sortBY('M')">
+            <th (click)="sortBY('M')" class="M">
               <button [ngClass]="{'jd_active_sort': jd_active == 'M'}" class="button button-clear tableColumSortStyle jd_mid">
                 M
               </button>
             </th>
-            <th (click)="sortBY('T')">
+            <th (click)="sortBY('T')" class="T">
               <button [ngClass]="{'jd_active_sort': jd_active == 'T'}" class="button button-clear tableColumSortStyle jd_mid">
                 T
               </button>
             </th>
-            <th (click)="sortBY('HO')">
+            <th (click)="sortBY('HO')" class="HO">
               <button [ngClass]="{'jd_active_sort': jd_active == 'HO'}" class="button button-clear tableColumSortStyle jd_mid">
                 HO
               </button>
             </th>
-            <th (click)="sortBY('I50')">
+            <th (click)="sortBY('I50')" class="I50">
               <button [ngClass]="{'jd_active_sort': jd_active == 'I50'}" class="button button-clear tableColumSortStyle jd_bEnd">
                 I50
               </button>
@@ -558,18 +558,18 @@
 
         </thead>
         <tbody class=''>
-          <tr *ngFor="let obj of homeTeamPlayers1;let key=index">
-            <td [attr.data-t]="obj.type" style="text-align:left !important;">
-              <div class="ladderTableLeftSide" *ngIf="obj.type=='home'">
-                <img src="{{path}}{{baseUrl}}{{homeTeamImages[0].image_value}}" class="laderTeamIcon" />
-                <div class="Player_number">
+          <tr *ngFor="let obj of homeTeamPlayers1;let key=index" (click)="clickhunk()">
+            <td [attr.data-t]="obj.type" style="text-align:left !important;" (click)="clickhunk()" >
+              <div class="ladderTableLeftSide" *ngIf="obj.type=='home'" (click)="clickhunk()">
+                <img src="{{path}}{{baseUrl}}{{homeTeamImages[0].image_value}}" class="laderTeamIcon" (click)="clickhunk()" />
+                <div class="Player_number" (click)="clickhunk()">
                   <span>{{obj.player_number}}</span>
                 </div>
                 <span class="teamName" style="line-height:3 !important;">{{ obj.playerFName}}</span>
               </div>
 
-              <div class="ladderTableLeftSide" *ngIf="obj.type=='away'">
-                <img src="{{path}}{{baseUrl}}{{awayTeamImages[0].image_value}}" class="laderTeamIcon" />
+              <div class="ladderTableLeftSide" *ngIf="obj.type=='away'" (click)="clickhunk()">
+                <img src="{{path}}{{baseUrl}}{{awayTeamImages[0].image_value}}" class="laderTeamIcon" (click)="clickhunk()" />
                 <div class="Player_number">
                   <span>{{obj.player_number}}</span>
                 </div>
@@ -669,42 +669,42 @@
               </button>
             </th>
 
-            <th class="jb-sorting-gb">
+            <th class="jb-sorting-gb GB"  >
               <button [ngClass]="{'jd_active_sort': jd_active == 'GB'}" (click)="sortBY('GB')" [id]="GB0" class="button button-clear tableColumSortStyle gbClass jd_gb">
                 G.B
               </button>
             </th>
-            <th [id]="buttonId0">
+            <th [id]="buttonId0"  class="D">
               <button [ngClass]="{'jd_active_sort': jd_active == 'D'}" (click)="sortBY('D')" class="button button-clear tableColumSortStyle jd_mid">
                 D
               </button>
             </th>
-            <th>
+            <th id="K" class="K">
               <button [ngClass]="{'jd_active_sort': jd_active == 'K'}" (click)="sortBY('K')" class="button button-clear tableColumSortStyle jd_mid">
                 K
               </button>
             </th>
-            <th (click)="sortBY('H')">
+            <th (click)="sortBY('H')" class="H">
               <button [ngClass]="{'jd_active_sort': jd_active == 'H'}" class="button button-clear tableColumSortStyle jd_mid">
                 H
               </button>
             </th>
-            <th (click)="sortBY('M')">
+            <th (click)="sortBY('M')" class="M">
               <button [ngClass]="{'jd_active_sort': jd_active == 'M'}" class="button button-clear tableColumSortStyle jd_mid">
                 M
               </button>
             </th>
-            <th (click)="sortBY('T')">
+            <th (click)="sortBY('T')" class="T">
               <button [ngClass]="{'jd_active_sort': jd_active == 'T'}" class="button button-clear tableColumSortStyle jd_mid">
                 T
               </button>
             </th>
-            <th (click)="sortBY('HO')">
+            <th (click)="sortBY('HO')" class="HO">
               <button [ngClass]="{'jd_active_sort': jd_active == 'HO'}" class="button button-clear tableColumSortStyle jd_mid">
                 HO
               </button>
             </th>
-            <th (click)="sortBY('I50')">
+            <th (click)="sortBY('I50')" class="I50">
               <button [ngClass]="{'jd_active_sort': jd_active == 'I50'}" class="button button-clear tableColumSortStyle jd_bEnd">
                 I50
               </button>
@@ -713,27 +713,27 @@
 
         </thead>
         <tbody class=''>
-          <tr *ngFor="let obj of homeTeamPlayers1;let key=index">
-            <td [attr.data-t]="obj.type" [attr.data-t1]="obj.player_id" style="text-align:left !important;" (click)="GotoIndividual(obj.player_id)">
-              <div class="ladderTableLeftSide" *ngIf="obj.type=='home'">
-                <img src="{{path}}{{baseUrl}}{{homeTeamImages[0].image_value}}" class="laderTeamIcon" />
-                <div class="Player_number">
-                  <span>{{obj.player_number}}</span>
+          <tr *ngFor="let obj of homeTeamPlayers1;let key=index" (click)="clickhunk()">
+            <td (click)="clickhunk()" [attr.data-t]="obj.type" [attr.data-t1]="obj.player_id" style="text-align:left !important;" >
+              <div (click)="clickhunk()"  class="ladderTableLeftSide" *ngIf="obj.type=='home'">
+                <img (click)="clickhunk()" src="{{path}}{{baseUrl}}{{homeTeamImages[0].image_value}}" class="laderTeamIcon" />
+                <div (click)="clickhunk()" class="Player_number">
+                  <span >{{obj.player_number}}</span>
                 </div>
-                <span class="teamName" style="line-height:3 !important;">{{ obj.playerFName}}</span>
+                <span  (click)="clickhunk()" class="teamName" style="line-height:3 !important;">{{ obj.playerFName}}</span>
               </div>
 
-              <div class="ladderTableLeftSide" *ngIf="obj.type=='away'">
-                <img src="{{path}}{{baseUrl}}{{awayTeamImages[0].image_value}}" class="laderTeamIcon" />
-                <div class="Player_number">
-                  <span>{{obj.player_number}}</span>
+              <div (click)="clickhunk()" class="ladderTableLeftSide" *ngIf="obj.type=='away'">
+                <img (click)="clickhunk()" src="{{path}}{{baseUrl}}{{awayTeamImages[0].image_value}}" class="laderTeamIcon" />
+                <div (click)="clickhunk()" class="Player_number">
+                  <span (click)="clickhunk()">{{obj.player_number}}</span>
                 </div>
-                <span class="teamName" style="line-height:3 !important;">{{obj.playerFName}}</span>
+                <span (click)="clickhunk()" class="teamName" style="line-height:3 !important;">{{obj.playerFName}}</span>
               </div>
 
             </td>
 
-            <td class="jb-sorting-gb" [innerHTML]="getGBData(obj.G,obj.B,obj.RB,key,obj, obj.K, obj.H)" ></td>
+            <td  class="jb-sorting-gb" [innerHTML]="getGBData(obj.G,obj.B,obj.RB,key,obj, obj.K, obj.H)" ></td>
             <td [innerHTML]="obj.D"> </td>
             <td [innerHTML]="obj.K"> </td>
             <td [innerHTML]="obj.H"> </td>
