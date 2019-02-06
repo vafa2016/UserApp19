@@ -558,7 +558,7 @@
 
         </thead>
         <tbody class=''>
-          <tr *ngFor="let obj of homeTeamPlayers1;let key=index" (click)="clickhunk()">
+          <tr *ngFor="let obj of homeTeamPlayers1;let key=index" id="jg-row" (click)="clickhunk()">
             <td [attr.data-t]="obj.type" style="text-align:left !important;" (click)="clickhunk()" >
               <div class="ladderTableLeftSide" *ngIf="obj.type=='home'" (click)="clickhunk()">
                 <img src="{{path}}{{baseUrl}}{{homeTeamImages[0].image_value}}" class="laderTeamIcon" (click)="clickhunk()" />
@@ -713,7 +713,7 @@
 
         </thead>
         <tbody class=''>
-          <tr *ngFor="let obj of homeTeamPlayers1;let key=index" (click)="clickhunk()">
+          <tr *ngFor="let obj of homeTeamPlayers1;let key=index" id="jg-row" (click)="clickhunk()">
             <td (click)="clickhunk()" [attr.data-t]="obj.type" [attr.data-t1]="obj.player_id" style="text-align:left !important;" >
               <div (click)="clickhunk()"  class="ladderTableLeftSide" *ngIf="obj.type=='home'">
                 <img (click)="clickhunk()" src="{{path}}{{baseUrl}}{{homeTeamImages[0].image_value}}" class="laderTeamIcon" />

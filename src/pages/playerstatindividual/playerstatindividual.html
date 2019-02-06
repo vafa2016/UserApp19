@@ -81,7 +81,9 @@
     <div *ngFor="let value of playerStatDetailsData; let i = index" class="jd_hitdiv">
       <ion-row class="text-center MatchFormContainer adjstHeight jd_scorediv">
         <ion-col>
-          <h4 class="jd_h4" style="font-family: Gotham-Medium;font-size: 26px; color:#04235c;margin-left: -18px; margin-top: 3px;"> {{ value[value.stat_name] }}</h4>
+          <h4 class="jd_h4" style="font-family: Gotham-Medium;font-size: 26px; color:#04235c;margin-left: -18px; margin-top: 3px;" [innerHTML]= "getTeam(value)">
+             <!-- {{ value[value.stat_name] }} -->
+            </h4>
           <div class="jd_circle"></div>
         </ion-col>
         <ion-col col-4>
@@ -92,7 +94,7 @@
         </ion-col>
         <ion-col>
             <div class="jd2_circle"></div>
-          <h4  class="jd2_h4" style="color: #04235c;font-family: Gotham-Medium;font-size: 26px;margin-left: 8px; margin-top: 3px;">{{value.avg}} </h4>
+          <h4  class="jd2_h4" style="color: #04235c;font-family: Gotham-Medium;font-size: 26px;margin-left: 8px; margin-top: 3px;">{{ value[value.stat_name] }} </h4>
         </ion-col>
       </ion-row>
       <div class="advContainer" *ngIf="i==1" style="margin: 0 auto 25px -7px; width: 104%;">

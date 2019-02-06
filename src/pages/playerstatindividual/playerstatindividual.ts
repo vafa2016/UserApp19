@@ -110,6 +110,10 @@ export class PlayerstatindividualPage {
       }
     }
 
+    getTeam(value){
+      return value['team_count'];
+    }
+
 
   GetStatDetailsByPlayerId(data){
     this.playerStatDetailsData = [];

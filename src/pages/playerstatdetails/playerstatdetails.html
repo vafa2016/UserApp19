@@ -34,13 +34,14 @@
       <div class="jd_subtitiles">
           <ion-row class="text-center ">
               <ion-col>
-                  <span class="jd_teamSpan">{{playerDetail.team_team}}</span>
+                  <span class="jd_teamSpan">Season Total</span>
               </ion-col>
               <ion-col>
 
               </ion-col>
               <ion-col>
-                  <span class="jd_playerSpan">{{firstName}} {{lastName}}</span>
+                  <span class="jd_teamSpan">Avg. Game</span>
+                  <!-- <span class="jd_playerSpan">{{firstName}} {{lastName}}</span> -->
               </ion-col>
             </ion-row>
       </div>
@@ -56,8 +57,10 @@
     </ion-col>
   </ion-row> -->
 
+
+
    <!-- sort with quater functions -->
-   <div class="jd_sort_btns" *ngIf="Coach">
+   <!-- <div class="jd_sort_btns" *ngIf="Coach">
       <ion-row class="jd_sort_rw">
         <ion-col [ngClass]="{'jd_selectedOptn': selectedOption.indexOf('all') > -1 }" (click)="SelectedSort('all')" col-3 class="jd_btn_border me">
           <p class="jd_sort_btn">All</p>
@@ -75,7 +78,7 @@
           <p class="jd_sort_btn">Q4</p>
         </ion-col>
       </ion-row>
-    </div>
+    </div> -->
     <!--  -->
 
   <div *ngFor="let value of playerStatDetailsData; let i = index" class="jd_hitdiv">
