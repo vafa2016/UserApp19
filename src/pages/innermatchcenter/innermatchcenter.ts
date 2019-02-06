@@ -3578,7 +3578,7 @@ export class InnermatchcenterPage {
         this.showDataTable = true;
     }
     clickhunk(){
-      alert('hello');         
+     // alert('hello');         
     }
     sortBYval(val) {
         // this.sortBY('GB');
