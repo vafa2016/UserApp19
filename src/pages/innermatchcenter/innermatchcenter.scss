@@ -13,10 +13,10 @@ page-innermatchcenter {
     position: absolute;
     z-index: 10;
     width: 100%;
-    top: 323px;
-    height: 60px;
+    top: 327px;
+    // height: 60px;
     border-bottom: 1px solid #bdbdbd;
-    border-top: 0.55px solid #bdbdbd;
+    // border-top: 0.55px solid #bdbdbd;
   }
 
 .jd_test{
@@ -3477,6 +3477,8 @@ table.dataTable td {
 
 .jd_home_bstplyr{
   margin: 5px 10px;
+  overflow: hidden;
+  // white-space: nowrap;
   color: #04235c;
   font-family: 'Gotham-Medium';
   font-size: 15px;
@@ -3485,6 +3487,9 @@ table.dataTable td {
 .jd_away_bstplyr{
   margin: 5px 10px;
   text-align: left;
+  overflow: hidden;
+  // text-overflow: ellipsis;
+  // white-space: nowrap;
   color: #04235c;
   font-family: 'Gotham-Medium';
   font-size: 15px;
@@ -3809,7 +3814,7 @@ div.xAxis >div.tickLabel:last-child{
 
 .jd_rmBorder {
   border-bottom: none !important;
-  height: 63px;
+  // height: 59px;
 }
 
 .jd_advContainer2{

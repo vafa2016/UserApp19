@@ -27,6 +27,7 @@ export class PlayerstatindividualPage {
   path: any = 'http://54.244.98.247';
   Coach: boolean = true;
   player_id:any='';
+  fixture_id: any = '';
   resData:any='';
   showhide: any;
   lastName1:any='';
@@ -52,6 +53,7 @@ export class PlayerstatindividualPage {
     public cmfn: CommomfunctionProvider,
      public navParams: NavParams) {
     this.player_id= navParams.get('player_id');
+    this.fixture_id = navParams.get('fixture_id')
     this.Coach= navParams.get('CoachValue');
 
     this.plt.ready().then(() => {
@@ -71,9 +73,10 @@ export class PlayerstatindividualPage {
   console.log('ionViewDidLoad PlayerstatdetailsPage');
 //getStatDetailsByPlayerId
      this.cmfn.showLoading('Please Wait..');
-     this.ajax.datalist('get-player-stats-detail', {
+     this.ajax.datalist('get-fixture-player-stats-detail', {
        accessKey: "QzEnDyPAHT12asHb4On6HH2016",
        quaters: this.selectedOption,
+       fixture_id: this.fixture_id,
        player_id: this.player_id
      }).subscribe((res) => {
        this.cmfn.HideLoading();
@@ -116,7 +119,7 @@ export class PlayerstatindividualPage {
     // console.log(data.player.player);
 		this.playerDetail=data.player.player;
 		// console.log(this.playerDetail.player_name);
-    var playerFullName = this.playerDetail.player_name.split(' ');
+    var playerFullName = this.playerDetail.player_name.split('  ');
 		this.firstName = playerFullName[0];
     this.lastName = playerFullName[1];
     // console.log(this.firstName);
@@ -176,9 +179,10 @@ export class PlayerstatindividualPage {
   }
   console.log(this.selectedOption.length);
   this.cmfn.showLoading('Please Wait..');
-  this.ajax.datalist('get-player-stats-detail', {
+  this.ajax.datalist('get-fixture-player-stats-detail', {
     accessKey: "QzEnDyPAHT12asHb4On6HH2016",
     quaters: this.selectedOption,
+    fixture_id: this.fixture_id,
     player_id: this.player_id
   }).subscribe((res) => {
     this.cmfn.HideLoading();

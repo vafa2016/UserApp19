@@ -51,7 +51,8 @@ export class InnermatchcenterPage {
     isToggled: boolean = false;
 
     deviceData: any = {
-        device_id: ''
+        device_id: '',
+        year: ''
     }
     isLogin:boolean = false;
     ApiResponse: any;
@@ -90,6 +91,7 @@ export class InnermatchcenterPage {
 
     SortHomePlayer: boolean = false;
     SortAwayPlayer: boolean = true;
+    selectd_yr: any = '';
 
     PurchaseData:any=[];
 
@@ -98,6 +100,7 @@ export class InnermatchcenterPage {
 
 
         this.details = navParams.get('details');
+        this.deviceData.year = navParams.get('year');
         console.log(this.details);
 
         this.platform.ready().then(() => {
@@ -991,6 +994,7 @@ export class InnermatchcenterPage {
          //test
          this.pamentshow = 1;
          this.gotostatspage();
+        //
         this.platform.ready().then(() => {
             this.ga.startTrackerWithId('UA-118996199-1')
                 .then(() => {
@@ -2851,7 +2855,7 @@ export class InnermatchcenterPage {
         this.modifiedState.forEach((item, index) => {
             // angular.forEach(this.stats , function(obj){
             this.stats.forEach((obj, index) => {
-                //alert(JSON.stringify(obj))
+                // alert(JSON.stringify(obj))
                 //   alert(item+"===="+JSON.stringify(obj))
 
                 if (item == obj.stat_abbrevation) {
@@ -2868,6 +2872,8 @@ export class InnermatchcenterPage {
 
                 let homeColor = '#60BA72';
                 let awayColor = '#596682';
+
+                // alert('hometeam :'+this.homeTeamScoreStat['Disposals']+' '+'Awayteam :'+ this.awayTeamScoreStat['Disposals'])
 
                 if (this.homeTeamScoreStat['Disposals'] > this.awayTeamScoreStat['Disposals'] && this.homeTeamScoreStat['Disposals'] < 100) {
 
@@ -2893,6 +2899,8 @@ export class InnermatchcenterPage {
                 } else if (this.homeTeamScoreStat['Disposals'] == this.awayTeamScoreStat['Disposals']) {
                     this.modifiedStateSeq.push({ id: 10000, stat_name: "Disposals", stat_abbrevation: "Disposals", homeTeamColor: 'orange', awayTeamColor: 'orange', awayTeamWidth: "51%", homeTeamWidth: "51%" });
 
+                }else if(this.homeTeamScoreStat['Disposals'] < this.awayTeamScoreStat['Disposals'] && this.awayTeamScoreStat['Disposals'] < 200){
+                    this.modifiedStateSeq.push({id:10000,stat_name:"Disposals",stat_abbrevation:"Disposals",homeTeamColor:"#596682",awayTeamColor:"#60BA72",awayTeamWidth:"81%",homeTeamWidth:"51%"});
                 }
                 //this.modifiedStateSeq.push({id:10000,stat_name:"Disposals",stat_abbrevation:"Disposals",homeTeamColor:"#60BA72",awayTeamColor:"#596682",awayTeamWidth:"51%",homeTeamWidth:"81.48148148148148%"});
             }
@@ -3340,9 +3348,15 @@ export class InnermatchcenterPage {
                     fixedColumns: {
                         leftColumns: 1,
                         // rightColumns: 0
-                    }
+                    },
+                    "fixedHeader": {
+                      header: true,
+                  }
 
                 });
+              //   table.order.fixed( {
+              //     pre: [ 1, 'desc' ]
+              // } );
                  // Enable THEAD scroll bars
     $('.dataTables_scrollHead').css('overflow', 'scroll');
 
@@ -3451,8 +3465,6 @@ export class InnermatchcenterPage {
 
                         if ($(this).children("td").eq(0).attr('data-t') == 'away') {
                             $(this).show();
-
-
                         } else {
 
                             $(this).hide();
@@ -3525,14 +3537,16 @@ export class InnermatchcenterPage {
                 console.log("all--");
                 $(this).removeClass("activated3");
                 $(".allTeam").addClass("activated3");
-                // $("#playerStatsTable tbody tr").each(function (index,value) {
-                //       $(this).show();
-                // })
-                  var arr = $("#playerStatsTable tbody tr");
-                  arr = shuffle(arr);
-                  arr.each(function (index,value) {
+                $("#playerStatsTable tbody tr").each(function (index,value) {
                       $(this).show();
                 })
+                // $('.jd_advContainer1').removeClass('jd_rmBorder');
+                // selfarr.SortAll();
+                //   var arr = $("#playerStatsTable tbody tr");
+                //   arr = shuffle(arr);
+                //   arr.each(function (index,value) {
+                //       $(this).show();
+                // })
                   // console.log(arr);
                 }
 
@@ -3676,9 +3690,26 @@ export class InnermatchcenterPage {
     // goto individual player
     GotoIndividual (playerid){
      console.log(playerid);
-     this.navCtrl.push('PlayerstatdetailsPage',{player_id:playerid,CoachValue: true});
+     this.navCtrl.push('PlayerstatindividualPage',{player_id:playerid, fixture_id: this.fixture_id, CoachValue: true});
     }
 
+    // all sort datatable function
+    SortAll(){
+      let sortdata = ['all'];
+      this.cmnfun.showLoading('Please wait...');
+      this.ajax.postaction('get-player-score', {
+        accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+        fixtureId: this.fixture_id,
+        quaters:sortdata,
+        adv_title: 'Stats-Club'
+    }).subscribe((res) => {
+      $('#playerStatsTable').DataTable().destroy();
+        this.cmnfun.HideLoading();
+        this.getplayerscoreplayer(res);
+    }, error => {
+        // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+    })
+    }
 
 }
 

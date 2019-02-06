@@ -268,11 +268,14 @@
       <ion-row>
         <!-- home team -->
         <ion-col class="colone">
-          <p *ngFor="let hplyr of HomeGoalKickers" class="jd_home_bstplyr">{{hplyr.player_name}} {{hplyr.goal}}</p>
+          <p *ngFor="let hplyr of HomeGoalKickers" class="jd_home_bstplyr">
+            {{hplyr.player_name.split(" ").length < 3 ? (hplyr.player_name.substring(0, 1)+'. '+hplyr.player_name.split(" ")[1]) : (hplyr.player_name.substring(0, 1)+'. '+hplyr.player_name.split(" ")[2]) }} {{hplyr.goal}}
+          </p>
         </ion-col>
         <!-- away team -->
         <ion-col class="coltwo">
-          <p *ngFor="let awplyr of  AwayGoalKickers" class="jd_away_bstplyr">{{awplyr.player_name}} {{awplyr.goal}}</p>
+          <p *ngFor="let awplyr of  AwayGoalKickers" class="jd_away_bstplyr">
+            {{ awplyr.player_name.split(" ").length < 3 ? (awplyr.player_name.substring(0, 1)+'. '+awplyr.player_name.split(" ")[1]) : (awplyr.player_name.substring(0, 1)+'. '+awplyr.player_name.split(" ")[2]) }} {{awplyr.goal}}</p>
         </ion-col>
       </ion-row>
     </div>
@@ -291,11 +294,17 @@
       <ion-row>
         <!-- home team -->
         <ion-col class="colthree">
-          <p *ngFor="let bplyr of HomeBestplayers" class="jd_home_bstplyr">{{bplyr}}</p>
+          <p *ngFor="let bplyr of HomeBestplayers" class="jd_home_bstplyr">
+              {{ bplyr.split(" ").length < 3 ? (bplyr.substring(0, 1)+'. '+bplyr.split(" ")[1]) : (bplyr.substring(0, 1)+'. '+bplyr.split(" ")[2]) }}
+            <!-- {{ (bplyr.trim().length >= 18) ? (bplyr | slice:0:10)+'..' : bplyr }} -->
+          </p>
         </ion-col>
         <!-- away team -->
         <ion-col class="colfour">
-          <p *ngFor="let aplyr of AwayBestplayers" class="jd_away_bstplyr">{{aplyr}}</p>
+          <p *ngFor="let aplyr of AwayBestplayers" class="jd_away_bstplyr">
+            {{ aplyr.split(" ").length < 3 ? (aplyr.substring(0, 1)+'. '+aplyr.split(" ")[1]) : (aplyr.substring(0, 1)+'. '+aplyr.split(" ")[2]) }}
+            <!-- {{ (aplyr.trim().length >= 18) ? (aplyr | slice:0:10)+'..' : aplyr }} -->
+          </p>
         </ion-col>
       </ion-row>
     </div>
@@ -747,8 +756,8 @@
             <ion-col col-5 class="col teamCol onlyScore">
               <div class="jb-inner-img"><span class="helper"></span>
                 <img style="max-width: 90px;" src="{{path}}{{homeTeamAbbr.team_image}}" class="full-image img-storke"></div>
-              <p class="jd_t" style="margin:auto;"> {{homeTeamAbbr.team_name}}</p>
-              <h3 style="font-size: 24px !important;" class="jd-custom-scoretxt">{{newTotalHomeTeamScore}}</h3>
+              <p class="jd_t" style="margin:auto; overflow: visible !important;"> {{homeTeamAbbr.team_name}}</p>
+              <h3 style="font-size: 24px !important; padding-top: 15px;" class="jd-custom-scoretxt">{{newTotalHomeTeamScore}}</h3>
             </ion-col>
             <ion-col col-2 class="col teamCenterDiv">
               <div class="dispTable">
@@ -769,8 +778,8 @@
             <ion-col col-5 class="col teamCol onlyScore">
               <div class="jb-inner-img"><span class="helper"></span>
                 <img style="max-width: 90px;" src="{{path}}{{awayTeamAbbr.team_image}}" class="full-image img-storke"></div>
-              <p class="jd_t" style="margin:auto;">{{awayTeamAbbr.team_name}}</p>
-              <h3 style="font-size: 24px !important;" class="jd-custom-scoretxt">{{newTotalAwayTeamScore}}</h3>
+              <p class="jd_t" style="margin:auto; overflow: visible !important;">{{awayTeamAbbr.team_name}}</p>
+              <h3 style="font-size: 24px !important; padding-top: 15px;" class="jd-custom-scoretxt">{{newTotalAwayTeamScore}}</h3>
             </ion-col>
           </div>
         </li>

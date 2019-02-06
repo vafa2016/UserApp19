@@ -59,7 +59,7 @@ export class MatchcenterPage {
 
   YearList: any = [];
 
-  selectd_yr: any = '2018';
+  selectd_yr: any = '';
   constructor(private inapp: InAppBrowser,
     public plt:Platform,
     public ga:GoogleAnalytics,
@@ -309,10 +309,10 @@ export class MatchcenterPage {
 
     if (status == 'UPCOMING') {
       if ((this.serverDatee == this.sysDatee || this.serverMonth == this.sysMonth || this.serverYear == this.sysYear) && (manual_score_recording == 0 || manual_score_recording == 1)) {
-        this.navCtrl.push('InnermatchcenterPage', { details: { fixture_id: fictureId, roundNo: this.roundNo, match_status: this.matchStatus, manual_score_recording: manual_score_recording, roundName: this.roundName,awateam_id:awateamid,hometeam_id:hometeamid,competion_id:competionid } })
+        this.navCtrl.push('InnermatchcenterPage', { details: { fixture_id: fictureId, roundNo: this.roundNo, match_status: this.matchStatus, manual_score_recording: manual_score_recording, roundName: this.roundName,awateam_id:awateamid,hometeam_id:hometeamid,competion_id:competionid },year : this.selectd_yr })
         // $state.go('app.score',);
       } else if ((this.serverDatee != this.sysDatee || this.serverMonth != this.sysMonth || this.serverYear != this.sysYear) && (manual_score_recording == 1)) {
-        this.navCtrl.push('InnermatchcenterPage', { details: { fixture_id: fictureId, roundNo: this.roundNo, match_status: this.matchStatus, manual_score_recording: manual_score_recording, roundName: this.roundName ,awateam_id:awateamid,hometeam_id:hometeamid,competion_id:competionid} })
+        this.navCtrl.push('InnermatchcenterPage', { details: { fixture_id: fictureId, roundNo: this.roundNo, match_status: this.matchStatus, manual_score_recording: manual_score_recording, roundName: this.roundName ,awateam_id:awateamid,hometeam_id:hometeamid,competion_id:competionid}, year : this.selectd_yr })
         //  $state.go('app.score',{);
       } else if ((this.serverDatee != this.sysDatee || this.serverMonth != this.sysMonth || this.serverYear != this.sysYear) && (manual_score_recording == 0)) {
         //  $ionicPopup.alert({
@@ -328,14 +328,16 @@ export class MatchcenterPage {
       }
 
     } else {
-      this.navCtrl.push('InnermatchcenterPage', { details: { fixture_id: fictureId, roundNo: this.roundNo, match_status: this.matchStatus, manual_score_recording: manual_score_recording, roundName: this.roundName ,awateam_id:awateamid,hometeam_id:hometeamid,competion_id:competionid} })
+      this.navCtrl.push('InnermatchcenterPage', { details: { fixture_id: fictureId, roundNo: this.roundNo, match_status: this.matchStatus, manual_score_recording: manual_score_recording, roundName: this.roundName ,awateam_id:awateamid,hometeam_id:hometeamid,competion_id:competionid}, year : this.selectd_yr })
       //  $state.go('app.score',);
     }
 
   }
 
   ShowRound (round){
-    if(round.round == 25){
+    if(round.round == 24){
+       return round.name;
+    }else if(round.round == 25){
       return round.name;
     }else if(round.round == 38){
       return round.name;
