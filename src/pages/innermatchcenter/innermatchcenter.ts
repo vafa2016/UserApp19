@@ -3357,7 +3357,7 @@ export class InnermatchcenterPage {
                 });
             //     table.order.fixed( {
             //       pre: [ 1, 'desc' ]
-            $('.playerStatsTable tr').on('click', 'tr', function () {
+            $('.playerStatsTable').on('click', 'tr', function () {
               console.log($(this).children("td").eq(0).attr('data-t1'));
               var p =  $(this).children("td").eq(0).attr('data-t1');
               if(p != undefined){
