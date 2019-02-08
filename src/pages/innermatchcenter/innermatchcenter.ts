@@ -44,6 +44,7 @@ export class InnermatchcenterPage {
     QuaterBreakstatus:any = 0;
     BreakQuater:any = 0;
     showAd:boolean = false;
+    PaymentData: any = [];
 
     jd_active :any = '';
 
@@ -1013,210 +1014,223 @@ export class InnermatchcenterPage {
         this.deviceData.device_id = this.localdata.GetDevice();
         console.log(this.deviceData)
         this.Storage.get('UserDeviceData').then((val) => {
-            if (val) {
-                this.PurchaseData = val.devicedata;
-                console.log(this.PurchaseData)
-            }
-        });
-        // this.deviceData.device_id='AD91526F-760C-470F-AAAA-41CE65848BEF';
-        this.ajax.CheckTrialPeriod(this.deviceData).subscribe((res) => {
-            // this.ajax.postMethodct('get-server-time').subscribe((res) => {
-            this.cmnfun.HideLoading();
-            console.log(res);
-            this.type = 'stats';
-            this.statschoose = 'team';
-            if (res == 'true' && this.PurchaseData.payment_status!= 1) {
-               // condition when free trial period true and not purchased pass
-                this.Storage.get('onetimeenterdate').then((val) => {
-                    if (!val) {
-                        // this.Storage.set('onetimeenterdate', 1);
-                        let alert = this.alertCtrl.create({
-                            title: 'PREMIUM PASS REQUIRED',
-                            message: 'Start your 14 day FREE trial today.',
-                            buttons: [
-                                {
-                                    text: 'No Thanks',
-                                    handler: () => {
-                                        this.goToActionPage(this.statcheck);
-                                    }
-                                },
-                                {
-                                    text: 'OK',
-                                    handler: () => {
-                                        this.Storage.set('onetimeenterdate', 1);
-                                        this.pamentshow = 1;
-                                        this.gotostatspage();
-                                    }
-                                }
-                            ]
-                        });
-                        alert.present();
-                    }
-                    else {
-                        this.pamentshow = 1;
-                        this.gotostatspage();
-                    }
+          if (val) {
+              this.PaymentData = val.payment;
+              console.log(this.PaymentData.length);
+          }
+      });
+              this.ajax.CheckTrialPeriod(this.deviceData).subscribe((res) => {
+              this.cmnfun.HideLoading();
+                  console.log(res);
+                  this.type = 'stats';
+                  this.statschoose = 'team';
 
-                });
-            }else if(res == 'true' && this.processproduct.GetProductType(this.PurchaseData.product) == 'Premium' && this.PurchaseData.competition_id == this.details.competion_id && (this.PurchaseData.team_id != this.details.awateam_id && this.PurchaseData.team_id != this.details.hometeam_id)){
-                console.log('aaaa');
-                 // condition when free trial period true and purchased pass with premium and not the team purchased
-                this.Storage.get('1timeenterdate').then((val) => {
-                    if(!val){
-                        let alert = this.alertCtrl.create({
-                            title: 'PREMIUM PASS UPGRADE REQUIRED',
-                            message: 'Upgrade your Premium Pass for FREE for 14 days.',
-                            buttons: [
-                                {
-                                    text: 'No Thanks',
-                                    handler: () => {
-                                        this.goToActionPage(this.statcheck);
-                                    }
-                                },
-                                {
-                                    text: 'OK',
-                                    handler: () => {
-                                        this.Storage.set('1timeenterdate', 1);
-                                        this.pamentshow = 1;
-                                        this.gotostatspage();
-                                    }
-                                }
-                            ]
-                        });
-                        alert.present();
-                    }else{
-                        this.pamentshow = 1;
-                        this.gotostatspage();
-                    }
-                });
-            }else if(res == 'true' && this.processproduct.GetProductType(this.PurchaseData.product) == 'Premium Plus'){
-                this.pamentshow = 1;
-                this.gotostatspage();
-            }
-            else {
-              // trial period false condition and purchase checking conditions.
-                this.Storage.get('UserDeviceData').then((val) => {
-                    if (val) {
-                        let Details = val.devicedata;
-                        console.log(Details);
-                        console.log(val);
-                        if (val.devicedata.payment_status == 1) {
-                            let product = this.processproduct.GetProductType(Details.product);
-                            console.log(product)
-                            if (product == 'Premium') {
-                              //  user purchased premium pass and checking for the team matches the team he purchased condition.
-                                if (Details.competition_id == this.details.competion_id && (Details.team_id == this.details.awateam_id || Details.team_id == this.details.hometeam_id)) {
-                                    this.pamentshow = 1;
-                                    this.gotostatspage();
-                                }
-                                else {
-                                    let alertpopup = this.alertCtrl.create({
-
-                                        title: 'UPGRADE your PREMIUM PASS to PREMIUM PLUS today',
-                                        // cssClass: 'Upgradebutton',
-                                        buttons: [
-                                            {
-                                                text: 'MAYBE LATER',
-                                                handler: () => {
-                                                    this.ga.trackEvent("Stats - Maybe Later", "Selected", "Premium Plus", 1);
-                                                    this.goToActionPage(this.statcheck);
-                                                }
-                                            },
-                                            {
-                                                text: 'UPGRADE NOW',
-                                                handler: () => {
-                                                    this.ga.trackEvent("Stats - Upgrade Now", "Selected", "Premium Plus", 1);
-                                                    if(this.isLogin==true){
-                                                        this.navCtrl.push('LandingpagePage');
-                                                    }else{
-                                                        this.localdata.LoginState('LandingpagePage', '');
-                                                        this.navCtrl.push('LoginPage',{iap:'true'});
+                if(res == 'true' && this.PaymentData.length == 0)   // free trial period is true and not purchased any pass
+                {
+                  this.Storage.get('onetimeenterdate').then((val) => {
+                      if (!val) {
+                          let alert = this.alertCtrl.create({
+                              title: 'PREMIUM PASS REQUIRED',
+                              message: 'Start your 14 day FREE trial today.',
+                              buttons: [
+                                  {
+                                      text: 'No Thanks',
+                                      handler: () => {
+                                          this.goToActionPage(this.statcheck);
+                                      }
+                                  },
+                                  {
+                                      text: 'OK',
+                                      handler: () => {
+                                          this.Storage.set('onetimeenterdate', 1);
+                                          this.pamentshow = 1;
+                                          this.gotostatspage();
+                                      }
+                                  }
+                              ]
+                          });
+                          alert.present();
+                      }
+                      else {
+                          this.pamentshow = 1;
+                          this.gotostatspage();
+                      }
+                  });
+                }else if (res == 'true' && this.PaymentData.length > 0) // free trial true and purchased pass
+                {
+                    this.PaymentData.forEach(element => {
+                        if(this.processproduct.GetProductType(element.product_id) == 'Premium' && element.competition_id == this.details.competion_id && (element.team_id != this.details.awateam_id && element.team_id != this.details.hometeam_id))
+                        {
+                          //   free trial true and user has premium pass with team not purchased.
+                          this.Storage.get('1timeenterdate').then((val) => {
+                              if(!val){
+                                  let alert = this.alertCtrl.create({
+                                      title: 'PREMIUM PASS UPGRADE REQUIRED',
+                                      message: 'Upgrade your Premium Pass for FREE for 14 days.',
+                                      buttons: [
+                                          {
+                                              text: 'No Thanks',
+                                              handler: () => {
+                                                  this.goToActionPage(this.statcheck);
+                                              }
+                                          },
+                                          {
+                                              text: 'OK',
+                                              handler: () => {
+                                                  this.Storage.set('1timeenterdate', 1);
+                                                  this.pamentshow = 1;
+                                                  this.gotostatspage();
+                                              }
+                                          }
+                                      ]
+                                  });
+                                  alert.present();
+                              }else{
+                                  this.pamentshow = 1;
+                                  this.gotostatspage();
+                              }
+                          });
+                        } else if (this.processproduct.GetProductType(element.product_id) == 'Premium' && element.competition_id == this.details.competion_id && (element.team_id == this.details.awateam_id || element.team_id == this.details.hometeam_id))
+                        {
+                          //    trial period true and premium pass for team purchased.
+                          this.pamentshow = 1;
+                          this.gotostatspage();
+                        }
+                        else if (this.processproduct.GetProductType(element.product_id) == 'Premium Plus' && element.competition_id == this.details.competion_id )
+                        {
+                          //  free trial true and user has premium plus pass, if competitions match then show game.
+                          this.pamentshow = 1;
+                          this.gotostatspage();
+                        } else if (this.processproduct.GetProductType(element.product_id) == 'VAFA_2019')
+                        {
+                          //  free trial true and user has all game pass.
+                          this.pamentshow = 1;
+                          this.gotostatspage();
+                        }
+                        else if (this.processproduct.GetProductType(element.product_id) == 'Single Game Pass' && element.fixture_id == this.fixture_id){
+                          //   free trial true and user has a single game pass.
+                          this.pamentshow = 1;
+                          this.gotostatspage();
+                        }
+                    });
+                }
+                else  // free trial period false and checking payment done or not.
+                {
+                  this.Storage.get('UserDeviceData').then((val) => {
+                      if (val) {
+                         let paymentData = val.payment;
+                         if(paymentData.length > 0){
+                          console.log(paymentData)
+                          // if user has purchased premium pass.
+                             paymentData.forEach(element => {
+                               console.log(element);
+                              if(this.processproduct.GetProductType(element.product_id) == 'Premium' && element.competition_id == this.details.competion_id && (element.team_id != this.details.awateam_id && element.team_id != this.details.hometeam_id))
+                              {
+                                //   free trial false and user has premium pass with team not purchased.
+                                this.Storage.get('1timeenterdate').then((val) => {
+                                    if(!val){
+                                        let alert = this.alertCtrl.create({
+                                            title: 'PREMIUM PASS UPGRADE REQUIRED',
+                                            message: 'Upgrade your Premium Pass for FREE for 14 days.',
+                                            buttons: [
+                                                {
+                                                    text: 'No Thanks',
+                                                    handler: () => {
+                                                        this.goToActionPage(this.statcheck);
+                                                    }
+                                                },
+                                                {
+                                                    text: 'OK',
+                                                    handler: () => {
+                                                        this.Storage.set('1timeenterdate', 1);
+                                                        this.pamentshow = 1;
+                                                        this.gotostatspage();
                                                     }
                                                 }
-                                            }
-                                            // {
-                                            //     text: 'MORE INFORMATION',
-                                            //     handler: () => {
-                                            //         let options: StreamingVideoOptions = {
-                                            //             successCallback: () => { console.log('Finished Video') },
-                                            //             errorCallback: (e) => { console.log('Error: ', e) },
-                                            //             orientation: 'portrait'
-                                            //         };
-                                            //         // http://www.sample-videos.com/
-                                            //         this.streamingMedia.playVideo('http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_30mb.mp4', options);
-                                            //         this.goToActionPage(this.statcheck);
-                                            //     }
-                                            // }
-                                        ]
-                                    });
-                                    alertpopup.present();
-                                }
-                            }
-                            else {
+                                            ]
+                                        });
+                                        // alert.present();
+                                    }else{
+                                        this.pamentshow = 1;
+                                        this.gotostatspage();
+                                    }
+                                });
+                              } else if ( this.processproduct.GetProductType(element.product_id) == 'Premium' && element.competition_id == this.details.competion_id && (element.team_id == this.details.awateam_id || element.team_id == this.details.hometeam_id))
+                              {
+                                //    trial period false and premium pass for team purchased.
                                 this.pamentshow = 1;
                                 this.gotostatspage();
-                            }
-                        }
-                        else {
-                          // condition user not purchased pass.
+                              }
+                              else if (this.processproduct.GetProductType(element.product_id) == 'Premium Plus' && element.competition_id == this.details.competion_id )
+                              {
+                                //  free trial false and user has premium plus pass, if competitions match then show game.
+                                this.pamentshow = 1;
+                                this.gotostatspage();
+                              } else if (this.processproduct.GetProductType(element.product_id) == 'VAFA_2019')
+                              {
+                                //  free trial false and user has all game pass.
+                                this.pamentshow = 1;
+                                this.gotostatspage();
+                              }
+                              else if (this.processproduct.GetProductType(element.product_id) == 'Single Game Pass' && element.fixture_id == this.fixture_id){
+                                //   free trial false and user has a single game pass.
+                                this.pamentshow = 1;
+                                this.gotostatspage();
+                              }
 
-                            // let modal = this.modalCtrl.create('EditUserModelPage');
-                            // let me = this;
-                            // modal.onDidDismiss(data => {
-                            let alertpop = this.alertCtrl.create({
-                                title: 'PREMIUM PASS REQUIRED',
-                                message: 'Upgrade your experience today.',
-                                // cssClass: 'Upgradebutton',
-                                buttons: [
-                                    {
-                                        text: 'MAYBE LATER',
-                                        handler: () => {
-                                            this.ga.trackEvent("Stats - Maybe Later", "Selected", "Premium", 1);
-                                            this.goToActionPage(this.statcheck);
-                                        }
-                                    },
-                                    {
-                                        text: "Let's Do It",
-                                        handler: () => {
-                                            this.ga.trackEvent("Stats - Upgrade Now", "Selected", "Premium", 1);
-                                            if(this.isLogin==true){
-                                                this.navCtrl.push('LandingpagePage');
-                                            }else{
-                                                this.localdata.LoginState('LandingpagePage', '');
-                                                this.navCtrl.push('LoginPage',{iap:'true'});
-                                            }
-                                        }
-                                    },
-                                    // {
-                                    //     text: 'MORE INFORMATION',
-                                    //     handler: () => {
-                                    //         let options: StreamingVideoOptions = {
-                                    //             successCallback: () => { console.log('Finished Video') },
-                                    //             errorCallback: (e) => { console.log('Error: ', e) },
-                                    //             orientation: 'portrait'
-                                    //         };
-                                    //         // http://www.sample-videos.com/
-                                    //         this.streamingMedia.playVideo('http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_30mb.mp4', options);
-                                    //         this.goToActionPage(this.statcheck);
-                                    //     }
-                                    // }
-                                ]
-                            });
-                            // alertpop.present();
-                        }
-                    }
-                });
+                             });
+                         }
+                         else // if user has not purchased any premium pass.
+                         {
+                           let alertpop = this.alertCtrl.create({
+                              title: 'PREMIUM PASS REQUIRED',
+                              message: 'Upgrade your experience today.',
+                              // cssClass: 'Upgradebutton',
+                              buttons: [
+                                  {
+                                      text: 'MAYBE LATER',
+                                      handler: () => {
+                                          this.ga.trackEvent("Stats - Maybe Later", "Selected", "Premium", 1);
+                                          this.goToActionPage(this.statcheck);
+                                      }
+                                  },
+                                  {
+                                      text: "Let's Do It",
+                                      handler: () => {
+                                          this.ga.trackEvent("Stats - Upgrade Now", "Selected", "Premium", 1);
+                                          if(this.isLogin==true){
+                                              this.navCtrl.push('LandingpagePage');
+                                          }else{
+                                              this.localdata.LoginState('LandingpagePage', '');
+                                              this.navCtrl.push('LoginPage',{iap:'true'});
+                                          }
+                                      }
+                                  },
+                                  // {
+                                  //     text: 'MORE INFORMATION',
+                                  //     handler: () => {
+                                  //         let options: StreamingVideoOptions = {
+                                  //             successCallback: () => { console.log('Finished Video') },
+                                  //             errorCallback: (e) => { console.log('Error: ', e) },
+                                  //             orientation: 'portrait'
+                                  //         };
+                                  //         // http://www.sample-videos.com/
+                                  //         this.streamingMedia.playVideo('http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_30mb.mp4', options);
+                                  //         this.goToActionPage(this.statcheck);
+                                  //     }
+                                  // }
+                              ]
+                          });
+                          // alertpop.present();
+                         }
+                      }
+                  });
 
-            }
-            // }
-            // ]
-            // });
-            // alert.present();
-            // }
-        }, error => {
-            // this.cmnfun.showToast('Some thing Unexpected happen please try again');
-        })
+                }
 
+              }, error => {
+                  // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+              })
         // }
         // else {
         //     this.events.publish('gotostats:changed', 'goto');
@@ -2847,6 +2861,7 @@ export class InnermatchcenterPage {
 
         this.homeTeamScoreStat['B'] = this.homeTeamScoreStat['B'] + this.homeTeamScoreStat['RB'];
         this.awayTeamScoreStat['B'] = this.awayTeamScoreStat['B'] + this.awayTeamScoreStat['RB'];
+
 
 
 

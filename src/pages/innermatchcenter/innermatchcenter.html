@@ -408,8 +408,8 @@
                 <ion-col col-5 class="col teamCol onlyScore">
                   <div class="jb-inner-img"><span class="helper"></span>
                     <img style="max-width: 90px;" src="{{path}}{{homeTeamAbbr.team_image}}" class="full-image img-storke"></div>
-                  <p class="jd_t" style="margin:auto;"> {{homeTeamAbbr.team_name}}</p>
-                  <h3 style="font-size: 24px !important;" class="jd-custom-scoretxt">{{newTotalHomeTeamScore}}</h3>
+                  <p class="jd_t"  style="margin:auto; overflow: visible !important;"> {{homeTeamAbbr.team_name}}</p>
+                  <h3 style="font-size: 24px !important; padding-top: 15px;" class="jd-custom-scoretxt">{{newTotalHomeTeamScore}}</h3>
                 </ion-col>
                 <ion-col col-2 class="col teamCenterDiv">
                   <div class="dispTable">
@@ -423,16 +423,16 @@
                 <ion-col col-5 class="col teamCol onlyScore">
                   <div class="jb-inner-img"><span class="helper"></span>
                     <img style="max-width: 90px;" src="{{path}}{{awayTeamAbbr.team_image}}" class="full-image img-storke"></div>
-                  <p class="jd_t" style="margin:auto;">{{awayTeamAbbr.team_name}}</p>
-                  <h3 style="font-size: 24px !important;" class="jd-custom-scoretxt">{{newTotalAwayTeamScore}}</h3>
+                    <p class="jd_t" style="margin:auto; overflow: visible !important;">{{awayTeamAbbr.team_name}}</p>
+                    <h3 style="font-size: 24px !important; padding-top: 15px;" class="jd-custom-scoretxt">{{newTotalAwayTeamScore}}</h3>
                 </ion-col>
               </div>
         </li>
       </ul>
-      <div class="advContainer">
+      <div class="advContainer3">
         <img src="{{path}}{{adv[0].ad_image}}" (click)="goToAddSite(adv[0].ad_url);">
       </div>
-      <div style="padding-top: 60px;">
+      <div style="padding-top: 30px;">
       <div *ngFor="let value of modifiedStateSeq;let key=index;">
         <div *ngIf="value.stat_abbrevation!='RB'">
           <div class="">
@@ -559,7 +559,7 @@
         </thead>
         <tbody class=''>
           <tr *ngFor="let obj of homeTeamPlayers1;let key=index" id="jg-row" (click)="clickhunk()">
-            <td [attr.data-t]="obj.type" style="text-align:left !important;" (click)="clickhunk()" >
+            <td [attr.data-t]="obj.type" [attr.data-t1]="obj.player_id" style="text-align:left !important;" (click)="clickhunk()" >
               <div class="ladderTableLeftSide" *ngIf="obj.type=='home'" (click)="clickhunk()">
                 <img src="{{path}}{{baseUrl}}{{homeTeamImages[0].image_value}}" class="laderTeamIcon" (click)="clickhunk()" />
                 <div class="Player_number" (click)="clickhunk()">
