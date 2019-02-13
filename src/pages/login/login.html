@@ -18,16 +18,16 @@
 
 <ion-content class="jb-background">
 	<div class="SignUpForm">
-			
+
 		<div class="SignUpFormTable-Cell">
 			<div class="OnlyForSignUpFormContainer">
 				<div class="img-set">
-					<img class="imgSize" src="assets/imgs/loginLogo.png">
+					<img class="imgSize" src="assets/imgs/LoginLogo.png">
 				</div>
 				<div class="text-container-login">
 					<p>Continue with</p>
 				</div>
-				
+
 					<div class="row buttonContainerLogin" *ngIf="LoginUser!=true">
 						<div class="col">
 							<div class="ink ForgotPassword" (click)="CreateAccount();">
@@ -35,11 +35,11 @@
 							</div>
 						</div>
 					</div>
-				
+
 				<div class="borderOfor" *ngIf="LoginUser!=true">
 					<span>OR</span>
-				</div> 
-				 
+				</div>
+
 					 <div style="margin-top: 40px;" class="row buttonContainerLogin" *ngIf="LoginUser!=true">
 						<div class="col">
 							<div class="ink ForgotPassword" (click)="Login()">
@@ -47,8 +47,8 @@
 							</div>
 						</div>
 					</div>
-				  
-				
+
+
 				<!-- <div class="row buttonContainerLogin" *ngIf="LoginUser==true">
 					<div class="col">
 						<div class="ink facebook"  (click)="temp()">

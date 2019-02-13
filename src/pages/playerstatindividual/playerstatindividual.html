@@ -79,7 +79,7 @@
       <!--  -->
 
     <div *ngFor="let value of playerStatDetailsData; let i = index" class="jd_hitdiv">
-      <ion-row class="text-center MatchFormContainer adjstHeight jd_scorediv">
+      <ion-row *ngIf="value.stat_name !='Rush Behinds'"  class="text-center MatchFormContainer adjstHeight jd_scorediv">
         <ion-col>
           <h4 *ngIf="value.stat_name != 'Behinds'" class="jd_h4" style="font-family: Gotham-Medium;font-size: 26px; color:#04235c;margin-left: -18px; margin-top: 3px;">
              {{ value['team_count'] }}

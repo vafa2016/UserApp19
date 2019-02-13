@@ -34,7 +34,7 @@ export class InnermatchcenterPage {
     @ViewChild(Content) content: Content;
 
 
-    ShowCoach: boolean = true;
+    ShowCoach: boolean = false;
     CoachQ: any = ['all'];
 
     AwayBestplayers :any = [];
@@ -3749,7 +3749,7 @@ export class InnermatchcenterPage {
     // goto individual player
     GotoIndividual (playerid){
      console.log(playerid);
-     this.navCtrl.push('PlayerstatindividualPage',{player_id:playerid, fixture_id: this.fixture_id, CoachValue: true});
+     this.navCtrl.push('PlayerstatindividualPage',{player_id:playerid, fixture_id: this.fixture_id, CoachValue: false});
     }
 
     // all sort datatable function

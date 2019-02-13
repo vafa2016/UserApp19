@@ -1,5 +1,5 @@
 page-login {
-    
+
 /*login screen css */
 background-image: url("../assets/imgs/landingbackground.png");
 // background-repeat: no-repeat;
@@ -48,14 +48,14 @@ background-image: url("../assets/imgs/landingbackground.png");
 .borderOfor
 {
 	color: #fff;
-    font-family: Gotham-Medium;    
+    font-family: Gotham-Medium;
     margin: 0 auto;
     opacity: 0.4;
     position: relative;
-    text-align: center;    
+    text-align: center;
     width: 17%;
     top: 22px;
-   
+
 }
 
 
@@ -63,7 +63,7 @@ background-image: url("../assets/imgs/landingbackground.png");
 .borderOfor::after {
 	border: 1px solid #fff;
     bottom: 8px;
-    content: "";    
+    content: "";
     opacity: 0.5;
     position: absolute;
     right: -52px;
@@ -102,8 +102,8 @@ background-image: url("../assets/imgs/landingbackground.png");
 
 .imgSize
 {
-	height: 84px;
-    width:84px;	
+	height: 90px;
+    width:auto;
 }
 
 .buttonContainerLogin
@@ -130,7 +130,7 @@ background-image: url("../assets/imgs/landingbackground.png");
 .fromContainer
 {
 	padding:35px 0;
-	
+
 }
 .text-container-login p
 {
@@ -138,7 +138,7 @@ background-image: url("../assets/imgs/landingbackground.png");
     font-family: Gotham-Medium;
     font-size: 16px;
     margin-top: 25px;
-	
+
 }
 
 .text-container-login.or p :after
@@ -158,7 +158,7 @@ background-image: url("../assets/imgs/landingbackground.png");
 	width:100%;
 	max-width:300px;
 	height:auto;
-	background-color:transparent;	
+	background-color:transparent;
 	margin:0 auto;
 	text-align:center;
 	vertical-align:middle;
@@ -175,7 +175,7 @@ background-image: url("../assets/imgs/landingbackground.png");
     padding-top: 42px;
 }
 
-.fromlist .item-input .setImg 
+.fromlist .item-input .setImg
 {
     left: 23px;
     position: absolute;
@@ -189,7 +189,7 @@ background-image: url("../assets/imgs/landingbackground.png");
     position: absolute;
     top: 7px;
     width: 19px
-	
+
 }
 
 .back-button.show-back-button {
@@ -199,7 +199,7 @@ background-image: url("../assets/imgs/landingbackground.png");
 
 
 .bar.transparentBar {
-    background-color: transparent;    
+    background-color: transparent;
 }
 
 .transparent-Title
@@ -217,7 +217,7 @@ background-image: url("../assets/imgs/landingbackground.png");
     height: 50px;
     padding: 5px 16px;
 	margin-top: 50px;
-    
+
 }
 
 .buttonContainerLogin .col > div.email {
@@ -231,8 +231,8 @@ background-image: url("../assets/imgs/landingbackground.png");
     color: #000;
     border-radius: 7px;
 
-    
-   
+
+
 }
 
 
@@ -240,14 +240,14 @@ background-image: url("../assets/imgs/landingbackground.png");
     background-color: #18a0a1;
     color: #fff;
 	max-height: 50px;
-    padding: 14px 0; 
-    text-align: center; 
-    width: 100%;	
+    padding: 14px 0;
+    text-align: center;
+    width: 100%;
 }
 
 .buttonContainerLogin .col > div.ForgotPassword {
     // background-color: #04235C;
-    
+
     // color: #fff;
     // max-height: 50px;
     // padding: 14px 0;
@@ -315,8 +315,8 @@ background-image: url("../assets/imgs/landingbackground.png");
 
 .input-container img
 {
-	
-    width: 20px;	
+
+    width: 20px;
 }
 
 .input-container .setImgForUsername
@@ -338,19 +338,19 @@ background-image: url("../assets/imgs/landingbackground.png");
 	background-color: transparent;
     box-shadow: none;
     color: #fff;
-    font-family: Gotham-Medium; 
-    padding-left: 43px;   
+    font-family: Gotham-Medium;
+    padding-left: 43px;
     width: 75%;
-	line-height:40px;	
-	
+	line-height:40px;
+
 }
 
 
 .border-text-left
-{	   
-    position: relative;    
+{
+    position: relative;
     width: 16%;
-    
+
 }
 .loginBg
 {
@@ -366,7 +366,7 @@ background-image: url("../assets/imgs/landingbackground.png");
 	top:50px;
 	left:50px;
 	border:2px solid red;
-	
+
 }
 .item-input-padding
 {
