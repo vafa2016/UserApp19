@@ -17,7 +17,7 @@ page-landingpage {
         background-color: #0c2853 !important;
     border: 1px solid #0070c0 !important;
     }
-   
+
     .colorwhite
     {
         background: white;
@@ -55,14 +55,17 @@ page-landingpage {
         .firstcard
         {
             background: #00B0F0;
+            // height: 100px;
         }
          .secondcard
         {
             background: #0070C0;
+            // height: 100px;
         }
          .thirdcard
         {
             background: #2F5597;
+            // height: 100px;
         }
     button{
             border-radius: 5px;
@@ -87,7 +90,7 @@ page-landingpage {
         padding: 5px;
         width: 165px;
         margin: auto;
-        position:relative; 
+        position:relative;
         p{
             font-size: 15px;
             color: white;
@@ -102,7 +105,7 @@ page-landingpage {
         padding: 5px;
         width: 100px;
         margin: auto;
-        position:relative; 
+        position:relative;
         div
         {
             width: 15px;
@@ -111,7 +114,7 @@ page-landingpage {
             border-radius: 50%;
             position: absolute;
         }
-        
+
         .jb-first-scroll
         {
           left:10px
@@ -128,7 +131,7 @@ page-landingpage {
     .jb-content-text
     {
          text-align: center;
-         
+
          .jb-first-p{
             font-size:16px;
             color: white;
@@ -149,7 +152,7 @@ page-landingpage {
             color: white;
                 margin: 0px;
             font-family: 'Gotham-Medium';
-              
+
         }
         .jb-second-p1{
             font-size: 13px !important;
@@ -162,14 +165,14 @@ page-landingpage {
                 font-family: 'gotham-Medium';
             }
         }
-        
+
          .jb-second-p2{
                font-size: 15px !important;
                 color: white;
                 margin: 5px;
                 width: 90%;
                 margin: 9px auto;
-                font-family: 'Gotham-Book';
+                font-family: 'Gotham-Light';
             span{
                 font-family: 'gotham-Medium';
             }
@@ -184,7 +187,7 @@ page-landingpage {
             border-radius: 5px;
             background: #00B0F0;
         }
-        
+
     }
     .jb-button-bu
     {
@@ -200,7 +203,7 @@ page-landingpage {
             background-color: #92d050;
             color: white;
         }
-        
+
     }
     .jb-tick-icon
     {
@@ -226,13 +229,13 @@ page-landingpage {
      }
    }
     h2,h3
-    { 
+    {
        color: white;
     }
     .jb-button
     {
        font-size: 13px !important;
-       
+
     }
     .jb-button-color
     {
@@ -269,7 +272,7 @@ page-landingpage {
     .jb-main-padding{
          padding-top: 15px;
          padding-bottom: 70px;
-        
+
     }
     .jb-skip-button{
         position: absolute;
@@ -287,7 +290,7 @@ page-landingpage {
         }
     }
     sup {
-    top: -0.2em !important;
+    top: -0.3em !important;
         font-family: 'Gotham-Medium';
 }
     .jb-text{

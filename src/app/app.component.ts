@@ -29,7 +29,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   deviceData: any = {
-    deviceid: 'AD91526F-760C-470F-AAAA-41CE65848BEF' //EF //8B
+    deviceid: 'AD91526F-760C-470F-AAAA-41CE65848BEFp' //EF //8B
     //paid-ac: '437C1EC7-31AB-4676-850B-957E45C92AD56'
     //paid-ac:'AD91526F-760C-470F-AAAv-957E45C92AD56'
     //unpaid-ac: 'AD91526F-760C-470F-AAAA-41CE65848BEF1MBP'
@@ -89,9 +89,9 @@ export class MyApp {
       { title: 'Ladder', component: LadderPage, icon: 'assets/imgs/menuIcon/LadderIcon.png', itemseleted: 'notseleted' },
       { title: 'Match Report', component: MatchreportPage, icon: 'assets/imgs/menuIcon/MatchReportIcon.png', itemseleted: 'notseleted' },
       { title: 'Goal Kickers', component: GoalkickersPage, icon: 'assets/imgs/menuIcon/GoalKickersIcon.png', itemseleted: 'notseleted' },
-      { title: 'Player Stats', component: 'PlayerStatPage', icon: 'assets/imgs/menuIcon/PlayerStatsIconWhiteBg.png', itemseleted: 'notseleted' },
-      { title: 'Team Stats', component: TeamstatPage, icon: 'assets/imgs/menuIcon/TeamStatsIcon.png', itemseleted: 'notseleted' },
-      { title: '1 on 1', component: 'OnetoonePage', icon: 'assets/imgs/menuIcon/1on1Icon.png', itemseleted: 'notseleted' }
+      // { title: 'Player Stats', component: 'PlayerStatPage', icon: 'assets/imgs/menuIcon/PlayerStatsIconWhiteBg.png', itemseleted: 'notseleted' },
+      // { title: 'Team Stats', component: TeamstatPage, icon: 'assets/imgs/menuIcon/TeamStatsIcon.png', itemseleted: 'notseleted' },
+      // { title: '1 on 1', component: 'OnetoonePage', icon: 'assets/imgs/menuIcon/1on1Icon.png', itemseleted: 'notseleted' }
     ];
     this.initializeApp();
   }

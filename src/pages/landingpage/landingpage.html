@@ -37,7 +37,7 @@
           <ion-icon class="jb-tick-icon" *ngIf="selectedteam !=''" name="checkmark"></ion-icon>
         </button></div>
     <p *ngIf="selectedteam =='' && selectedcompetition =='' " class="jb-text">We'd like to know so we can customise your experience to your favourite competition & team</p>
-        
+
   <!-- <div class="jb-button-main" *ngIf="selectedteam =='' || selectedcompetition ==''">
     <button ion-button>
         <span>SKIP THIS STEP</span><ion-icon class="jb-tick1-icon"  name="ios-arrow-forward"></ion-icon></button></div> -->
@@ -85,21 +85,23 @@
         <h3>LIVE Player Stats</h3>
       </ion-item>
     </ion-list> -->
-   
+
   </div>
   <div class="jb-content-text" *ngIf="pamentshow">
+    <!-- year 2018 premium pass products -->
+    <div class="2018"  *ngIf="Matchyear == '2018'">
     <p class="jb-first-p1">UPGRADE YOUR EXPERIENCE</p>
     <p class="jb-second-p2">Get a <span>PREMIUM PASS*</span> for less than $2 per game</p>
-    <ion-card *ngIf="paymentname!='Premium'" class="firstcard jb-card" (click)="paymentBuy(1)">
+    <ion-card *ngIf='MyProducts.indexOf("Premium") == -1 && MyProducts.indexOf("Premium Plus") == -1' class="firstcard jb-card" (click)="paymentBuy(1)">
       <ion-card-header class="jb-card-header">
-        PREMIUM 
+        PREMIUM
         <P> $27<sup>.99 per season </sup></P>
       </ion-card-header>
       <ion-card-content class="jb-card-content">
         SUITABLE FOR PEOPLE WHO JUST WANT TO FOLLOW ONE TEAM
       </ion-card-content>
     </ion-card >
-     <ion-card  class="secondcard jb-card" (click)="paymentBuy(2)">
+     <ion-card *ngIf='MyProducts.indexOf("Premium Plus") == -1' class="secondcard jb-card" (click)="paymentBuy(2)">
       <ion-card-header class="jb-card-header">
        PREMIUM PLUS+
         <P> $49<sup>.99 per season </sup></P>
@@ -108,22 +110,46 @@
        IDEAL FOR PEOPLE WHO WANT TO FOLLOW A WHOLE COMPETITION
       </ion-card-content>
     </ion-card>
-    <!-- <ion-card  class="secondcard jb-card" (click)="DemoVideo()">
-      <ion-card-header class="jb-card-header">
-        MORE INFORMATION
-      </ion-card-header>
-    </ion-card> -->
+  </div>
+  <!--  -->
+  <!-- year 2019 premium pass products -->
+  <div class="2019"  *ngIf="Matchyear == '2019'">
+      <p class="jb-first-p1">UPGRADE YOUR EXPERIENCE</p>
+      <p class="jb-second-p2">with a <span>PREMIUM PASS</span> today</p>
+      <ion-card *ngIf='MyProducts.indexOf("Premium 2019") == -1 && MyProducts.indexOf("Premium Plus 2019") == -1 && MyProducts.indexOf("VAFA PASS") == -1' class="firstcard jb-card" (click)="paymentBuy(3)">
+        <ion-card-header class="jb-card-header">
+          TEAM PASS
+          <P> $29<sup>.99 per season </sup></P>
+        </ion-card-header>
+        <ion-card-content class="jb-card-content">
+         OWN YOUR TEAMS STATS
+        </ion-card-content>
+      </ion-card >
+
+       <ion-card *ngIf='MyProducts.indexOf("Premium Plus 2019") == -1 && MyProducts.indexOf("VAFA PASS") == -1'  class="secondcard jb-card" (click)="paymentBuy(4)">
+        <ion-card-header class="jb-card-header">
+        COMPETITION PASS
+          <P> $49<sup>.99 per season </sup></P>
+        </ion-card-header>
+        <ion-card-content class="jb-card-content">
+         OWN A COMPETITIONS STATS
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card  class="thirdcard jb-card" (click)="paymentBuy(5)">
+          <ion-card-header class="jb-card-header">
+         VAFA PASS
+            <P> $89<sup>.99 per season </sup></P>
+          </ion-card-header>
+          <ion-card-content class="jb-card-content">
+           OWN ALL THE VAFA STATS
+          </ion-card-content>
+        </ion-card>
+    </div>
+  <!--  -->
     <button ion-button block class="jd-restore" (click)="Restore()">RESTORE APP STORE PURCHASE</button>
-     <!-- <ion-card class="thirdcard jb-card" (click)="gotoaccount()">
-      <ion-card-header class="jb-card-header">
-        PREMIUM PRO
-        <P> $99<sup>.99 per season </sup></P>
-      </ion-card-header>
-      <ion-card-content class="jb-card-content">
-       PERFECT FOR PEOPLE WHO FOLLOW MORE THAN ONE COMPETITION AND WANT IT ALL
-      </ion-card-content>
-    </ion-card> -->
-     <p class="jb-second-p2">*PREMIUM PASS includes Team & Player statistics for games covered live by Complete Sports Management</p>
+
+     <p class="jb-second-p2">Premium Pass includes Team & Player statistics for games covered live by Complete Sports Management</p>
   </div>
      </div>
 

@@ -378,16 +378,24 @@ export class NewaccountPage {
       } else if (this.MyTeam.product == 'Premium') {
         this.ga.trackEvent("My Account - Premium Pass", "Selected", "Premium Pass - Purchase", 1);
         this.nav.setRoot('LandingpagePage');
+      } else if (this.MyTeam.product == 'Premium 2019') {
+        this.ga.trackEvent("My Account - Premium Pass", "Selected", "Premium Pass - Purchase", 1);
+        this.nav.setRoot('LandingpagePage');
       } else if (this.MyTeam.product == 'Premium Plus') {
         this.ga.trackEvent("My Account - Premium Pass", "Selected", "Premium Pass - Purchase", 1);
+      } else if(this.MyTeam.product == 'Premium Plus 2019'){
+        this.nav.setRoot('LandingpagePage');
+      } else if (this.MyTeam.product == 'VAFA PASS'){
         let alert = this.alertCtrl.create({
           subTitle: 'CONGRATULATIONS\nyou have the top\nPREMIUM PASS',
           cssClass: 'CusttoastCtrl',
           buttons: ['Dismiss']
         });
         alert.present();
+      } else if (this.MyTeam.product == 'GAME PASS'){
+        this.nav.setRoot('LandingpagePage');
       }
-    } else if (this.MyTeam.product == 'Premium' || this.MyTeam.product == '' && this.isLogin == false) {
+    } else if (this.MyTeam.product != 'VAFA PASS' || this.MyTeam.product == '' && this.isLogin == false) {
       this.localData.LoginState('LandingpagePage', '');
       this.navCtrl.push('LoginPage', { iap: 'true' });
     }

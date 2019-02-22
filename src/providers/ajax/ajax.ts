@@ -98,6 +98,30 @@ export class AjaxProvider {
       .catch(error => error)
   }
 
+  // get all teams by year
+  GetMatchTeam(params) {
+    console.log(params)
+   var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
+   return this.http
+     .post('http://54.244.98.247/score/custom/get-all-teams-by-year',
+     params, config)
+     .map(res => res)
+     .catch(error => error)
+ }
+  //
+
+  // get all competition year wise api
+  GetMatchComp(category, params) {
+    console.log(category);
+    var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
+    return this.http
+      .post('http://54.244.98.247/score/default/' + category,
+      params, config)
+      .map(res => res)
+      .catch(error => error)
+  }
+  // postmethodct
+
    postMethodct(category) {
     console.log(category);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
@@ -112,7 +136,8 @@ export class AjaxProvider {
      console.log(params)
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-      .post('http://54.244.98.247/score/custom/save-payment-email',
+      // .post('http://54.244.98.247/score/custom/save-payment-email',
+      .post('http://54.244.98.247/score/custom/save-payment-email-all',
       params, config)
       .map(res => res)
       .catch(error => error)

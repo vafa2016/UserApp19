@@ -16,6 +16,8 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 export class CompetitionTeamPage {
   list:any={};
   type:any;
+  // path : any = 'http://vafalive.com.au/';
+  path: any = 'http://54.244.98.247';
   constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl:ViewController) {
     this.list=navParams.get('list');
     this.type=navParams.get('type');

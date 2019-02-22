@@ -1,14 +1,16 @@
+import { LocalDataProvider } from './../../providers/local-data/local-data';
 import { Component, ViewChild, NgZone } from '@angular/core';
-import { IonicPage, NavController, NavParams, Content, AlertController, Platform, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Content, AlertController,ViewController, Platform, ModalController, PopoverController } from 'ionic-angular';
 import { AjaxProvider } from '../../providers/ajax/ajax';
 import { CommomfunctionProvider } from '../../providers/commomfunction/commomfunction';
 import { Events } from 'ionic-angular';
 import { KeysPipe } from '../../pipes/keys/keys';
 import { Storage } from '@ionic/storage';
+import { HomePage } from '../../pages/home/home';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
-import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { ProductListProvider } from '../../providers/product-list/product-list';
+import { InAppPurchase } from '@ionic-native/in-app-purchase';
 import { StreamingMedia, StreamingVideoOptions, StreamingAudioOptions } from '@ionic-native/streaming-media';
 import 'datatables.net';
 import 'datatables.net-fixedcolumns';
@@ -96,14 +98,15 @@ export class InnermatchcenterPage {
 
     PurchaseData:any=[];
 
-    constructor(public platform: Platform, public processproduct: ProductListProvider, public ga: GoogleAnalytics, public localdata: LocalDataProvider,
+    CompMainID : any;
+
+    constructor(public popover: PopoverController,  private iap: InAppPurchase, public platform: Platform, public processproduct: ProductListProvider, public ga: GoogleAnalytics, public localdata: LocalDataProvider,
         private alertCtrl: AlertController, private streamingMedia: StreamingMedia, private modalCtrl: ModalController, private zone: NgZone, private inapp: InAppBrowser, public Storage: Storage, public ajax: AjaxProvider, public events: Events, public cmnfun: CommomfunctionProvider, public navCtrl: NavController, public navParams: NavParams) {
-
-
         this.details = navParams.get('details');
         this.deviceData.year = navParams.get('year');
+        this.selectd_yr = navParams.get('year');
         console.log(this.details);
-
+        console.log(this.processproduct.getMatchcenterCompId());
         this.platform.ready().then(() => {
             this.ga.startTrackerWithId('UA-118996199-1')
                 .then(() => {
@@ -993,8 +996,8 @@ export class InnermatchcenterPage {
     }
     goTostats() {
          //test
-         this.pamentshow = 1;
-         this.gotostatspage();
+        //  this.pamentshow = 1;
+        //  this.gotostatspage();
         //
         this.platform.ready().then(() => {
             this.ga.startTrackerWithId('UA-118996199-1')
@@ -1058,154 +1061,264 @@ export class InnermatchcenterPage {
                   });
                 }else if (res == 'true' && this.PaymentData.length > 0) // free trial true and purchased pass
                 {
+                  var TopUser = 0;
                     this.PaymentData.forEach(element => {
-                        if(this.processproduct.GetProductType(element.product_id) == 'Premium' && element.competition_id == this.details.competion_id && (element.team_id != this.details.awateam_id && element.team_id != this.details.hometeam_id))
-                        {
-                          //   free trial true and user has premium pass with team not purchased.
-                          this.Storage.get('1timeenterdate').then((val) => {
-                              if(!val){
-                                  let alert = this.alertCtrl.create({
-                                      title: 'PREMIUM PASS UPGRADE REQUIRED',
-                                      message: 'Upgrade your Premium Pass for FREE for 14 days.',
-                                      buttons: [
-                                          {
-                                              text: 'No Thanks',
-                                              handler: () => {
-                                                  this.goToActionPage(this.statcheck);
-                                              }
-                                          },
-                                          {
-                                              text: 'OK',
-                                              handler: () => {
-                                                  this.Storage.set('1timeenterdate', 1);
-                                                  this.pamentshow = 1;
-                                                  this.gotostatspage();
-                                              }
-                                          }
-                                      ]
-                                  });
-                                  alert.present();
-                              }else{
-                                  this.pamentshow = 1;
-                                  this.gotostatspage();
+                      if (element.product_id == 'vafa_pass')
+                      {
+                          TopUser = 1;
+                        //  free trial true and user has all game pass.
+                        this.pamentshow = 1;
+                        this.gotostatspage();
+                      } else if (this.selectd_yr =='2018' && this.processproduct.GetProductType(element.product_id) == 'Premium Plus' && element.competition_id == this.details.competion_id )
+                      {
+                          TopUser = 2;
+                      //  free trial false and user has premium plus pass, if competitions match then show game.
+                      this.pamentshow = 1;
+                      this.gotostatspage();
+                      } else if (TopUser == 0 && this.selectd_yr == '2018' && this.processproduct.GetProductType(element.product_id) == 'Premium' && element.competition_id == this.details.competion_id && (element.team_id == this.details.awateam_id || element.team_id == this.details.hometeam_id))
+                      {
+                      // trial period false and premium pass for team purchased.
+                      this.pamentshow = 1;
+                      this.gotostatspage();
+                      } else if (TopUser == 0 && this.selectd_yr == '2018' && this.processproduct.GetProductType(element.product_id) == 'Premium' && element.competition_id == this.details.competion_id && (element.team_id != this.details.awateam_id && element.team_id != this.details.hometeam_id))
+                      {
+                      let alertpopup = this.alertCtrl.create({
+
+                          title: 'UPGRADE your PREMIUM PASS to PREMIUM PLUS today',
+                          // cssClass: 'Upgradebutton',
+                          buttons: [
+                              {
+                                  text: 'MAYBE LATER',
+                                  handler: () => {
+                                      this.ga.trackEvent("Stats - Maybe Later", "Selected", "Premium Plus", 1);
+                                      this.goToActionPage(this.statcheck);
+                                  }
+                              },
+                              {
+                                  text: 'UPGRADE NOW',
+                                  handler: () => {
+                                      this.ga.trackEvent("Stats - Upgrade Now", "Selected", "Premium Plus", 1);
+                                      this.localdata.StoreYear(this.selectd_yr);
+                                      if(this.isLogin==true){
+                                          this.navCtrl.push('LandingpagePage');
+                                      }else{
+                                          this.localdata.LoginState('LandingpagePage', '');
+                                          this.navCtrl.push('LoginPage',{iap:'true'});
+                                      }
+                                  }
                               }
-                          });
-                        } else if (this.processproduct.GetProductType(element.product_id) == 'Premium' && element.competition_id == this.details.competion_id && (element.team_id == this.details.awateam_id || element.team_id == this.details.hometeam_id))
-                        {
-                          //    trial period true and premium pass for team purchased.
-                          this.pamentshow = 1;
-                          this.gotostatspage();
-                        }
-                        else if (this.processproduct.GetProductType(element.product_id) == 'Premium Plus' && element.competition_id == this.details.competion_id )
-                        {
-                          //  free trial true and user has premium plus pass, if competitions match then show game.
-                          this.pamentshow = 1;
-                          this.gotostatspage();
-                        } else if (this.processproduct.GetProductType(element.product_id) == 'VAFA_2019')
-                        {
-                          //  free trial true and user has all game pass.
-                          this.pamentshow = 1;
-                          this.gotostatspage();
-                        }
-                        else if (this.processproduct.GetProductType(element.product_id) == 'Single Game Pass' && element.fixture_id == this.fixture_id){
+
+                          ]
+                      });
+                      alertpopup.present();
+                  }  else if (this.selectd_yr =='2019' && this.processproduct.GetProductType(element.product_id) == 'Premium Plus 2019' && element.competition_id ==  this.details.competion_id )
+                  {
+                      TopUser = 3;
+                    //  free trial false and user has premium plus pass, if competitions match then show game.
+                    this.pamentshow = 1;
+                    this.gotostatspage();
+                  } else if(TopUser == 0 && this.selectd_yr == '2019' && this.processproduct.GetProductType(element.product_id) == 'Premium 2019' && element.competition_id ==  this.details.competion_id && (element.team_id != this.details.awateam_id && element.team_id != this.details.hometeam_id)){
+                        //   free trial true and user has premium pass with team not purchased.
+                        this.Storage.get('1timeenterdate').then((val) => {
+                            if(!val){
+                                let alert = this.alertCtrl.create({
+                                    title: 'PREMIUM PASS UPGRADE REQUIRED',
+                                    message: 'Upgrade your Premium Pass for FREE for 14 days.',
+                                    buttons: [
+                                        {
+                                            text: 'No Thanks',
+                                            handler: () => {
+                                                this.goToActionPage(this.statcheck);
+                                            }
+                                        },
+                                        {
+                                            text: 'OK',
+                                            handler: () => {
+                                                this.Storage.set('1timeenterdate', 1);
+                                                this.pamentshow = 1;
+                                                this.gotostatspage();
+                                            }
+                                        }
+                                    ]
+                                });
+                                alert.present();
+                            }else{
+                                this.pamentshow = 1;
+                                this.gotostatspage();
+                            }
+                        });
+                      } else if (TopUser == 0 && this.selectd_yr == '2019' && this.processproduct.GetProductType(element.product_id) == 'Premium 2019' && element.competition_id ==  this.details.competion_id && (element.team_id == this.details.awateam_id || element.team_id == this.details.hometeam_id))
+                      {
+                        //    trial period true and premium pass for team purchased.
+                        this.pamentshow = 1;
+                        this.gotostatspage();
+                      } else if (this.selectd_yr == '2019' && element.product_id == 'game_pass' && element.fixture_id == this.fixture_id){
                           //   free trial true and user has a single game pass.
                           this.pamentshow = 1;
                           this.gotostatspage();
-                        }
+                      }
                     });
                 }
                 else  // free trial period false and checking payment done or not.
                 {
                   this.Storage.get('UserDeviceData').then((val) => {
                       if (val) {
+                        var showalert = 0;
                          let paymentData = val.payment;
+                         let paylength = paymentData.length;
                          if(paymentData.length > 0){
                           console.log(paymentData)
                           // if user has purchased premium pass.
+                          var TopUser = 0;
                              paymentData.forEach(element => {
-                               console.log(element);
-                              if(this.processproduct.GetProductType(element.product_id) == 'Premium' && element.competition_id == this.details.competion_id && (element.team_id != this.details.awateam_id && element.team_id != this.details.hometeam_id))
-                              {
-                                //   free trial false and user has premium pass with team not purchased.
-                                this.Storage.get('1timeenterdate').then((val) => {
-                                    if(!val){
-                                        let alert = this.alertCtrl.create({
-                                            title: 'PREMIUM PASS UPGRADE REQUIRED',
-                                            message: 'Upgrade your Premium Pass for FREE for 14 days.',
-                                            buttons: [
-                                                {
-                                                    text: 'No Thanks',
-                                                    handler: () => {
-                                                        this.goToActionPage(this.statcheck);
-                                                    }
-                                                },
-                                                {
-                                                    text: 'OK',
-                                                    handler: () => {
-                                                        this.Storage.set('1timeenterdate', 1);
-                                                        this.pamentshow = 1;
-                                                        this.gotostatspage();
-                                                    }
-                                                }
-                                            ]
-                                        });
-                                        // alert.present();
-                                    }else{
-                                        this.pamentshow = 1;
-                                        this.gotostatspage();
-                                    }
-                                });
-                              } else if ( this.processproduct.GetProductType(element.product_id) == 'Premium' && element.competition_id == this.details.competion_id && (element.team_id == this.details.awateam_id || element.team_id == this.details.hometeam_id))
-                              {
-                                //    trial period false and premium pass for team purchased.
-                                this.pamentshow = 1;
-                                this.gotostatspage();
-                              }
-                              else if (this.processproduct.GetProductType(element.product_id) == 'Premium Plus' && element.competition_id == this.details.competion_id )
-                              {
-                                //  free trial false and user has premium plus pass, if competitions match then show game.
-                                this.pamentshow = 1;
-                                this.gotostatspage();
-                              } else if (this.processproduct.GetProductType(element.product_id) == 'VAFA_2019')
-                              {
-                                //  free trial false and user has all game pass.
-                                this.pamentshow = 1;
-                                this.gotostatspage();
-                              }
-                              else if (this.processproduct.GetProductType(element.product_id) == 'Single Game Pass' && element.fixture_id == this.fixture_id){
-                                //   free trial false and user has a single game pass.
-                                this.pamentshow = 1;
-                                this.gotostatspage();
-                              }
+    if (element.product_id == 'vafa_pass')
+    {
+        TopUser = 1;
+    //  free trial false and user has all game pass.
+    this.pamentshow = 1;
+    this.gotostatspage();
+    } else if (this.selectd_yr =='2018' && this.processproduct.GetProductType(element.product_id) == 'Premium Plus' && element.competition_id == this.details.competion_id )
+    {
+        TopUser = 2;
+    //  free trial false and user has premium plus pass, if competitions match then show game.
+    this.pamentshow = 1;
+    this.gotostatspage();
+    } else if (TopUser == 0 && this.selectd_yr == '2018' && this.processproduct.GetProductType(element.product_id) == 'Premium' && element.competition_id == this.details.competion_id && (element.team_id == this.details.awateam_id || element.team_id == this.details.hometeam_id))
+    {
+    // trial period false and premium pass for team purchased.
+    this.pamentshow = 1;
+    this.gotostatspage();
+    }else if(TopUser == 0 && this.selectd_yr == '2018' && this.processproduct.GetProductType(element.product_id) == 'Premium' && element.competition_id == this.details.competion_id && (element.team_id != this.details.awateam_id && element.team_id != this.details.hometeam_id))
+    {
+      //   free trial false and user has premium pass with team not purchased.
+      let alertpopup = this.alertCtrl.create({
 
+        title: 'UPGRADE your PREMIUM PASS to PREMIUM PLUS today',
+        // cssClass: 'Upgradebutton',
+        buttons: [
+            {
+                text: 'MAYBE LATER',
+                handler: () => {
+                    this.ga.trackEvent("Stats - Maybe Later", "Selected", "Premium Plus", 1);
+                    this.goToActionPage(this.statcheck);
+                }
+            },
+            {
+                text: 'UPGRADE NOW',
+                handler: () => {
+                    this.ga.trackEvent("Stats - Upgrade Now", "Selected", "Premium Plus", 1);
+                    this.localdata.StoreYear(this.selectd_yr);
+                    if(this.isLogin==true){
+                        this.navCtrl.push('LandingpagePage');
+                    }else{
+                        this.localdata.LoginState('LandingpagePage', '');
+                        this.navCtrl.push('LoginPage',{iap:'true'});
+                    }
+                }
+            }
+
+        ]
+    });
+    alertpopup.present();
+    } else if (this.selectd_yr =='2019' && this.processproduct.GetProductType(element.product_id) == 'Premium Plus 2019' && element.competition_id ==  this.details.competion_id )
+    {
+        TopUser = 3;
+      //  free trial false and user has premium plus pass, if competitions match then show game.
+      this.pamentshow = 1;
+      this.gotostatspage();
+    }else if (this.selectd_yr == '2019' && this.processproduct.GetProductType(element.product_id) == 'Premium 2019' && element.competition_id ==  this.details.competion_id && (element.team_id == this.details.awateam_id || element.team_id == this.details.hometeam_id))
+    {
+      //    trial period false and premium pass for team purchased.
+      this.pamentshow = 1;
+      this.gotostatspage();
+    } else if(TopUser == 0 && this.selectd_yr == '2019' && this.processproduct.GetProductType(element.product_id) == 'Premium 2019' && element.competition_id ==  this.details.competion_id && (element.team_id != this.details.awateam_id && element.team_id != this.details.hometeam_id))
+    {
+      //   free trial false and user has premium pass with team not purchased.
+      let alertpopup = this.alertCtrl.create({
+
+        title: 'UPGRADE your PREMIUM PASS to PREMIUM PLUS today',
+        // cssClass: 'Upgradebutton',
+        buttons: [
+            {
+                text: 'MAYBE LATER',
+                handler: () => {
+                    this.ga.trackEvent("Stats - Maybe Later", "Selected", "Premium Plus", 1);
+                    this.goToActionPage(this.statcheck);
+                }
+            },
+            {
+                text: 'UPGRADE NOW',
+                handler: () => {
+                    this.ga.trackEvent("Stats - Upgrade Now", "Selected", "Premium Plus", 1);
+                    this.localdata.StoreYear(this.selectd_yr);
+                    if(this.isLogin==true){
+                        this.navCtrl.push('LandingpagePage');
+                    }else{
+                        this.localdata.LoginState('LandingpagePage', '');
+                        this.navCtrl.push('LoginPage',{iap:'true'});
+                    }
+                }
+            }
+
+        ]
+    });
+    alertpopup.present();
+    }else if (this.selectd_yr == '2019' && element.product_id == 'game_pass' && element.fixture_id == this.fixture_id){
+        //   free trial false and user has a single game pass.
+        this.pamentshow = 1;
+        this.gotostatspage();
+    }
                              });
                          }
                          else // if user has not purchased any premium pass.
                          {
-                           let alertpop = this.alertCtrl.create({
+                           if(this.selectd_yr == '2019'){
+                            let alertpop = this.alertCtrl.create({
                               title: 'PREMIUM PASS REQUIRED',
                               message: 'Upgrade your experience today.',
                               // cssClass: 'Upgradebutton',
                               buttons: [
                                   {
-                                      text: 'MAYBE LATER',
+                                      text: 'No Thank you',
                                       handler: () => {
                                           this.ga.trackEvent("Stats - Maybe Later", "Selected", "Premium", 1);
                                           this.goToActionPage(this.statcheck);
                                       }
                                   },
                                   {
-                                      text: "Let's Do It",
+                                      text: "Season Pass",
                                       handler: () => {
                                           this.ga.trackEvent("Stats - Upgrade Now", "Selected", "Premium", 1);
                                           if(this.isLogin==true){
+                                            this.localdata.StoreYear(this.selectd_yr);
                                               this.navCtrl.push('LandingpagePage');
                                           }else{
                                               this.localdata.LoginState('LandingpagePage', '');
+                                              this.localdata.StoreYear(this.selectd_yr);
                                               this.navCtrl.push('LoginPage',{iap:'true'});
                                           }
                                       }
                                   },
+                                  {
+                                    text: 'Game Pass',
+                                    handler: () => {
+                                      let Data = {
+                                        homeTeam : this.homeTeamAbbr,
+                                        awayTeam : this.awayTeamAbbr,
+                                        matchData: this.details
+                                      }
+                                      const popover = this.popover.create(gamepasspage,{ MatchData  : Data},{cssClass: 'gamepass'});
+                                      popover.present();
+                                      popover.onDidDismiss(data =>{
+                                        if(data == 'cancel'){
+                                          this.goToActionPage(this.statcheck);
+                                        }else if(data == 'success'){
+                                          this.pamentshow = 1;
+                                          this.gotostatspage();
+                                        }
+                                      })
+                                    }
+                                },
                                   // {
                                   //     text: 'MORE INFORMATION',
                                   //     handler: () => {
@@ -1221,7 +1334,39 @@ export class InnermatchcenterPage {
                                   // }
                               ]
                           });
-                          // alertpop.present();
+                          alertpop.present();
+                           }else{
+                            let alertpop = this.alertCtrl.create({
+                              title: 'PREMIUM PASS REQUIRED',
+                              message: 'Upgrade your experience today.',
+                              // cssClass: 'Upgradebutton',
+                              buttons: [
+                                  {
+                                      text: 'MAY BE LATER',
+                                      handler: () => {
+                                          this.ga.trackEvent("Stats - Maybe Later", "Selected", "Premium", 1);
+                                          this.goToActionPage(this.statcheck);
+                                      }
+                                  },
+                                  {
+                                      text: "Let's Do It",
+                                      handler: () => {
+                                          this.ga.trackEvent("Stats - Upgrade Now", "Selected", "Premium", 1);
+                                          if(this.isLogin==true){
+                                            this.localdata.StoreYear(this.selectd_yr);
+                                              this.navCtrl.push('LandingpagePage');
+                                          }else{
+                                              this.localdata.LoginState('LandingpagePage', '');
+                                              this.localdata.StoreYear(this.selectd_yr);
+                                              this.navCtrl.push('LoginPage',{iap:'true'});
+                                          }
+                                      }
+                                  },
+                              ]
+                          });
+                          alertpop.present();
+                           }
+
                          }
                       }
                   });
@@ -1237,6 +1382,7 @@ export class InnermatchcenterPage {
         // }
         // })
     }
+
     // actionpage///////////////////////////////////////////\
     getgamescorefeeds(res) {
       console.log('feed'+ res.score_feed);
@@ -3771,4 +3917,123 @@ export class InnermatchcenterPage {
     }
 
 }
+
+
+// popover
+
+@Component({
+
+  template: `
+  <div class="main-div" padding>
+  <p class="gamepasstitle">Game Pass $2.99</p>
+  <p class="roundtxt" *ngIf="details.roundName != ''">{{details.roundName}}</p>
+  <p class="roundtxt" *ngIf="details.roundName == ''">Round {{details.roundNo}}</p>
+   <ion-row>
+   <ion-col class="Center">
+   <img class="popimg" src="{{path}}{{homeTeam.team_image}}">
+   <p class="poptxt">{{homeTeam.team_abbrevation}}</p>
+   </ion-col>
+   <span class="Vstext">VS</span>
+   <ion-col class="Center">
+   <img  class="popimg" src="{{path}}{{awayTeam.team_image}}">
+   <p class="poptxt">{{awayTeam.team_abbrevation}}</p>
+   </ion-col>
+   </ion-row>
+  <button class="popbutton" (click)="BuyConsume('game_pass')" ion-button>Continue</button>
+  <button class="popbutton" (click)="close()" ion-button>Cancel</button>
+  </div>
+  `
+  })
+  export class gamepasspage {
+    Purchase : any = [];
+    resData : any;
+    homeTeam : any;
+    awayTeam : any;
+    teamid : any;
+    compid : any;
+    isLogin : boolean = false;
+    details : any;
+    path: any = 'http://54.244.98.247';
+  constructor(
+  public processproduct: ProductListProvider,
+  public ga: GoogleAnalytics,
+  private alertCtrl: AlertController,
+  public Storage: Storage,
+  public ajax: AjaxProvider,
+  public events: Events,
+  public cmnfun: CommomfunctionProvider,
+  public localData : LocalDataProvider,
+  public navctrl:NavController,
+  public iap : InAppPurchase,
+  public viewCtrl : ViewController,
+  public params:NavParams) {
+  console.log(this.params.get('MatchData'));
+  let data = this.params.get('MatchData');
+  this.details = data.matchData;
+  this.homeTeam = data.homeTeam;
+  this.awayTeam = data.awayTeam;
+
+  // get user fav team and competition
+  this.Storage.get('UserTeamData').then((val) => {
+    if (val) {
+        this.compid = val.selectedcompetition.competition_id;
+        this.teamid = val.selectedteam.team_id;
+    }
+  });
+
+  // check whether user is login or not.
+  this.Storage.get('userData').then((val) => {
+    if (val) {
+      this.isLogin = true;
+    }
+  });
+  }
+
+  close() {
+  this.viewCtrl.dismiss('cancel');
+  }
+
+    // Buy consume product single game pass
+    BuyConsume(product) {
+      let transactionId;
+      this.iap
+    .buy(product)
+    .then(data => {this.iap.consume(data.productType, data.receipt, data.signature)
+      transactionId =  data.transactionId;})
+    .then(() =>{
+      let PurchaseData = {
+        device_id: this.localData.GetDevice(),
+        fixture_id: this.details.fixture_id,
+        competition_id: this.compid,
+        team_id: this.teamid,
+        product_id: product,
+        transaction_id: transactionId
+       }
+       this.Purchase.push(PurchaseData);
+     this.ajax.PaymentpostApi(this.Purchase).subscribe((res) => {
+      this.cmnfun.HideLoading();
+      console.log(res);
+      this.resData = res;
+      this.localData.StoreUserDeviceData(this.resData);
+      this.Storage.set("UserDeviceData", this.resData);
+      this.localData.StoreUserFav(this.resData);
+      this.processproduct.InsertPurchase(this.resData);
+      this.events.publish('changebanner:changed', true);
+      this.events.publish('menuchange2:changed', 'HomePage');
+      this.ga.trackEvent("Payment", "Done", "Payment", 1);
+      this.viewCtrl.dismiss('success');
+    }, error => {
+      this.cmnfun.HideLoading();
+      this.cmnfun.showToast('Some thing Unexpected happen please try again');
+    })
+    }
+    //  console.log('product was successfully consumed!')
+    )
+    .catch( err=>{
+      this.cmnfun.showToast(err.errorMessage);
+    }
+    )
+    }
+
+  }
 

@@ -1,3 +1,4 @@
+import { InnermatchcenterPage } from './../pages/innermatchcenter/innermatchcenter';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -42,6 +43,7 @@ import { LocalDataProvider } from '../providers/local-data/local-data';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { ProductListProvider } from '../providers/product-list/product-list';
 import { SQLite } from '@ionic-native/sqlite';
+import {gamepasspage} from '../pages/innermatchcenter/innermatchcenter';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { SQLite } from '@ionic-native/sqlite';
     ListPage,
     MatchreportPage,
     MatchcenterPage,
+    gamepasspage,
     // YeardropdownPage,
     FixturePage,
     PostmatchPage,
@@ -78,6 +81,7 @@ import { SQLite } from '@ionic-native/sqlite';
     HomePage,
     ListPage,
     MatchreportPage,
+    gamepasspage,
     MatchcenterPage,
     FixturePage,
     PostmatchPage,

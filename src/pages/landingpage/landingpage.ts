@@ -23,6 +23,17 @@ const proId5 = '2018_premium_william_buck_premier_womens_old_trinity';
 const proId6 = '2018_premium_william_buck_premier_womens_old_xaverians';
 const proId7 = '2018_premium_william_buck_premier_womens_skob_saints';
 const PremiumPlus = '2018_premium_william_buck_premier_womens_all_teams';
+const proId8 = '2019_premium_william_buck_premier_womens_caulfield_grammarians';
+const proId9 = '2019_premium_william_buck_womens_fitzroy_acu';
+const proId10 = '2019_premium_william_buck_premier_womens_kew_fc';
+const proId11 = '2019_premium_william_buck_premier_womens_marcellin';
+const proId12 = '2019_premium_william_buck_premier_womens_melbourne_uni';
+const proId13 = '2019_premium_william_buck_premier_womens_old_trinity';
+const proId14 = '2019_premium_william_buck_premier_womens_old_xaverians';
+const proId15 = '2019_premium_william_buck_premier_womens_skob_saints';
+const PremiumPlus2019 = '2019_premium_william_buck_premier_womens_all_teams';
+const GamePass = 'game_pass';
+const VafaPass = 'vafa_pass';
 
 // const proId1 = 'vafa_premium0001';
 // const proId2 = 'vafa_premium_plus0002';
@@ -37,12 +48,16 @@ const TermsLink = 'http://vafalive.com.au/termsconds';
 })
 export class LandingpagePage {
 
+  Matchyear: any = '2019';
+
+  ProData: any = [];
   isLogin: boolean = false;
   tempdata: any = [];
   higherproductid: any = '';
 
   User: any = {
     device_id: '',
+    fixture_id: '',
     competition_id: '',
     team_id: '',
     product_id: '',
@@ -64,6 +79,7 @@ export class LandingpagePage {
   paymentname: any = 'vafa_premium_plus';
 
   UserTeamData: any = {
+    compyear : '',
     selectedcompetition: '',
     selectedteam: '',
     yearcheck: ''
@@ -82,6 +98,8 @@ export class LandingpagePage {
   pamentshow: boolean = false; MyFavTeam: any;
   LocalUserDevice: any = [];
 
+  MyProducts : any = [];
+
   constructor(private storage: Storage,
     private plt: Platform,
     private iap: InAppPurchase,
@@ -98,6 +116,27 @@ export class LandingpagePage {
     this.deviceId = this.localData.GetDevice();
     // this.User.device_id=this.deviceId;
     console.log(this.deviceId)
+
+    // check products list purchased
+    this.storage.get('UserDeviceData').then((data) => {
+      if (data) {
+        let paid = data.payment;
+        if(paid.length > 0){
+          paid.forEach(element => {
+            let productitem = this.processproduct.GetProductType(element.product_id);
+            this.MyProducts.push(productitem);
+          });
+        }
+      }
+      console.log(this.MyProducts);
+    });
+
+
+    if(this.localData.getYear() != undefined) {
+      this.Matchyear = this.localData.getYear();
+      // this.localData.StoreYear(undefined);
+    }
+
     //
     this.storage.get('userData').then((val) => {
       if (val) {
@@ -121,6 +160,8 @@ export class LandingpagePage {
       //
       this.User.device_id = this.deviceId;
       console.log(this.LocalUserDevice)
+    //  check team and competitions for old users with year
+    if((this.paymentname == 'Premium' || this.paymentname == 'Premium Plus') && this.Matchyear == '2018'){
       if (this.LocalUserDevice.webuserteam !== null || this.LocalUserDevice.webuserteam == false) {
         this.selectedteam = this.LocalUserDevice.webuserteam;
       }
@@ -129,24 +170,26 @@ export class LandingpagePage {
       }
       if (this.selectedcompetition != '' && this.selectedteam != '') {
         // get product_id
-        this.processproduct.SetUserProduct(this.selectedteam, this.selectedcompetition);
+        this.processproduct.SetUserProduct(this.selectedteam, this.selectedcompetition,this.Matchyear);
       } else {
         // show from local storage
         this.storage.get('UserTeamData').then((val) => {
           if (val) {
             console.log(val)
-            this.selectedteam = val.selectedteam;
-            this.selectedcompetition = val.selectedcompetition;
-            this.yearcheck = val.yearcheck;
-            this.processproduct.SetUserProduct(this.selectedteam, this.selectedcompetition);
+            // this.selectedteam = val.selectedteam;
+            // this.selectedcompetition = val.selectedcompetition;
+            // this.yearcheck = val.yearcheck;
+            // this.processproduct.SetUserProduct(this.selectedteam, this.selectedcompetition,this.Matchyear);
           }
         });
       }
     }
+    }
     //
 
     this.plt.ready().then(() => {
-      this.iap.getProducts([proId0, proId1, proId2, proId3, proId4, proId5, proId6, proId7, PremiumPlus])
+    this.iap.getProducts([proId0, proId1, proId2, proId3, proId4, proId5, proId6, proId7, PremiumPlus,
+      proId8, proId9, proId10, proId11, proId12, proId13, proId14, proId15, PremiumPlus2019, GamePass, VafaPass])
         .then((products) => {
         })
         .catch((err) => {
@@ -163,28 +206,38 @@ export class LandingpagePage {
 
   ionViewDidLoad() {
     // get all competition and teams
-    this.ajax.postMethodct('get-all-competitions').subscribe((res) => {
+    this.ajax.GetMatchComp('get-all-competitions-by-year', {year : this.Matchyear}).subscribe((res) => {
       this.competitionlist = res;
       console.log(this.competitionlist);
+
     })
-    this.ajax.postMethodct('get-all-teams').subscribe((res) => {
-      this.teamlist = res;
-      console.log(this.teamlist);
-    })
+
+    // this.ajax.GetMatchTeam({year : this.Matchyear, competition_id : ''}).subscribe((res) => {
+    //   this.teamlist = res;
+    //   console.log(this.teamlist);
+    // })
+
 
     // load stored team and competition
     this.storage.get('UserTeamData').then((val) => {
       if (val) {
         console.log(val)
-        if (val.selectedcompetition != '' && val.selectedteam != '') {
-          this.selectedteam = val.selectedteam;
-          this.selectedcompetition = val.selectedcompetition;
-          this.yearcheck = val.yearcheck;
-          this.processproduct.SetUserProduct(this.selectedteam, this.selectedcompetition);
-          this.pamentshow = true;
-        }else if(val.selectedcompetition != ''){
-          this.selectedcompetition = val.selectedcompetition;
-        }
+        console.log(this.Matchyear);
+        // alert('2');
+         if(val.compyear == this.Matchyear){
+          if (val.selectedcompetition != '' && val.selectedteam != '') {
+            this.selectedteam = val.selectedteam;
+            this.selectedcompetition = val.selectedcompetition;
+            this.yearcheck = val.yearcheck;
+            this.processproduct.SetUserProduct(this.selectedteam, this.selectedcompetition, this.Matchyear);
+            if(this.localData.LoginTo() == 'LandingpagePage' && this.localData.getLoginparam() == 'all set'){
+                this.pamentshow = true;
+                this.localData.LoginState('', '');
+            }
+          }else if(val.selectedcompetition != ''){
+            this.selectedcompetition = val.selectedcompetition;
+          }
+         }
       }
     });
   }
@@ -226,6 +279,10 @@ export class LandingpagePage {
           // this.cmnfun.showLoading('Please wait...');
           this.selectedcompetition = data.value;
           console.log(this.selectedcompetition);
+          this.ajax.GetMatchTeam({year : this.Matchyear, competition_id : this.selectedcompetition.competition_id}).subscribe((res) => {
+            this.teamlist = res;
+            console.log(this.teamlist);
+          })
           if (this.isLogin == true) {
             let update = {
               id: this.UserDeviceData.id,
@@ -249,7 +306,7 @@ export class LandingpagePage {
           this.ga.trackEvent('Onboarding – Team Selection', 'Selected', 'Onboarding – Team Selection', 1);
           this.deviceId = this.localData.GetDevice();
           this.selectedteam = data.value;
-          this.processproduct.SetUserProduct(this.selectedteam, this.selectedcompetition);
+          this.processproduct.SetUserProduct(this.selectedteam, this.selectedcompetition,  this.Matchyear);
           if (this.isLogin == true) {
             let update = {
               id: this.UserDeviceData.id,
@@ -295,6 +352,7 @@ export class LandingpagePage {
 
 
   gotohome() {
+      this.localData.StoreYear(undefined);
     if (this.selectedcompetition == '' && this.selectedteam == '') {
       this.ga.trackEvent("Onboarding – Competition Selection Skip", "Skip", "Onboarding - Competition Selection", 1);
     } else if (this.selectedcompetition != '' && this.selectedteam == '') {
@@ -307,6 +365,7 @@ export class LandingpagePage {
     if (this.selectedcompetition != '' && this.selectedteam != '') {
       this.UserTeamData.selectedcompetition = this.selectedcompetition;
       this.UserTeamData.selectedteam = this.selectedteam;
+      this.UserTeamData.compyear = this.Matchyear;
       this.storage.set('UserTeamData', this.UserTeamData);
     }
     this.ga.trackEvent("Upgrade", "Skipped", "Onboarding", 1);
@@ -335,6 +394,7 @@ export class LandingpagePage {
       this.UserTeamData.selectedcompetition = this.selectedcompetition;
       this.UserTeamData.selectedteam = this.selectedteam;
       this.UserTeamData.yearcheck = this.yearcheck;
+      this.UserTeamData.compyear = this.Matchyear;
       console.log(this.UserTeamData)
       this.storage.set('UserTeamData', this.UserTeamData);
       this.pamentshow = true;
@@ -342,9 +402,10 @@ export class LandingpagePage {
       this.UserTeamData.selectedcompetition = this.selectedcompetition;
       this.UserTeamData.selectedteam = this.selectedteam;
       this.UserTeamData.yearcheck = this.yearcheck;
+      this.UserTeamData.compyear = this.Matchyear;
       console.log(this.UserTeamData)
       this.storage.set('UserTeamData', this.UserTeamData);
-      this.localData.LoginState('LandingpagePage', '');
+      this.localData.LoginState('LandingpagePage', 'all set');
       this.navCtrl.push('LoginPage', { iap: 'true' });
     }
   }
@@ -353,66 +414,278 @@ export class LandingpagePage {
 
   paymentBuy(val) {
     let product_id;
+    let paidstatus = 1;
     if (val == 1) {
       this.ga.trackEvent("Premium Pass", "Selected", "PREMIUM", 1);
       product_id = this.processproduct.GetUserProduct();
     } else if (val == 2) {
       this.ga.trackEvent("Premium Pass", "Selected", "PREMIUM PLUS", 1);
       product_id = PremiumPlus;
+    } else if (val == 3) {
+      // 2019 premium pass
+      this.ga.trackEvent("Premium Pass", "Selected", "PREMIUM", 1);
+      product_id = this.processproduct.GetUserProduct();
+    } else if (val == 4) {
+      product_id = PremiumPlus2019;
+    } else if (val == 5) {
+      product_id = VafaPass;
     }
     this.User.product_id = product_id;
     console.log(this.User)
-    let paidstatus = 1;
     this.cmnfun.Loading('Please wait processing payment.');
     this.iap.restorePurchases().then(purchases => {
       if (purchases != []) {
         purchases.forEach(element => {
+          // check whether user selected product is purchased previously or not.
           if (element.productId == proId0 && this.User.product_id == proId0) {
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
-
+            let PurchaseD = {
+              device_id: this.User.device_id,
+              competition_id: this.processproduct.GetCompetitionid(),
+              team_id: this.processproduct.GetTeamid(),
+              product_id: this.User.product_id,
+              fixture_id: 0,
+              transaction_id: this.User.transaction_id
+            }
+            this.ProData.push(PurchaseD);
           } else if (element.productId == proId1 && this.User.product_id == proId1) {
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
-
+            let PurchaseD = {
+              device_id: this.User.device_id,
+              competition_id: this.processproduct.GetCompetitionid(),
+              team_id:this.processproduct.GetTeamid(),
+              product_id: this.User.product_id,
+              fixture_id: 0,
+              transaction_id: this.User.transaction_id
+            }
+            this.ProData.push(PurchaseD);
           } else if (element.productId == proId2 && this.User.product_id == proId2) {
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
-
+            let PurchaseD = {
+              device_id: this.User.device_id,
+              competition_id: this.processproduct.GetCompetitionid(),
+              team_id:this.processproduct.GetTeamid(),
+              product_id: this.User.product_id,
+              fixture_id: 0,
+              transaction_id: this.User.transaction_id
+            }
+            this.ProData.push(PurchaseD);
           } else if (element.productId == proId3 && this.User.product_id == proId3) {
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
-
+            let PurchaseD = {
+              device_id: this.User.device_id,
+              competition_id: this.processproduct.GetCompetitionid(),
+              team_id:this.processproduct.GetTeamid(),
+              product_id: this.User.product_id,
+              fixture_id: 0,
+              transaction_id: this.User.transaction_id
+            }
+            this.ProData.push(PurchaseD);
           } else if (element.productId == proId4 && this.User.product_id == proId4) {
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
-
+            let PurchaseD = {
+              device_id: this.User.device_id,
+              competition_id: this.processproduct.GetCompetitionid(),
+              team_id:this.processproduct.GetTeamid(),
+              product_id: this.User.product_id,
+              fixture_id: 0,
+              transaction_id: this.User.transaction_id
+            }
+            this.ProData.push(PurchaseD);
           } else if (element.productId == proId5 && this.User.product_id == proId5) {
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
-
+            let PurchaseD = {
+              device_id: this.User.device_id,
+              competition_id: this.processproduct.GetCompetitionid(),
+              team_id:this.processproduct.GetTeamid(),
+              product_id: this.User.product_id,
+              fixture_id: 0,
+              transaction_id: this.User.transaction_id
+            }
+            this.ProData.push(PurchaseD);
           } else if (element.productId == proId6 && this.User.product_id == proId6) {
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
-
+            let PurchaseD = {
+              device_id: this.User.device_id,
+              competition_id: this.processproduct.GetCompetitionid(),
+              team_id:this.processproduct.GetTeamid(),
+              product_id: this.User.product_id,
+              fixture_id: 0,
+              transaction_id: this.User.transaction_id
+            }
+            this.ProData.push(PurchaseD);
           } else if (element.productId == proId7 && this.User.product_id == proId7) {
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
-
+            let PurchaseD = {
+              device_id: this.User.device_id,
+              competition_id: this.processproduct.GetCompetitionid(),
+              team_id:this.processproduct.GetTeamid(),
+              product_id: this.User.product_id,
+              fixture_id: 0,
+              transaction_id: this.User.transaction_id
+            }
+            this.ProData.push(PurchaseD);
           } else if (element.productId == PremiumPlus && this.User.product_id == PremiumPlus) {
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
-
-          }
+            let PurchaseD = {
+              device_id: this.User.device_id,
+              competition_id: this.processproduct.GetCompetitionid(),
+              team_id:this.processproduct.GetTeamid(),
+              product_id: this.User.product_id,
+              fixture_id: 0,
+              transaction_id: this.User.transaction_id
+            }
+            this.ProData.push(PurchaseD);
+          }  // add 2019 products here to check
+           else if (element.productId == proId8 && this.User.product_id == proId8){
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+            let PurchaseD = {
+              device_id: this.User.device_id,
+              competition_id: this.processproduct.GetCompetitionid(),
+              team_id:this.processproduct.GetTeamid(),
+              product_id: this.User.product_id,
+              fixture_id: 0,
+              transaction_id: this.User.transaction_id
+            }
+            this.ProData.push(PurchaseD);
+           } else if (element.product_Id == proId9 && this.User.product_id == proId9){
+             paidstatus = 0;
+             this.processproduct.RestoreTeam(element.productId);
+             this.User.transaction_id = element.transactionId;
+            let PurchaseD = {
+              device_id: this.User.device_id,
+              competition_id: this.processproduct.GetCompetitionid(),
+              team_id:this.processproduct.GetTeamid(),
+              product_id: this.User.product_id,
+              fixture_id: 0,
+              transaction_id: this.User.transaction_id
+            }
+            this.ProData.push(PurchaseD);
+           } else if (element.product_Id == proId10 && this.User.product_id == proId10) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             fixture_id: 0,
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id
+           }
+           this.ProData.push(PurchaseD);
+           } else if (element.product_Id == proId11 && this.User.product_id == proId11){
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             product_id: this.User.product_id,
+             fixture_id: 0,
+             transaction_id: this.User.transaction_id
+           }
+           this.ProData.push(PurchaseD);
+           } else if (element.product_Id == proId12 && this.User.product_id == proId12) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             fixture_id: 0,
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id
+           }
+           this.ProData.push(PurchaseD);
+           } else if (element.product_Id == proId13 && this.User.product_id == proId13) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             product_id: this.User.product_id,
+             fixture_id: 0,
+             transaction_id: this.User.transaction_id
+           }
+           this.ProData.push(PurchaseD);
+           } else if (element.product_Id == proId14 && this.User.product_id == proId14) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             product_id: this.User.product_id,
+             fixture_id: 0,
+             transaction_id: this.User.transaction_id
+           }
+           this.ProData.push(PurchaseD);
+           } else if (element.product_Id == proId15 && this.User.product_id == proId15) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             fixture_id: 0,
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id
+           }
+           this.ProData.push(PurchaseD);
+           } else if (element.product_Id == PremiumPlus2019 && this.User.product_id == PremiumPlus2019) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             fixture_id: 0,
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id
+           }
+           this.ProData.push(PurchaseD);
+           } else if (element.product_Id == VafaPass && this.User.product_id == VafaPass) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id,
+             fixture_id: 0
+           }
+           this.ProData.push(PurchaseD);
+           }
         });
         if (paidstatus == 1) {
           this.Buy();
@@ -420,7 +693,7 @@ export class LandingpagePage {
           this.AlreadyPurchased();
         }
       } else {
-        this.Buy();
+          this.Buy();
       }
     })
       .catch((err) => {
@@ -435,6 +708,9 @@ export class LandingpagePage {
     console.log(this.User);
     let product1 = 0;
     let product2 = 0;
+    let product3 = 0;
+    let product4 = 0;
+    let product5 = 0;
     this.cmnfun.Loading('Please wait processing payment.');
     this.iap.restorePurchases().then(purchases => {
       if (purchases != []) {
@@ -443,38 +719,70 @@ export class LandingpagePage {
           if (element.productId == proId0 || element.productId == proId1 || element.productId == proId2 || element.productId == proId3 || element.productId == proId4 || element.productId == proId5 || element.productId == proId6 || element.productId == proId7) {
             product1 = 1;
             this.processproduct.RestoreTeam(element.productId);
-            this.c_product = element.transactionId;
-            this.c_productid = element.productId;
-            this.c_purchasedate = element.date;
+            let PurchaseD = {
+              device_id: this.User.device_id,
+              competition_id: this.processproduct.GetCompetitionid(),
+              team_id:this.processproduct.GetTeamid(),
+              product_id: element.productId,
+              fixture_id: 0,
+              transaction_id: element.transactionId
+            }
+            this.ProData.push(PurchaseD);
           } else if (element.productId == PremiumPlus) {
             product2 = 1;
             this.processproduct.RestoreTeam(element.productId);
-            this.c_purchasedate = element.date;
-            this.c_product = element.transactionId;
-            this.c_productid = element.productId;
-            this.higherproduct = element.transactionId;
-            this.higherproductid = element.productId;
-            this.higherpurchasedate = element.date;
+            let PurchaseD = {
+              device_id: this.User.device_id,
+              competition_id: this.processproduct.GetCompetitionid(),
+              team_id:this.processproduct.GetTeamid(),
+              product_id: element.productId,
+              fixture_id: 0,
+              transaction_id: element.transactionId
+            }
+            this.ProData.push(PurchaseD);
+          } else if (element.productId == proId8 || element.productId == proId9 || element.productId == proId10 || element.productId == proId11 || element.productId == proId12 || element.productId == proId13 || element.productId == proId14 || element.productId == proId15){
+            product3 = 1;
+            this.processproduct.RestoreTeam(element.productId);
+            let PurchaseD = {
+              device_id: this.User.device_id,
+              competition_id: this.processproduct.GetCompetitionid(),
+              team_id:this.processproduct.GetTeamid(),
+              product_id: element.productId,
+              fixture_id: 0,
+              transaction_id: element.transactionId
+            }
+            this.ProData.push(PurchaseD);
+          } else if(element.productId == PremiumPlus2019) {
+            product4 = 1;
+            this.processproduct.RestoreTeam(element.productId);
+            let PurchaseD = {
+              device_id: this.User.device_id,
+              competition_id: this.processproduct.GetCompetitionid(),
+              team_id:this.processproduct.GetTeamid(),
+              fixture_id: 0,
+              product_id: element.productId,
+              transaction_id: element.transactionId
+            }
+            this.ProData.push(PurchaseD);
+          } else if (element.productId == VafaPass){
+            product5 = 1;
+            this.processproduct.RestoreTeam(element.productId);
+            let PurchaseD = {
+              device_id: this.User.device_id,
+              fixture_id: 0,
+              competition_id: this.processproduct.GetCompetitionid(),
+              team_id:this.processproduct.GetTeamid(),
+              product_id: element.productId,
+              transaction_id: element.transactionId
+            }
+            this.ProData.push(PurchaseD);
           }
         });
-        if (product1 == 1 && product2 == 0) {
-          this.User.transaction_id = this.c_product;
-          this.User.product_id = this.c_productid;
-
-          this.AlreadyPurchased();
-        } else if (product2 == 1 && product1 == 0) {
-          this.User.transaction_id = this.c_product;
-          this.User.product_id = this.c_productid;
-
-          this.AlreadyPurchased();
-        } else if (product1 == 1 && product2 == 1) {
-          this.User.transaction_id = this.higherproduct;
-          this.User.product_id = this.higherproductid;
-
-          this.AlreadyPurchased();
-        } else {
+        if (product1 == 0 && product2 == 0 && product3 == 0 && product4 == 0 && product5 == 0) {
           this.cmnfun.HideLoading();
           this.cmnfun.showToast('Premium pass not purchased,cannot be restored');
+        } else {
+          this.AlreadyPurchased();
         }
       } else {
         this.cmnfun.HideLoading();
@@ -491,8 +799,9 @@ export class LandingpagePage {
   AlreadyPurchased() {
     this.User.competition_id = this.processproduct.GetCompetitionid();
     this.User.team_id = this.processproduct.GetTeamid();
+    console.log(this.ProData);
     console.log(this.User)
-    this.ajax.PaymentpostApi(this.User).subscribe((res) => {
+    this.ajax.PaymentpostApi(this.ProData).subscribe((res) => {
       this.cmnfun.HideLoading();
       console.log(res);
       this.resData = res;
@@ -518,13 +827,21 @@ export class LandingpagePage {
   Buy() {
     this.User.competition_id = this.processproduct.GetCompetitionid();
     this.User.team_id = this.processproduct.GetTeamid();
-    console.log(this.User)
+    console.log(this.User);
     this.iap
       .buy(this.User.product_id)
       .then((data) => {
         if (data) {
-          this.User.transaction_id = data.transactionId;
-          this.ajax.PaymentpostApi(this.User).subscribe((res) => {
+          let PurchaseD = {
+            device_id: this.User.device_id,
+            competition_id: this.User.competition_id,
+            team_id: this.User.team_id,
+            fixture_id: 0,
+            product_id: this.User.product_id,
+            transaction_id:  data.transactionId
+          }
+          this.ProData.push(PurchaseD);
+          this.ajax.PaymentpostApi(this.ProData).subscribe((res) => {
             this.cmnfun.HideLoading();
             console.log(res);
             this.resData = res;
@@ -553,5 +870,7 @@ export class LandingpagePage {
         this.cmnfun.showToast(err.errorMessage);
       });
   }
+
+
 
 }

@@ -13,6 +13,8 @@ export class LocalDataProvider {
 
   UserDeviceData:any;
 
+  yr: any;
+
   LocalProfile: any = {
     first_name: '',
     user_email: '',
@@ -61,7 +63,7 @@ export class LocalDataProvider {
     FavTeam: '',
     FavComp: ''
   }
-   
+
   popval:number=0;
   islogin: boolean = false;
   fulldata: any;
@@ -107,7 +109,7 @@ export class LocalDataProvider {
   GetUserDeviceData(){
     return this.UserDeviceData;
   }
-  // 
+  //
 
 
   StoreData(data) {
@@ -254,6 +256,16 @@ export class LocalDataProvider {
     this.Storage.set('localdb',this.LocalProfile);
   }
 
- 
+
+   // store selected year
+   StoreYear (year){
+    this.yr = year;
+  }
+
+  getYear (){
+    return this.yr;
+  }
+
+
 
 }

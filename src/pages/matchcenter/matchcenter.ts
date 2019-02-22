@@ -11,6 +11,7 @@ import { Content } from 'ionic-angular';
 import * as moment from 'moment';
 import { PopoverController } from 'ionic-angular';
 import {YeardropdownPage} from '../yeardropdown/yeardropdown';
+import { ProductListProvider } from '../../providers/product-list/product-list';
 /**
  * Generated class for the MatchcenterPage page.
  *
@@ -66,6 +67,7 @@ export class MatchcenterPage {
     public popoverCtrl: PopoverController,
     private alertCtrl: AlertController,
     public ajax: AjaxProvider,
+    public prolist : ProductListProvider,
     private modalCtrl: ModalController,
     public events: Events,
     public cmnfun: CommomfunctionProvider,
@@ -127,6 +129,8 @@ export class MatchcenterPage {
     this.events.subscribe('competitionlistmatchcenter:changed', res => {
 
       this.comptitionlists = res.competition;
+      this.prolist.SetMatchcenterCompId(this.comptitionlists[0].competition_id);
+      console.log(this.comptitionlists[0].competition_id);
       console.log(this.comptitionlists[0].seasons[0].competition_id);
       this.selectables = this.comptitionlists[0].competitions_name;
       this.competition_id = this.comptitionlists[0].seasons[0].competition_id;
@@ -270,6 +274,7 @@ export class MatchcenterPage {
       this.cmnfun.showLoading('Please wait...');
       console.log(data);
       this.selectables = data.competitions_name
+      this.prolist.SetMatchcenterCompId(data.competition_id);
       this.competition_id =data.seasons[0].competition_id;
       this.YearList =data.seasons;
       this.selectd_yr = this.YearList[0].competition_year;
