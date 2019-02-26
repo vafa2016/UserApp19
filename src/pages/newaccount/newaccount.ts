@@ -383,6 +383,7 @@ export class NewaccountPage {
         this.nav.setRoot('LandingpagePage');
       } else if (this.MyTeam.product == 'Premium Plus') {
         this.ga.trackEvent("My Account - Premium Pass", "Selected", "Premium Pass - Purchase", 1);
+        this.nav.setRoot('LandingpagePage');
       } else if(this.MyTeam.product == 'Premium Plus 2019'){
         this.nav.setRoot('LandingpagePage');
       } else if (this.MyTeam.product == 'VAFA PASS'){
