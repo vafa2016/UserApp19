@@ -23,35 +23,30 @@
   </ion-navbar>
 </ion-header>
 <ion-segment [(ngModel)]="type" class="jb-segment">
+    <ion-segment-button class="jd-segment-first .jb-segment-right" (click)="selectedType(type); " value="year">
+        <p  class="jd-year-p1">SEASON</p>
+       <p class="jd-year-p2">{{selectd_yr}}</p>
+        <ion-icon class="downarrow jd-darrow" name="ios-arrow-down"></ion-icon>
+      </ion-segment-button>
   <ion-segment-button class=".jb-segment-right" (click)="selectedType(type); " value="competion">
-    <p style="    margin: 0px;
-    height: 25px;
-    font-size: 14px;
-    font-family: 'Gotham-Bold';">COMPETITIONS</p>
-   <p style="margin: 0px;
-    height: 25px;
-    overflow: hidden;font-family: 'Gotham-Medium';
-    "> {{selectables}}</p>
-    <ion-icon style="position: absolute;
-    top: 35px;
-    background-color: #f0f0f0;
-    width: 15%;
-    right: 4px;line-height: 1;" class="downarrow" name="ios-arrow-down"></ion-icon>
+      <!-- <p class="jd-com">COMPETITIONS</p> -->
+    <p style="margin: 0px;height: 25px; text-align:left; margin-left: 10px;color: black;font-size: 14px;font-family: 'Gotham-Bold';">COMPETITIONS</p>
+    <p class="jd-com"> {{selectables}}</p>
+    <ion-icon class="downarrow jd-d" name="ios-arrow-down"></ion-icon>
+   <!-- <p style="margin: 0px;height: 25px;overflow: hidden;font-family: 'Gotham-Medium';"> {{selectables}}</p> -->
+    <!-- <ion-icon style="position: absolute;top: 35px;background-color: #fff;width: 15%;right: 4px;line-height: 1;" class="downarrow" name="ios-arrow-down"></ion-icon> -->
   </ion-segment-button>
   <ion-segment-button class="jb-segment-left" (click)="selectedType(type); " value="teams">
-    <p style="    margin: 0px;
-    height: 25px;
-    font-size: 14px;
-    font-family: 'Gotham-Bold';">TEAMS</p>
+    <p class="jd-t">TEAMS</p>
     <p style="margin: 0px;
+    text-align: left;
     height: 25px;
-    overflow: hidden; font-family: 'Gotham-Medium';
+    overflow: hidden;
+    font-family: 'Gotham-Medium';
+    margin-left: 10px;
+    margin-top: -9px;
     ">{{selectablesTeam}}</p>
-    <ion-icon style="position: absolute;
-    top: 35px;
-    width: 15%;
-    background-color: #f0f0f0;
-    right: 4px; line-height: 1;" class="downarrow" name="ios-arrow-down"></ion-icon>
+    <ion-icon class="downarrow jd-d2" name="ios-arrow-down"></ion-icon>
   </ion-segment-button>
 </ion-segment>
 <ion-header *ngIf="headerAdv.length" [style.display]="advDisplay=='hide' ? 'block' : 'none'" class="bar-sub-subheader" style="height: 50px;position:relative; top:113px; background-color: transparent; border: 0px !important; border-bottom-color: transparent !important; background-image: none !important; border-bottom: none !important; ">
@@ -69,8 +64,9 @@
             <div class="item item-thumbnail-left onlyForGoalKicker newsList-CustomCSS ONTeam-Select">
 					  <img  src="{{path}}{{value.player_image}}" class="newsList-SideImage-CSS" style="width: 65px !important;">
 					 <div class="jb-inner-goals">
-					  <p class="jb-goal-p jb-margin-top jb-margin">{{value.player_name}}</p>
-					  <p class="jb-goal-p1 jb-margin">{{value.player_number}}&nbsp; <span style="font-family: Gotham-Bold;color:#04235c;">{{value.team_team}}</span></p>
+            <p class="jb-goal-p jb-margin-top jb-margin">{{value.player_name}}</p>
+            <p class="jb-goal-p1 jb-margin"><span style="font-size: 15px;font-family: Gotham-Book;color:#04235c;">{{value.team_team}}</span></p>
+					  <!-- <p class="jb-goal-p1 jb-margin">{{value.player_number}}&nbsp; <span style="font-family: Gotham-Bold;color:#04235c;">{{value.team_team}}</span></p> -->
 					 </div>
 				  </div>
           </ion-col>

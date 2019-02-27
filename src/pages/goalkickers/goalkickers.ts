@@ -7,6 +7,7 @@ import { KeysPipe } from '../../pipes/keys/keys';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Searchbar } from 'ionic-angular';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
+import { PopoverController } from 'ionic-angular';
 /**
  * Generated class for the GoalkickersPage page.
  *
@@ -37,9 +38,17 @@ export class GoalkickersPage {
   goalKickers: any = [];
   selectablesTeam: any;
   team_id: any;
+  YearList : any = [];
   headerAdv: any = [];
   footerAdv: any = [];
-  constructor(private zone: NgZone,public plt:Platform,public ga:GoogleAnalytics, public keyboard: Keyboard, private inapp: InAppBrowser, public ajax: AjaxProvider, private modalCtrl: ModalController, public events: Events, public cmnfun: CommomfunctionProvider, public navCtrl: NavController, public navParams: NavParams) {
+
+  selectd_yr: any = '';
+  constructor(private zone: NgZone,public plt:Platform,
+    public ga:GoogleAnalytics, public keyboard: Keyboard,
+     private inapp: InAppBrowser, public ajax: AjaxProvider,
+      private modalCtrl: ModalController, public events: Events,
+       public cmnfun: CommomfunctionProvider, public navCtrl: NavController,
+       public popoverCtrl: PopoverController,  public navParams: NavParams) {
      this.plt.ready().then(() => {
       this.ga.startTrackerWithId('UA-118996199-1')
    .then(() => {
@@ -127,7 +136,10 @@ export class GoalkickersPage {
     console.log(res);
     this.comptitionlists = res.competition;
     this.selectables = this.comptitionlists[0].competitions_name;
-    this.competition_id = this.comptitionlists[0].competition_id;
+    this.competition_id = this.comptitionlists[0].seasons[0].competition_id;
+    this.YearList = this.comptitionlists[0].seasons;
+     // default year selection
+     this.selectd_yr = this.comptitionlists[0].seasons[0].competition_year;
 
     this.ajax.datalist('get-all-teams-by-competitions', {
       accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
@@ -140,12 +152,20 @@ export class GoalkickersPage {
   }
   getteamplayersgoalkickersfilter(res) {
     console.log(res);
+    if(res.message == 'No Data Found'){
+      this.cmnfun.HideLoading();
+      this.headerAdv = [];
+      this.footerAdv = [];
+      this.goalKickers = [];
+      this.items = this.goalKickers;
+      this.cmnfun.showToast('No data');
+    }else{
     this.headerAdv = res.headerAdv;
     this.footerAdv = res.footerAdv;
     this.goalKickers = res.playerGoal;
     this.items = this.goalKickers;
     this.cmnfun.HideLoading();
-
+    }
   };
   ionViewDidLoad() {
 
@@ -193,8 +213,14 @@ export class GoalkickersPage {
       let modal = this.modalCtrl.create('CommommodelPage', { items: this.comptitionlists });
       let me = this;
       modal.onDidDismiss(data => {
+        console.log(data);
+        this.competition_id = data.seasons[0].competition_id;
+        this.YearList = data.seasons;
+         // default year selection
+         this.selectd_yr = data.seasons[0].competition_year;
+
         this.selectables = data.competitions_name
-        this.competition_id = data.competition_id;
+        // this.competition_id = data.competition_id;
         this.cmnfun.showLoading('Please wait...');
         this.ajax.datalist('get-all-teams-by-competitions', {
           accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
@@ -207,8 +233,31 @@ export class GoalkickersPage {
         })
       });
       modal.present();
-    }
-    else {
+    } else if(type == 'year') {
+      // year selection dropdown.
+      let data = this.YearList;
+      let popover = this.popoverCtrl.create("YeardropdownPage",{ yearData : data },{cssClass: 'year-popover'});
+      popover.present();
+
+      popover.onDidDismiss(data =>{
+        if(data != null){
+          this.selectd_yr = data.competition_year;
+          this.competition_id = data.competition_id;
+          // get team by year
+          this.cmnfun.showLoading('Please wait...');
+          this.ajax.datalist('get-all-teams-by-competitions', {
+            accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+            competition_id: this.competition_id,
+          }).subscribe((res) => {
+            this.scrollToTop();
+            this.getallteamsbycompetitions(res);
+          }, error => {
+            // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+          })
+        }
+      });
+
+    } else {
       let modal = this.modalCtrl.create('TeamlistPage', { items: this.allTeamData });
       let me = this;
       modal.onDidDismiss(data => {

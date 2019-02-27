@@ -564,6 +564,20 @@ $background-color:
     padding: 5px 10px;
 }
 
+.year-popover{
+  .popover-arrow{
+    display: block !important;
+    top: 107px !important;
+    left : 63px !important;
+    }
+
+    .popover-content{
+      top: 117px !important;
+      left: 6px !important;
+    }
+
+}
+
 .dateOFMatches-OnlyForLiveStats::after {
     border: 1px solid #565e73;
     bottom: 8px;

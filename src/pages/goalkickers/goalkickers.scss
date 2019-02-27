@@ -11,15 +11,15 @@ page-goalkickers {
         }
    .teamStates-List {
        padding-bottom: 0px !important;
-      border-bottom: 1px solid #263049;
+      border-bottom: 1px solid #bdbdbd;
       padding: 15px 0 13px;
 }
     .jb-inner-goals{
-          margin: 3% auto;
+          margin: 7% auto;
     }
 .item-thumbnail-left > img:first-child, .item-thumbnail-left.onlyForGoalKicker .item-image, .item-thumbnail-left.onlyForGoalKicker .item-content > img:first-child, .item-thumbnail-left.onlyForGoalKicker .item-content .item-image {
     float: left !important;
-    height: auto !important;    
+    height: auto !important;
     position: relative !important;
     top: 0 !important;
     left: 0px !important;
@@ -72,18 +72,18 @@ page-goalkickers {
 }
 .score-Average-stats-goalKicker
 {
-	border-left: 1px solid #263049; 				  
-    margin-top: 5px;
+	border-left: 1px solid #bdbdbd;
+    margin-top: 14px;
 	text-align: center;
 	padding-left:10px;
 }
 .stats-Score {
     color: #04235C;
-    font-family: Gotham-Light;
+    font-family: Gotham-Bold;
     font-size: 28px;
     margin-bottom: 0;
     margin-top: 2px;
-  
+
 }
 
 .stats-Score-onlyForTeam {
@@ -97,13 +97,13 @@ page-goalkickers {
     border-radius: 10px;
     color: white;
     display: inline-block;
-    font-family: Gotham-Bold;
+    font-family: Gotham-Light;
     font-size: 11px;
     line-height: normal;
     margin: 0 auto 2px;
     padding: 2px 8px;
     text-align: center;
-	
+
 }
 .advContainer {
   background-color: white;
@@ -121,13 +121,19 @@ page-goalkickers {
 }
 .jb-goal-p
 {
-    padding-left: 85px;font-family: Gotham-Medium;font-size: 15px;color:#04235C; 
-    margin-top: 6px;
-    margin-bottom: 8px;
+  padding-left: 85px;
+  font-family: Gotham-Bold;
+  font-size: 16px;
+  color: #04235C;
+  margin-top: 6px;
+  margin-bottom: 8px;
 }
 .jb-goal-p1
 {
-    font-family: Gotham-Bold;font-size: 12px;color:#04235C;padding-left: 85px;
+       font-family: Gotham-Bold;
+       font-size: 12px;
+       color: #04235C;
+       padding-left: 85px;
 }
 .jb-adv
 {
@@ -135,13 +141,13 @@ page-goalkickers {
     //   margin-bottom: 10px !important;
     img {
     //         max-height: 45px;
-    // width: 100%; 
- 
+    // width: 100%;
+
     }
 }
 .jb-adv{
     text-align: center;
-       border-bottom:1px solid #04235C;
+       border-bottom:1px solid #bdbdbd;
 	img{
 	   height: 100% !important;
     max-height: 45px;
@@ -160,7 +166,7 @@ page-goalkickers {
 		content: "";
 		font-family: "Ionicons";
 		font-size: 14px;
-		
+
 }
     .virtual-position
     {
@@ -168,12 +174,13 @@ page-goalkickers {
     }
      .jb-segment
     {
-     position: fixed;
+      position: fixed;
       z-index: 10;
-      background: #f0f0f0;
-      top:54px;
+      background: #fff;
+      top: 54px;
+      border-bottom: 1px solid #bdbdbd;
     //   border-bottom: 1px solid rgba(80, 80, 80, 0.92);
-        
+
        ion-segment-button.segment-button {
            opacity: .8;
         text-transform: none;
@@ -190,7 +197,7 @@ page-goalkickers {
         color: #04235C !important;
       }
     }
-    .teamStates-List 
+    .teamStates-List
     {
         .col
         {
@@ -199,7 +206,8 @@ page-goalkickers {
     }
     .jb-segment-left
     {
-        border-left: 1px solid rgba(80, 80, 80, 0.92) !important;
+        border-left: 1px solid #bdbdbd !important;
+        max-width: 33% !important;
     }
     .jb-topalign
     {
@@ -211,7 +219,7 @@ page-goalkickers {
     }
     .segment-button.segment-activated
     {
-         background-color: #f0f0f0 !important; 
+         background-color: #fff !important;
          color: #04235C ;
           opacity: .8 !important;
     }
@@ -241,10 +249,85 @@ page-goalkickers {
 {
     font-family: 'Gotham-Medium';
 }
-.button-clear 
+.button-clear
 {
     color: white !important;
      font-family: 'Gotham-Medium';
 }
+
+.jd-year-p1{
+  margin: -2px;
+  height: 18px;
+  color: black;
+  font-size: 16px;
+  font-family: 'Gotham-Bold';
+}
+
+.jd-year-p2{
+  margin: 2px 0px 0px -8px;
+  height: 27px;
+  color: black;
+  font-size: 16px;
+  overflow: hidden;
+  font-family: 'Gotham-Bold';
+}
+
+.jd-segment-first{
+  max-width: 25% !important;
+  border-right: 1px solid #bdbdbd !important;
+}
+
+.jd-darrow{
+  color: black;
+  position: absolute;
+  top: 28px !important;
+  background-color: #fff !important;
+  width: 15% !important;
+  right: 15px !important;
+  line-height: 1 !important;
+  font-size: 22px !important;
+  font-weight: bold !important;
+}
+
+.jd-d{
+  font-size: 22px;
+  font-weight: bold;
+  position: absolute;
+  top: 25px;
+  background-color: #fff;
+  width: 15%;right: 2px;line-height: 1;
+}
+
+.jd-d2{
+  font-size: 22px;
+  font-weight: bold;
+  position: absolute;
+  top: 25px;
+  background-color: #fff;
+  width: 15%;right: 2px;line-height: 1;
+}
+
+.jd-com{
+  margin: auto;
+  height: 25px;
+  overflow: hidden;
+  font-family: 'Gotham-Medium';
+  margin-left: 11px;
+  margin-top: -9px;
+  text-align: left;
+}
+
+.jd-t{
+  margin: 0px;
+  height: 25px;
+  text-align: left;
+  font-size: 14px;
+  color: black;
+  font-family: 'Gotham-Bold';
+  margin-left: 10px;
+}
+
+
+
 
 }
