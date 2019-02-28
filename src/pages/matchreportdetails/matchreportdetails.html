@@ -44,12 +44,12 @@
 				<div>
 					<p><span [innerHTML]="value.pm_content"> </span></p>
 					<p class="jb-margin" *ngIf="value.quater==1"><span> {{ matchReportFixtureScore["fixtureQ"+value.quater+"Score"].home_team }}  {{ matchReportFixtureScore["fixtureQ"+value.quater+"Score"].home_team_goal }}.{{ matchReportFixtureScore["fixtureQ"+value.quater+"Score"].home_team_goal_rbb_total }}.{{ matchReportFixtureScore["fixtureQ"+value.quater+"Score"].home_team_total_score }} to  {{ matchReportFixtureScore["fixtureQ"+value.quater+"Score"].away_team }} {{ matchReportFixtureScore["fixtureQ"+value.quater+"Score"].away_team_goal }}.{{ matchReportFixtureScore["fixtureQ"+value.quater+"Score"].away_team_goal_rbb_total }}.{{ matchReportFixtureScore["fixtureQ"+value.quater+"Score"].away_team_total_score }}</span></p>
-					<p class="jb-margin" *ngIf="value.quater==2"><span> 
+					<p class="jb-margin" *ngIf="value.quater==2"><span>
 							  	{{ matchReportFixtureScore["fixtureQ"+value.quater+"Score"].home_team }} {{home_team_goal2}}.{{home_team_goal_rbb_total2}}.{{home_team_total_score2}}
 							  	to
 							  	{{ matchReportFixtureScore["fixtureQ"+value.quater+"Score"].away_team }} {{away_team_goal2}}.{{away_team_goal_rbb_total2}}.{{away_team_total_score2}}
 							  </span></p>
-					<p class="jb-margin" *ngIf="value.quater==3"><span> 
+					<p class="jb-margin" *ngIf="value.quater==3"><span>
 							  	{{ matchReportFixtureScore["fixtureQ"+value.quater+"Score"].home_team }} {{home_team_goal3}}.{{home_team_goal_rbb_total3}}.{{home_team_total_score3}}
 							  	to
 							  	{{ matchReportFixtureScore["fixtureQ"+value.quater+"Score"].away_team }} {{away_team_goal3}}.{{away_team_goal_rbb_total3}}.{{away_team_total_score3}}
@@ -58,11 +58,11 @@
 						<p class="jb-margin"><strong style="font-family: Gotham-Bold;color: #fff; font-size: 15px;">FINAL SCORE </strong> </p>
 						<p class="jb-margin">{{ matchReportFixtureScore.fixtureFinalScore.home_team}} {{ matchReportFixtureScore.fixtureFinalScore.home_team_goal
 							}}.{{ matchReportFixtureScore.fixtureFinalScore.home_team_goal_rbb_total }}.{{ matchReportFixtureScore.fixtureFinalScore.home_team_total_score
-							}} <span> 
+							}} <span>
 							  </span></p>
 						<p class="jb-margin">{{ matchReportFixtureScore.fixtureFinalScore.away_team}} {{ matchReportFixtureScore.fixtureFinalScore.away_team_goal
 							}}.{{ matchReportFixtureScore.fixtureFinalScore.away_team_goal_rbb_total }}.{{ matchReportFixtureScore.fixtureFinalScore.away_team_total_score
-							}} <span> 
+							}} <span>
 							  </span></p>
 					</div>
 				</div>
@@ -98,11 +98,11 @@
 			<p class="jb-margin">&nbsp;</p>
 
 		</div>
-		<div class="row shareIconContainer" style="padding-left: 0px;">
+		<!-- <div class="row shareIconContainer" style="padding-left: 0px;">
 			<a style="padding-right: 5px;" (click)="fbShare(path+matchreportdetails.pm_cover_image,matchreportdetails.pm_title,matchreportdetails.created_at,matchreportdetails.pm_video);"><img src="assets/imgs/facebook_share.png" class="shareImgs" /></a>
 			<a style="padding-right: 5px;"><img src="assets/imgs/twitter_share.png" class="shareImgs" (click)="twitterShare(path+matchreportdetails.pm_cover_image,matchreportdetails.pm_title,matchreportdetails.created_at,matchreportdetails.pm_video);"/></a>
 			<a style="padding-right: 5px;"><img src="assets/imgs/google_plus_share.jpg" class="shareImgs" (click)="gmailShare(path+matchreportdetails.pm_cover_image,matchreportdetails.pm_title,matchreportdetails.created_at,matchreportdetails.pm_video);"/></a>
-		</div>
+		</div> -->
 		<p class="jb-margin">&nbsp;</p>
 	</div>
 

@@ -1156,6 +1156,38 @@ export class InnermatchcenterPage {
                           //   free trial true and user has a single game pass.
                           this.pamentshow = 1;
                           this.gotostatspage();
+                      } else{
+                        if(this.selectd_yr == '2018' && this.processproduct.GetProductType(element.product_id) != 'Premium' && this.processproduct.GetProductType(element.product_id) != 'Premium Plus' && element.product_id != 'vafa_pass'){
+                          let alertpop = this.alertCtrl.create({
+                            title: 'PREMIUM PASS REQUIRED',
+                            message: 'Upgrade your experience today.',
+                            // cssClass: 'Upgradebutton',
+                            buttons: [
+                                {
+                                    text: 'MAY BE LATER',
+                                    handler: () => {
+                                        this.ga.trackEvent("Stats - Maybe Later", "Selected", "Premium", 1);
+                                        this.goToActionPage(this.statcheck);
+                                    }
+                                },
+                                {
+                                    text: "Let's Do It",
+                                    handler: () => {
+                                        this.ga.trackEvent("Stats - Upgrade Now", "Selected", "Premium", 1);
+                                        if(this.isLogin==true){
+                                          this.localdata.StoreYear(this.selectd_yr);
+                                            this.navCtrl.push('LandingpagePage');
+                                        }else{
+                                            this.localdata.LoginState('LandingpagePage', '');
+                                            this.localdata.StoreYear(this.selectd_yr);
+                                            this.navCtrl.push('LoginPage',{iap:'true'});
+                                        }
+                                    }
+                                },
+                            ]
+                        });
+                        alertpop.present();
+                        }
                       }
                     });
                 }
@@ -1267,6 +1299,89 @@ export class InnermatchcenterPage {
         //   free trial false and user has a single game pass.
         this.pamentshow = 1;
         this.gotostatspage();
+    }else {
+      if(this.selectd_yr == '2018' && this.processproduct.GetProductType(element.product_id) != 'Premium' && this.processproduct.GetProductType(element.product_id) != 'Premium Plus' && element.product_id != 'vafa_pass'){
+        let alertpop = this.alertCtrl.create({
+          title: 'PREMIUM PASS REQUIRED',
+          message: 'Upgrade your experience today.',
+          // cssClass: 'Upgradebutton',
+          buttons: [
+              {
+                  text: 'MAY BE LATER',
+                  handler: () => {
+                      this.ga.trackEvent("Stats - Maybe Later", "Selected", "Premium", 1);
+                      this.goToActionPage(this.statcheck);
+                  }
+              },
+              {
+                  text: "Let's Do It",
+                  handler: () => {
+                      this.ga.trackEvent("Stats - Upgrade Now", "Selected", "Premium", 1);
+                      if(this.isLogin==true){
+                        this.localdata.StoreYear(this.selectd_yr);
+                          this.navCtrl.push('LandingpagePage');
+                      }else{
+                          this.localdata.LoginState('LandingpagePage', '');
+                          this.localdata.StoreYear(this.selectd_yr);
+                          this.navCtrl.push('LoginPage',{iap:'true'});
+                      }
+                  }
+              },
+          ]
+      });
+      alertpop.present();
+      }
+      if(this.selectd_yr == '2019' && this.processproduct.GetProductType(element.product_id) != 'Premium 2019' && this.processproduct.GetProductType(element.product_id) != 'Premium Plus 2019' && element.product_id != 'vafa_pass'){
+        let alertpop = this.alertCtrl.create({
+          title: 'PREMIUM PASS REQUIRED',
+          message: 'Upgrade your experience today.',
+          // cssClass: 'Upgradebutton',
+          buttons: [
+              {
+                  text: 'No Thank you',
+                  handler: () => {
+                      this.ga.trackEvent("Stats - Maybe Later", "Selected", "Premium", 1);
+                      this.goToActionPage(this.statcheck);
+                  }
+              },
+              {
+                  text: "Season Pass",
+                  handler: () => {
+                      this.ga.trackEvent("Stats - Upgrade Now", "Selected", "Premium", 1);
+                      if(this.isLogin==true){
+                        this.localdata.StoreYear(this.selectd_yr);
+                          this.navCtrl.push('LandingpagePage');
+                      }else{
+                          this.localdata.LoginState('LandingpagePage', '');
+                          this.localdata.StoreYear(this.selectd_yr);
+                          this.navCtrl.push('LoginPage',{iap:'true'});
+                      }
+                  }
+              },
+              {
+                text: 'Game Pass',
+                handler: () => {
+                  let Data = {
+                    homeTeam : this.homeTeamAbbr,
+                    awayTeam : this.awayTeamAbbr,
+                    matchData: this.details
+                  }
+                  const popover = this.popover.create(gamepasspage,{ MatchData  : Data},{cssClass: 'gamepass'});
+                  popover.present();
+                  popover.onDidDismiss(data =>{
+                    if(data == 'cancel'){
+                      this.goToActionPage(this.statcheck);
+                    }else if(data == 'success'){
+                      this.pamentshow = 1;
+                      this.gotostatspage();
+                    }
+                  })
+                }
+            }
+          ]
+      });
+      alertpop.present();
+      }
     }
                              });
                          }
@@ -3060,8 +3175,18 @@ export class InnermatchcenterPage {
                 } else if (this.homeTeamScoreStat['Disposals'] == this.awayTeamScoreStat['Disposals']) {
                     this.modifiedStateSeq.push({ id: 10000, stat_name: "Disposals", stat_abbrevation: "Disposals", homeTeamColor: 'orange', awayTeamColor: 'orange', awayTeamWidth: "51%", homeTeamWidth: "51%" });
 
-                }else if(this.homeTeamScoreStat['Disposals'] < this.awayTeamScoreStat['Disposals'] && this.awayTeamScoreStat['Disposals'] < 200){
+                } else if(this.homeTeamScoreStat['Disposals'] < this.awayTeamScoreStat['Disposals'] && this.awayTeamScoreStat['Disposals'] < 200){
+
                     this.modifiedStateSeq.push({id:10000,stat_name:"Disposals",stat_abbrevation:"Disposals",homeTeamColor:"#596682",awayTeamColor:"#60BA72",awayTeamWidth:"81%",homeTeamWidth:"51%"});
+
+                } else if(this.homeTeamScoreStat['Disposals'] > this.awayTeamScoreStat['Disposals'] && this.homeTeamScoreStat['Disposals'] > 150 && this.awayTeamScoreStat['Disposals'] > 150){
+
+                  this.modifiedStateSeq.push({id:10000,stat_name:"Disposals",stat_abbrevation:"Disposals",homeTeamColor:"#60BA72",awayTeamColor:"#596682",homeTeamWidth:"96%",awayTeamWidth:"90%"});
+                    //  hometeam greater 151 and awayteam 149.
+                }else if(this.homeTeamScoreStat['Disposals'] > this.awayTeamScoreStat['Disposals'] && this.homeTeamScoreStat['Disposals'] > 150 && this.awayTeamScoreStat['Disposals'] < 150){
+
+                  this.modifiedStateSeq.push({id:10000,stat_name:"Disposals",stat_abbrevation:"Disposals",homeTeamColor:"#60BA72",awayTeamColor:"#596682",homeTeamWidth:"91%",awayTeamWidth:"51%"});
+                    //  hometeam greater and awayteam less than 150.
                 }
                 //this.modifiedStateSeq.push({id:10000,stat_name:"Disposals",stat_abbrevation:"Disposals",homeTeamColor:"#60BA72",awayTeamColor:"#596682",awayTeamWidth:"51%",homeTeamWidth:"81.48148148148148%"});
             }

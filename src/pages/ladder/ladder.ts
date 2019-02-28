@@ -49,6 +49,10 @@ export class LadderPage {
        })
   }
 
+  ionViewDidLeave(){
+    $('#LadderTable').dataTable().fnDestroy();
+  }
+
   ionViewDidLoad() {
     this.cmnfun.showLoading('Please wait...');
     console.log('ionViewDidLoad LadderPage');
@@ -63,7 +67,7 @@ export class LadderPage {
         this.competition_id = this.comptitionlists[0].competition_id;
         this.ajax.datalist('team-ladder-competitionwise', {
           accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
-          competition_id: this.competition_id,
+          competition_id: this.competition_id
         }).subscribe((res) => {
           this.teamladdercompetitionwise(res);
         }, error => {
@@ -74,7 +78,6 @@ export class LadderPage {
 
   }
   teamladdercompetitionwise(res) {
-
     $('#LadderTable').dataTable().fnDestroy();
     this.ladderDataa = res.ladder;
     this.arraySize = this.ladderDataa.length;
@@ -91,6 +94,7 @@ export class LadderPage {
         // scrollY: 150,
         scrollX: true,
         scrollCollapse: true,
+        "bDestroy": true,
         paging: false,
         info: false,
         "bPaginate": false,

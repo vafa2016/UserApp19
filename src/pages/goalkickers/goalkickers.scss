@@ -12,10 +12,11 @@ page-goalkickers {
    .teamStates-List {
        padding-bottom: 0px !important;
       border-bottom: 1px solid #bdbdbd;
-      padding: 15px 0 13px;
+      padding: 5px 0 13px;
 }
     .jb-inner-goals{
-          margin: 7% auto;
+      padding-top: 15px;
+          // margin: 5% auto !important;
     }
 .item-thumbnail-left > img:first-child, .item-thumbnail-left.onlyForGoalKicker .item-image, .item-thumbnail-left.onlyForGoalKicker .item-content > img:first-child, .item-thumbnail-left.onlyForGoalKicker .item-content .item-image {
     float: left !important;
@@ -125,7 +126,7 @@ page-goalkickers {
   font-family: Gotham-Bold;
   font-size: 16px;
   color: #04235C;
-  margin-top: 6px;
+  margin-top: 0px !important;
   margin-bottom: 8px;
 }
 .jb-goal-p1
@@ -280,12 +281,11 @@ page-goalkickers {
 .jd-darrow{
   color: black;
   position: absolute;
-  top: 28px !important;
+  top: 26px !important;
   background-color: #fff !important;
-  width: 15% !important;
-  right: 15px !important;
-  line-height: 1 !important;
-  font-size: 22px !important;
+  width: 15% !important;    right: 14% !important;
+  line-height: 1;
+  font-size: 22px;
   font-weight: bold !important;
 }
 
