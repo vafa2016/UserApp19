@@ -1,4 +1,20 @@
 page-goalkickers {
+  ion-header .toolbar
+  {
+      height: 45px !important;
+      .bar-button
+      {
+        top:-3px !important;
+      }
+      .title
+      {
+        top:-8px !important;
+      }
+      .title1
+      {
+        top:22px !important;
+      }
+  }
    .searchbar-search-icon{
            background-image: url("../assets/icon/magnifying-glass.svg") !important;
    }
@@ -7,7 +23,7 @@ page-goalkickers {
                  background-size: 8px !important;
         }
        .toolbar {
-            min-height: 55px !important;
+            // min-height: 55px !important;
         }
    .teamStates-List {
        padding-bottom: 0px !important;
@@ -178,7 +194,7 @@ page-goalkickers {
       position: fixed;
       z-index: 10;
       background: #fff;
-      top: 54px;
+      top: 45px;
       border-bottom: 1px solid #bdbdbd;
     //   border-bottom: 1px solid rgba(80, 80, 80, 0.92);
 
@@ -208,7 +224,7 @@ page-goalkickers {
     .jb-segment-left
     {
         border-left: 1px solid #bdbdbd !important;
-        max-width: 33% !important;
+        max-width: 50% !important;
     }
     .jb-topalign
     {
@@ -257,8 +273,11 @@ page-goalkickers {
 }
 
 .jd-year-p1{
-  margin: -2px;
+  font-family: 'Gotham-Bold';margin: -4px;
   height: 18px;
+  margin-bottom: 3px;
+  text-align: left;
+  margin-left: 10px;
   color: black;
   font-size: 16px;
   font-family: 'Gotham-Bold';
@@ -267,6 +286,8 @@ page-goalkickers {
 .jd-year-p2{
   margin: 2px 0px 0px -8px;
   height: 27px;
+  text-align: left;
+  margin-left: 18px;
   color: black;
   font-size: 16px;
   overflow: hidden;
@@ -274,8 +295,8 @@ page-goalkickers {
 }
 
 .jd-segment-first{
-  max-width: 25% !important;
-  border-right: 1px solid #bdbdbd !important;
+  max-width: 50% !important;
+  // border-right: 1px solid #bdbdbd !important;
 }
 
 .jd-darrow{
@@ -283,7 +304,7 @@ page-goalkickers {
   position: absolute;
   top: 26px !important;
   background-color: #fff !important;
-  width: 15% !important;    right: 14% !important;
+  width: 15% !important;    left: 30% !important;
   line-height: 1;
   font-size: 22px;
   font-weight: bold !important;
@@ -304,7 +325,7 @@ page-goalkickers {
   position: absolute;
   top: 25px;
   background-color: #fff;
-  width: 15%;right: 2px;line-height: 1;
+  width: 15%;right: 4px;line-height: 1;
 }
 
 .jd-com{

@@ -11,6 +11,7 @@
       <ion-icon name="appicons-menu"></ion-icon>
     </button>
     <ion-title *ngIf="!toggled" text-center>Goal Kickers</ion-title>
+    <button *ngIf="!toggled" class="title1" text-center (click)="selectedType('competion')">{{selectables}} <ion-icon class="downarrow" name="ios-arrow-down"></ion-icon></button>
     <!-- Search Bar -->
     <form (submit)="submitSearch()">
     <ion-searchbar #searchbar *ngIf="toggled" [(ngModel)]="searchTerm" placeholder='' [showCancelButton]="true" (ionCancel)="toggleSearchcancel()"
@@ -28,14 +29,6 @@
        <p class="jd-year-p2">{{selectd_yr}}</p>
         <ion-icon class="downarrow jd-darrow" name="ios-arrow-down"></ion-icon>
       </ion-segment-button>
-  <ion-segment-button class=".jb-segment-right" (click)="selectedType(type); " value="competion">
-      <!-- <p class="jd-com">COMPETITIONS</p> -->
-    <p style="margin: 0px;height: 25px; text-align:left; margin-left: 10px;color: black;font-size: 14px;font-family: 'Gotham-Bold';">COMPETITIONS</p>
-    <p class="jd-com"> {{selectables.length > 12 ? selectables.substring(0,12)+'..' : selectables}}</p>
-    <ion-icon class="downarrow jd-d" name="ios-arrow-down"></ion-icon>
-   <!-- <p style="margin: 0px;height: 25px;overflow: hidden;font-family: 'Gotham-Medium';"> {{selectables}}</p> -->
-    <!-- <ion-icon style="position: absolute;top: 35px;background-color: #fff;width: 15%;right: 4px;line-height: 1;" class="downarrow" name="ios-arrow-down"></ion-icon> -->
-  </ion-segment-button>
   <ion-segment-button class="jb-segment-left" (click)="selectedType(type); " value="teams">
     <p class="jd-t">TEAMS</p>
     <p style="margin: 0px;
@@ -50,7 +43,7 @@
   </ion-segment-button>
 </ion-segment>
 <ion-header *ngIf="headerAdv.length" [style.display]="advDisplay=='hide' ? 'block' : 'none'" class="bar-sub-subheader" style="height: 50px;position:relative; top:113px; background-color: transparent; border: 0px !important; border-bottom-color: transparent !important; background-image: none !important; border-bottom: none !important; ">
-  <div class="advContainer" style="position:fixed;margin: 0 auto 0 -7px; width: 104%;">
+  <div class="advContainer" style="position:fixed;margin: -9px auto 0 -7px; width: 104%;">
     <img src="{{path}}{{headerAdv[0].ad_image}}"  (click)="goToAddSite(headerAdv[0].ad_url);">
   </div>
 </ion-header>
