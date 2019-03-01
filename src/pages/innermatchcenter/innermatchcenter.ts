@@ -4023,6 +4023,24 @@ export class InnermatchcenterPage {
      this.navCtrl.push('PlayerstatindividualPage',{player_id:playerid, fixture_id: this.fixture_id, CoachValue: false});
     }
 
+    WatchAudio () {
+        let options: StreamingAudioOptions = {
+                      successCallback: () => { console.log('Finished Audio') },
+                      errorCallback: (e) => { console.log('Error: ', e) }
+                  };
+           this.streamingMedia.playAudio('', options);
+    }
+
+    WatchVideo (){
+    let options: StreamingVideoOptions = {
+          successCallback: () => { console.log('Finished Video') },
+          errorCallback: (e) => { console.log('Error: ', e) },
+          orientation: 'portrait'
+      };
+      // http://www.sample-videos.com/
+    this.streamingMedia.playVideo('http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_30mb.mp4', options);
+    }
+
     // all sort datatable function
     SortAll(){
       let sortdata = ['all'];
@@ -4156,9 +4174,8 @@ export class InnermatchcenterPage {
     )
     .catch( err=>{
       this.cmnfun.showToast(err.errorMessage);
-    }
-    )
-    }
+    })
+  }
 
   }
 
