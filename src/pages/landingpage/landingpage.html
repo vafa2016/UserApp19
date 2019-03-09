@@ -32,7 +32,7 @@
   <div class="jb-button-bu">
     <button [ngClass]="{'jb-color-change' : (selectedteam !='')}" ion-button color="light" (click)="gotocheckcompetitionteam('team')">
           <span *ngIf="selectedteam ==''">TEAM</span>
-          <img  *ngIf="selectedteam !=''"  class="jb-img-ver"src="http://vafalive.com.au/{{selectedteam.image_value}}" width="30"/>
+          <img  *ngIf="selectedteam !=''"  class="jb-img-ver"src="http://54.244.98.247/{{selectedteam.image_value}}" width="30"/>
           <span *ngIf="selectedteam !=''">{{selectedteam.team_name}}</span>
           <ion-icon class="jb-tick-icon" *ngIf="selectedteam !=''" name="checkmark"></ion-icon>
         </button></div>
@@ -116,7 +116,7 @@
   <div class="2019"  *ngIf="Matchyear == '2019'">
       <p class="jb-first-p1">UPGRADE YOUR EXPERIENCE</p>
       <p class="jb-second-p2">with a <span>PREMIUM PASS</span> today</p>
-      <ion-card *ngIf='MyProducts.indexOf("Premium 2019") == -1 && MyProducts.indexOf("Premium Plus 2019") == -1 && MyProducts.indexOf("VAFA PASS") == -1' class="firstcard jb-card" (click)="paymentBuy(3)">
+      <ion-card class="firstcard jb-card" (click)="paymentBuy(3)">
         <ion-card-header class="jb-card-header">
           TEAM PASS
           <P> $29<sup>.99 per season </sup></P>
@@ -126,7 +126,7 @@
         </ion-card-content>
       </ion-card >
 
-       <ion-card *ngIf='MyProducts.indexOf("Premium Plus 2019") == -1 && MyProducts.indexOf("VAFA PASS") == -1'  class="secondcard jb-card" (click)="paymentBuy(4)">
+       <ion-card class="secondcard jb-card" (click)="paymentBuy(4)">
         <ion-card-header class="jb-card-header">
         COMPETITION PASS
           <P> $49<sup>.99 per season </sup></P>

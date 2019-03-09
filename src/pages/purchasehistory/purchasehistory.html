@@ -10,15 +10,17 @@
   <ion-grid>
 
     <ion-row class="jd_custom_row" *ngFor="let purchase of PurchaseDetails" >
-      <ion-col col-6><p class="jd_label_text">Competition</p></ion-col>
-      <ion-col col-6><p class="jd_text">{{purchase.competition}}</p></ion-col>
 
-      <ion-col col-6><p class="jd_label_text">Team</p></ion-col>
-      <ion-col col-6><p class="jd_text">{{purchase.team}}</p></ion-col>
+      <ion-col col-6><p *ngIf="purchase.fixture_id == 0" class="jd_label_text">Competition</p></ion-col>
+      <ion-col col-6><p *ngIf="purchase.fixture_id == 0" class="jd_text">{{purchase.competition}}</p></ion-col>
+
+      <ion-col col-6><p *ngIf="purchase.fixture_id == 0" class="jd_label_text">Team</p></ion-col>
+      <ion-col col-6><p *ngIf="purchase.fixture_id == 0" class="jd_text">{{purchase.team}}</p></ion-col>
 
       <ion-col col-6><p class="jd_label_text">Premium Pass</p></ion-col>
       <ion-col col-6>
-        <p class="jd_text" *ngIf="(purchase.product !=null && purchase.product !='')" [innerHTML]="prolist.GetProductType(purchase.product)"></p>
+        <p class="jd_text" *ngIf="(purchase.product !=null && purchase.product !='' && purchase.fixture_id == 0)" [innerHTML]="ProductType(purchase)"></p>
+        <p class="jd_text" *ngIf="(purchase.product !=null && purchase.product !='' && purchase.fixture_id != 0)" [innerHTML]="purchase.gamepass"></p>
       </ion-col>
 
       <ion-col col-6><p class="jd_label_text">Amount</p></ion-col>

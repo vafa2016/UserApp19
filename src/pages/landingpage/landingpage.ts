@@ -35,6 +35,20 @@ const PremiumPlus2019 = '2019_premium_william_buck_premier_womens_all_teams';
 const GamePass = 'game_pass';
 const VafaPass = 'vafa_pass';
 
+// test
+const test1 = '2019_test_sydney_seniors';
+const test2 = '2019_test_adelaide_seniors';
+const test3 = '2019_test_hawthorn_seniors';
+const test4 = '2019_test_richmond_seniors';
+const test5 = '2018_test_sydney_seniors';
+const test6 = '2018_test_adelaide_seniors';
+const test7 = '2018_test_hawthorn_seniors';
+const test8 = '2018_test_richmond_seniors';
+const Interstate2018='2018_premiumplus_interstate';
+const Victoria2018='2018_premiumplus_victorian';
+const Interstate2019='2019_premiumplus_interstate';
+const Victoria2019='2019_premiumplus_victorian';
+
 // const proId1 = 'vafa_premium0001';
 // const proId2 = 'vafa_premium_plus0002';
 
@@ -171,6 +185,7 @@ export class LandingpagePage {
       if (this.selectedcompetition != '' && this.selectedteam != '') {
         // get product_id
         this.processproduct.SetUserProduct(this.selectedteam, this.selectedcompetition,this.Matchyear);
+        this.processproduct.setplusproduct(this.selectedcompetition);
       } else {
         // show from local storage
         this.storage.get('UserTeamData').then((val) => {
@@ -188,8 +203,8 @@ export class LandingpagePage {
     //
 
     this.plt.ready().then(() => {
-    this.iap.getProducts([proId0, proId1, proId2, proId3, proId4, proId5, proId6, proId7, PremiumPlus,
-      proId8, proId9, proId10, proId11, proId12, proId13, proId14, proId15, PremiumPlus2019, GamePass, VafaPass])
+    this.iap.getProducts([test1, test2, test3 ,test4, test5, test6, test7, test8, proId0, proId1, proId2, proId3, proId4, proId5, proId6, proId7, PremiumPlus,
+      Interstate2018, Interstate2019, Victoria2018, Victoria2019 ,proId8, proId9, proId10, proId11, proId12, proId13, proId14, proId15, PremiumPlus2019, GamePass, VafaPass])
         .then((products) => {
         })
         .catch((err) => {
@@ -230,6 +245,7 @@ export class LandingpagePage {
             this.selectedcompetition = val.selectedcompetition;
             this.yearcheck = val.yearcheck;
             this.processproduct.SetUserProduct(this.selectedteam, this.selectedcompetition, this.Matchyear);
+            this.processproduct.setplusproduct(this.selectedcompetition);
             if(this.localData.LoginTo() == 'LandingpagePage' && this.localData.getLoginparam() == 'all set'){
                 this.pamentshow = true;
                 this.localData.LoginState('', '');
@@ -307,6 +323,7 @@ export class LandingpagePage {
           this.deviceId = this.localData.GetDevice();
           this.selectedteam = data.value;
           this.processproduct.SetUserProduct(this.selectedteam, this.selectedcompetition,  this.Matchyear);
+          this.processproduct.setplusproduct(this.selectedcompetition);
           if (this.isLogin == true) {
             let update = {
               id: this.UserDeviceData.id,
@@ -420,13 +437,15 @@ export class LandingpagePage {
       product_id = this.processproduct.GetUserProduct();
     } else if (val == 2) {
       this.ga.trackEvent("Premium Pass", "Selected", "PREMIUM PLUS", 1);
-      product_id = PremiumPlus;
+      // product_id = PremiumPlus;
+      product_id = this.processproduct.getplusproduct();
     } else if (val == 3) {
       // 2019 premium pass
       this.ga.trackEvent("Premium Pass", "Selected", "PREMIUM", 1);
       product_id = this.processproduct.GetUserProduct();
     } else if (val == 4) {
-      product_id = PremiumPlus2019;
+      product_id = this.processproduct.getplusproduct();
+      // product_id = PremiumPlus2019;
     } else if (val == 5) {
       product_id = VafaPass;
     }
@@ -568,7 +587,7 @@ export class LandingpagePage {
               transaction_id: this.User.transaction_id
             }
             this.ProData.push(PurchaseD);
-           } else if (element.product_Id == proId9 && this.User.product_id == proId9){
+           } else if (element.productId == proId9 && this.User.product_id == proId9){
              paidstatus = 0;
              this.processproduct.RestoreTeam(element.productId);
              this.User.transaction_id = element.transactionId;
@@ -581,7 +600,7 @@ export class LandingpagePage {
               transaction_id: this.User.transaction_id
             }
             this.ProData.push(PurchaseD);
-           } else if (element.product_Id == proId10 && this.User.product_id == proId10) {
+           } else if (element.productId == proId10 && this.User.product_id == proId10) {
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
@@ -594,7 +613,7 @@ export class LandingpagePage {
              transaction_id: this.User.transaction_id
            }
            this.ProData.push(PurchaseD);
-           } else if (element.product_Id == proId11 && this.User.product_id == proId11){
+           } else if (element.productId == proId11 && this.User.product_id == proId11){
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
@@ -607,7 +626,7 @@ export class LandingpagePage {
              transaction_id: this.User.transaction_id
            }
            this.ProData.push(PurchaseD);
-           } else if (element.product_Id == proId12 && this.User.product_id == proId12) {
+           } else if (element.productId == proId12 && this.User.product_id == proId12) {
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
@@ -620,7 +639,7 @@ export class LandingpagePage {
              transaction_id: this.User.transaction_id
            }
            this.ProData.push(PurchaseD);
-           } else if (element.product_Id == proId13 && this.User.product_id == proId13) {
+           } else if (element.productId == proId13 && this.User.product_id == proId13) {
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
@@ -633,7 +652,7 @@ export class LandingpagePage {
              transaction_id: this.User.transaction_id
            }
            this.ProData.push(PurchaseD);
-           } else if (element.product_Id == proId14 && this.User.product_id == proId14) {
+           } else if (element.productId == proId14 && this.User.product_id == proId14) {
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
@@ -646,7 +665,7 @@ export class LandingpagePage {
              transaction_id: this.User.transaction_id
            }
            this.ProData.push(PurchaseD);
-           } else if (element.product_Id == proId15 && this.User.product_id == proId15) {
+           } else if (element.productId == proId15 && this.User.product_id == proId15) {
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
@@ -659,7 +678,7 @@ export class LandingpagePage {
              transaction_id: this.User.transaction_id
            }
            this.ProData.push(PurchaseD);
-           } else if (element.product_Id == PremiumPlus2019 && this.User.product_id == PremiumPlus2019) {
+           } else if (element.productId == PremiumPlus2019 && this.User.product_id == PremiumPlus2019) {
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
@@ -672,7 +691,165 @@ export class LandingpagePage {
              transaction_id: this.User.transaction_id
            }
            this.ProData.push(PurchaseD);
-           } else if (element.product_Id == VafaPass && this.User.product_id == VafaPass) {
+           } else if (element.productId == VafaPass && this.User.product_id == VafaPass) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id,
+             fixture_id: 0
+           }
+           this.ProData.push(PurchaseD);
+           }  else if (element.productId == Interstate2018 && this.User.product_id == Interstate2018) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id,
+             fixture_id: 0
+           }
+           this.ProData.push(PurchaseD);
+           } else if (element.productId == Interstate2019 && this.User.product_id == Interstate2019) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id,
+             fixture_id: 0
+           }
+           this.ProData.push(PurchaseD);
+           } else if (element.productId == Victoria2019 && this.User.product_id == Victoria2019) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id,
+             fixture_id: 0
+           }
+           this.ProData.push(PurchaseD);
+           } else if (element.productId == Victoria2018 && this.User.product_id == Victoria2018) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id,
+             fixture_id: 0
+           }
+           this.ProData.push(PurchaseD);
+           }
+          //  test products
+          else if (element.productId == test1 && this.User.product_id == test1) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id,
+             fixture_id: 0
+           }
+           this.ProData.push(PurchaseD);
+           }  else if (element.productId == test2 && this.User.product_id == test2) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id,
+             fixture_id: 0
+           }
+           this.ProData.push(PurchaseD);
+           }  else if (element.productId == test3 && this.User.product_id == test3) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id,
+             fixture_id: 0
+           }
+           this.ProData.push(PurchaseD);
+           }  else if (element.productId == test4 && this.User.product_id == test4) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id,
+             fixture_id: 0
+           }
+           this.ProData.push(PurchaseD);
+           }  else if (element.productId == test5 && this.User.product_id == test5) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id,
+             fixture_id: 0
+           }
+           this.ProData.push(PurchaseD);
+           }  else if (element.productId == test6 && this.User.product_id == test6) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id,
+             fixture_id: 0
+           }
+           this.ProData.push(PurchaseD);
+           }  else if (element.productId == test7 && this.User.product_id == test7) {
+            paidstatus = 0;
+            this.processproduct.RestoreTeam(element.productId);
+            this.User.transaction_id = element.transactionId;
+           let PurchaseD = {
+             device_id: this.User.device_id,
+             competition_id: this.processproduct.GetCompetitionid(),
+             team_id:this.processproduct.GetTeamid(),
+             product_id: this.User.product_id,
+             transaction_id: this.User.transaction_id,
+             fixture_id: 0
+           }
+           this.ProData.push(PurchaseD);
+           }  else if (element.productId == test8 && this.User.product_id == test8) {
             paidstatus = 0;
             this.processproduct.RestoreTeam(element.productId);
             this.User.transaction_id = element.transactionId;
@@ -716,7 +893,7 @@ export class LandingpagePage {
       if (purchases != []) {
         // this.processproduct.IapRestorePurchase(purchases); // store purchase history
         purchases.forEach(element => {
-          if (element.productId == proId0 || element.productId == proId1 || element.productId == proId2 || element.productId == proId3 || element.productId == proId4 || element.productId == proId5 || element.productId == proId6 || element.productId == proId7) {
+          if (element.productId == test8 ||element.productId == test7 ||element.productId == test6 ||element.productId == test5 ||element.productId == proId0 || element.productId == proId1 || element.productId == proId2 || element.productId == proId3 || element.productId == proId4 || element.productId == proId5 || element.productId == proId6 || element.productId == proId7) {
             product1 = 1;
             this.processproduct.RestoreTeam(element.productId);
             let PurchaseD = {
@@ -728,7 +905,7 @@ export class LandingpagePage {
               transaction_id: element.transactionId
             }
             this.ProData.push(PurchaseD);
-          } else if (element.productId == PremiumPlus) {
+          } else if (element.productId == Victoria2018 || element.productId == Interstate2018  || element.productId == PremiumPlus) {
             product2 = 1;
             this.processproduct.RestoreTeam(element.productId);
             let PurchaseD = {
@@ -740,7 +917,7 @@ export class LandingpagePage {
               transaction_id: element.transactionId
             }
             this.ProData.push(PurchaseD);
-          } else if (element.productId == proId8 || element.productId == proId9 || element.productId == proId10 || element.productId == proId11 || element.productId == proId12 || element.productId == proId13 || element.productId == proId14 || element.productId == proId15){
+          } else if (element.productId == test4 || element.productId == test3 || element.productId == test2 || element.productId == test1 || element.productId == proId8 || element.productId == proId9 || element.productId == proId10 || element.productId == proId11 || element.productId == proId12 || element.productId == proId13 || element.productId == proId14 || element.productId == proId15){
             product3 = 1;
             this.processproduct.RestoreTeam(element.productId);
             let PurchaseD = {
@@ -752,7 +929,7 @@ export class LandingpagePage {
               transaction_id: element.transactionId
             }
             this.ProData.push(PurchaseD);
-          } else if(element.productId == PremiumPlus2019) {
+          } else if(element.productId == Victoria2019 || element.productId == Interstate2019 ||element.productId == PremiumPlus2019) {
             product4 = 1;
             this.processproduct.RestoreTeam(element.productId);
             let PurchaseD = {

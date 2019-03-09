@@ -8,7 +8,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
   selector: 'page-yeardropdown',
   template : `
   <ion-list no-lines class='jd-custom-drop'>
-    <button *ngFor="let year of YearList" ion-item text-center (click)="dismiss(year)">{{year.competition_year}}</button>
+    <button detail-none *ngFor="let year of YearList" ion-item text-center (click)="dismiss(year)">{{year.competition_year}}</button>
   </ion-list>
 `
 })

@@ -109,6 +109,17 @@ export class AjaxProvider {
      .catch(error => error)
  }
   //
+  // get fixture data for single game pass
+  FixtureDataApi(params) {
+    console.log(params)
+   var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
+   return this.http
+     .post('http://54.244.98.247/score/custom/get-fixture-details',
+     params, config)
+     .map(res => res)
+     .catch(error => error)
+ }
+  //
 
   // get all competition year wise api
   GetMatchComp(category, params) {

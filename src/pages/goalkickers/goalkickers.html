@@ -11,7 +11,7 @@
       <ion-icon name="appicons-menu"></ion-icon>
     </button>
     <ion-title *ngIf="!toggled" text-center>Goal Kickers</ion-title>
-    <button *ngIf="!toggled" class="title1" text-center (click)="selectedType('competion')">{{selectables}} <ion-icon class="downarrow" name="ios-arrow-down"></ion-icon></button>
+    <button *ngIf="!toggled" class="title1" text-center (click)="selectedType('competion')">{{selectables.length > 20 ? selectables.substring(0,20)+'..' : selectables}}<ion-icon class="downarrow" name="ios-arrow-down"></ion-icon></button>
     <!-- Search Bar -->
     <form (submit)="submitSearch()">
     <ion-searchbar #searchbar *ngIf="toggled" [(ngModel)]="searchTerm" placeholder='' [showCancelButton]="true" (ionCancel)="toggleSearchcancel()"

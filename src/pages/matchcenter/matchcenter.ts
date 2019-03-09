@@ -60,6 +60,8 @@ export class MatchcenterPage {
 
   YearList: any = [];
 
+  Entered:boolean = false;
+
   selectd_yr: any = '';
   constructor(private inapp: InAppBrowser,
     public plt:Platform,
@@ -106,6 +108,11 @@ export class MatchcenterPage {
     })
   }
 
+  RefreshScore() {
+    console.log('Entered');
+    this.selectRound(this.roundNo, this.competition_id);
+  }
+
 
   // scrollToBottom(): void {
   //   setTimeout(() => {
@@ -113,6 +120,7 @@ export class MatchcenterPage {
   //   }, 100);
   // }
   ionViewDidLoad() {
+    this.Entered = true;
     // var date = new Date();
     this.ddMMMMyyyy = moment(new Date()).format("DD MM YYYY");
     console.log(this.ddMMMMyyyy);
@@ -259,7 +267,7 @@ export class MatchcenterPage {
     }, error => {
       // this.cmnfun.showToast('Some thing Unexpected happen please try again');
     })
-  },5000)
+  },1000)
 
   }
 
@@ -292,7 +300,7 @@ export class MatchcenterPage {
           this.Interval1=setInterval(()=>{
             console.log('interval1')
             this.getroundwise(res);
-          },5000)
+          },1000)
          }
 
       }, error => {
@@ -314,10 +322,10 @@ export class MatchcenterPage {
 
     if (status == 'UPCOMING') {
       if ((this.serverDatee == this.sysDatee || this.serverMonth == this.sysMonth || this.serverYear == this.sysYear) && (manual_score_recording == 0 || manual_score_recording == 1)) {
-        this.navCtrl.push('InnermatchcenterPage', { details: { fixture_id: fictureId, roundNo: this.roundNo, match_status: this.matchStatus, manual_score_recording: manual_score_recording, roundName: this.roundName,awateam_id:awateamid,hometeam_id:hometeamid,competion_id:competionid },year : this.selectd_yr })
+        this.navCtrl.push('InnermatchcenterPage', { details: { fixture_id: fictureId, roundNo: this.roundNo, match_status: this.matchStatus, manual_score_recording: manual_score_recording, roundName: this.roundName,awateam_id:awateamid,hometeam_id:hometeamid,competion_id:competionid },year : this.selectd_yr, "parentPage": this  })
         // $state.go('app.score',);
       } else if ((this.serverDatee != this.sysDatee || this.serverMonth != this.sysMonth || this.serverYear != this.sysYear) && (manual_score_recording == 1)) {
-        this.navCtrl.push('InnermatchcenterPage', { details: { fixture_id: fictureId, roundNo: this.roundNo, match_status: this.matchStatus, manual_score_recording: manual_score_recording, roundName: this.roundName ,awateam_id:awateamid,hometeam_id:hometeamid,competion_id:competionid}, year : this.selectd_yr })
+        this.navCtrl.push('InnermatchcenterPage', { details: { fixture_id: fictureId, roundNo: this.roundNo, match_status: this.matchStatus, manual_score_recording: manual_score_recording, roundName: this.roundName ,awateam_id:awateamid,hometeam_id:hometeamid,competion_id:competionid}, year : this.selectd_yr ,"parentPage": this })
         //  $state.go('app.score',{);
       } else if ((this.serverDatee != this.sysDatee || this.serverMonth != this.sysMonth || this.serverYear != this.sysYear) && (manual_score_recording == 0)) {
         //  $ionicPopup.alert({
@@ -333,7 +341,7 @@ export class MatchcenterPage {
       }
 
     } else {
-      this.navCtrl.push('InnermatchcenterPage', { details: { fixture_id: fictureId, roundNo: this.roundNo, match_status: this.matchStatus, manual_score_recording: manual_score_recording, roundName: this.roundName ,awateam_id:awateamid,hometeam_id:hometeamid,competion_id:competionid}, year : this.selectd_yr })
+      this.navCtrl.push('InnermatchcenterPage', { details: { fixture_id: fictureId, roundNo: this.roundNo, match_status: this.matchStatus, manual_score_recording: manual_score_recording, roundName: this.roundName ,awateam_id:awateamid,hometeam_id:hometeamid,competion_id:competionid}, year : this.selectd_yr,"parentPage": this  })
       //  $state.go('app.score',);
     }
 
@@ -374,7 +382,7 @@ export class MatchcenterPage {
         this.Interval1=setInterval(()=>{
           console.log('interval1')
           this.getroundwise(res);
-        },5000)
+        },1000)
       }
     }, error => {
       // this.cmnfun.showToast('Some thing Unexpected happen please try again');

@@ -11,7 +11,7 @@
       <ion-icon name="appicons-menu"></ion-icon>
     </button>
     <ion-title text-center>Match Centre</ion-title>
-    <button class="title1" text-center (click)="gotomodel()">{{selectables}} <ion-icon class="downarrow" name="ios-arrow-down"></ion-icon></button>
+    <button class="title1" text-center (click)="gotomodel()">{{selectables.length > 20 ? selectables.substring(0,20)+'..' : selectables}} <ion-icon class="downarrow" name="ios-arrow-down"></ion-icon></button>
   </ion-navbar>
 </ion-header>
 
@@ -66,11 +66,24 @@
               <div class="dispTable">
                 <div class="dispTableCell">
                   <div class="matchStatusContainer text-center">
-                    <div class="matchStatus class_{{value1.match_status}} class_{{value1.match_status}}" *ngIf="value1.match_status =='LIVE'">
-                      Q{{value1.live_quater}}
-                      <span *ngIf="value1.live_quater_time!=null">&nbsp; {{value1.live_quater_time}} </span>
-                      <span *ngIf="value1.live_quater_time==null">&nbsp; 00:00 </span>
+                    <!-- quater live -->
+                    <div class="matchStatus class_{{value1.match_status}} class_{{value1.match_status}}" *ngIf="value1.live_quater_time!=null && value1.live_quater_time!= '00:00' && value1.match_status =='LIVE'">
+                        Q{{value1.live_quater}}
+                        <span *ngIf="value1.live_quater_time!=null">&nbsp; {{value1.live_quater_time}}</span>
+                      </div>
+                    <!-- 1st quater start -->
+                    <div class="matchStatus class_{{value1.match_status}} class_{{value1.match_status}}" *ngIf="value1.live_quater_time==null && value1.match_status =='LIVE'">
+                        Q{{value1.live_quater}}
+                      <span *ngIf="value1.live_quater_time == null">&nbsp;00:00</span>
                     </div>
+                    <!-- break -->
+                    <div class="matchStatus class_{{value1.match_status}} class_{{value1.match_status}}" *ngIf="value1.live_quater_time=='00:00' && value1.match_status =='LIVE'">
+                      <span *ngIf="value1.live_quater == '2'">&nbsp; QTR TIME</span>
+                      <span *ngIf="value1.live_quater == '3'">&nbsp; HALF TIME</span>
+                      <span *ngIf="value1.live_quater == '4'">&nbsp; 3 QTR TIME</span>
+                    </div>
+                    <!-- breakends -->
+
                     <div class="matchStatus class_{{value1.match_status}} class_{{value1.match_status}}" *ngIf=" value1.match_status =='UPCOMING'">
                       <span class="jd_prematch_note">{{value1.upcoming_days_status}}</span>
                     </div>
