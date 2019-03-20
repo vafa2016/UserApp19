@@ -14,7 +14,11 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
   templateUrl: 'accountmodelteam.html',
 })
 export class AccountmodelteamPage {
-  
+
+
+  // path:any = 'http://vafalive.com.au/';
+  path:any = 'http://54.244.98.247/';
+
   head:boolean=true;
   list:any={};
   type:any;

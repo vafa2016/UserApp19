@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProductListProvider } from '../../providers/product-list/product-list';
 import { Storage } from '@ionic/storage';
 import { AjaxProvider } from '../../providers/ajax/ajax';
-
+import { LocalDataProvider } from './../../providers/local-data/local-data';
 
 
 @IonicPage()
@@ -15,22 +15,24 @@ export class PurchasehistoryPage {
 
   PurchaseDetails:any=[];
   fixturedata:any;
+  resData : any;
 
   constructor(public navCtrl: NavController,
     public prolist:ProductListProvider,
     public ajax: AjaxProvider,
+    public localdata: LocalDataProvider,
     public Storage:Storage,
     public navParams: NavParams) {
-
-  //  local purchases from Storage
-  this.Storage.get('UserDeviceData').then((data) => {
-    if (data) {
-      this.ListPurchase(data.payment);
+    //  local purchases from Api
+    let dv_id = this.localdata.GetDevice();
+    this.ajax.GetAllPurchases({device_id : dv_id }).subscribe((res)=>{
+      this.resData = res;
+    if(this.resData.code == 2){
+      this.ListPurchase(this.resData.payment);
+    }else{
+      console.log(this.resData);
     }
-  });
-
-  // load purchases from local database
-  // this.PurchaseDetails=this.prolist.GetPurchase();
+    })
   }
 
   ListPurchase(payment){

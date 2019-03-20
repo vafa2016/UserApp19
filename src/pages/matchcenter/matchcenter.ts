@@ -12,6 +12,7 @@ import * as moment from 'moment';
 import { PopoverController } from 'ionic-angular';
 import {YeardropdownPage} from '../yeardropdown/yeardropdown';
 import { ProductListProvider } from '../../providers/product-list/product-list';
+import { LocalDataProvider } from './../../providers/local-data/local-data';
 /**
  * Generated class for the MatchcenterPage page.
  *
@@ -66,6 +67,7 @@ export class MatchcenterPage {
   constructor(private inapp: InAppBrowser,
     public plt:Platform,
     public ga:GoogleAnalytics,
+    public localData: LocalDataProvider,
     public popoverCtrl: PopoverController,
     private alertCtrl: AlertController,
     public ajax: AjaxProvider,
@@ -92,12 +94,13 @@ export class MatchcenterPage {
   // year_dropdown
   presentPopover(myEvent) {
     let data = this.YearList;
-    let popover = this.popoverCtrl.create("YeardropdownPage",{ yearData : data });
+    let popover = this.popoverCtrl.create("YeardropdownPage",{ yearData : data },{cssClass: 'yearlist'});
     popover.present({
       ev: myEvent
     });
 
     popover.onDidDismiss(data =>{
+      console.log(data);
       if(data != null){
         this.selectd_yr = data.competition_year;
         this.competition_id = data.competition_id;
@@ -108,9 +111,16 @@ export class MatchcenterPage {
     })
   }
 
-  RefreshScore() {
-    console.log('Entered');
+  RefreshScore2(){
+    if(this.navCtrl.last().name != 'PlayerstatindividualPage'){
     this.selectRound(this.roundNo, this.competition_id);
+    }
+  }
+
+  RefreshScore() {
+    if(this.navCtrl.last().name == 'InnermatchcenterPage'){
+      this.selectRound(this.roundNo, this.competition_id);
+    }
   }
 
 
@@ -121,6 +131,9 @@ export class MatchcenterPage {
   // }
   ionViewDidLoad() {
     this.Entered = true;
+  //  else{
+      // this.cmnfun.HideLoading();
+    // }
     // var date = new Date();
     this.ddMMMMyyyy = moment(new Date()).format("DD MM YYYY");
     console.log(this.ddMMMMyyyy);
@@ -129,10 +142,11 @@ export class MatchcenterPage {
     this.sysMonth = ddMMMMyyyy[1];
     this.sysYear = ddMMMMyyyy[2];
 
-    this.cmnfun.showLoading('Please wait...');
-    this.ajax.getcompetionlist('get-all-competitions', {
-      accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
-    }, 'matchcenter')
+      this.cmnfun.showLoading('Please wait...');
+      this.ajax.getcompetionlist('get-all-competitions', {
+        accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+      }, 'matchcenter')
+
 
     this.events.subscribe('competitionlistmatchcenter:changed', res => {
 
@@ -172,8 +186,6 @@ export class MatchcenterPage {
       }
 
     })
-
-
   }
   getroundwise(res) {
     console.log(res);
@@ -228,7 +240,9 @@ export class MatchcenterPage {
       }
   };
   ionViewWillLeave() {
+    console.log('leave match center');
     clearInterval(this.Interval1);
+    // clearInterval(this.Interval2);
     this.events.unsubscribe('competitionlistmatchcenter:changed');
     this.events.unsubscribe('datalist:changed');
   }

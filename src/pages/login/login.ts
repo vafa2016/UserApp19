@@ -6,6 +6,7 @@ import { AjaxProvider } from '../../providers/ajax/ajax';
 import { CommomfunctionProvider } from '../../providers/commomfunction/commomfunction';
 import { Events } from 'ionic-angular';
 import { HomePage } from '../../pages/home/home';
+import { LocalDataProvider } from '../../providers/local-data/local-data';
 /**
  * Generated class for the LoginPage page.
  *
@@ -25,7 +26,7 @@ export class LoginPage {
   users: any; userImageUrl: any; userToken: any; userName: any; userEmail: any;
   fulluserdetails: any = [];
   subscriptionCheck: any;
-  constructor(public events: Events, public ajax: AjaxProvider, public cmnfun: CommomfunctionProvider, public Storage: Storage, private fb: Facebook, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public events: Events,public localdata: LocalDataProvider, public ajax: AjaxProvider, public cmnfun: CommomfunctionProvider, public Storage: Storage, private fb: Facebook, public navCtrl: NavController, public navParams: NavParams) {
     this.iap=this.navParams.get('iap');
     console.log(this.iap);
     fb.getLoginStatus()
@@ -47,11 +48,28 @@ export class LoginPage {
   landing(){
 
     if(this.iap=='true'){
-      this.navCtrl.setRoot('LandingpagePage');
-    }else if(this.iap == 'true1'){
-      this.navCtrl.setRoot(HomePage);
+      this.navCtrl.push('LandingpagePage');
+    }else{
+      if(this.localdata.getBckpage() != '' &&  this.localdata.getBckpage() != undefined){
+        let det = this.localdata.getBckdata().details;
+        let yr = this.localdata.getBckdata().year;
+        let pr = this.localdata.getBckdata().parent;
+        this.localdata.SetBack('','','','');
+        this.navCtrl.push('InnermatchcenterPage', { details: det, year :yr ,stats : true});
+      }else{
+        this.navCtrl.setRoot(HomePage);
+      }
     }
-    
+    // else if(this.iap == 'true2'){
+    //   if(this.localdata.getBckpage() != ''){
+    //     let det = this.localdata.getBckdata().details;
+    //     let yr = this.localdata.getBckdata().year;
+    //     let pr = this.localdata.getBckdata().parent;
+    //     this.localdata.SetBack('','','','');
+    //     this.navCtrl.push('InnermatchcenterPage', { details: det, year :yr ,"parentPage":pr, gamepass: true});
+    //   }
+    // }
+
    }
   Login(){
     this.LoginUser=true;

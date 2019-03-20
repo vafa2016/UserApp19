@@ -54,14 +54,23 @@ export class RegisteredpassPage {
 					this.Storage.set("userData", JSON.stringify(this.fulluserdetails.webuser));
 					this.Storage.set('checkLogin', this.fulluserdetails.webuser);
 					this.Storage.set('FullData',this.fulluserdetails);
-					
+
 					if(this.localData.LoginTo()=='LandingpagePage'){
-						this.navCtrl.setRoot(this.localData.LoginTo());
-					  }else{
-						this.events.publish('menuchange2:changed', 'HomePage');
-						this.navCtrl.setRoot(HomePage);
+						this.navCtrl.push(this.localData.LoginTo());
+            }else{
+              if(this.localData.getBckpage() != '' && this.localData.getBckpage() != undefined){
+                let det = this.localData.getBckdata().details;
+                let yr = this.localData.getBckdata().year;
+                let pr = this.localData.getBckdata().parent;
+                this.localData.SetBack('','','','');
+                this.navCtrl.push('InnermatchcenterPage', { details: det, year :yr ,stats : true});
+              }else{
+                this.events.publish('menuchange2:changed', 'HomePage');
+                this.navCtrl.setRoot(HomePage);
+              }
+
 					  }
-					
+
 				} else if (this.fulluserdetails.code == 4) {
 					let alert = this.alertCtrl.create({
 						subTitle: 'Incorrect Password',

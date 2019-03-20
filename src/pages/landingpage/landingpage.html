@@ -11,12 +11,12 @@
   <div class="jb-main">
     <img src="assets/imgs/logo.png" />
   </div>
-  <div class="jb-scroll">
+  <div class="jb-scroll" *ngIf="!showOption" >
     <div [ngClass]="{'colorwhite' : (selectedcompetition =='' && selectedteam ==''), 'colorgreen':(selectedcompetition !='')}" class="jb-first-scroll"></div>
     <div [ngClass]="{'colorwhite' : (selectedcompetition !='' && selectedteam ==''), 'colorgreen':(selectedteam !='')}" class="jb-second-scroll"></div>
     <div [ngClass]="{'colorwhite' : (selectedteam !=''), 'colorgreen':(yearcheck !='')}" class="jb-third-scroll"></div>
   </div>
-  <div *ngIf="!pamentshow" style="margin-top: 30px;">
+  <div *ngIf="!pamentshow && !showOption" style="margin-top: 30px;">
   <div (click)='userdetails()' class="jb-scroll-text">
     <p>GETTING STARTED</p>
   </div>
@@ -42,18 +42,20 @@
     <button ion-button>
         <span>SKIP THIS STEP</span><ion-icon class="jb-tick1-icon"  name="ios-arrow-forward"></ion-icon></button></div> -->
   <div class="jb-content-text" *ngIf="selectedteam !='' && selectedcompetition !='' && yearcheck==''">
-    <p class="jb-first-p">Are You 18 or over?</p>
+    <!-- <p class="jb-first-p">Are You 18 or over?</p> -->
+    <p class="jb-first-p">18 or above</p>
     <p class="jb-second-p">We'd like to know so we can provide relevant promotions</p>
     <div class="jb-button-main">
-      <button ion-button (click)="yearset('yes')">YES</button>
+      <button ion-button (click)="yearset('18 or above')">YES</button>
     </div>
     <div class="jb-button-main">
-      <button ion-button (click)="yearset('no')">NO</button>
+      <button ion-button (click)="yearset('Under 18')">NO</button>
     </div>
   </div>
   <div class="jb-button-bu" *ngIf="yearcheck!=''">
-    <button class="jb-color-change" ion-button color="light">
-          <span>Are You 18 or over?</span>
+    <button (click)="editage(yearcheck)" class="jb-color-change" ion-button color="light">
+        <span>{{yearcheck}}</span>
+          <!-- <span>Are You 18 or over?</span> -->
           <ion-icon class="jb-tick-icon"  name="checkmark"></ion-icon>
         </button></div>
   <div class="jb-content-text" style="padding-top: 20px;" *ngIf="selectedteam !='' && selectedcompetition !='' && yearcheck!=''">
@@ -65,10 +67,31 @@
     <div class="jb-button-main">
       <button (click)="gotohome()" class="jb-button jb-button-color" ion-button>NO THANKS<ion-icon class="jb-tick1-icon"  name="ios-arrow-forward"></ion-icon></button>
     </div>
-    <p class="jb-second-p1">By clicking through you are agreeing to Complete Sports Management's
+    <!-- <p class="jb-second-p1">By clicking through you are agreeing to Complete Sports Management's
       <span (click)='Terms()' class="jb-terms">Terms & Conditions</span> and <span (click)='privacy()' class="jb-terms">Privacy Policy</span>
-    </p>
+    </p> -->
   </div>
+
+</div>
+
+<!-- select team and competition after pass selecetion -->
+  <div *ngIf="showOption" style="margin-top: 100px;">
+      <div class="jb-button-bu">
+          <button [ngClass]="{'jb-color-change' : (selectedcompetition !='')}" ion-button color="light" (click)="gotocheckcompetitionteam('competitions')">
+                <span *ngIf="selectedcompetition ==''">COMPETITION</span>
+                <span *ngIf="selectedcompetition !=''">{{selectedcompetition.competitions_name}}</span>
+                <ion-icon class="jb-tick-icon" *ngIf="selectedcompetition !=''" name="checkmark"></ion-icon>
+              </button></div>
+        <div class="jb-button-bu" *ngIf="!HideTeam" >
+          <button [ngClass]="{'jb-color-change' : (selectedteam !='')}" ion-button color="light" (click)="gotocheckcompetitionteam('team')">
+                <span *ngIf="selectedteam ==''">TEAM</span>
+                <img  *ngIf="selectedteam !=''"  class="jb-img-ver"src="http://54.244.98.247/{{selectedteam.image_value}}" width="30"/>
+                <span *ngIf="selectedteam !=''">{{selectedteam.team_name}}</span>
+                <ion-icon class="jb-tick-icon" *ngIf="selectedteam !=''" name="checkmark"></ion-icon>
+              </button></div>
+  </div>
+<!--  -->
+
     <!-- <ion-list>
       <ion-item class="jb-last-item">
         <ion-avatar item-start>
@@ -86,13 +109,14 @@
       </ion-item>
     </ion-list> -->
 
-  </div>
-  <div class="jb-content-text" *ngIf="pamentshow">
+
+  <div class="jb-content-text" *ngIf="pamentshow && !showOption">
     <!-- year 2018 premium pass products -->
     <div class="2018"  *ngIf="Matchyear == '2018'">
     <p class="jb-first-p1">UPGRADE YOUR EXPERIENCE</p>
     <p class="jb-second-p2">Get a <span>PREMIUM PASS</span> today</p>
-    <ion-card *ngIf='MyProducts.indexOf("Premium") == -1 && MyProducts.indexOf("Premium Plus") == -1' class="firstcard jb-card" (click)="paymentBuy(1)">
+    <ion-card *ngIf='MyProducts.indexOf("Premium") == -1 && MyProducts.indexOf("Premium Plus") == -1' class="firstcard jb-card" (click)="TeamSelect(18)">
+        <!-- paymentBuy(1) -->
       <ion-card-header class="jb-card-header">
         PREMIUM
         <P> $27<sup>.99 per season </sup></P>
@@ -101,7 +125,8 @@
         SUITABLE FOR PEOPLE WHO JUST WANT TO FOLLOW ONE TEAM
       </ion-card-content>
     </ion-card >
-     <ion-card *ngIf='MyProducts.indexOf("Premium Plus") == -1' class="secondcard jb-card" (click)="paymentBuy(2)">
+     <ion-card *ngIf='MyProducts.indexOf("Premium Plus") == -1' class="secondcard jb-card" (click)="CompSelect(18)">
+        <!-- paymentBuy(2) -->
       <ion-card-header class="jb-card-header">
        PREMIUM PLUS+
         <P> $49<sup>.99 per season </sup></P>
@@ -116,7 +141,8 @@
   <div class="2019"  *ngIf="Matchyear == '2019'">
       <p class="jb-first-p1">UPGRADE YOUR EXPERIENCE</p>
       <p class="jb-second-p2">with a <span>PREMIUM PASS</span> today</p>
-      <ion-card class="firstcard jb-card" (click)="paymentBuy(3)">
+      <ion-card class="firstcard jb-card" *ngIf="!hideTeamPass"  (click)="TeamSelect(19)">
+      <!-- (click)="paymentBuy(3)" -->
         <ion-card-header class="jb-card-header">
           TEAM PASS
           <P> $29<sup>.99 per season </sup></P>
@@ -126,7 +152,8 @@
         </ion-card-content>
       </ion-card >
 
-       <ion-card class="secondcard jb-card" (click)="paymentBuy(4)">
+       <ion-card class="secondcard jb-card" (click)="CompSelect(19)">
+         <!-- //paymentBuy(4) -->
         <ion-card-header class="jb-card-header">
         COMPETITION PASS
           <P> $49<sup>.99 per season </sup></P>
@@ -151,6 +178,11 @@
 
      <p class="jb-second-p2">Premium Pass includes Team & Player statistics for games covered live by Complete Sports Management</p>
   </div>
+
+   <p *ngIf="!pamentshow || showOption && yearcheck != ''"  style="text-align: center;color: white;" class="jb-second-p1">By clicking through you are agreeing to Complete Sports Management's
+      <span (click)='Terms()' class="jb-terms">Terms & Conditions</span> and <span (click)='privacy()' class="jb-terms">Privacy Policy</span>
+    </p>
+
      </div>
 
 </ion-content>

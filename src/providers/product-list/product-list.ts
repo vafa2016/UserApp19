@@ -227,17 +227,17 @@ export class ProductListProvider {
   // setpremiumpluspass
 
   setplusproduct(comp) {
-    if(comp.competition_id == 65){
+    if(comp == 65){
       this.plusproduct = this.ProductList['PremiumPlus'];
-    }else if(comp.competition_id == 92){
+    }else if(comp == 92){
       this.plusproduct = this.ProductList['PremiumPlus2019'];
-    }else if(comp.competition_id == 104){
+    }else if(comp == 104){
       this.plusproduct = this.ProductList['Interstate2019'];
-    }else if(comp.competition_id == 103){
+    }else if(comp == 103){
       this.plusproduct = this.ProductList['Victoria2019'];
-    }else if(comp.competition_id == 101){
+    }else if(comp == 101){
       this.plusproduct = this.ProductList['Victoria2018'];
-    }else if(comp.competition_id == 102){
+    }else if(comp == 102){
       this.plusproduct = this.ProductList['Interstate2018'];
     }
   }

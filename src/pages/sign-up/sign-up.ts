@@ -8,6 +8,7 @@ import { LocalDataProvider } from '../../providers/local-data/local-data';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { NewaccountPage } from '../newaccount/newaccount';
 import { HomePage } from '../../pages/home/home';
+import { InnermatchcenterPage } from './../innermatchcenter/innermatchcenter';
 
 @IonicPage()
 @Component({
@@ -128,13 +129,23 @@ export class SignUpPage {
         this.Storage.set('checkLogin', this.fulluserdetails.webuser);
         this.Storage.set('FullData', this.fulluserdetails);
         this.localData.StoreData(this.fulluserdetails.webuser);
-        this.events.publish('gotostats:changed', true);
         this.events.publish('userlogin', 'true1');
         if(this.localData.LoginTo()=='LandingpagePage'){
-          this.navCtrl.setRoot(this.localData.LoginTo());
-        }else{
-          this.navCtrl.setRoot(NewaccountPage);
+          this.navCtrl.push(this.localData.LoginTo());
+        }else if(this.localData.LoginTo()=='InnermatchcenterPage')
+        {
+          if(this.localData.getBckpage() != '' && this.localData.getBckpage() != undefined){
+            let det = this.localData.getBckdata().details;
+            let yr = this.localData.getBckdata().year;
+            let pr = this.localData.getBckdata().parent;
+            this.localData.SetBack('','','','');
+            this.navCtrl.push('InnermatchcenterPage', { details: det, year :yr ,stats : true});
         }
+      }else{
+        this.events.publish('gotostats:changed', true);
+        this.navCtrl.setRoot(NewaccountPage);
+      }
+
       }, error => {
         this.cmnfun.HideLoading();
         this.cmnfun.showToast('Some thing Unexpected happen please try again');

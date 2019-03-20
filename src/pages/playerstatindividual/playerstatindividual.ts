@@ -69,6 +69,7 @@ export class PlayerstatindividualPage {
   }
 
   ionViewDidLoad() {
+    this.cmfn.HideLoading();
     this.showhide=0;
   console.log('ionViewDidLoad PlayerstatdetailsPage');
 //getStatDetailsByPlayerId

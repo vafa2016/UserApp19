@@ -1,8 +1,14 @@
 <ion-header class="custBar">
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="appicons-menu"></ion-icon>
-    </button>
+      <button ion-button menuToggle>
+          <ion-icon name="appicons-menu"></ion-icon>
+        </button>
+        <!-- <ion-buttons left>
+            <button class="Custiback" ion-button (click)="Goback()">
+                <ion-icon class="appicons-iback"></ion-icon>
+            </button>
+        </ion-buttons> -->
+
     <ion-title *ngIf="type=='SCORE'" text-center>Score</ion-title>
     <ion-title *ngIf="type=='ACTION' " class="newtitleHeader">
       <div class="wide-as-needed text-center scorePageCss" style="background-color:transparent">
@@ -402,7 +408,9 @@
               <!-- <span style="font-family:Gotham-Medium;color: #c3c6cc;" *ngIf="data.player_name.length > 14"> {{data.player_name }}</span>    -->
             </h2>
             <p style="padding-top:5px;">Q{{data.quater}} {{data.act_time}}</p>
-            <img *ngIf="data.player_image != '/web' &&data.player_image != '' && data.player_image != '/web/images/default_player.png'" class="jd_scorefd_Pimg" src="{{path}}{{data.player_image}}">
+            <div *ngIf="data.player_image != '/web' && data.player_image != '' && data.player_image != '/web/images/default_player.png'">
+            <img class="jd_scorefd_Pimg" src="{{path}}{{data.player_image}}">
+          </div>
           </a>
         </div>
       </ion-col>

@@ -34,6 +34,12 @@
 //       -webkit-overflow-scrolling: auto !important;
 //     }
 //   }
+.yearlist {
+  .popover-content{
+    max-height: 14% !important;
+  }
+}
+
 .gamepass {
 .popover-content{
   top: 30vh !important;

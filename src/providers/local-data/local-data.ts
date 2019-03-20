@@ -12,6 +12,11 @@ import { Events } from 'ionic-angular';
 export class LocalDataProvider {
 
   UserDeviceData:any;
+  uCid:any;
+
+  Selectedmatch:any;
+
+  TeamList: any;
 
   yr: any;
 
@@ -52,6 +57,9 @@ export class LocalDataProvider {
 
   LocalData: any;
   DeviceData: any;
+
+  setbackpage:any;
+  backpagedata:any;
 
   OneToOneTeam1: any = '';
   OneToOneTeam2: any = '';
@@ -99,6 +107,21 @@ export class LocalDataProvider {
 
     })
 
+    // load teams dropdown
+    this.Storage.get('TeamListData').then((teams)=>{
+      this.TeamList = teams;
+    })
+
+  }
+
+
+  //save selected match
+  savematch(data){
+    this.Selectedmatch=data;
+  }
+
+  getmatch(){
+    return this.Selectedmatch;
   }
 
   // User Device Data
@@ -187,6 +210,24 @@ export class LocalDataProvider {
   }
 
 
+  SetBack(page,details,parent,year){
+   this.setbackpage = page;
+   this.backpagedata = {
+     details : details,
+     parent:parent,
+     year:year
+   };
+  }
+
+  getBckpage(){
+    return  this.setbackpage;
+  }
+
+  getBckdata(){
+    return this.backpagedata;
+  }
+
+
 
   LoginState(state,params) {
     console.log(state);
@@ -267,5 +308,26 @@ export class LocalDataProvider {
   }
 
 
+
+  // storeteam and type
+  StoreTeamlist(list){
+    console.log('list'+  list)
+    this.TeamList = list;
+    this.Storage.set('TeamListData',this.TeamList);
+  }
+
+  GetTeamlist(){
+   return this.TeamList;
+  }
+
+
+
+  Upgrade(compid){
+    this.uCid = compid;
+  }
+
+  Getupgrade(){
+    return this.uCid;
+  }
 
 }

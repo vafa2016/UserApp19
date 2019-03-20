@@ -9,6 +9,8 @@ import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-fixedcolumns';
 import 'datatables.net-fixedheader';
+import { PopoverController } from 'ionic-angular';
+
 /**
  * Generated class for the LadderPage page.
  *
@@ -31,11 +33,14 @@ export class LadderPage {
   headerimage: any = '';
   headerurl: any;
   ladderDataa: any = [];
+  selectd_yr:any;
+  YearList:any;
   // path: any = 'http://vafalive.com.au';
   path: any = 'http://54.244.98.247';
 
 
-  constructor(private inapp: InAppBrowser,public plt:Platform,public ga:GoogleAnalytics, public ajax: AjaxProvider, public cmnfun: CommomfunctionProvider, private modalCtrl: ModalController, public events: Events, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private inapp: InAppBrowser,public popoverCtrl: PopoverController,
+    public plt:Platform,public ga:GoogleAnalytics, public ajax: AjaxProvider, public cmnfun: CommomfunctionProvider, private modalCtrl: ModalController, public events: Events, public navCtrl: NavController, public navParams: NavParams) {
 
     // $.plot($("#placeholder"), [ [[0, 0], [1, 1]] ], { yaxis: { max: 1 } });
      this.plt.ready().then(() => {
@@ -63,8 +68,10 @@ export class LadderPage {
       console.log(res);
       if (res !== undefined && res !== "") {
         this.comptitionlists = res.competition;
+        this.YearList =this.comptitionlists[0].seasons;
+        this.selectd_yr = this.YearList[0].competition_year;
         this.selectables = this.comptitionlists[0].competitions_name;
-        this.competition_id = this.comptitionlists[0].competition_id;
+        this.competition_id = this.comptitionlists[0].seasons[0].competition_id;
         this.ajax.datalist('team-ladder-competitionwise', {
           accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
           competition_id: this.competition_id
@@ -77,6 +84,35 @@ export class LadderPage {
     });
 
   }
+// year_dropdown
+presentPopover(myEvent) {
+  let data = this.YearList;
+  let popover = this.popoverCtrl.create("YeardropdownPage",{ yearData : data });
+  popover.present({
+    ev: myEvent
+  });
+
+  popover.onDidDismiss(data =>{
+     console.log(data);
+    if(data != null){
+      this.selectd_yr = data.competition_year;
+      this.competition_id = data.competition_id;
+      // get ladder by year
+      this.cmnfun.showLoading('Please wait...');
+      this.ajax.datalist('team-ladder-competitionwise', {
+        accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+        competition_id: this.competition_id
+      }).subscribe((res) => {
+        this.teamladdercompetitionwise(res);
+      }, error => {
+        // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+      })
+    }
+  })
+}
+
+
+
   teamladdercompetitionwise(res) {
     $('#LadderTable').dataTable().fnDestroy();
     this.ladderDataa = res.ladder;
@@ -90,14 +126,15 @@ export class LadderPage {
       let windowWidth = (window.innerWidth);
       let windowHeight = (window.innerHeight) - 150;
       var table = $('#LadderTable').DataTable({
-        scrollY: windowHeight,
+        // scrollY: windowHeight,
         // scrollY: 150,
+        scrollY: true,
         scrollX: true,
         scrollCollapse: true,
-        "bDestroy": true,
         paging: false,
         info: false,
         "bPaginate": false,
+        "bDestroy": true,
         "bFilter": false,
         "bInfo": false,
         "bSortable": false,
@@ -140,9 +177,12 @@ export class LadderPage {
     let modal = this.modalCtrl.create('CommommodelPage', { items: this.comptitionlists });
     let me = this;
     modal.onDidDismiss(data => {
+      console.log(data);
       this.cmnfun.showLoading('Please wait...');
-      this.selectables = data.competitions_name
-      this.competition_id = data.competition_id;
+      this.selectables = data.competitions_name;
+      this.YearList =data.seasons;
+      this.selectd_yr = this.YearList[0].competition_year;
+      this.competition_id = data.seasons[0].competition_id;
       this.ajax.datalist('team-ladder-competitionwise', {
         accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
         competition_id: this.competition_id,

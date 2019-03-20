@@ -78,6 +78,8 @@ export class NewaccountPage {
   deviceId: any = '';
   state: boolean = false;
 
+  teamcomp : any = '';
+
   constructor(public navCtrl: NavController,
     public cmnfun: CommomfunctionProvider,
     private transfer: FileTransfer,
@@ -136,6 +138,7 @@ export class NewaccountPage {
         console.log(val)
         if (val) {
           console.log(val)
+          this.teamcomp = val.selectedcompetition.competition_id;
           this.MyTeam = {
             team: val.selectedteam.team_name,
             competition: val.selectedcompetition.competitions_name,
@@ -283,7 +286,17 @@ export class NewaccountPage {
       console.log(data);
       if (data.type == 'competitions') {
         this.selectedcompetition = data.value;
+        this.teamcomp = this.selectedcompetition.seasons[0].competition_id;
         console.log(this.selectedcompetition);
+        this.ajax.datalist('get-all-teams-by-competitions', {
+          accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+          competition_id: this.selectedcompetition.seasons[0].competition_id
+        }).subscribe((res) => {
+       this.teamlist = res;
+        }, error => {
+          // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+        })
+        this.MyTeam.team = '';
         if (this.selectedcompetition.competition_id != undefined) {
           if (this.isLogin == true) {
             let update = {
@@ -357,10 +370,26 @@ export class NewaccountPage {
       this.gotopage(true);
     }
     else {
+      console.log(this.teamcomp);
+      if(this.teamcomp != '' && this.teamcomp != undefined){
+        this.ajax.datalist('get-all-teams-by-competitions', {
+          accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+          competition_id: this.teamcomp
+        }).subscribe((res) => {
+       this.teamlist = res;
+       this.list = this.teamlist.teams;
+       this.type = 'teams'
+       this.gotopage(false);
+        }, error => {
+          // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+        })
+      }else{
+        this.list = this.teamlist.teams;
+        this.type = 'teams'
+        this.gotopage(false);
+      }
+      // this.list = this.teamlist.teams;
 
-      this.list = this.teamlist.teams;
-      this.type = 'teams'
-      this.gotopage(false);
 
     }
   }

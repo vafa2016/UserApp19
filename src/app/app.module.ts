@@ -43,7 +43,7 @@ import { LocalDataProvider } from '../providers/local-data/local-data';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { ProductListProvider } from '../providers/product-list/product-list';
 import { SQLite } from '@ionic-native/sqlite';
-import {gamepasspage} from '../pages/innermatchcenter/innermatchcenter';
+import { gamepasspage } from '../pages/innermatchcenter/innermatchcenter';
 
 @NgModule({
   declarations: [

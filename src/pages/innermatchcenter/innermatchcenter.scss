@@ -3430,6 +3430,21 @@ table.dataTable td {
      background: white;
    }
 
+   .Custiback{
+    position: absolute;
+    top:-17px;
+    background-color: transparent;
+    color: white;
+
+    button-ios.activated{
+      background-color: transparent;
+    }
+   }
+
+   .Custiback.activated {
+    background-color: transparent;
+   }
+
     .teamCol {
       img{
       //   max-width: 58px;

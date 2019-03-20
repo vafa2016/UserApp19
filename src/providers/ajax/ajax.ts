@@ -21,6 +21,17 @@ export class AjaxProvider {
     console.log('Hello AjaxProvider Provider');
 
   }
+
+  GetAllPurchases(params) {
+    console.log(params);
+    var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
+    return this.http
+      .post('http://54.244.98.247/score/custom/get-user-payment-details',
+      params, config)
+      .map(res => res)
+      .catch(error => error)
+  }
+
   postMethod(category, params) {
     console.log(category);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };

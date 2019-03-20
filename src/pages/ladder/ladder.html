@@ -16,13 +16,17 @@
 </ion-header>
 
 <ion-content class="bgPage-color" no-bounce style="padding-top:15px;">
-
+      <div class="yeardropdown" (click)="presentPopover($event)">
+        <p class="seasontxt">SEASON</p>
+        <p class="yrtxt">{{selectd_yr}}</p>
+        <ion-icon class="downarrow jd-down-arrow" name="ios-arrow-down"></ion-icon>
+      </div>
     <table *ngIf="ladderDataa.length!=0" id="LadderTable" class="stripe row-border order-column" width="100%" cellspacing="0">
         <thead>
             <tr style="height: 45px;">
                   <!-- <th  style="display: none;"></th>  -->
                 <th></th>
-                <th></th>
+                <th class="jd_custom_th"></th>
                 <th></th>
                 <th>P</th>
                 <th>PTS</th>

@@ -12,7 +12,7 @@ import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser'
 import { UniqueDeviceID } from '@ionic-native/unique-device-id';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { StreamingMedia, StreamingVideoOptions, StreamingAudioOptions } from '@ionic-native/streaming-media';
-
+import { ActionSheetController, AlertController } from 'ionic-angular';
 
 const proId0 = '2018_premium_william_buck_premier_womens_caulfield_grammarians';
 const proId1 = '2018_premium_william_buck_womens_fitzroy_acu';
@@ -62,6 +62,15 @@ const TermsLink = 'http://vafalive.com.au/termsconds';
 })
 export class LandingpagePage {
 
+  ProductSet: number;
+
+  HideTeam: boolean = true;
+  HideComp: boolean = false;
+  showOption : boolean  = false;
+
+  PurchaseComp: boolean = false;
+  PurchaseTeam : boolean = false;
+
   Matchyear: any = '2019';
 
   ProData: any = [];
@@ -99,6 +108,9 @@ export class LandingpagePage {
     yearcheck: ''
   }
 
+  above18:boolean = false;
+  under18:boolean = false;
+
   ProductDetails: any = [];
   competitionlist: any = [];
   teamlist: any = [];
@@ -113,11 +125,16 @@ export class LandingpagePage {
   LocalUserDevice: any = [];
 
   MyProducts : any = [];
+  rData: any;
+  paidUser : number = 0;
+  hideTeamPass : boolean = false;
 
+  LoginUser : any = '';
   constructor(private storage: Storage,
     private plt: Platform,
     private iap: InAppPurchase,
     public events: Events,
+    private alertCtrl: AlertController,
     private ga: GoogleAnalytics,
     private uniqueDeviceID: UniqueDeviceID,
     public processproduct: ProductListProvider,
@@ -128,10 +145,23 @@ export class LandingpagePage {
     public ajax: AjaxProvider, public navCtrl: NavController, public viewCtrl: ViewController, private modalCtrl: ModalController, public navParams: NavParams) {
     // get device id
     this.deviceId = this.localData.GetDevice();
-    // this.User.device_id=this.deviceId;
-    console.log(this.deviceId)
+    console.log(this.deviceId);
+    // get age check
+    let uage = this.localData.getlocalprofile();
+    this.yearcheck = uage.user_age;
 
-    // check products list purchased
+    // showpass parameter
+
+
+    // hide premium for upgrade options from match center.
+    if(this.localData.Getupgrade() != '' && this.localData.Getupgrade() != undefined){
+      let cid = this.localData.Getupgrade();
+      this.processproduct.setplusproduct(cid);
+      this.hideTeamPass = true;
+      this.pamentshow = true;
+    }
+
+    // check products list purchased from localstorage.
     this.storage.get('UserDeviceData').then((data) => {
       if (data) {
         let paid = data.payment;
@@ -155,6 +185,9 @@ export class LandingpagePage {
     this.storage.get('userData').then((val) => {
       if (val) {
         this.isLogin = true;
+        let user_check = JSON.parse(val);
+            console.log(user_check)
+        this.LoginUser = user_check.id;
       }
     });
     //
@@ -164,7 +197,6 @@ export class LandingpagePage {
       // get user team and competition
       // details from server
       this.UserDeviceData = this.LocalUserDevice.devicedata;
-      // alert(JSON.stringify(this.UserDeviceData))
       // details from server
       if (this.LocalUserDevice.devicedata.payment_status == 1) {
         let product = this.processproduct.GetProductType(this.LocalUserDevice.devicedata.product);
@@ -182,15 +214,15 @@ export class LandingpagePage {
       if (this.LocalUserDevice.webusercompetition !== null) {
         this.selectedcompetition = this.LocalUserDevice.webusercompetition;
       }
-      if (this.selectedcompetition != '' && this.selectedteam != '') {
+      if (this.selectedcompetition != '' && this.selectedteam != '' && this.localData.Getupgrade() == '') {
         // get product_id
         this.processproduct.SetUserProduct(this.selectedteam, this.selectedcompetition,this.Matchyear);
-        this.processproduct.setplusproduct(this.selectedcompetition);
+        this.processproduct.setplusproduct(this.selectedcompetition.competition_id);
       } else {
         // show from local storage
         this.storage.get('UserTeamData').then((val) => {
           if (val) {
-            console.log(val)
+            console.log(val);
             // this.selectedteam = val.selectedteam;
             // this.selectedcompetition = val.selectedcompetition;
             // this.yearcheck = val.yearcheck;
@@ -217,14 +249,58 @@ export class LandingpagePage {
         })
         .catch(e => console.log('Error starting GoogleAnalytics', e));
     })
+    // 1st time load data from local stored in account
+    let dv_id = this.localData.GetDevice();
+    this.ajax.GetAllPurchases({device_id : dv_id }).subscribe((res)=>{
+      this.rData = res;
+     if(this.rData.code == 2){
+      console.log(this.rData.payment.length);
+      this.paidUser = this.rData.payment.length;
+      if(this.selectedteam !='' && this.selectedcompetition !='' && this.yearcheck!='' && this.paidUser == 0){
+        // this.pamentshow = true;
+      }
+     }
+    })
+  }
+
+
+  // team selection for payment
+  TeamSelect(val){
+    this.selectedcompetition = '';
+    this.selectedteam = '';
+    if(val == 19){
+      this.ProductSet = 19;
+    }else{
+      this.ProductSet = 18;
+    }
+    this.showOption = true;
+    this.HideTeam = false;
+    this.PurchaseTeam = true;
+  }
+
+  CompSelect(val){
+    this.selectedcompetition = '';
+    if(val == 19){
+      this.ProductSet = 19;
+    }else{
+      this.ProductSet = 18;
+    }
+    this.showOption = true;
+    this.PurchaseComp = true;
+  }
+
+  ionViewWillLeave(){
+    this.localData.Upgrade('');
   }
 
   ionViewDidLoad() {
+    if(this.navCtrl.getPrevious().name == 'InnermatchcenterPage' || this.navCtrl.getPrevious().name == 'LoginPage' || this.navCtrl.getPrevious().name == 'SignUpPage' || this.navCtrl.getPrevious().name == 'RegisteredpassPage' &&   this.navParams.get('showPass') == true || this.localData.LoginTo()=='LandingpagePage'){
+      this.pamentshow = true;
+    }
     // get all competition and teams
     this.ajax.GetMatchComp('get-all-competitions-by-year', {year : this.Matchyear}).subscribe((res) => {
       this.competitionlist = res;
       console.log(this.competitionlist);
-
     })
 
     // this.ajax.GetMatchTeam({year : this.Matchyear, competition_id : ''}).subscribe((res) => {
@@ -238,14 +314,14 @@ export class LandingpagePage {
       if (val) {
         console.log(val)
         console.log(this.Matchyear);
-        // alert('2');
+        console.log(this.localData.Getupgrade())
          if(val.compyear == this.Matchyear){
-          if (val.selectedcompetition != '' && val.selectedteam != '') {
+          if (val.selectedcompetition != '' && val.selectedteam != '' && (this.localData.Getupgrade() == '' || this.localData.Getupgrade() == undefined)) {
             this.selectedteam = val.selectedteam;
             this.selectedcompetition = val.selectedcompetition;
             this.yearcheck = val.yearcheck;
-            this.processproduct.SetUserProduct(this.selectedteam, this.selectedcompetition, this.Matchyear);
-            this.processproduct.setplusproduct(this.selectedcompetition);
+            // this.processproduct.SetUserProduct(this.selectedteam, this.selectedcompetition, this.Matchyear);
+            // this.processproduct.setplusproduct(this.selectedcompetition.competition_id);
             if(this.localData.LoginTo() == 'LandingpagePage' && this.localData.getLoginparam() == 'all set'){
                 this.pamentshow = true;
                 this.localData.LoginState('', '');
@@ -269,11 +345,53 @@ export class LandingpagePage {
     this.streamingMedia.playVideo('http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_30mb.mp4', options);
   }
 
+   // age edit
+   editage(age) {
+     console.log(age);
+     if(age == '18 or above') this.above18 = true;
+     else this.under18 = true;
+    let alert = this.alertCtrl.create({
+      cssClass: 'CustomJd-radioalert'
+    });
+    alert.setTitle('Select Age');
+    alert.addInput({
+      type: 'radio',
+      label: '18 or above',
+      value: '18 or above',
+      checked: this.above18
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'Under 18',
+      value: 'Under 18',
+      checked: this.under18
+    });
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Save',
+      handler: data => {
+        console.log(data);
+        this.yearcheck = data;
+        if (data == '18 or above') {
+          this.UserTeamData.yearcheck = '18 or above';
+          this.localData.LocalUserData('user_age', '18 or above');
+        } else {
+          this.UserTeamData.yearcheck = 'Under 18';
+          this.localData.LocalUserData('user_age', 'Under 18');
+        }
+      }
+    });
+    alert.present();
+
+  }
+
+
 
   yearset(item) {
     this.ga.trackView('Onboarding – Age Selection');
     this.yearcheck = item;
-    if (item == 'yes') {
+    if (item == '18 or above') {
       this.UserTeamData.yearcheck = '18 or above';
       this.localData.LocalUserData('user_age', '18 or above');
     } else {
@@ -283,7 +401,6 @@ export class LandingpagePage {
   }
 
   gotopage() {
-
     let modal = this.modalCtrl.create('CompetitionTeamPage', { list: this.list, type: this.type });
     let me = this;
     modal.onDidDismiss(data => {
@@ -298,10 +415,13 @@ export class LandingpagePage {
           this.ajax.GetMatchTeam({year : this.Matchyear, competition_id : this.selectedcompetition.competition_id}).subscribe((res) => {
             this.teamlist = res;
             console.log(this.teamlist);
+            this.localData.StoreTeamlist(this.teamlist.teams);
+            this.selectedteam = '';
           })
-          if (this.isLogin == true) {
+          this.processproduct.setplusproduct(this.selectedcompetition.competition_id);
+          if (this.isLogin == true && this.showOption == false) {
             let update = {
-              id: this.UserDeviceData.id,
+              id:  this.LoginUser,
               field: 'favourite_competition_id',
               data: this.selectedcompetition.competition_id
             }
@@ -316,6 +436,11 @@ export class LandingpagePage {
               // this.storage.set('FullData', this.Dataresponse);
             });
           }
+          if(this.showOption == true && this.PurchaseComp && this.ProductSet == 19){
+            if(this.selectedcompetition != '') this.paymentBuy(4);
+          }else if(this.showOption == true && this.PurchaseComp && this.ProductSet == 18){
+            if(this.selectedcompetition != '') this.paymentBuy(2);
+          }
         }
         else {
           this.ga.trackView('Onboarding – Team Selection');
@@ -323,10 +448,10 @@ export class LandingpagePage {
           this.deviceId = this.localData.GetDevice();
           this.selectedteam = data.value;
           this.processproduct.SetUserProduct(this.selectedteam, this.selectedcompetition,  this.Matchyear);
-          this.processproduct.setplusproduct(this.selectedcompetition);
-          if (this.isLogin == true) {
+          this.processproduct.setplusproduct(this.selectedcompetition.competition_id);
+          if (this.isLogin == true && this.showOption == false) {
             let update = {
-              id: this.UserDeviceData.id,
+              id:  this.LoginUser,
               field: 'favourite_team_id',
               data: this.selectedteam.team_id
             }
@@ -343,6 +468,13 @@ export class LandingpagePage {
               // this.cmnfun.showToast('Some thing Unexpected happen please try again');
             })
           }
+          if(this.showOption == true && this.PurchaseTeam && this.ProductSet == 19){
+            if(this.selectedcompetition != '') {
+            this.paymentBuy(3);
+            }
+          }else if(this.showOption == true && this.PurchaseTeam && this.ProductSet == 18){
+            if(this.selectedcompetition != '')  this.paymentBuy(1);
+          }
         }
       }
     });
@@ -358,6 +490,9 @@ export class LandingpagePage {
     else {
       if (this.selectedcompetition != '') {
         this.list = this.teamlist.teams;
+        if(this.list == undefined) {
+          this.list = this.localData.GetTeamlist();
+        }
         this.type = 'teams'
         this.gotopage();
       }
@@ -382,11 +517,13 @@ export class LandingpagePage {
     if (this.selectedcompetition != '' && this.selectedteam != '') {
       this.UserTeamData.selectedcompetition = this.selectedcompetition;
       this.UserTeamData.selectedteam = this.selectedteam;
+      this.UserTeamData.yearcheck = this.yearcheck;
       this.UserTeamData.compyear = this.Matchyear;
       this.storage.set('UserTeamData', this.UserTeamData);
     }
     this.ga.trackEvent("Upgrade", "Skipped", "Onboarding", 1);
     this.ga.trackEvent("Onboarding – No Thanks", "Selected", "Onboarding", 1);
+    this.localData.SetBack('','','','');
     this.events.publish('menuchange2:changed', 'HomePage');
     this.navCtrl.setRoot(HomePage);
   }
@@ -990,7 +1127,15 @@ export class LandingpagePage {
       this.events.publish('menuchange2:changed', 'HomePage');
       this.ga.trackEvent("Payment", "Done", "Payment", 1);
       if (this.isLogin == true) {
-        this.navCtrl.setRoot(HomePage);
+        if(this.localData.getBckpage() != ''){
+          let det = this.localData.getBckdata().details;
+          let yr = this.localData.getBckdata().year;
+          let pr = this.localData.getBckdata().parent;
+          this.localData.SetBack('','','','');
+          this.navCtrl.push('InnermatchcenterPage', { details: det, year :yr,stats : true});
+        }else{
+          this.navCtrl.setRoot(HomePage);
+        }
       } else {
         this.localData.LoginState('', '');
         this.navCtrl.push('LoginPage', { iap: 'true1' });
@@ -1030,7 +1175,15 @@ export class LandingpagePage {
             this.events.publish('menuchange2:changed', 'HomePage');
             this.ga.trackEvent("Payment", "Done", "Payment", 1);
             if (this.isLogin == true) {
-              this.navCtrl.setRoot(HomePage);
+              if(this.localData.getBckpage() != ''){
+                let det = this.localData.getBckdata().details;
+                let yr = this.localData.getBckdata().year;
+                let pr = this.localData.getBckdata().parent;
+                this.localData.SetBack('','','','');
+                this.navCtrl.push('InnermatchcenterPage', { details: det, year :yr ,stats : true});
+              }else{
+                this.navCtrl.setRoot(HomePage);
+              }
             } else {
               this.localData.LoginState('', '');
               this.navCtrl.push('LoginPage', { iap: 'true1' });
@@ -1050,4 +1203,8 @@ export class LandingpagePage {
 
 
 
+
 }
+
+
+
