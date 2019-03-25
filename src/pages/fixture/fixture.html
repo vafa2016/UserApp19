@@ -55,7 +55,7 @@
 </ion-header>
 <ion-content class="bgPage-color" (ionScroll)="onScroll($event)">
 
-	<div *ngIf="type=='Round'" class="jb-content">
+	<div *ngIf="type =='Round'" class="jb-content">
 		<div *ngFor="let key of roundScores | keys; let j = index">
 			<div class="dateOFMATCHES_jd">
 				{{key}}

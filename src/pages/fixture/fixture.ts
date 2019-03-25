@@ -96,7 +96,31 @@ export class FixturePage {
           console.log(data);
           this.selectd_yr = data.competition_year;
           this.competition_id = data.competition_id;
-          this.selectedCompetitionName(this.competition_id);
+          this.cmnfun.showLoading('Please wait...');
+          if (this.type == 'Round') {
+            this.ajax.datalist('get-round-competition-fixture', {
+              accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+              competition_id: this.competition_id,
+              round: this.roundNo
+            }).subscribe((res) => {
+              this.getroundcompetitionfixture(res);
+            }, error => {
+              // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+            })
+    
+          }
+          else {
+            this.team_id = '0_0'
+            this.ajax.datalist('get-competition-clubs', {
+              accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+              compition_id: this.competition_id,
+              team_id: this.team_id
+            }).subscribe((res) => {
+              this.getcompetitionclubs(res);
+            }, error => {
+              // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+            })
+          }
 
         }
       })
@@ -386,6 +410,15 @@ export class FixturePage {
   }
   selectedFixtureType(type) {
     if (type == 'Round') {
+      this.ajax.datalist('get-round-competition-fixture', {
+        accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+        competition_id: this.competition_id,
+        round: this.roundNo
+      }).subscribe((res) => {
+        this.getroundcompetitionfixture(res);
+      }, error => {
+        // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+      })
       // this.cmnfun.showLoading('Please wait...');
       this.type = 'Round';
       setTimeout(() => {
@@ -446,8 +479,11 @@ export class FixturePage {
     let modal = this.modalCtrl.create('CommommodelPage', { items: this.comptitionlists });
     let me = this;
     modal.onDidDismiss(data => {
+      console.log(data);
+      this.YearList = data.seasons;
+      this.selectd_yr = this.YearList[0].competition_year;
       this.selectables = data.competitions_name
-      this.competition_id = data.competition_id;
+      this.competition_id = data.seasons[0].competition_id;
       this.cmnfun.showLoading('Please wait...');
       if (this.type == 'Round') {
         this.ajax.datalist('get-round-competition-fixture', {

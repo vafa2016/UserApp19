@@ -294,7 +294,7 @@ export class LandingpagePage {
   }
 
   ionViewDidLoad() {
-    if(this.navCtrl.getPrevious().name == 'InnermatchcenterPage' || this.navCtrl.getPrevious().name == 'LoginPage' || this.navCtrl.getPrevious().name == 'SignUpPage' || this.navCtrl.getPrevious().name == 'RegisteredpassPage' &&   this.navParams.get('showPass') == true || this.localData.LoginTo()=='LandingpagePage'){
+    if(this.navCtrl.getPrevious().name != undefined && this.navCtrl.getPrevious().name == 'InnermatchcenterPage' || this.navCtrl.getPrevious().name == 'LoginPage' || this.navCtrl.getPrevious().name == 'SignUpPage' || this.navCtrl.getPrevious().name == 'RegisteredpassPage' &&   this.navParams.get('showPass') == true || this.localData.LoginTo()=='LandingpagePage'){
       this.pamentshow = true;
     }
     // get all competition and teams
