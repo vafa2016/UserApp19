@@ -107,7 +107,7 @@ export class FixturePage {
             }, error => {
               // this.cmnfun.showToast('Some thing Unexpected happen please try again');
             })
-    
+
           }
           else {
             this.team_id = '0_0'
