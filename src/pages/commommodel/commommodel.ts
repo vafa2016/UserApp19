@@ -30,4 +30,8 @@ export class CommommodelPage {
     this.viewCtrl.dismiss(item);
   }
 
+  close(){
+    this.viewCtrl.dismiss();
+  }
+
 }

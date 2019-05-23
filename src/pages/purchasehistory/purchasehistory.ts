@@ -25,6 +25,7 @@ export class PurchasehistoryPage {
     public navParams: NavParams) {
     //  local purchases from Api
     let dv_id = this.localdata.GetDevice();
+    // alert(dv_id);
     this.ajax.GetAllPurchases({device_id : dv_id }).subscribe((res)=>{
       this.resData = res;
     if(this.resData.code == 2){
@@ -40,17 +41,17 @@ export class PurchasehistoryPage {
       this.prolist.Analyse(element.team_id, element.competition_id);
       let team = this.prolist.gettname();
       let comp = this.prolist.getcompname();
-      if(element.fixture_id == 0){
+      if(element.fixture_id == 0 || element.fixture_id == null){
         let data = {
           competition : comp,
           team : team,
-          fixture_id : element.fixture_id,
+          fixture_id : 0,
           product : element.product_id,
           transactionid : element.transaction_id,
           purchase_date : element.created_at,
         }
         this.PurchaseDetails.push(data);
-      }else if(element.fixture_id != 0){
+      }else if(element.fixture_id != 0 && element.fixture_id != null){
         this.ajax.FixtureDataApi({fixtureId : element.fixture_id}).subscribe((res)=> {
           this.fixturedata = res;
            this.SetFixture(this.fixturedata.fixture, element);
@@ -70,7 +71,7 @@ export class PurchasehistoryPage {
       product : element.product_id,
       transactionid : element.transaction_id,
       purchase_date : element.created_at,
-      gamepass : 'Game Pass - '+ fixture.home_team +' '+ 'V' +' '+ fixture.away_team +' '+ 'Rnd ' +fixture.round+' '+ fixture.Competition +' '+ '2019'
+      gamepass : '2019 Game Pass - '+ fixture.home_team +' '+ 'V' +' '+ fixture.away_team +' '+ 'Rnd ' +fixture.round+' '+ fixture.Competition
     }
     this.PurchaseDetails.push(data);
   }
@@ -78,18 +79,24 @@ export class PurchasehistoryPage {
   // Get product type
   ProductType(product){
    if(product.product && product.fixture_id == 0){
-     if(this.prolist.GetProductType(product.product) == 'Premium 2019'){
-       return 'Team Pass - ' + product.team+' '+product.competition+' '+'2019';
+     if(this.prolist.GetProductType(product.product) == '2019 Team Pass'){
+       return '2019 Team Pass - ' + product.team+' '+product.competition;
      } else if(this.prolist.GetProductType(product.product) == 'Premium'){
-       return 'Team Pass -' + product.team+' '+product.competition+' '+'2018';
-     } else if(this.prolist.GetProductType(product.product) == 'Premium Plus 2019'){
-       return 'Competition Pass - ' + product.competition+' '+'2019';
+       return '2018 Team Pass -' + product.team+' '+product.competition;
+     } else if(this.prolist.GetProductType(product.product) == '2019 Competition Pass'){
+       return '2019 Competition Pass - ' + product.competition;
      } else if(this.prolist.GetProductType(product.product) == 'Premium Plus'){
-       return 'Competition Pass - ' + product.competition+' '+'2018';
+       return '2018 Competition Pass - ' + product.competition;
      }else {
        return this.prolist.GetProductType(product.product)
      }
    }
+  }
+
+
+  // getDateTime function
+  formatTime(date){
+
   }
 
 

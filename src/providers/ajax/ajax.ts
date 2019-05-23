@@ -12,7 +12,11 @@ import { Events } from 'ionic-angular';
 */
 // Main base url http://vafalive.com.au
 // development test server url  http://54.244.98.247/
+// staging url : http://v2.vafalive.com.au/
 
+// const baseurl = 'http://v2.vafalive.com.au';
+const baseurl = 'http://54.244.98.247';
+// const baseurl = 'http://52.89.30.220';
 
 @Injectable()
 export class AjaxProvider {
@@ -26,7 +30,7 @@ export class AjaxProvider {
     console.log(params);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-      .post('http://54.244.98.247/score/custom/get-user-payment-details',
+      .post(baseurl+'/score/custom/get-user-payment-details',
       params, config)
       .map(res => res)
       .catch(error => error)
@@ -36,7 +40,7 @@ export class AjaxProvider {
     console.log(category);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-      .post('http://54.244.98.247/score/default/' + category,
+      .post(baseurl+'/score/default/' + category,
       params, config)
       .map(res => res)
       .catch(error => error)
@@ -46,7 +50,7 @@ export class AjaxProvider {
     console.log(category);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-      .post('http://54.244.98.247/score/' + category,
+      .post(baseurl+'/score/' + category,
       params, config)
       .map(res => res)
       .catch(error => error)
@@ -54,7 +58,7 @@ export class AjaxProvider {
   getcompetionlist(category, params, key) {
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     this.http
-      .post('http://54.244.98.247/score/default/' + category,
+      .post(baseurl+'/score/default/' + category,
       params, config)
       .subscribe((res) => {
         console.log(res);
@@ -67,7 +71,7 @@ export class AjaxProvider {
   data(category, params) {
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     this.http
-      .post('http://54.244.98.247/score/default/' + category,
+      .post(baseurl+'/score/default/' + category,
       params, config)
       .subscribe((res) => {
         console.log(res);
@@ -80,7 +84,7 @@ export class AjaxProvider {
   datalist(category, params) {
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-      .post('http://54.244.98.247/score/default/' + category,
+      .post(baseurl+'/score/default/' + category,
       params, config)
       .map(res => res)
       .catch(error => error)
@@ -88,7 +92,7 @@ export class AjaxProvider {
   datalistaction(category, params, Type) {
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     this.http
-      .post('http://54.244.98.247/score/default/' + category,
+      .post(baseurl+'/score/default/' + category,
       params, config)
       .subscribe((res) => {
         console.log(res);
@@ -103,7 +107,7 @@ export class AjaxProvider {
     console.log(category);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-      .post('http://54.244.98.247/score/matchscore/' + category,
+      .post(baseurl+'/score/matchscore/' + category,
       params, config)
       .map(res => res)
       .catch(error => error)
@@ -114,7 +118,7 @@ export class AjaxProvider {
     console.log(params)
    var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
    return this.http
-     .post('http://54.244.98.247/score/custom/get-all-teams-by-year',
+     .post(baseurl+'/score/custom/get-all-teams-by-year',
      params, config)
      .map(res => res)
      .catch(error => error)
@@ -125,7 +129,7 @@ export class AjaxProvider {
     console.log(params)
    var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
    return this.http
-     .post('http://54.244.98.247/score/custom/get-fixture-details',
+     .post(baseurl+'/score/custom/get-fixture-details',
      params, config)
      .map(res => res)
      .catch(error => error)
@@ -137,7 +141,7 @@ export class AjaxProvider {
     console.log(category);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-      .post('http://54.244.98.247/score/default/' + category,
+      .post(baseurl+'/score/default/' + category,
       params, config)
       .map(res => res)
       .catch(error => error)
@@ -148,7 +152,7 @@ export class AjaxProvider {
     console.log(category);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-    .post('http://54.244.98.247/score/default/'+category,
+    .post(baseurl+'/score/default/'+category,
         {accessKey: 'QzEnDyPAHT12asHb4On6HH2016',}, config)
         .map(res => res)
         .catch(error=>error)
@@ -159,7 +163,7 @@ export class AjaxProvider {
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
       // .post('http://54.244.98.247/score/custom/save-payment-email',
-      .post('http://54.244.98.247/score/custom/save-payment-email-all',
+      .post(baseurl+'/score/custom/save-payment-email-all',
       params, config)
       .map(res => res)
       .catch(error => error)
@@ -169,7 +173,7 @@ export class AjaxProvider {
      console.log(params)
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-      .post('http://54.244.98.247/score/custom/login-webuser-deviceid-payment',
+      .post(baseurl+'/score/custom/login-webuser-deviceid-payment',
       params, config)
       .map(res => res)
       .catch(error => error)
@@ -179,7 +183,7 @@ export class AjaxProvider {
      console.log(params)
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
     return this.http
-      .post('http://54.244.98.247/score/custom/save-data-email',
+      .post(baseurl+'/score/custom/save-data-email',
       params, config)
       .map(res => res)
       .catch(error => error)
@@ -189,7 +193,7 @@ export class AjaxProvider {
     console.log(params)
    var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, };
    return this.http
-     .post('http://54.244.98.247/score/custom/check-trial-period',
+     .post(baseurl+'/score/custom/check-trial-period',
      params, config)
      .map(res => res)
      .catch(error => error)

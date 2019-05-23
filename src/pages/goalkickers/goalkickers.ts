@@ -29,7 +29,8 @@ export class GoalkickersPage {
   searchTerm: String = '';
   items: any = [];
   // path: any = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247';
+  path1: any = 'http://54.244.98.247';
+  path: any = 'https://s3.us-west-2.amazonaws.com/vafas3';
   competition_id: any;
   comptitionlists: any = [];
   selectables: any = [];
@@ -213,6 +214,7 @@ export class GoalkickersPage {
       let modal = this.modalCtrl.create('CommommodelPage', { items: this.comptitionlists });
       let me = this;
       modal.onDidDismiss(data => {
+        if(data){
         console.log(data);
         this.competition_id = data.seasons[0].competition_id;
         this.YearList = data.seasons;
@@ -231,6 +233,7 @@ export class GoalkickersPage {
         }, error => {
           // this.cmnfun.showToast('Some thing Unexpected happen please try again');
         })
+      }
       });
       modal.present();
     } else if(type == 'year') {
@@ -261,6 +264,7 @@ export class GoalkickersPage {
       let modal = this.modalCtrl.create('TeamlistPage', { items: this.allTeamData });
       let me = this;
       modal.onDidDismiss(data => {
+        if(data){
         console.log(data);
         this.selectablesTeam = data.team_name;
         this.team_id = data.team_id;
@@ -275,8 +279,17 @@ export class GoalkickersPage {
         }, error => {
           // this.cmnfun.showToast('Some thing Unexpected happen please try again');
         })
+      }
       });
       modal.present();
     }
+  }
+
+
+
+   // path reset function
+   cutPath(url){
+    if(url)
+    return url.substring(12);
   }
 }

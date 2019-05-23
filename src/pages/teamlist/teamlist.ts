@@ -26,4 +26,8 @@ export class TeamlistPage {
   {
     this.viewCtrl.dismiss(item);
   }
+
+  close(){
+    this.viewCtrl.dismiss();
+  }
 }

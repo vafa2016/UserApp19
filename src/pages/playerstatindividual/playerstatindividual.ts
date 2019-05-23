@@ -24,7 +24,8 @@ export class PlayerstatindividualPage {
   @ViewChild(Content) content: Content;
 
   // path: any = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247';
+  // path: any = 'http://54.244.98.247';
+  path: any = 'https://s3.us-west-2.amazonaws.com/vafas3';
   Coach: boolean = true;
   player_id:any='';
   fixture_id: any = '';
@@ -108,6 +109,12 @@ export class PlayerstatindividualPage {
         this.zone.run(() => {
           this.hideHeader=false;
         });
+      }
+    }
+
+    cutPath(url){
+      if(url){
+      return url.substring(12);
       }
     }
 

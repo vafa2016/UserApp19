@@ -17,7 +17,9 @@ export class CompetitionTeamPage {
   list:any={};
   type:any;
   // path : any = 'http://vafalive.com.au/';
-  path: any = 'http://54.244.98.247';
+  // path:any = 'http://v2.vafalive.com.au/';
+  // path: any = 'http://54.244.98.247';
+  path: any = 'https://s3.us-west-2.amazonaws.com/vafas3';
   constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl:ViewController) {
     this.list=navParams.get('list');
     this.type=navParams.get('type');
@@ -43,6 +45,12 @@ export class CompetitionTeamPage {
          value:item
     }
     this.viewCtrl.dismiss(data);
+  }
+
+   // path reset function
+   cutPath(url){
+    if(url)
+    return url.substring(12);
   }
 
 }

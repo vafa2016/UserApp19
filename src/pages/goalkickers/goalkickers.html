@@ -29,7 +29,7 @@
        <p class="jd-year-p2">{{selectd_yr}}</p>
         <ion-icon class="downarrow jd-darrow" name="ios-arrow-down"></ion-icon>
       </ion-segment-button>
-  <ion-segment-button class="jb-segment-left" (click)="selectedType(type); " value="teams">
+  <ion-segment-button class="jb-segment-left" (click)="selectedType(type);" value="teams">
     <p class="jd-t">TEAMS</p>
     <p style="margin: 0px;
     text-align: left;
@@ -44,7 +44,7 @@
 </ion-segment>
 <ion-header *ngIf="headerAdv.length" [style.display]="advDisplay=='hide' ? 'block' : 'none'" class="bar-sub-subheader" style="height: 50px;position:relative; top:113px; background-color: transparent; border: 0px !important; border-bottom-color: transparent !important; background-image: none !important; border-bottom: none !important; ">
   <div class="advContainer" style="position:fixed;margin: -9px auto 0 -7px; width: 104%;">
-    <img src="{{path}}{{headerAdv[0].ad_image}}"  (click)="goToAddSite(headerAdv[0].ad_url);">
+    <img src="{{path}}{{cutPath(headerAdv[0].ad_image)}}"  (click)="goToAddSite(headerAdv[0].ad_url);">
   </div>
 </ion-header>
 <ion-content class="bgPage-color" no-bounce (ionScroll)="onScroll($event)">
@@ -55,7 +55,8 @@
         <ion-row class="row teamStates-List animated fadeInUp ink" (click)="goToGoalKickerDetailsPage(value.player_id,value.team_id,'value.player_name',value.player_number,'value.team_team','value.player_image',value.goal) ">
           <ion-col col-8>
             <div class="item item-thumbnail-left onlyForGoalKicker newsList-CustomCSS ONTeam-Select">
-					  <img  src="{{path}}{{value.player_image}}" class="newsList-SideImage-CSS" style="width: 60px !important;">
+            <img *ngIf="value.player_image == '/web/images/default_player.png'"   src="{{path1}}{{value.player_image}}" class="newsList-SideImage-CSS" style="width: 60px !important;">
+					  <img *ngIf="value.player_image != '/web/images/default_player.png'"   src="{{path}}{{cutPath(value.player_image)}}" class="newsList-SideImage-CSS" style="width: 60px !important;">
 					 <div class="jb-inner-goals">
             <p class="jb-goal-p">{{value.player_name}}</p>
             <p class="jb-goal-p1 jb-margin"><span style="font-size: 15px;font-family: Gotham-Book;color:#04235c;">{{value.team_team}}</span></p>

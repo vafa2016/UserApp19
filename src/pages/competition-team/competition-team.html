@@ -12,6 +12,6 @@
   </ion-list>
   <ion-list inset *ngIf="type=='teams'">
     <ion-item *ngFor="let item of list" (click)="itemSelected(item)">
-      <img class="jb-img-ver" src="{{path}}{{item.image_value}}" width="30" />{{item.team_name}}</ion-item>
+      <img class="jb-img-ver" src="{{path}}{{cutPath(item.image_value)}}" width="30" />{{item.team_name}}</ion-item>
   </ion-list>
 </ion-content>

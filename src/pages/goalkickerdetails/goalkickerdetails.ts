@@ -20,7 +20,8 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
 })
 export class GoalkickerdetailsPage {
   // path: any = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247';
+  path1: any = 'http://54.244.98.247';
+  path: any = 'https://s3.us-west-2.amazonaws.com/vafas3';
   goaldeatls: any = [];
   showhide: any;
   details: any = {}; pImage: any; pGoals: any; footerAdv: any = []; headerAdv: any = []; teamGoal: any; goalKickersimage: any; playerTotalGoal: any;
@@ -48,6 +49,13 @@ export class GoalkickerdetailsPage {
        })
 
 
+  }
+
+
+  // path reset function
+  cutPath(url){
+    if(url)
+    return url.substring(12);
   }
 
   ionViewDidLoad() {

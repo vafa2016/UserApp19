@@ -3,7 +3,8 @@
       <div class="playerHeroSection" *ngIf="showhide==0">
         <ion-row class=" displayImgContent">
           <ion-col class="text-center">
-            <img src="{{path}}{{playerDetail.player_image}}">
+            <img *ngIf="playerDetail.player_image != '/web/images/default_player.png'"  src="{{path}}{{cutPath(playerDetail.player_image)}}">
+            <img *ngIf="playerDetail.player_image == '/web/images/default_player.png'"  src="http://54.244.98.247{{playerDetail.player_image}}">
           </ion-col>
           <ion-col class="col">
             <p class="jb-p">{{firstName}}</p>
@@ -13,6 +14,19 @@
           </ion-col>
         </ion-row>
       </div>
+      <div class="jd_subtitiles" *ngIf="showhide==0">
+        <ion-row class="text-center" style="padding-top: 2px;">
+            <ion-col>
+                <span class="jd_teamSpan">{{playerDetail.team_team}}</span>
+            </ion-col>
+            <ion-col>
+
+            </ion-col>
+            <ion-col>
+                <span class="jd_playerSpan">{{firstName}} {{lastName}}</span>
+            </ion-col>
+          </ion-row>
+    </div>
     </ion-navbar>
 
   </ion-header>
@@ -31,7 +45,7 @@
             </ion-col>
           </ion-row>
         </div> -->
-        <div class="jd_subtitiles">
+        <!-- <div class="jd_subtitiles">
             <ion-row class="text-center" style="padding-top: 2px;">
                 <ion-col>
                     <span class="jd_teamSpan">{{playerDetail.team_team}}</span>
@@ -43,7 +57,7 @@
                     <span class="jd_playerSpan">{{firstName}} {{lastName}}</span>
                 </ion-col>
               </ion-row>
-        </div>
+        </div> -->
     <!-- <h4 class="titleWithBgStrip" style=" font-family: Gotham-Medium;font-size: 15px;color: #04235c;">GAMES: {{playerDetail.totalPlayed}}</h4> -->
     <!-- <ion-row>
       <ion-col style="text-align:center;">
@@ -79,19 +93,19 @@
       <!--  -->
 
     <div *ngFor="let value of playerStatDetailsData; let i = index" class="jd_hitdiv">
-      <ion-row *ngIf="value.stat_name !='Rush Behinds'"  class="text-center MatchFormContainer adjstHeight jd_scorediv">
+      <ion-row *ngIf="value.stat_name !='Rush Behinds' && value.stat_name != 'TC' && value.stat_name != 'BC' && value.stat_name != 'CC' && value.stat_name !='SC'"  class="text-center MatchFormContainer adjstHeight jd_scorediv">
         <ion-col>
-          <h4 *ngIf="value.stat_name != 'Behinds'" class="jd_h4" style="font-family: Gotham-Medium;font-size: 26px; color:#04235c;margin-left: -18px; margin-top: 3px;">
+          <h4 *ngIf="value.stat_name != 'Behinds' && value.stat_name != 'TC' && value.stat_name != 'BC' && value.stat_name != 'CC' && value.stat_name !='SC'" class="jd_h4" style="font-family: Gotham-Medium;font-size: 26px; color:#04235c;margin-left: -18px; margin-top: 3px;">
              {{ value['team_count'] }}
             </h4>
-            <h4 *ngIf="value.stat_name == 'Behinds'" class="jd_h4" style="font-family: Gotham-Medium;font-size: 26px; color:#04235c;margin-left: -18px; margin-top: 3px;">
+            <h4 *ngIf="value.stat_name == 'Behinds' && value.stat_name != 'TC' && value.stat_name != 'BC' && value.stat_name != 'CC' && value.stat_name !='SC'" class="jd_h4" style="font-family: Gotham-Medium;font-size: 26px; color:#04235c;margin-left: -18px; margin-top: 3px;">
               {{ value['team_count'] }}
              </h4>
           <div class="jd_circle"></div>
         </ion-col>
         <ion-col col-4>
           <div class="TeamFormMidTitle">
-            <span *ngIf="value.stat_name != 'inside50'">{{value.stat_name}}</span>
+            <span *ngIf="value.stat_name != 'inside50' && value.stat_name != 'TC' && value.stat_name != 'BC' && value.stat_name != 'CC' && value.stat_name !='SC'">{{value.stat_name}}</span>
             <span *ngIf="value.stat_name == 'inside50'">Inside 50</span>
           </div>
         </ion-col>
@@ -101,7 +115,7 @@
         </ion-col>
       </ion-row>
       <div class="advContainer" *ngIf="i==1" style="margin: 0 auto 25px -7px; width: 104%;">
-        <img src="{{path}}{{advertisementHeader[0].ad_image}}" class="full-image" (click)="goToAddSite(advertisementHeader[0].ad_url);">
+        <img src="{{path}}{{cutPath(advertisementHeader[0].ad_image)}}" class="full-image" (click)="goToAddSite(advertisementHeader[0].ad_url);">
       </div>
     </div>
   </ion-content>

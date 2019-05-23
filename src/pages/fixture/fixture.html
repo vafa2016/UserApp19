@@ -50,7 +50,7 @@
 </ion-toolbar>
 <ion-header *ngIf="headerAdv.length" [style.display]="advDisplay=='hide' ? 'block' : 'none'" class="bar-sub-subheader" style="height: 50px;position:relative; top:130px; background-color: transparent; border: 0px !important; border-bottom-color: transparent !important; background-image: none !important; border-bottom: none !important; ">
 	<div class="advContainer" style="position:fixed;margin: 0 auto 0 -7px; width: 104%;">
-		<img src="{{path}}{{headerAdv[0].ad_image}}"  ng-click="goToAddSite(headerAdv[0].ad_url);">
+		<img src="{{path}}{{cutPath(headerAdv[0].ad_image)}}"  ng-click="goToAddSite(headerAdv[0].ad_url);">
 	</div>
 </ion-header>
 <ion-content class="bgPage-color" (ionScroll)="onScroll($event)">
@@ -64,7 +64,7 @@
 				<li class="item ">
 					<ion-row class="text-center fixtureList">
 						<ion-col col-3 class="teamCol">
-							<img src="{{path}}{{value1.home_team_image}}" class="img-size full-image img-storke">
+							<img src="{{path}}{{cutPath(value1.home_team_image)}}" class="img-size full-image img-storke">
 							<!-- <p *ngIf="type == 'Round'">{{value1.home_team_name}}</p> -->
 							<p *ngIf="type == 'Club'">{{value1.home_team}}</p>
 							<h3></h3>
@@ -85,14 +85,14 @@
 							</div>
 						</ion-col>
 						<ion-col col-3 class=" teamCol">
-							<img src="{{path}}{{value1.away_team_image}}" class="img-size full-image img-storke">
+							<img src="{{path}}{{cutPath(value1.away_team_image)}}" class="img-size full-image img-storke">
 							<!-- <p *ngIf="type == 'Round'">{{value1.away_team_name}}</p> -->
 							<p *ngIf="type == 'Club'">{{value1.away_team}}</p>
 							<h3></h3>
 						</ion-col>
 					</ion-row>
 					<div class="advContainer1" [style.display]="advDisplay=='show' ? 'block' : 'none'" *ngIf="i==1 && j==0" style="margin: 0 auto 0 -7px; width: 104%;">
-						<img src="{{path}}{{footerAdv[0].ad_image}}"  (click)="goToAddSite(footerAdv[0].ad_url);">
+						<img src="{{path}}{{cutPath(footerAdv[0].ad_image)}}"  (click)="goToAddSite(footerAdv[0].ad_url);">
 					</div>
 				</li>
 			</ul>
@@ -107,7 +107,7 @@
 					</div>
 					<ion-row class="row text-center fixtureList1">
 						<ion-col col-3 class="teamCol">
-							<img src="{{path}}{{value1.home_team_image}}" class="img-size full-image img-storke">
+							<img src="{{path}}{{cutPath(value1.home_team_image)}}" class="img-size full-image img-storke">
 							<!-- <p *ngIf="fixtureType == 1" style="font-family:Gotham-Medium;font-size:12px;">{{value1.home_team_name}}</p>
 							<p *ngIf="fixtureType == 2" style="font-family:Gotham-Medium;font-size:12px;">{{value1.home_team}}</p> -->
 							<h3></h3>
@@ -129,14 +129,14 @@
 							</div>
 						</ion-col>
 						<ion-col col-3 class="teamCol">
-							<img src="{{path}}{{value1.away_team_image}}" class="img-size full-image img-storke">
+							<img src="{{path}}{{cutPath(value1.away_team_image)}}" class="img-size full-image img-storke">
 							<!-- <p *ngIf="fixtureType == 1" style="font-family:Gotham-Medium;font-size:12px;">{{value1.away_team_name}}</p>
 							<p *ngIf="fixtureType == 2" style="font-family:Gotham-Medium;font-size:12px;">{{value1.away_team}}</p> -->
 							<h3></h3>
 						</ion-col>
 					</ion-row>
 					<div [style.display]="advDisplay=='show' ? 'block' : 'none'" class="advContainer1" *ngIf="i==1" style="margin: 0 auto 0 -7px; width: 104%;">
-						<img src="{{path}}{{footerAdv[0].ad_image}}"(click)="goToAddSite(footerAdv[0].ad_url);">
+						<img src="{{path}}{{cutPath(footerAdv[0].ad_image)}}"(click)="goToAddSite(footerAdv[0].ad_url);">
 					</div>
 				</li>
 			</ul>

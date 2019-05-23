@@ -1,4 +1,8 @@
 page-teamlist {
+  .backbutton{
+    background: transparent !important;
+    height: 30px;
+  }
     .label{
               height: 35px;
              line-height: 2;
@@ -12,13 +16,13 @@ page-teamlist {
     {
         border-bottom: none !important;
     }
-    
+
    }
 .item-block
     {
           border-bottom: 0.55px solid rgba(61, 63, 68, 0.9019607843137255) !important;
     }
-        
+
         .label
         {
             text-align: center;
@@ -28,7 +32,7 @@ page-teamlist {
             max-width: 100%;
             font-family: Gotham-Medium;
             font-size: 17px;
-            
+
         }
         .item-ios[detail-push] .item-inner, button.item-ios:not([detail-none]) .item-inner, a.item-ios:not([detail-none]) .item-inner
         {

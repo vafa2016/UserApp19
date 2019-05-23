@@ -36,7 +36,8 @@ export class LadderPage {
   selectd_yr:any;
   YearList:any;
   // path: any = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247';
+  path1: any = 'http://54.244.98.247';
+  path: any = 'https://s3.us-west-2.amazonaws.com/vafas3';
 
 
   constructor(private inapp: InAppBrowser,public popoverCtrl: PopoverController,
@@ -57,6 +58,13 @@ export class LadderPage {
   ionViewDidLeave(){
     $('#LadderTable').dataTable().fnDestroy();
   }
+
+
+    // path reset function
+    cutPath(url){
+      if(url)
+      return url.substring(12);
+    }
 
   ionViewDidLoad() {
     this.cmnfun.showLoading('Please wait...');
@@ -172,11 +180,12 @@ presentPopover(myEvent) {
 
   };
   gotomodel() {
-    this.ladderDataa = [];
-    $('#LadderTable').dataTable().fnDestroy();
     let modal = this.modalCtrl.create('CommommodelPage', { items: this.comptitionlists });
     let me = this;
     modal.onDidDismiss(data => {
+      if(data){
+        this.ladderDataa = [];
+        $('#LadderTable').dataTable().fnDestroy();
       console.log(data);
       this.cmnfun.showLoading('Please wait...');
       this.selectables = data.competitions_name;
@@ -191,6 +200,7 @@ presentPopover(myEvent) {
       }, error => {
         // this.cmnfun.showToast('Some thing Unexpected happen please try again');
       })
+    }
     });
     modal.present();
   }

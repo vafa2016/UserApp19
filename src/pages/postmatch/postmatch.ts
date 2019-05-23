@@ -23,7 +23,7 @@ export class PostmatchPage {
   @ViewChild(Content) content: Content;
   comptitionlists: any = [];
   competition_id: any;
-  selectables: any;
+  selectables:any=[];
   postMatchData: any = [];
   headerAdv: any;
   footerAdv: any;
@@ -96,7 +96,7 @@ export class PostmatchPage {
           accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
           competition_id: this.competition_id
         }).subscribe((res) => {
-
+          this.postMatchData = [];
           this.postMatchData = res;
           console.log(this.postMatchData);
           if (this.postMatchData.code == 2) {
@@ -135,7 +135,10 @@ export class PostmatchPage {
     let modal = this.modalCtrl.create('CommommodelPage', { items: this.comptitionlists });
     let me = this;
     modal.onDidDismiss(data => {
+      if(data){
+      this.postMatchData = [];
       this.cmnfun.showLoading('Please wait...');
+      this.slides.update();
       this.selectables = data.competitions_name
       this.competition_id = data.competition_id
       this.ajax.postMethod('get-compition-post-match', {
@@ -159,6 +162,7 @@ export class PostmatchPage {
         this.cmnfun.showToast('Some thing Unexpected happen please try again');
         this.cmnfun.HideLoading();
       })
+    }
     });
     modal.present();
   }

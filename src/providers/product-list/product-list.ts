@@ -31,29 +31,29 @@ export class ProductListProvider {
     518: '2018_premium_william_buck_premier_womens_old_xaverians',
     519: '2018_premium_william_buck_premier_womens_skob_saints',
     PremiumPlus: '2018_premium_william_buck_premier_womens_all_teams',
-    565: '2019_premium_william_buck_premier_womens_caulfield_grammarians',
-    566: '2019_premium_william_buck_womens_fitzroy_acu',
-    567: '2019_premium_william_buck_premier_womens_kew_fc',
-    568: '2019_premium_william_buck_premier_womens_marcellin',
-    569: '2019_premium_william_buck_premier_womens_melbourne_uni',
-    570: '2019_premium_william_buck_premier_womens_old_trinity',
-    571: '2019_premium_william_buck_premier_womens_old_xaverians',
-    572: '2019_premium_william_buck_premier_womens_skob_saints',
-    PremiumPlus2019: '2019_premium_william_buck_premier_womens_all_teams',
+    520: '2019_team_pass_fitzroy_acu_william_buck_premier_womens',
+    521: '2019_team_pass_kew_fc_william_buck_premier_womens',
+    522: '2019_team_pass_marcellin_william_buck_premier_womens',
+    523: '2019_team_pass_melbourne_uni_william_buck_premier_womens',
+    524: '2019_team_pass_old_trinity_william_buck_premier_womens',
+    525: '2019_team_pass_skob_saints_william_buck_premier_womens',
+    526: '2019_team_pass_west_brunswick_william_buck_premier_womens',
+    527: '2019_team_pass_st_marys_salesian_william_buck_premier_womens',
+    PremiumPlus2019: '2019_competition_pass_william_buck_premier_womens',
+    528:'2019_team_pass_old_brighton_william_buck_premier',
+    529:'2019_team_pass_university_blues_william_buck_premier',
+    530:'2019_team_pass_old_melburnians_william_buck_premier',
+    531:'2019_team_pass_old_xaverians_william_buck_premier',
+    532:'2019_team_pass_st_bernards_william_buck_premier',
+    533:'2019_team_pass_old_trinity_grammarians_william_buck_premier',
+    534:'2019_team_pass_st_kevins_william_buck_premier',
+    535:'2019_team_pass_collegians_william_buck_premier',
+    536:'2019_team_pass_old_carey_william_buck_premier',
+    537:'2019_team_pass_de_la_salle_william_buck_premier',
+    WilliamBuckPremier2019: '2019_competition_pass_william_buck_premier',
     GamePass : 'game_pass',
     VafaPass  : 'vafa_pass',
-    612:'2019_test_sydney_seniors',
-    613:'2019_test_adelaide_seniors',
-    616:'2019_test_hawthorn_seniors',
-    617:'2019_test_richmond_seniors',
-    604:'2018_test_sydney_seniors',
-    606:'2018_test_adelaide_seniors',
-    610:'2018_test_hawthorn_seniors',
-    611:'2018_test_richmond_seniors',
-    Interstate2018:'2018_premiumplus_interstate',
-    Victoria2018:'2018_premiumplus_victorian',
-    Interstate2019:'2019_premiumplus_interstate',
-    Victoria2019:'2019_premiumplus_victorian'
+
   }
 
   constructor(public http: HttpClient,
@@ -90,125 +90,148 @@ export class ProductListProvider {
     if (product == this.ProductList["512"]) {
 
       this.team = { team_id: "512", competition_id: "65", team_name: "Caulfield Grammarians", team_abbrevation: "Caulfield", image_value: "/web/uploads/teams/512/1521540242_logo.png" };
-      this.competition = { competition_id: "65", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+      this.competition = { competition_id: "65", competitions_name: "William Buck Premier Women's", competitions_abbrivation: "Women's Premier" };
 
     } else if (product == this.ProductList["513"]) {
 
       this.team = { team_id: "513", competition_id: "65", team_name: "Fitzroy-ACU", team_abbrevation: "Fitzroy", image_value: "/web/uploads/teams/513/1523276289_logo.png" };
-      this.competition = { competition_id: "65", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+      this.competition = { competition_id: "65", competitions_name: "William Buck Premier Women's", competitions_abbrivation: "Women's Premier" };
 
     } else if (product == this.ProductList["514"]) {
 
       this.team = { team_id: "514", competition_id: "65", team_name: "Kew FC", team_abbrevation: "Kew", image_value: "/web/uploads/teams/514/1521540327_logo.png" }
-      this.competition = { competition_id: "65", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+      this.competition = { competition_id: "65", competitions_name: "William Buck Premier Women's", competitions_abbrivation: "Women's Premier" };
 
     } else if (product == this.ProductList["515"]) {
 
       this.team = { team_id: "515", competition_id: "65", team_name: "Marcellin", team_abbrevation: "Marcellin", image_value: "/web/uploads/teams/515/1521540397_logo.png" };
-      this.competition = { competition_id: "65", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+      this.competition = { competition_id: "65", competitions_name: "William Buck Premier Women's", competitions_abbrivation: "Women's Premier" };
 
     } else if (product == this.ProductList["516"]) {
 
       this.team = { team_id: "516", competition_id: "65", team_name: "Melbourne Uni", team_abbrevation: "Melb", image_value: "/web/uploads/teams/516/1521540447_logo.png" };
-      this.competition = { competition_id: "65", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+      this.competition = { competition_id: "65", competitions_name: "William Buck Premier Women's", competitions_abbrivation: "Women's Premier" };
 
     } else if (product == this.ProductList["517"]) {
 
       this.team = { team_id: "517", competition_id: "65", team_name: "Old Trinity", team_abbrevation: "Trinity", image_value: "/web/uploads/teams/517/1523279049_logo.png" };
-      this.competition = { competition_id: "65", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+      this.competition = { competition_id: "65", competitions_name: "William Buck Premier Women's", competitions_abbrivation: "Women's Premier" };
 
     } else if (product == this.ProductList["518"]) {
 
       this.team = { team_id: "518", competition_id: "65", team_name: "Old Xaverians", team_abbrevation: "Xavs", image_value: "/web/uploads/teams/518/1521540523_logo.png" };
-      this.competition = { competition_id: "65", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+      this.competition = { competition_id: "65", competitions_name: "William Buck Premier Women's", competitions_abbrivation: "Women's Premier" };
 
     } else if (product == this.ProductList["519"]) {
 
       this.team = { team_id: "519", competition_id: "65", team_name: "SKOB Saints", team_abbrevation: "SKOB", image_value: "/web/uploads/teams/519/1521540559_logo.png" };
-      this.competition = { competition_id: "65", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+      this.competition = { competition_id: "65", competitions_name: "William Buck Premier Women's", competitions_abbrivation: "Women's Premier" };
 
-    } else if (product == this.ProductList["565"]) {
+    } else if (product == this.ProductList["520"]) {
 
-      this.team = { team_id: "565", competition_id: "92", team_name: "Caulfield Grammarians", team_abbrevation: "Caulfield", image_value: "/web/uploads/teams/512/1521540242_logo.png" };
-      this.competition = { competition_id: "92", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+      this.team = { team_id: "520", competition_id: "66", image_value: "/web/uploads/teams/513/1523276289_logo.png" ,team_abbrevation: "Fitzroy" ,team_name: "Fitzroy-ACU" };
+      this.competition = { competition_id: "66", competitions_name: "William Buck Premier Woman's", competitions_abbrivation: "Women's Premier" };
 
-    } else if (product == this.ProductList["566"]) {
+    } else if (product == this.ProductList["521"]) {
 
-      this.team = { team_id: "566", competition_id: "92", team_name: "Fitzroy-ACU", team_abbrevation: "Fitzroy", image_value: "/web/uploads/teams/513/1523276289_logo.png" };
-      this.competition = { competition_id: "92", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+      this.team = { team_id: "521", competition_id: "66", image_value: "/web/uploads/teams/514/1521540327_logo.png", team_abbrevation: "Kew", team_name: "Kew FC" };
+      this.competition = { competition_id: "66", competitions_name: "William Buck Premier Women's", competitions_abbrivation: "Women's Premier" };
 
-    } else if (product == this.ProductList["567"]) {
+    } else if (product == this.ProductList["522"]) {
 
-      this.team = { team_id: "567", competition_id: "92", team_name: "Kew FC", team_abbrevation: "Kew", image_value: "/web/uploads/teams/514/1521540327_logo.png" }
-      this.competition = { competition_id: "92", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+      this.team = { competition_id: "66", image_value: "/web/uploads/teams/515/1521540397_logo.png",team_abbrevation: "Marcellin",team_id: "522",team_name: "Marcellin" };
+      this.competition = { competition_id: "66", competitions_name: "William Buck Premier Women's", competitions_abbrivation: "Women's Premier" };
 
-    } else if (product == this.ProductList["568"]) {
+    } else if (product == this.ProductList["523"]) {
 
-      this.team = { team_id: "568", competition_id: "92", team_name: "Marcellin", team_abbrevation: "Marcellin", image_value: "/web/uploads/teams/515/1521540397_logo.png" };
-      this.competition = { competition_id: "92", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+      this.team = { competition_id: "66", image_value: "/web/uploads/teams/516/1521540447_logo.png", team_abbrevation: "Melb",team_id: "523", team_name: "Melbourne Uni" };
+      this.competition = { competition_id: "66", competitions_name: "William Buck Premier Women's", competitions_abbrivation: "Women's Premier" };
 
-    } else if (product == this.ProductList["569"]) {
+    } else if (product == this.ProductList["524"]) {
 
-      this.team = { team_id: "569", competition_id: "92", team_name: "Melbourne Uni", team_abbrevation: "Melb", image_value: "/web/uploads/teams/516/1521540447_logo.png" };
-      this.competition = { competition_id: "92", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+      this.team = { competition_id: "66", image_value: "/web/uploads/teams/517/1523279049_logo.png", team_abbrevation: "Trinity", team_id: "524", team_name: "Old Trinity" };
+      this.competition = { competition_id: "66", competitions_name: "William Buck Premier Women's", competitions_abbrivation: "Women's Premier" };
 
-    } else if (product == this.ProductList["570"]) {
+    } else if (product == this.ProductList["525"]) {
 
-      this.team = { team_id: "570", competition_id: "92", team_name: "Old Trinity", team_abbrevation: "Trinity", image_value: "/web/uploads/teams/517/1523279049_logo.png" };
-      this.competition = { competition_id: "92", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+      this.team = { competition_id: "66", image_value: "/web/uploads/teams/519/1521540559_logo.png", team_abbrevation: "SKOB", team_id: "525", team_name: "SKOB Saints" };
+      this.competition = { competition_id: "66", competitions_name: "William Buck Premier Women's", competitions_abbrivation: "Women's Premier" };
 
-    } else if (product == this.ProductList["571"]) {
+    } else if (product == this.ProductList["526"]) {
 
-      this.team = { team_id: "571", competition_id: "92", team_name: "Old Xaverians", team_abbrevation: "Xavs", image_value: "/web/uploads/teams/518/1521540523_logo.png" };
-      this.competition = { competition_id: "92", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+      this.team = { competition_id: "66",image_value: "/web/uploads/teams/9/1553225442_logo.png", team_abbrevation: "West Brun", team_id: "526", team_name: "West Brunswick" };
+      this.competition = { competition_id: "66", competitions_name: "William Buck Premier Women's", competitions_abbrivation: "Women's Premier" };
 
-    } else if (product == this.ProductList["572"]) {
+    } else if (product == this.ProductList["527"]) {
 
-      this.team = { team_id: "572", competition_id: "92", team_name: "SKOB Saints", team_abbrevation: "SKOB", image_value: "/web/uploads/teams/519/1521540559_logo.png" };
-      this.competition = { competition_id: "92", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+      this.team = { competition_id: "66", image_value: "/web/uploads/teams/10/1553225493_logo.png", team_abbrevation: "St Marys", team_id: "527", team_name: "St Marys Salesian" };
+      this.competition = { competition_id: "66", competitions_name: "William Buck Premier Women's", competitions_abbrivation: "Women's Premier" };
+
+    } else if (product == this.ProductList["528"]) {
+
+      this.team = { competition_id: "67", image_value: "/web/uploads/teams/11/1553225895_logo.png", team_abbrevation: "Brighton", team_id: "528", team_name: "Old Brighton"};
+      this.competition = { competition_id: "67", competitions_name: "William Buck Premier", competitions_abbrivation: "Premier" };
+
+    } else if (product == this.ProductList["529"]) {
+
+      this.team = { competition_id: "67",image_value: "/web/uploads/teams/12/1553225935_logo.png", team_abbrevation: "Uni Blues", team_id: "529", team_name: "University Blues"};
+      this.competition = { competition_id: "67", competitions_name: "William Buck Premier", competitions_abbrivation: "Premier" };
+
+    } else if (product == this.ProductList["530"]) {
+
+      this.team = { competition_id: "67", image_value: "/web/uploads/teams/13/1553225983_logo.png", team_abbrevation: "Old Melb" , team_id: "530" ,team_name: "Old Melburnians"};
+      this.competition = { competition_id: "67", competitions_name: "William Buck Premier", competitions_abbrivation: "Premier" };
+
+    } else if (product == this.ProductList["531"]) {
+
+      this.team = { competition_id: "67", image_value: "/web/uploads/teams/14/1553226090_logo.png", team_abbrevation: "Old Xavs", team_id: "531", team_name: "Old Xaverians" };
+      this.competition = { competition_id: "67", competitions_name: "William Buck Premier", competitions_abbrivation: "Premier" };
+
+    } else if (product == this.ProductList["532"]) {
+
+      this.team = { competition_id: "67", image_value: "/web/uploads/teams/15/1553226248_logo.png", team_abbrevation: "St Bern" ,team_id: "532" , team_name: "St Bernards"};
+      this.competition = { competition_id: "67", competitions_name: "William Buck Premier", competitions_abbrivation: "Premier" };
+
+    } else if (product == this.ProductList["533"]) {
+
+      this.team = { competition_id: "67",image_value: "/web/uploads/teams/16/1553226513_logo.png",team_abbrevation: "Old Trinity",team_id: "533",team_name: "Old Trinity Grammarians"};
+      this.competition = { competition_id: "67", competitions_name: "William Buck Premier", competitions_abbrivation: "Premier" };
+
+    } else if (product == this.ProductList["534"]) {
+
+      this.team = { competition_id: "67", image_value: "/web/uploads/teams/17/1553226563_logo.png", team_abbrevation: "SKOBs", team_id: "534", team_name: "St Kevins"};
+      this.competition = { competition_id: "67", competitions_name: "William Buck Premier", competitions_abbrivation: "Premier" };
+
+    } else if (product == this.ProductList["535"]) {
+
+      this.team = { competition_id: "67", image_value: "/web/uploads/teams/18/1553226660_logo.png", team_abbrevation: "Collegians", team_id: "535", team_name: "Collegians" };
+      this.competition = { competition_id: "67", competitions_name: "William Buck Premier", competitions_abbrivation: "Premier" };
+
+    } else if (product == this.ProductList["536"]) {
+
+      this.team = { competition_id: "67", image_value: "/web/uploads/teams/19/1553226698_logo.png", team_abbrevation: "Carey" , team_id: "536" , team_name: "Old Carey" };
+      this.competition = { competition_id: "67", competitions_name: "William Buck Premier", competitions_abbrivation: "Premier" };
+
+    } else if (product == this.ProductList["537"]) {
+
+      this.team = { competition_id: "67",image_value: "/web/uploads/teams/20/1553226737_logo.png", team_abbrevation: "De La", team_id: "537", team_name: "De La Salle" };
+      this.competition = { competition_id: "67", competitions_name: "William Buck Premier", competitions_abbrivation: "Premier" };
 
     } else if (product == this.ProductList['PremiumPlus2019']){
-      this.team = { team_id: "565", competition_id: "92", team_name: "Caulfield Grammarians", team_abbrevation: "Caulfield", image_value: "/web/uploads/teams/512/1521540242_logo.png" };
-      this.competition = { competition_id: "92", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+
+      this.team = { team_id: "520", competition_id: "66", image_value: "/web/uploads/teams/513/1523276289_logo.png" ,team_abbrevation: "Fitzroy" ,team_name: "Fitzroy-ACU" };
+      this.competition = { competition_id: "66", competitions_name: "William Buck Premier Woman's", competitions_abbrivation: "Women's Premier" };
+
+    } else if (product == this.ProductList['WilliamBuckPremier2019']){
+
+      this.team = { competition_id: "67", image_value: "/web/uploads/teams/11/1553225895_logo.png", team_abbrevation: "Brighton", team_id: "528", team_name: "Old Brighton"};
+      this.competition = { competition_id: "67", competitions_name: "William Buck Premier", competitions_abbrivation: "Premier" };
+
     } else if (product == this.ProductList['VafaPass']) {
-      this.team = { team_id: "565", competition_id: "92", team_name: "Caulfield Grammarians", team_abbrevation: "Caulfield", image_value: "/web/uploads/teams/512/1521540242_logo.png" };
-      this.competition = { competition_id: "92", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
-    }else if (product == this.ProductList['612']) {
-      this.team = { competition_id: "104",image_value: "/web/uploads/teams/20/1551481795_logo.png",team_abbrevation: "Swans",team_id: "612",team_name: "Sydney Seniors" };
-      this.competition = {competition_id: "104", competition_year: "2019",competitions_abbrivation: "Inter Test Comp", competitions_name: "Interstate Test Competition"};
-    }else if(product == this.ProductList['613']){
-      this.team = {team_id: "613", competition_id: "104", team_name: "Adelaide Seniors", team_abbrevation: "Crows",image_value: "/web/uploads/teams/29/1551482211_logo.png"};
-      this.competition = {competition_id: "104", competition_year: "2019",competitions_abbrivation: "Inter Test Comp", competitions_name: "Interstate Test Competition"};
-    }else if(product == this.ProductList['617']){
-      this.team = {competition_id: "103",image_value: "/web/uploads/teams/27/1551482086_logo.png",team_abbrevation: "Tigers",team_id: "617",team_name: "Richmond Seniors"};
-      this.competition = {competition_id: "103", competition_year: "2019", competitions_name: "Victorian Test Competition", competitions_abbrivation: "Vic Test Comp"};
-    }else if(product == this.ProductList['616']){
-      this.team = {competition_id: "103", image_value: "/web/uploads/teams/26/1551481959_logo.png", team_abbrevation: "Hawks", team_id: "616",team_name: "Hawthorn Seniors"};
-      this.competition = {competition_id: "103", competition_year: "2019", competitions_name: "Victorian Test Competition", competitions_abbrivation: "Vic Test Comp"};
-    }else if (product == this.ProductList['604']) {
-      this.team = { competition_id: "102",image_value: "/web/uploads/teams/20/1551481795_logo.png",team_abbrevation: "Swans",team_id: "604",team_name: "Sydney Seniors" };
-      this.competition = {competition_id: "102", competition_year: "2018",competitions_abbrivation: "Inter Test Comp", competitions_name: "Interstate Test Competition"};
-    }else if(product == this.ProductList['606']){
-      this.team = {team_id: "606", competition_id: "102", team_name: "Adelaide Seniors", team_abbrevation: "Crows",image_value: "/web/uploads/teams/29/1551482211_logo.png"};
-      this.competition = {competition_id: "102", competition_year: "2018",competitions_abbrivation: "Inter Test Comp", competitions_name: "Interstate Test Competition"};
-    }else if(product == this.ProductList['611']){
-      this.team = {competition_id: "101",image_value: "/web/uploads/teams/27/1551482086_logo.png",team_abbrevation: "Tigers",team_id: "611",team_name: "Richmond Seniors"};
-      this.competition = {competition_id: "101", competition_year: "2018", competitions_name: "Victorian Test Competition", competitions_abbrivation: "Vic Test Comp"};
-    }else if(product == this.ProductList['610']){
-      this.team = {competition_id: "101", image_value: "/web/uploads/teams/26/1551481959_logo.png", team_abbrevation: "Hawks", team_id: "610",team_name: "Hawthorn Seniors"};
-      this.competition = {competition_id: "101", competition_year: "2018", competitions_name: "Victorian Test Competition", competitions_abbrivation: "Vic Test Comp"};
-    }else if(product == this.ProductList['Interstate2018']){
-      this.team = {team_id: "606", competition_id: "102", team_name: "Adelaide Seniors", team_abbrevation: "Crows",image_value: "/web/uploads/teams/29/1551482211_logo.png"};
-      this.competition = {competition_id: "102", competition_year: "2018",competitions_abbrivation: "Inter Test Comp", competitions_name: "Interstate Test Competition"};
-    }else if(product == this.ProductList['Interstate2019']){
-      this.team = {team_id: "613", competition_id: "104", team_name: "Adelaide Seniors", team_abbrevation: "Crows",image_value: "/web/uploads/teams/29/1551482211_logo.png"};
-      this.competition = {competition_id: "104", competition_year: "2019",competitions_abbrivation: "Inter Test Comp", competitions_name: "Interstate Test Competition"};
-    }else if(product == this.ProductList['Victoria2018']){
-      this.team = {competition_id: "101", image_value: "/web/uploads/teams/26/1551481959_logo.png", team_abbrevation: "Hawks", team_id: "610",team_name: "Hawthorn Seniors"};
-      this.competition = {competition_id: "101", competition_year: "2018", competitions_name: "Victorian Test Competition", competitions_abbrivation: "Vic Test Comp"};
-    }else if(product == this.ProductList['Victoria2019']){
-      this.team = {competition_id: "103",image_value: "/web/uploads/teams/27/1551482086_logo.png",team_abbrevation: "Tigers",team_id: "617",team_name: "Richmond Seniors"};
-      this.competition = {competition_id: "103", competition_year: "2019", competitions_name: "Victorian Test Competition", competitions_abbrivation: "Vic Test Comp"};
+
+      this.team = { competition_id: "67",image_value: "/web/uploads/teams/20/1553226737_logo.png", team_abbrevation: "De La", team_id: "537", team_name: "De La Salle" };
+      this.competition = { competition_id: "67", competitions_name: "William Buck Premier", competitions_abbrivation: "Premier" };
+
     }
      else if(product == this.ProductList['PremiumPlus']) {
       this.storage.get('UserTeamData').then((val) => {
@@ -218,7 +241,7 @@ export class ProductListProvider {
           this.competition = val.selectedcompetition;
         } else {
           this.team = { team_id: "512", competition_id: "65", team_name: "Caulfield Grammarians", team_abbrevation: "Caulfield", image_value: "/web/uploads/teams/512/1521540242_logo.png" };
-          this.competition = { competition_id: "65", competitions_name: "William Buck Premier", competitions_abbrivation: "Women's Premier" };
+          this.competition = { competition_id: "65", competitions_name: "William Buck Premier Women's", competitions_abbrivation: "Women's Premier" };
         }
       });
     }
@@ -229,16 +252,10 @@ export class ProductListProvider {
   setplusproduct(comp) {
     if(comp == 65){
       this.plusproduct = this.ProductList['PremiumPlus'];
-    }else if(comp == 92){
+    }else if(comp == 66){
       this.plusproduct = this.ProductList['PremiumPlus2019'];
-    }else if(comp == 104){
-      this.plusproduct = this.ProductList['Interstate2019'];
-    }else if(comp == 103){
-      this.plusproduct = this.ProductList['Victoria2019'];
-    }else if(comp == 101){
-      this.plusproduct = this.ProductList['Victoria2018'];
-    }else if(comp == 102){
-      this.plusproduct = this.ProductList['Interstate2018'];
+    }else if(comp == 67){
+    this.plusproduct = this.ProductList['WilliamBuckPremier2019'];
     }
   }
 
@@ -271,38 +288,42 @@ export class ProductListProvider {
       this.product = this.ProductList["518"];
     } else if (team.team_id == 519 && competition.competition_id == 65 && year == 2018) {
       this.product = this.ProductList["519"];
-    } else if (team.team_id == 565 && competition.competition_id == 92 && year == 2019){
-      this.product = this.ProductList["565"];
-    } else if (team.team_id == 566 && competition.competition_id == 92 && year == 2019) {
-      this.product = this.ProductList["566"];
-    } else if (team.team_id == 567 && competition.competition_id == 92 && year == 2019) {
-      this.product = this.ProductList["567"];
-    } else if (team.team_id == 568 && competition.competition_id == 92 && year == 2019) {
-      this.product = this.ProductList["568"];
-    } else if (team.team_id == 569 && competition.competition_id == 92 && year == 2019) {
-      this.product = this.ProductList["569"];
-    } else if (team.team_id == 570 && competition.competition_id == 92 && year == 2019) {
-      this.product = this.ProductList["570"];
-    } else if (team.team_id == 571 && competition.competition_id == 92 && year == 2019) {
-      this.product = this.ProductList["571"];
-    } else if (team.team_id == 572 && competition.competition_id == 92 && year == 2019) {
-      this.product = this.ProductList["572"];
-    } else if (team.team_id == 612 && competition.competition_id == 104 && year == 2019) {
-      this.product = this.ProductList["612"];
-    }else if (team.team_id == 613 && competition.competition_id == 104 && year == 2019) {
-      this.product = this.ProductList["613"];
-    }else if (team.team_id == 616 && competition.competition_id == 103 && year == 2019) {
-      this.product = this.ProductList["616"];
-    }else if (team.team_id == 617 && competition.competition_id == 103 && year == 2019) {
-      this.product = this.ProductList["617"];
-    }else if (team.team_id == 604 && competition.competition_id == 102 && year == 2018) {
-      this.product = this.ProductList["604"];
-    }else if (team.team_id == 616 && competition.competition_id == 102 && year == 2018) {
-      this.product = this.ProductList["606"];
-    }else if (team.team_id == 610 && competition.competition_id == 101 && year == 2018) {
-      this.product = this.ProductList["610"];
-    }else if (team.team_id == 611 && competition.competition_id == 101 && year == 2018) {
-      this.product = this.ProductList["611"];
+    } else if (team.team_id == 520 && competition.competition_id == 66 && year == 2019){
+      this.product = this.ProductList["520"];
+    } else if (team.team_id == 521 && competition.competition_id == 66 && year == 2019) {
+      this.product = this.ProductList["521"];
+    } else if (team.team_id == 522 && competition.competition_id == 66 && year == 2019) {
+      this.product = this.ProductList["522"];
+    } else if (team.team_id == 523 && competition.competition_id == 66 && year == 2019) {
+      this.product = this.ProductList["523"];
+    } else if (team.team_id == 524 && competition.competition_id == 66 && year == 2019) {
+      this.product = this.ProductList["524"];
+    } else if (team.team_id == 525 && competition.competition_id == 66 && year == 2019) {
+      this.product = this.ProductList["525"];
+    } else if (team.team_id == 526 && competition.competition_id == 66 && year == 2019) {
+      this.product = this.ProductList["526"];
+    } else if (team.team_id == 527 && competition.competition_id == 66 && year == 2019) {
+      this.product = this.ProductList["527"];
+    } else if (team.team_id == 528 && competition.competition_id == 67 && year == 2019) {
+      this.product = this.ProductList["528"];
+    }else if (team.team_id == 529 && competition.competition_id == 67 && year == 2019) {
+      this.product = this.ProductList["529"];
+    }else if (team.team_id == 530 && competition.competition_id == 67 && year == 2019) {
+      this.product = this.ProductList["530"];
+    }else if (team.team_id == 531 && competition.competition_id == 67 && year == 2019) {
+      this.product = this.ProductList["531"];
+    }else if (team.team_id == 532 && competition.competition_id == 67 && year == 2018) {
+      this.product = this.ProductList["532"];
+    }else if (team.team_id == 533 && competition.competition_id == 67 && year == 2018) {
+      this.product = this.ProductList["533"];
+    }else if (team.team_id == 534 && competition.competition_id == 67 && year == 2018) {
+      this.product = this.ProductList["534"];
+    }else if (team.team_id == 535 && competition.competition_id == 67 && year == 2018) {
+      this.product = this.ProductList["535"];
+    }else if (team.team_id == 536 && competition.competition_id == 67 && year == 2018) {
+      this.product = this.ProductList["536"];
+    }else if (team.team_id == 537 && competition.competition_id == 67 && year == 2018) {
+      this.product = this.ProductList["537"];
     }
   }
 
@@ -323,23 +344,23 @@ export class ProductListProvider {
 
   GetProductType(product) {
     if (product) {
-      if (product == this.ProductList['611'] || product == this.ProductList['610'] || product == this.ProductList['606'] || product == this.ProductList['604'] || product == this.ProductList["512"] || product == this.ProductList["513"] || product == this.ProductList["514"] || product == this.ProductList["515"] || product == this.ProductList["516"] || product == this.ProductList["517"] || product == this.ProductList["518"] || product == this.ProductList["519"] || product == "vafa_premium" || product == "vafa_premium0001") {
+      if (product == this.ProductList["512"] || product == this.ProductList["513"] || product == this.ProductList["514"] || product == this.ProductList["515"] || product == this.ProductList["516"] || product == this.ProductList["517"] || product == this.ProductList["518"] || product == this.ProductList["519"] || product == "vafa_premium" || product == "vafa_premium0001") {
         let ProductType = 'Premium';
         return ProductType;
-      } else if (product == this.ProductList['Victoria2018'] ||product == this.ProductList['Interstate2018'] || product == this.ProductList.PremiumPlus || product == "vafa_premium_plus" || product == "vafa_premium_plus0002") {
+      } else if (product == this.ProductList.PremiumPlus || product == "vafa_premium_plus" || product == "vafa_premium_plus0002") {
         let ProductType = 'Premium Plus';
         return ProductType;
-      } else if (product == this.ProductList["617"] ||product == this.ProductList["616"] ||product == this.ProductList["613"] ||product == this.ProductList["612"] || product == this.ProductList["565"] || product == this.ProductList["566"] || product == this.ProductList["567"] || product == this.ProductList["568"] || product == this.ProductList["569"] || product == this.ProductList["570"] || product == this.ProductList["571"] || product == this.ProductList["572"]) {
-        let ProductType = 'Premium 2019';
+      } else if (product == this.ProductList["520"] ||product == this.ProductList["521"] ||product == this.ProductList["522"] ||product == this.ProductList["523"] || product == this.ProductList["524"] || product == this.ProductList["525"] || product == this.ProductList["526"] || product == this.ProductList["527"] || product == this.ProductList["528"] || product == this.ProductList["529"] || product == this.ProductList["530"] || product == this.ProductList["531"] || product == this.ProductList["532"] || product == this.ProductList["533"] || product == this.ProductList["534"] || product == this.ProductList["535"] || product == this.ProductList["536"] || product == this.ProductList["537"]) {
+        let ProductType = '2019 Team Pass';
         return ProductType;
-      } else if (product == this.ProductList['Victoria2019'] || product == this.ProductList['Interstate2019'] || product == this.ProductList.PremiumPlus2019) {
-        let ProductType = 'Premium Plus 2019';
+      } else if (product == this.ProductList["PremiumPlus2019"] || product == this.ProductList["WilliamBuckPremier2019"]) {
+        let ProductType = '2019 Competition Pass';
         return ProductType;
       } else if (product == this.ProductList.GamePass) {
-        let ProductType = 'GAME PASS';
+        let ProductType = '2019 Game Pass';
         return ProductType;
       } else if (product == this.ProductList.VafaPass ) {
-        let ProductType = 'VAFA PASS';
+        let ProductType = '2019 VAFA Pass';
         return ProductType;
       }
     } else {
@@ -449,78 +470,82 @@ export class ProductListProvider {
   Analyse(tid, compid) {
     if (tid == 512 && compid == 65) {
       this.team_name = "Caulfield Grammarians";
-      this.comp_name = "William Buck Premier";
+      this.comp_name = "William Buck Premier Women's";
     } else if (tid == 513 && compid == 65) {
       this.team_name = "Fitzroy-ACU";
-      this.comp_name = "William Buck Premier";
+      this.comp_name = "William Buck Premier Women's";
     } else if (tid == 514 && compid == 65) {
       this.team_name = "Kew FC";
-      this.comp_name = "William Buck Premier";
+      this.comp_name = "William Buck Premier Women's";
     } else if (tid == 515 && compid == 65) {
       this.team_name = "Marcellin";
-      this.comp_name = "William Buck Premier";
+      this.comp_name = "William Buck Premier Women's";
     } else if (tid == 516 && compid == 65) {
       this.team_name = "Melbourne Uni";
-      this.comp_name = "William Buck Premier";
+      this.comp_name = "William Buck Premier Women's";
     } else if (tid == 517 && compid == 65) {
       this.team_name = "Old Trinity";
-      this.comp_name = "William Buck Premier";
+      this.comp_name = "William Buck Premier Women's";
     } else if (tid == 518 && compid == 65) {
       this.team_name = "Old Xaverians";
-      this.comp_name = "William Buck Premier";
+      this.comp_name = "William Buck Premier Women's";
     } else if (tid == 519 && compid == 65) {
       this.team_name = "SKOB Saints";
-      this.comp_name = "William Buck Premier";
-    } else if (tid == 565 && compid == 92) {
-      this.team_name = "Caulfield Grammarians";
-      this.comp_name = "William Buck Premier";
-    } else if (tid == 566 && compid == 92) {
+      this.comp_name = "William Buck Premier Women's";
+    } else if (tid == 520 && compid == 66) {
       this.team_name = "Fitzroy-ACU";
-      this.comp_name = "William Buck Premier";
-    } else if (tid == 567 && compid == 92) {
+      this.comp_name = "William Buck Premier Women's";
+    } else if (tid == 521 && compid == 66) {
       this.team_name = "Kew FC";
-      this.comp_name = "William Buck Premier";
-    } else if (tid == 568 && compid == 92) {
+      this.comp_name = "William Buck Premier Women's";
+    } else if (tid == 522 && compid == 66) {
       this.team_name = "Marcellin";
-      this.comp_name = "William Buck Premier";
-    } else if (tid == 569 && compid == 92) {
+      this.comp_name = "William Buck Premier Women's";
+    } else if (tid == 523 && compid == 66) {
       this.team_name = "Melbourne Uni";
-      this.comp_name = "William Buck Premier";
-    } else if (tid == 570 && compid == 92) {
+      this.comp_name = "William Buck Premier Women's";
+    } else if (tid == 524 && compid == 66) {
       this.team_name = "Old Trinity";
+      this.comp_name = "William Buck Premier Women's";
+    } else if (tid == 525 && compid == 66) {
+      this.team_name = "SKOB Saints";
+      this.comp_name = "William Buck Premier Women's";
+    } else if (tid == 526 && compid == 66) {
+      this.team_name = "West Brunswick";
+      this.comp_name = "William Buck Premier Women's";
+    } else if (tid == 527 && compid == 66) {
+      this.team_name = "St Marys Salesian";
+      this.comp_name = "William Buck Premier Women's";
+    } else if (tid == 528 && compid == 67) {
+      this.team_name = "Old Brighton";
       this.comp_name = "William Buck Premier";
-    } else if (tid == 571 && compid == 92) {
+    } else if (tid == 529 && compid == 67) {
+      this.team_name = "University Blues";
+      this.comp_name = "William Buck Premier";
+    } else if (tid == 530 && compid == 67) {
+      this.team_name = "Old Melburnians";
+      this.comp_name = "William Buck Premier";
+    } else if (tid == 531 && compid == 67) {
       this.team_name = "Old Xaverians";
       this.comp_name = "William Buck Premier";
-    } else if (tid == 572 && compid == 92) {
-      this.team_name = "SKOB Saints";
+    } else if (tid == 532 && compid == 67) {
+      this.team_name = "St Bernards";
       this.comp_name = "William Buck Premier";
-    }
-    // test team and comp 2019
-    else if(tid == 612 && compid == 104){
-      this.team_name = "Sydney Seniors";
-      this.comp_name = "Interstate Test Competition";
-    }else if(tid == 613 && compid == 104){
-      this.team_name = "Adelaide Seniors";
-      this.comp_name = "Interstate Test Competition";
-    } else if(tid == 616 && compid == 103){
-      this.team_name = "Hawthorn Seniors";
-      this.comp_name = "Victorian Test Competition";
-    }else if(tid == 617 && compid == 103){
-      this.team_name = "Richmond Seniors";
-      this.comp_name = "Victorian Test Competition";
-    } else if(tid == 604 && compid == 102){
-      this.team_name = "Sydney Seniors";
-      this.comp_name = "Interstate Test Competition";
-    }else if(tid == 606 && compid == 102){
-      this.team_name = "Adelaide Seniors";
-      this.comp_name = "Interstate Test Competition";
-    } else if(tid == 610 && compid == 101){
-      this.team_name = "Hawthorn Seniors";
-      this.comp_name = "Victorian Test Competition";
-    }else if(tid == 611 && compid == 101){
-      this.team_name = "Richmond Seniors";
-      this.comp_name = "Victorian Test Competition";
+    } else if (tid == 533 && compid == 67) {
+      this.team_name = "Old Trinity Grammarians";
+      this.comp_name = "William Buck Premier";
+    } else if (tid == 534 && compid == 67) {
+      this.team_name = "St Kevins";
+      this.comp_name = "William Buck Premier";
+    } else if (tid == 535 && compid == 67) {
+      this.team_name = "Collegians";
+      this.comp_name = "William Buck Premier";
+    } else if (tid == 536 && compid == 67) {
+      this.team_name = "Old Carey";
+      this.comp_name = "William Buck Premier";
+    } else if (tid == 537 && compid == 67) {
+      this.team_name = "De La Salle";
+      this.comp_name = "William Buck Premier";
     }
   }
 

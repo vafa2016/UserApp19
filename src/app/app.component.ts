@@ -29,7 +29,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   deviceData: any = {
-    deviceid: 'AD91526F-760C-470F-AAAA-41CE65848BEFi2' //EF //
+    deviceid: 'AD91526F-760C-470F-AAAA-41CE65848BEF' //EF //
     // paid-ac-19,18: 'AD91526F-760C-470F-AAAA-41CE65848BEF'
     //unpaid-ac: '437C1EC7-31AB-4676-850B-957E45C92AD56'
     //paid-ac-19:'AD91526F-760C-470F-AAAv-957E45C92AD56'

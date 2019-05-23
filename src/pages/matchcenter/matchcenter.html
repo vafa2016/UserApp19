@@ -47,12 +47,13 @@
         </div>
       </div>
 
-      <ul [ngClass]="{'jd_bClass': value1.fixture_count !=2 }" class="list compitationList" *ngFor="let value1 of roundScores[key]">
+      <ul [ngClass]="{'jd_bClass': value1.fixture_count !=2 }" class="list compitationList" *ngFor="let value1 of roundScores[key]; trackBy: trackByFn;">
         <li class="item ink" (click)="selectedTeamScore(value1.fixture_id,value1.round,key, value1.match_status, value1.manual_score_recording, value1.name,value1.away_team_id,value1.home_team_id,value1.competition_id);">
           <ion-row class="row text-center matchCenterHeight">
             <ion-col col-3 class="teamCol">
               <div class="jb-inner-img"><span class="helper"></span>
-                <img src="{{path}}{{value1.home_team_image}}" class="setLogoImgWidth full-image  img-storke">
+                <img src="{{path}}{{cutPath(value1.home_team_image)}}" class="setLogoImgWidth full-image  img-storke">
+                <!-- <img (load)="load(value1.match_status)" src="{{path}}{{cutPath(value1.home_team_image)}}" class="setLogoImgWidth full-image  img-storke"> -->
               </div>
               <p>{{value1.home_team_name}}</p>
 
@@ -102,7 +103,7 @@
             </ion-col>
             <ion-col col-3 class=" teamCol">
               <div class="jb-inner-img"><span class="helper"></span>
-                <img src="{{path}}{{value1.away_team_image}}" class="setLogoImgWidth full-image img-storke">
+                <img src="{{path}}{{cutPath(value1.away_team_image)}}" class="setLogoImgWidth full-image img-storke">
               </div>
               <p>{{value1.away_team_name}}</p>
 
@@ -115,10 +116,10 @@
 
         </li>
         <div class="advContainer"  *ngIf="value1.fixture_count==2 && roundScores[key].length >= 2" style="margin: 0 auto 0 -7px; width: 104%;">
-          <img src="{{path}}{{totalRoundsData[0].ad_image}}" (click)="goToAddSite(totalRoundsData[0].ad_url);">
+          <img src="{{path}}{{cutPath(totalRoundsData[0].ad_image)}}" (click)="goToAddSite(totalRoundsData[0].ad_url);">
         </div>
         <div class="advContainerB"  *ngIf="value1.fixture_count==1 && roundScores[key].length < 2" style="margin: 0 auto 0 -7px; width: 104%;">
-          <img src="{{path}}{{totalRoundsData[0].ad_image}}" (click)="goToAddSite(totalRoundsData[0].ad_url);">
+          <img src="{{path}}{{cutPath(totalRoundsData[0].ad_image)}}" (click)="goToAddSite(totalRoundsData[0].ad_url);">
         </div>
 
         <!-- <div class="line">

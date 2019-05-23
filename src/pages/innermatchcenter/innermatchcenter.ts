@@ -64,8 +64,9 @@ export class InnermatchcenterPage {
     }
     isLogin:boolean = false;
     ApiResponse: any;
+    path: any = 'https://s3.us-west-2.amazonaws.com/vafas3';
     // path: any = 'http://vafalive.com.au';
-    path: any = 'http://54.244.98.247';
+    // path: any = 'http://54.244.98.247';
     type: any = 'SCORE';
     showcontent: any = 'hide';
     showfooter: any;
@@ -159,7 +160,11 @@ export class InnermatchcenterPage {
     }
 
 
-
+    cutPath(url){
+      if(url){
+        return url.substring(12);
+      }
+    }
 
 
     ionViewWillLeave() {
@@ -1141,17 +1146,17 @@ export class InnermatchcenterPage {
                        } else if (TopUser == 0 && this.selectd_yr == '2018' && this.processproduct.GetProductType(element.product_id) == 'Premium' && element.competition_id == this.details.competion_id && (element.team_id != this.details.awateam_id && element.team_id != this.details.hometeam_id))
                        {
                            TeamUser = 1;
-                       }  else if (this.selectd_yr =='2019' && this.processproduct.GetProductType(element.product_id) == 'Premium Plus 2019' && element.competition_id ==  this.details.competion_id )
+                       }  else if (this.selectd_yr =='2019' && this.processproduct.GetProductType(element.product_id) == '2019 Competition Pass' && element.competition_id ==  this.details.competion_id )
                        {
 
                        //  free trial false and user has premium plus pass, if competitions match then show game.
                        MedUser = 1;
                        this.pamentshow = 1;
                        this.gotostatspage();
-                       } else if(TopUser == 0 && this.selectd_yr == '2019' && this.processproduct.GetProductType(element.product_id) == 'Premium 2019' && element.competition_id ==  this.details.competion_id && (element.team_id != this.details.awateam_id && element.team_id != this.details.hometeam_id)){
+                       } else if(TopUser == 0 && this.selectd_yr == '2019' && this.processproduct.GetProductType(element.product_id) == '2019 Team Pass' && element.competition_id ==  this.details.competion_id && (element.team_id != this.details.awateam_id && element.team_id != this.details.hometeam_id)){
                        //   free trial true and user has premium pass with team not purchased.
                        TeamUser = 1;
-                       } else if (TopUser == 0 && this.selectd_yr == '2019' && this.processproduct.GetProductType(element.product_id) == 'Premium 2019' && element.competition_id ==  this.details.competion_id && (element.team_id == this.details.awateam_id || element.team_id == this.details.hometeam_id))
+                       } else if (TopUser == 0 && this.selectd_yr == '2019' && this.processproduct.GetProductType(element.product_id) == '2019 Team Pass' && element.competition_id ==  this.details.competion_id && (element.team_id == this.details.awateam_id || element.team_id == this.details.hometeam_id))
                        {
                        //    trial period true and premium pass for team purchased.
                        TeamUser = 2;
@@ -1320,7 +1325,7 @@ export class InnermatchcenterPage {
                   //   free trial false and user has premium pass with team not purchased.
                   TeamUser = 1;
 
-                  } else if (this.selectd_yr =='2019' && this.processproduct.GetProductType(element.product_id) == 'Premium Plus 2019' && element.competition_id ==  this.details.competion_id )
+                  } else if (this.selectd_yr =='2019' && this.processproduct.GetProductType(element.product_id) == '2019 Competition Pass' && element.competition_id ==  this.details.competion_id )
                   {
                   //  free trial false and user has premium plus pass, if competitions match then show game.
                   MedUser = 1;
@@ -1331,13 +1336,13 @@ export class InnermatchcenterPage {
                   GameUser = 1;
                   this.pamentshow = 1;
                   this.gotostatspage();
-                  } else if (this.selectd_yr == '2019' && this.processproduct.GetProductType(element.product_id) == 'Premium 2019' && element.competition_id ==  this.details.competion_id && (element.team_id == this.details.awateam_id || element.team_id == this.details.hometeam_id))
+                  } else if (this.selectd_yr == '2019' && this.processproduct.GetProductType(element.product_id) == '2019 Team Pass' && element.competition_id ==  this.details.competion_id && (element.team_id == this.details.awateam_id || element.team_id == this.details.hometeam_id))
                   {
                   //    trial period false and premium pass for team purchased.
                   TeamUser = 2;
                   this.pamentshow = 1;
                   this.gotostatspage();
-                  } else if(this.selectd_yr == '2019' && this.processproduct.GetProductType(element.product_id) == 'Premium 2019' && element.competition_id ==  this.details.competion_id && (element.team_id != this.details.awateam_id && element.team_id != this.details.hometeam_id))
+                  } else if(this.selectd_yr == '2019' && this.processproduct.GetProductType(element.product_id) == '2019 Team Pass' && element.competition_id ==  this.details.competion_id && (element.team_id != this.details.awateam_id && element.team_id != this.details.hometeam_id))
                   {
                   //   free trial false and user has premium pass with team not purchased.
                   TeamUser = 1;
@@ -3115,7 +3120,8 @@ export class InnermatchcenterPage {
             "T",
             "FF",
             "HO",
-            "EFF"];
+            "EFF",
+             ];
 
         // angular.forEach(this.modifiedState,function(item,index){
         this.modifiedState.forEach((item, index) => {
@@ -4169,8 +4175,8 @@ export class InnermatchcenterPage {
    <p class="poptxt">{{awayTeam.team_abbrevation}}</p>
    </ion-col>
    </ion-row>
-  <button class="popbutton" (click)="BuyConsume('game_pass')" ion-button>Continue</button>
   <button class="popbutton" (click)="close()" ion-button>Cancel</button>
+  <button class="popbutton" (click)="BuyConsume('game_pass')" ion-button>Continue</button>
   </div>
   `
   })
@@ -4184,6 +4190,8 @@ export class InnermatchcenterPage {
     isLogin : boolean = false;
     details : any;
     path: any = 'http://54.244.98.247';
+
+    // path: any = 'https://s3.us-west-2.amazonaws.com/vafas3';
   constructor(
   public processproduct: ProductListProvider,
   public ga: GoogleAnalytics,
@@ -4231,6 +4239,9 @@ export class InnermatchcenterPage {
   close() {
   this.viewCtrl.dismiss('cancel');
   }
+
+
+
 
     // Buy consume product single game pass
     BuyConsume(product) {

@@ -140,7 +140,10 @@ export class MatchreportPage {
        let modal = this.modalCtrl.create('CommommodelPage', {items:this.comptitionlists});
             let me = this;
             modal.onDidDismiss(data => {
+              if(data){
+              this.MatchreportData = [];
               this.cmnfun.showLoading('Please wait...');
+              this.slides.update();
               this.selectables=data.competitions_name
               this.competition_id=data.competition_id
               this.ajax.postMethod('get-compition-fixture-match-report',{
@@ -163,6 +166,7 @@ export class MatchreportPage {
                 }, error => {
                   this.cmnfun.showToast('Some thing Unexpected happen please try again');
                 })
+              }
             });
       modal.present();
     }

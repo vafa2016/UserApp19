@@ -35,7 +35,8 @@ export class FixturePage {
   roundNo: any = '0_0';
   team_id: any = '0_0';
   // path: any = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247';
+  // path: any = 'http://54.244.98.247';
+  path: any = 'https://s3.us-west-2.amazonaws.com/vafas3';
   competition_id: any;
   comptitionlists: any = [];
   selectables: any = []
@@ -83,6 +84,12 @@ export class FixturePage {
 
   }
 
+   // path reset function
+   cutPath(url){
+    if(url)
+    return url.substring(12);
+  }
+
     // year_dropdown
     presentPopover(myEvent) {
       let data = this.YearList;
@@ -98,6 +105,7 @@ export class FixturePage {
           this.competition_id = data.competition_id;
           this.cmnfun.showLoading('Please wait...');
           if (this.type == 'Round') {
+            this.roundNo = '0_0';
             this.ajax.datalist('get-round-competition-fixture', {
               accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
               competition_id: this.competition_id,
@@ -220,8 +228,8 @@ export class FixturePage {
     this.roundNo = res.current_round;
     this.Current_rd=res.current_round;
     setTimeout(() => {
-      this.scrolround(this.roundNo);
-    }, 100);
+      this.scrolround(this.Current_rd);
+    }, 200);
     console.log(res.current_round);
     this.roundScores = res.roundScores;
     this.ajax.datalist('get-round-wise-fixture', {
@@ -410,6 +418,7 @@ export class FixturePage {
   }
   selectedFixtureType(type) {
     if (type == 'Round') {
+      this.roundNo = '0_0';
       this.ajax.datalist('get-round-competition-fixture', {
         accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
         competition_id: this.competition_id,
@@ -421,9 +430,9 @@ export class FixturePage {
       })
       // this.cmnfun.showLoading('Please wait...');
       this.type = 'Round';
-      setTimeout(() => {
-        this.scrolround(this.Current_rd);
-      }, 100);
+      // setTimeout(() => {
+      //   this.scrolround(this.Current_rd);
+      // }, 100);
 
         this.plt.ready().then(() => {
       this.ga.startTrackerWithId('UA-118996199-1')
@@ -479,6 +488,7 @@ export class FixturePage {
     let modal = this.modalCtrl.create('CommommodelPage', { items: this.comptitionlists });
     let me = this;
     modal.onDidDismiss(data => {
+      if(data){
       console.log(data);
       this.YearList = data.seasons;
       this.selectd_yr = this.YearList[0].competition_year;
@@ -486,6 +496,7 @@ export class FixturePage {
       this.competition_id = data.seasons[0].competition_id;
       this.cmnfun.showLoading('Please wait...');
       if (this.type == 'Round') {
+        this.roundNo = '0_0';
         this.ajax.datalist('get-round-competition-fixture', {
           accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
           competition_id: this.competition_id,
@@ -509,6 +520,7 @@ export class FixturePage {
           // this.cmnfun.showToast('Some thing Unexpected happen please try again');
         })
       }
+    }
     });
     modal.present();
   }
