@@ -45,7 +45,7 @@ page-innermatchcenter {
   // }
 
   .jd_warning {
-    padding-top: 60px !important;
+    // padding-top: 60px !important;
   }
 
 
@@ -3429,6 +3429,15 @@ table.dataTable td {
     .jb-class-back-top{
      background: white;
    }
+
+   .jb-plaer table.dataTable tfoot th, page-innermatchcenter .jb-plaer table.dataTable tfoot td {
+    border-top: none !important;
+ }
+
+  .jd_footradv{
+     height: 56px;
+     border-top: 1px solid #dedede;
+  }
 
    .Custiback{
     position: absolute;

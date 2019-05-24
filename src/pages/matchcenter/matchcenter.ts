@@ -239,7 +239,7 @@ export class MatchcenterPage {
         // })
       }
       else{
-         
+
 
           if (this.roundNo == '') {
             this.roundNo = res.current_round;
@@ -253,11 +253,9 @@ export class MatchcenterPage {
           this.totalRoundsData = res.footerAdv;
           // console.log("add" + this.totalRoundsData[0].ad_image);
           this.roundScores = res.roundScores;
-          setTimeout(() => {
-            this.cmnfun.HideLoading();
-          }, 1000);
           console.log(this.roundScores);
           console.log(this.roundNo);
+          this.cmnfun.HideLoading();
       }
   };
   ionViewWillLeave() {
