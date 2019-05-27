@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.support.vafalive" ios-CFBundleVersion="2.2" version="11.2" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://cordova.apache.org/ns/1.0">
-<!-- <widget id="com.support.vafalive" version="1.1.1" android-versionCode="101026"  xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://cordova.apache.org/ns/1.0"> -->
+<!-- <widget id="com.support.vafalive" ios-CFBundleVersion="1.0" version="11.3" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://cordova.apache.org/ns/1.0"> -->
+<widget id="com.support.vafalive" version="1.1.1" android-versionCode="101029"  xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://cordova.apache.org/ns/1.0">
     <name>VAFA Live</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -114,6 +114,6 @@
     </plugin>
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.1.3" />
     <plugin name="cordova-plugin-uniquedeviceid" spec="^1.3.2" />
-    <!-- <plugin name="cordova-plugin-google-analytics" spec="^0.8.1" /> -->
+    <plugin name="cordova-plugin-google-analytics" spec="^0.8.1" />
     <plugin name="cordova-plugin-x-socialsharing" source="npm" version="5.4.0" />
 </widget>
