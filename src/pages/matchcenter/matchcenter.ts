@@ -1,9 +1,10 @@
-import { Component, ViewChild, AfterViewChecked, ElementRef } from '@angular/core';
+import { Component,Input, ViewChild, AfterViewChecked, ElementRef } from '@angular/core';
 import { IonicPage, NavController, ModalController, NavParams, AlertController } from 'ionic-angular';
 import { AjaxProvider } from '../../providers/ajax/ajax';
 import { CommomfunctionProvider } from '../../providers/commomfunction/commomfunction';
 import { Events,Platform } from 'ionic-angular';
 import { KeysPipe } from '../../pipes/keys/keys';
+import { SafePipe } from '../../pipes/safe/safe';
 import { ReversePipe } from '../../pipes/reverse/reverse';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
@@ -13,6 +14,8 @@ import { PopoverController } from 'ionic-angular';
 import {YeardropdownPage} from '../yeardropdown/yeardropdown';
 import { ProductListProvider } from '../../providers/product-list/product-list';
 import { LocalDataProvider } from './../../providers/local-data/local-data';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
 /**
  * Generated class for the MatchcenterPage page.
  *
@@ -25,14 +28,18 @@ import { LocalDataProvider } from './../../providers/local-data/local-data';
   selector: 'page-matchcenter',
   templateUrl: 'matchcenter.html',
   // pipes: [ReversePipe]
-  //  pipes: [KeysPipe]
+  //  pipes: [SafePipe]
 })
 export class MatchcenterPage {
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   @ViewChild(Content) content: Content;
 
+  statusCounter:any = 0;
+  UpcomeCount:any = 0;
   Interval1:any;
   Interval2:any;
+
+  safeURL:any;
 
   AdShown: boolean = true;
 
@@ -62,8 +69,10 @@ export class MatchcenterPage {
 
   YearList: any = [];
 
-  Entered:boolean = false;
+  weblink:boolean = false;
 
+  Entered:boolean = false;
+  WeblinkAd:any;
   selectd_yr: any = '';
   constructor(private inapp: InAppBrowser,
     public plt:Platform,
@@ -75,6 +84,7 @@ export class MatchcenterPage {
     public prolist : ProductListProvider,
     private modalCtrl: ModalController,
     public events: Events,
+    private sanitizer: DomSanitizer,
     public cmnfun: CommomfunctionProvider,
     public navCtrl: NavController,
     public navParams: NavParams) {
@@ -127,14 +137,27 @@ export class MatchcenterPage {
 
   // path reset function
   cutPath(url){
+    if(url)
     return url.substring(12);
   }
 
+
   load(status){
-   if(status == 'UPCOMING' || status == 'LIVE'){
-    // clearInterval(this.Interval1);
-    // clearInterval(this.Interval2);
-   }
+    // console.log(this.statusCounter);
+    // if(status == 'COMPLETE' || status == 'UPCOMING'){
+    //   this.statusCounter++;
+    //   this.UpcomeCount++;
+    //   if(this.statusCounter > 3 && this.UpcomeCount > 3){
+    //       clearInterval(this.Interval1);
+    //       clearInterval(this.Interval2);
+    //   }
+    // }else if(status == 'LIVE'){
+    //   this.statusCounter++;
+    // }
+    // if(this.statusCounter == 4){
+    //   console.log('hide');
+    //   this.cmnfun.HideLoading();
+    // }
   }
 
   trackByFn(index, item) {
@@ -148,6 +171,7 @@ export class MatchcenterPage {
   // }
   ionViewDidLoad() {
     this.Entered = true;
+
   //  else{
       // this.cmnfun.HideLoading();
     // }
@@ -203,6 +227,11 @@ export class MatchcenterPage {
       }
 
     })
+
+    // weblink add fetching api
+  this.ajax.postMethod('get-weblink-advertisements',{ page_title : 'Match Centre(Weblink)'}).subscribe((res : any) =>{
+    this.WeblinkAd = res.footerAdv.ad_image;
+  })
   }
   getroundwise(res) {
     console.log(res);
@@ -253,11 +282,16 @@ export class MatchcenterPage {
           this.totalRoundsData = res.footerAdv;
           // console.log("add" + this.totalRoundsData[0].ad_image);
           this.roundScores = res.roundScores;
-          console.log(this.roundScores);
+          // console.log(this.roundScores[this.roundNo]);
           console.log(this.roundNo);
-          this.cmnfun.HideLoading();
+          // if(this.roundScores.length > 0){
+            this.cmnfun.HideLoading();
+          // }
+
       }
   };
+
+
   ionViewWillLeave() {
     console.log('leave match center');
     clearInterval(this.Interval1);
@@ -278,26 +312,18 @@ export class MatchcenterPage {
   }
 
   selectRound = function (roundNo, competitionNo) {
+    const loaderCount = 0;
+    this.statusCounter = 0;
+    this.UpcomeCount = 0;
     console.log(roundNo);
     console.log(competitionNo);
-    this.cmnfun.showLoading('Please wait...');
+    this.cmnfun.showLoader('Please wait...');
     this.roundNo = roundNo;
     this.competition_id = competitionNo;
 
     if(this.Interval1){ clearInterval(this.Interval1);}
     if(this.Interval2){ clearInterval(this.Interval2);}
- this.ajax.datalist('get-round-wise-match-score-by-year', {
-      accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
-      round: this.roundNo,
-      year :  this.selectd_yr,
-      competition_id:  this.competition_id
-    }).subscribe((res) => {
-      if(res.message != 'round value is empty' || res.message != 'No Data Found'){
-        this.getroundwise(res);
-      }
-    }, error => {
-      // this.cmnfun.showToast('Some thing Unexpected happen please try again');
-    })
+
   this.Interval2=setInterval(()=>{
     console.log('interval2')
     this.ajax.datalist('get-round-wise-match-score-by-year', {
@@ -306,6 +332,10 @@ export class MatchcenterPage {
       year :  this.selectd_yr,
       competition_id:  this.competition_id
     }).subscribe((res) => {
+      if(loaderCount===0){
+        this.cmnfun.hideLoader();
+        loaderCount++;
+      }
       if(res.message != 'round value is empty' || res.message != 'No Data Found'){
         this.getroundwise(res);
       }
@@ -325,6 +355,15 @@ export class MatchcenterPage {
     let me = this;
     modal.onDidDismiss(data => {
       if(data){
+      if(data.seasons[0].manual_score_recording == "2"){
+        this.selectables = data.competitions_name;
+        var htmlvalue = '<iframe src='+data.seasons[0].weblink_match_centre+' sandbox="allow-pointer-lock allow-popups allow-same-origin allow-forms allow-scripts"></iframe>';
+        this.safeURL =this.sanitizer.bypassSecurityTrustHtml(htmlvalue);
+        if(this.Interval1){clearInterval(this.Interval1)}
+        if(this.Interval2){clearInterval(this.Interval2)}
+        this.weblink = true;
+      } else {
+      this.weblink = false;
       this.cmnfun.showLoading('Please wait...');
       console.log(data);
       this.selectables = data.competitions_name
@@ -340,7 +379,10 @@ export class MatchcenterPage {
         accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
         competition_id: data.seasons[0].competition_id,
         year : this.selectd_yr
-      }).subscribe((res) => {
+      }).subscribe((res:any) => {
+        setTimeout(() => {
+          this.scrolround(res.current_round);
+        }, 100);
         this.getroundwise(res);
         if(this.Interval1){clearInterval(this.Interval1)}
         if(this.Interval2){clearInterval(this.Interval2)}
@@ -354,6 +396,7 @@ export class MatchcenterPage {
       }, error => {
         // this.cmnfun.showToast('Some thing Unexpected happen please try again');
       })
+    }
     }
     });
     modal.present();
@@ -422,7 +465,9 @@ export class MatchcenterPage {
 
 
   // get matches by year function
-  GetMatchesByYear(year, competitionid){
+  GetMatchesByYear(year, competitionid) {
+    this.statusCounter = 0;
+    this.UpcomeCount = 0;
     if(this.Interval1){clearInterval(this.Interval1);}
     if(this.Interval2){clearInterval(this.Interval2);}
     this.roundNo = '';

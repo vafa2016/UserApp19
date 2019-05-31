@@ -15,7 +15,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-toolbar #content no-border class="scrollable-segments" >
+<ion-toolbar [hidden]="weblink" #content no-border class="scrollable-segments" >
   <ion-grid style="padding: 0px !important;">
     <ion-row style="    min-height: 51px !important; border-bottom: 1px solid #bdbdbd;">
       <ion-col (click)="presentPopover($event)" col-3 class="columnone" style="padding-top: 8px; border-right: 1px solid #bdbdbd;">
@@ -39,7 +39,7 @@
 
 
 <ion-content class="bgPage-color" no-bounce>
-  <div class="jb-content">
+  <div *ngIf="!weblink" class="jb-content">
     <div *ngFor="let key of objectKeys(roundScores);let i=index;">
       <div class="box">
         <div class="jd_dateOFMatches">
@@ -47,12 +47,12 @@
         </div>
       </div>
 
-      <ul [ngClass]="{'jd_bClass': value1.fixture_count !=2 }" class="list compitationList" *ngFor="let value1 of roundScores[key]; trackBy: trackByFn;">
+      <ul [ngClass]="{'jd_bClass': value1.fixture_count !=2 }" class="list compitationList" *ngFor="let value1 of roundScores[key]; trackBy: trackByFn; let l = last; let i = index;">
         <li class="item ink" (click)="selectedTeamScore(value1.fixture_id,value1.round,key, value1.match_status, value1.manual_score_recording, value1.name,value1.away_team_id,value1.home_team_id,value1.competition_id);">
           <ion-row class="row text-center matchCenterHeight">
             <ion-col col-3 class="teamCol">
               <div class="jb-inner-img"><span class="helper"></span>
-                <img src="{{path}}{{cutPath(value1.home_team_image)}}" class="setLogoImgWidth full-image  img-storke">
+                <img  (load)="load(value1.match_status)" src="{{path}}{{cutPath(value1.home_team_image)}}" class="setLogoImgWidth full-image  img-storke">
                 <!-- <img (load)="load(value1.match_status)" src="{{path}}{{cutPath(value1.home_team_image)}}" class="setLogoImgWidth full-image  img-storke"> -->
               </div>
               <p>{{value1.home_team_name}}</p>
@@ -116,10 +116,10 @@
 
         </li>
         <div class="advContainer"  *ngIf="value1.fixture_count==2 && roundScores[key].length >= 2" style="margin: 0 auto 0 -7px; width: 104%;">
-          <img src="{{path}}{{cutPath(totalRoundsData[0].ad_image)}}" (click)="goToAddSite(totalRoundsData[0].ad_url);">
+          <img  (load)="load(value1.match_status)" src="{{path}}{{cutPath(totalRoundsData[0].ad_image)}}" (click)="goToAddSite(totalRoundsData[0].ad_url);">
         </div>
         <div class="advContainerB"  *ngIf="value1.fixture_count==1 && roundScores[key].length < 2" style="margin: 0 auto 0 -7px; width: 104%;">
-          <img src="{{path}}{{cutPath(totalRoundsData[0].ad_image)}}" (click)="goToAddSite(totalRoundsData[0].ad_url);">
+          <img  (load)="load(value1.match_status)" src="{{path}}{{cutPath(totalRoundsData[0].ad_image)}}" (click)="goToAddSite(totalRoundsData[0].ad_url);">
         </div>
 
         <!-- <div class="line">
@@ -129,4 +129,15 @@
 
     </div>
   </div>
+  <div *ngIf="weblink" class="weblinkclass" [innerHTML]="safeURL">
+      <!-- <iframe [src]="safeURL" seamless allowfullscreen height="100%" width="100%"></iframe> -->
+  </div>
 </ion-content>
+<ion-footer *ngIf="weblink" >
+  <ion-toolbar class="jb-toolbar">
+      <div class="jb-adv">
+        <img *ngIf="WeblinkAd == undefined" class="full-image" src="assets/imgs/CSM_-_More_Footy_Less_Admin_(white).gif">
+        <img *ngIf="WeblinkAd != undefined" [src]="WeblinkAd">
+    </div>
+  </ion-toolbar>
+</ion-footer>

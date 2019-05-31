@@ -1,4 +1,16 @@
 page-ladder {
+  .weblinkclass{
+    -webkit-overflow-scrolling: touch !important;
+    overflow: scroll !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: none;
+  }
+  .weblinkclass iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
   .table.DTFC_Cloned
   {
     background: white !important;

@@ -13,7 +13,7 @@
 		<button class="title1" text-center (click)="gotomodel()">{{selectables.length > 20 ? selectables.substring(0,20)+'..' : selectables}}<ion-icon  class="downarrow" name="ios-arrow-down"></ion-icon></button>
 	</ion-navbar>
 </ion-header>
-<ion-header style="z-index: 999;background: white; top: 43px; position: fixed; height: 46px;">
+<ion-header [hidden]="weblink" style="z-index: 999;background: white; top: 43px; position: fixed; height: 46px;">
 <ion-row>
   <ion-col (click)="presentPopover($event)" col-3 class="jd_fixtureYear">
     <p class="jd_seasonTxt">SEASON</p>
@@ -32,7 +32,7 @@
   </ion-col>
 </ion-row>
 </ion-header>
-<ion-toolbar ion-scroll no-border class="scrollable-segments" *ngIf="type=='Round'">
+<ion-toolbar [hidden]="weblink" ion-scroll no-border class="scrollable-segments" *ngIf="type=='Round'">
 	<ion-segment style="margin-left: 20px;" #scrollMe *ngIf="totalround" [(ngModel)]="roundNo">
 		<ion-segment-button  id='id{{round.round}}'  (click)="selectRound(round.round,competition_id); " value="{{round.round}}" *ngFor="let round of totalround"  [innerHTML] = "ShowRound(round)">
 			<!-- {{round.round}} -->
@@ -40,7 +40,7 @@
 	</ion-segment>
 
 </ion-toolbar>
-<ion-toolbar ion-scroll no-border class="scrollable-segments_jd" *ngIf="type=='Club'">
+<ion-toolbar [hidden]="weblink" ion-scroll no-border class="scrollable-segments_jd" *ngIf="type=='Club'">
 	<ion-segment *ngIf="totalround" [(ngModel)]="team_id">
 		<ion-segment-button class="jb-club-seg" (click)="selecteClub(club.team_id,competition_id); " value="{{club.team_id}}" *ngFor="let club of totalClub">
       {{club.team_name}}
@@ -48,14 +48,14 @@
 		</ion-segment-button>
 	</ion-segment>
 </ion-toolbar>
-<ion-header *ngIf="headerAdv.length" [style.display]="advDisplay=='hide' ? 'block' : 'none'" class="bar-sub-subheader" style="height: 50px;position:relative; top:130px; background-color: transparent; border: 0px !important; border-bottom-color: transparent !important; background-image: none !important; border-bottom: none !important; ">
+<ion-header *ngIf="headerAdv.length && !weblink" [style.display]="advDisplay=='hide' ? 'block' : 'none'" class="bar-sub-subheader" style="height: 50px;position:relative; top:130px; background-color: transparent; border: 0px !important; border-bottom-color: transparent !important; background-image: none !important; border-bottom: none !important; ">
 	<div class="advContainer" style="position:fixed;margin: 0 auto 0 -7px; width: 104%;">
 		<img src="{{path}}{{cutPath(headerAdv[0].ad_image)}}"  ng-click="goToAddSite(headerAdv[0].ad_url);">
 	</div>
 </ion-header>
 <ion-content class="bgPage-color" (ionScroll)="onScroll($event)">
 
-	<div *ngIf="type =='Round'" class="jb-content">
+	<div *ngIf="type =='Round' && !weblink" class="jb-content">
 		<div *ngFor="let key of roundScores | keys; let j = index">
 			<div class="dateOFMATCHES_jd">
 				{{key}}
@@ -91,14 +91,14 @@
 							<h3></h3>
 						</ion-col>
 					</ion-row>
-					<div class="advContainer1" [style.display]="advDisplay=='show' ? 'block' : 'none'" *ngIf="i==1 && j==0" style="margin: 0 auto 0 -7px; width: 104%;">
+					<div class="advContainer1" [style.display]="advDisplay=='show' ? 'block' : 'none'" *ngIf="i==1 && j==0 && !weblink" style="margin: 0 auto 0 -7px; width: 104%;">
 						<img src="{{path}}{{cutPath(footerAdv[0].ad_image)}}"  (click)="goToAddSite(footerAdv[0].ad_url);">
 					</div>
 				</li>
 			</ul>
 		</div>
 	</div>
-	<div *ngIf="type=='Club'" class="jb-content">
+	<div *ngIf="type=='Club' && !weblink" class="jb-content">
 		<div *ngFor="let value1 of clubScoresNew | reverse; let i = index">
 			<ul class="list compitationList">
 				<li class="item">
@@ -135,11 +135,23 @@
 							<h3></h3>
 						</ion-col>
 					</ion-row>
-					<div [style.display]="advDisplay=='show' ? 'block' : 'none'" class="advContainer1" *ngIf="i==1" style="margin: 0 auto 0 -7px; width: 104%;">
+					<div [style.display]="advDisplay=='show' ? 'block' : 'none'" class="advContainer1" *ngIf="i==1 && !weblink" style="margin: 0 auto 0 -7px; width: 104%;">
 						<img src="{{path}}{{cutPath(footerAdv[0].ad_image)}}"(click)="goToAddSite(footerAdv[0].ad_url);">
 					</div>
 				</li>
 			</ul>
 		</div>
 	</div>
+	<!-- weblink -->
+	<div *ngIf="weblink" class="weblinkclass" [innerHtml]='safeURL'>
+      <!-- <iframe height="100%" width="100%" [src]="safeURL" seamless ></iframe> -->
+  </div>
 </ion-content>
+<ion-footer *ngIf="weblink" >
+  <ion-toolbar class="jb-toolbar">
+      <div class="jb-adv">
+          <img *ngIf="WeblinkAd == undefined" src="assets/imgs/CSM_-_More_Footy_Less_Admin_(white).gif">
+          <img *ngIf="WeblinkAd != undefined" [src]="WeblinkAd">
+      </div>
+  </ion-toolbar>
+</ion-footer>

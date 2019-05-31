@@ -15,6 +15,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class CommomfunctionProvider {
   loading: any;
+  custmLoading : any;
   userdetails: any;
   ImgRes:any;
 
@@ -75,6 +76,19 @@ export class CommomfunctionProvider {
     setTimeout(() => {
       this.loading.dismiss();
     }, 12000);
+  }
+
+  showLoader(msg) {
+    this.custmLoading = this.loadingCtrl.create({
+      spinner: 'hide',
+      cssClass: 'my-loading-class',
+      // content: msg
+    });
+    this.custmLoading.present();
+  }
+
+  hideLoader(){
+    this.custmLoading.dismiss();
   }
 
    Loading(msg) {

@@ -18,12 +18,12 @@
       (ionInput)="triggerInput($event)" [ngModelOptions]="{standalone: true}" name="search"></ion-searchbar>
     <!-- Search Icon -->
     </form>
-    <ion-buttons end *ngIf="!toggled">
+    <ion-buttons end *ngIf="!toggled && !weblink">
       <button ion-button icon-only (click)="toggleSearch()"><ion-icon name="search"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-segment [(ngModel)]="type" class="jb-segment">
+<ion-segment *ngIf="!weblink"  [(ngModel)]="type" class="jb-segment">
     <ion-segment-button class="jd-segment-first .jb-segment-right" (click)="selectedType(type); " value="year">
         <p  class="jd-year-p1">SEASON</p>
        <p class="jd-year-p2">{{selectd_yr}}</p>
@@ -42,14 +42,14 @@
     <ion-icon class="downarrow jd-d2" name="ios-arrow-down"></ion-icon>
   </ion-segment-button>
 </ion-segment>
-<ion-header *ngIf="headerAdv.length" [style.display]="advDisplay=='hide' ? 'block' : 'none'" class="bar-sub-subheader" style="height: 50px;position:relative; top:113px; background-color: transparent; border: 0px !important; border-bottom-color: transparent !important; background-image: none !important; border-bottom: none !important; ">
+<ion-header *ngIf="headerAdv.length && !weblink" [style.display]="advDisplay=='hide' ? 'block' : 'none'" class="bar-sub-subheader" style="height: 50px;position:relative; top:113px; background-color: transparent; border: 0px !important; border-bottom-color: transparent !important; background-image: none !important; border-bottom: none !important; ">
   <div class="advContainer" style="position:fixed;margin: -9px auto 0 -7px; width: 104%;">
     <img src="{{path}}{{cutPath(headerAdv[0].ad_image)}}"  (click)="goToAddSite(headerAdv[0].ad_url);">
   </div>
 </ion-header>
 <ion-content class="bgPage-color" no-bounce (ionScroll)="onScroll($event)">
    <!--  [virtualScroll]="items" [virtualTrackBy]="identify" *virtualItem="let value ; let i= index"  [virtualScroll]="goalKickers" *ngFor="let value of items; let i=index" -->
-  <div class="jb-topalign">
+  <div class="jb-topalign"  *ngIf="!weblink" >
     <div *ngFor="let value of items; let i=index"  >
       <div class="list" *ngIf="value.goal>0">
         <ion-row class="row teamStates-List animated fadeInUp ink" (click)="goToGoalKickerDetailsPage(value.player_id,value.team_id,'value.player_name',value.player_number,'value.team_team','value.player_image',value.goal) ">
@@ -77,4 +77,17 @@
       </div>
     </div>
   </div>
+  <!-- weblink -->
+      <div *ngIf="weblink" class="weblinkclass" [innerHTML]="safeURL">
+         <!-- <iframe height="100%" width="100%" [src]="safeURL" seamless allowfullscreen></iframe> -->
+      </div>
+  <!--  -->
 </ion-content>
+<ion-footer *ngIf="weblink" >
+  <ion-toolbar class="jb-toolbar">
+      <div class="jb-adv">
+        <img *ngIf="WeblinkAd == undefined" class="full-image" src="assets/imgs/CSM_-_More_Footy_Less_Admin_(white).gif">
+        <img *ngIf="WeblinkAd != undefined" [src]="WeblinkAd">
+    </div>
+  </ion-toolbar>
+</ion-footer>

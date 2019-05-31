@@ -4,7 +4,7 @@
         <ion-row class=" displayImgContent">
           <ion-col class="text-center">
             <img *ngIf="playerDetail.player_image != '/web/images/default_player.png'"  src="{{path}}{{cutPath(playerDetail.player_image)}}">
-            <img *ngIf="playerDetail.player_image == '/web/images/default_player.png'"  src="http://54.244.98.247{{playerDetail.player_image}}">
+            <img *ngIf="playerDetail.player_image == '/web/images/default_player.png'"  src="{{path1}}{{playerDetail.player_image}}">
           </ion-col>
           <ion-col class="col">
             <p class="jb-p">{{firstName}}</p>

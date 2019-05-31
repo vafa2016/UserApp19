@@ -9,7 +9,7 @@
 </ion-header>
 <ion-header *ngIf="headerimage!=''" [style.display]="advDisplay=='hide' ? 'block' : 'none'" class="bar-sub-subheader" style="height: 50px;position:relative; top:44px; background-color: transparent; border: 0px !important; border-bottom-color: transparent !important; background-image: none !important; border-bottom: none !important; ">
   <div class="advContainer" style="position:fixed;margin: 0 auto 0 -7px; width: 104%;">
-    <img src="{{path}}{{headerimage}}"  (click)="goToAddSite(headerurl);">
+    <img src="{{path}}{{cutPath(headerimage)}}"  (click)="goToAddSite(headerurl);">
   </div>
 </ion-header>
 <ion-content class="bgPage-color" no-bounce (ionScroll)="onScroll($event)">
@@ -25,21 +25,21 @@
           </div>
         </div>
         <img src="{{value.thumbnail_image}}" class="setImgWidth" *ngIf="value.pm_type==1" />
-        <img src="{{path}}{{value.image}}" class="setImgWidth" *ngIf="value.pm_type==2" />
+        <img src="{{path}}{{cutPath(value.image)}}" class="setImgWidth" *ngIf="value.pm_type==2" />
       </div>
       <div class="sliderCaptionText">{{value.title}}</div>
     </ion-slide>
   </ion-slides>
 
   <div class="custom-SubHeaderBar" *ngIf="headerimage!=''">
-    <img src="{{path}}{{headerimage}}" class="advrImgHeight" (click)="goToAddSite(headerurl);">
+    <img src="{{path}}{{cutPath(headerimage)}}" class="advrImgHeight" (click)="goToAddSite(headerurl);">
   </div>
 
   <ion-list class="jb-list-margin">
     <ion-item class="bgPage-color" *ngFor="let value of  postMatchData.potmatch | slice:4; let i=index" (click)="youtubepage(value)">
       <ion-thumbnail item-start>
         <img src="{{value.thumbnail_image}}" *ngIf="value.pm_type==1" />
-        <img src="{{path}}{{value.image}}" *ngIf="value.pm_type==2" />
+        <img src="{{path}}{{cutPath(value.image)}}" *ngIf="value.pm_type==2" />
         <div class="inner-custom jb-inner">
           <ion-icon name="appicons-outube" class="jb-icon-inner-red" *ngIf="value.pm_type==1"></ion-icon>
         </div>

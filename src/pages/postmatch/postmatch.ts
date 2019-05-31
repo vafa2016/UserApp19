@@ -13,6 +13,8 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
  * Ionic pages and navigation.
  */
 
+
+
 @IonicPage()
 @Component({
   selector: 'page-postmatch',
@@ -23,7 +25,7 @@ export class PostmatchPage {
   @ViewChild(Content) content: Content;
   comptitionlists: any = [];
   competition_id: any;
-  selectables:any=[];
+  selectables: any = [];
   postMatchData: any = [];
   headerAdv: any;
   footerAdv: any;
@@ -31,7 +33,8 @@ export class PostmatchPage {
   advDisplay: any = 'show';
   headerurl: any;
   // path: any = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247';
+  // path: any = 'http://54.244.98.247';
+  path: any = 'https://s3.us-west-2.amazonaws.com/vafas3';
   scrollTop: any;
   constructor(private zone: NgZone, private inapp: InAppBrowser, public events: Events,public plt:Platform,public ga:GoogleAnalytics, private youtube: YoutubeVideoPlayer, private modalCtrl: ModalController, public ajax: AjaxProvider, public cmnfun: CommomfunctionProvider, public navCtrl: NavController, public navParams: NavParams) {
     this.plt.ready().then(() => {
@@ -72,6 +75,13 @@ export class PostmatchPage {
     }
   }
 
+    // path reset function
+    cutPath(url){
+      if(url)
+      return url.substring(12);
+    }
+
+
   ionViewDidEnter() {
     if (this.postMatchData.length != 0) {
       this.slides.startAutoplay();
@@ -96,7 +106,7 @@ export class PostmatchPage {
           accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
           competition_id: this.competition_id
         }).subscribe((res) => {
-          this.postMatchData = [];
+
           this.postMatchData = res;
           console.log(this.postMatchData);
           if (this.postMatchData.code == 2) {

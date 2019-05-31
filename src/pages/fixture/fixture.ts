@@ -9,7 +9,7 @@ import { ReversePipe } from '../../pipes/reverse/reverse';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { PopoverController } from 'ionic-angular';
 import {YeardropdownPage} from '../yeardropdown/yeardropdown';
-
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 /**
  * Generated class for the FixturePage page.
  *
@@ -59,6 +59,9 @@ export class FixturePage {
 
   YearList: any = [];
   selectd_yr: any = '';
+  safeURL : any;
+  weblink:boolean = false;
+  WeblinkAd: any;
 
   constructor(private zone: NgZone,
     public plt:Platform,
@@ -66,14 +69,14 @@ export class FixturePage {
     public popoverCtrl: PopoverController,
     private inapp: InAppBrowser,
     public ajax: AjaxProvider,
+    private sanitizer: DomSanitizer,
     private modalCtrl: ModalController,
     public events: Events,
     public cmnfun: CommomfunctionProvider,
     public navCtrl: NavController, public navParams: NavParams) {
-
      this.plt.ready().then(() => {
       this.ga.startTrackerWithId('UA-118996199-1')
-   .then(() => {
+      .then(() => {
      console.log('Google analytics is ready now');
      this.ga.trackView('Fixture - Round');
         this.ga.trackEvent('Advertisement', 'Viewed', 'Fixture - Round', 1);
@@ -82,12 +85,6 @@ export class FixturePage {
    .catch(e => console.log('Error starting GoogleAnalytics', e));
        })
 
-  }
-
-   // path reset function
-   cutPath(url){
-    if(url)
-    return url.substring(12);
   }
 
     // year_dropdown
@@ -133,6 +130,13 @@ export class FixturePage {
         }
       })
     }
+
+
+  // path reset function
+  cutPath(url){
+    if(url)
+    return url.substring(12);
+  }
 
 
   onScroll() {
@@ -212,8 +216,11 @@ export class FixturePage {
 
     })
 
-
-
+// weblink add fetching api
+  this.ajax.postMethod('get-weblink-advertisements',{ page_title : 'Fixture(Weblink)'}).subscribe((res : any) =>{
+    this.WeblinkAd = res.footerAdv.ad_image;
+    console.log(this.WeblinkAd);
+  })
   }
   getroundcompetitionfixture(res) {
     console.log(res);
@@ -416,6 +423,7 @@ export class FixturePage {
       // this.cmnfun.showToast('Some thing Unexpected happen please try again');
     })
   }
+
   selectedFixtureType(type) {
     if (type == 'Round') {
       this.roundNo = '0_0';
@@ -490,6 +498,14 @@ export class FixturePage {
     modal.onDidDismiss(data => {
       if(data){
       console.log(data);
+      if(data.seasons[0].manual_score_recording == "2"){
+        this.selectables = data.competitions_name;
+        var htmlvalue = '<iframe src='+data.seasons[0].weblink_fixture+' seamless   sandbox="allow-popups allow-same-origin allow-forms allow-scripts"></iframe>';
+        this.safeURL =this.sanitizer.bypassSecurityTrustHtml(htmlvalue);
+        // this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(data.seasons[0].weblink_fixture);
+        this.weblink = true;
+      }else {
+        this.weblink = false;
       this.YearList = data.seasons;
       this.selectd_yr = this.YearList[0].competition_year;
       this.selectables = data.competitions_name
@@ -520,6 +536,7 @@ export class FixturePage {
           // this.cmnfun.showToast('Some thing Unexpected happen please try again');
         })
       }
+    }
     }
     });
     modal.present();

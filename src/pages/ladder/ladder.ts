@@ -10,6 +10,7 @@ import 'datatables.net';
 import 'datatables.net-fixedcolumns';
 import 'datatables.net-fixedheader';
 import { PopoverController } from 'ionic-angular';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 /**
  * Generated class for the LadderPage page.
@@ -27,6 +28,7 @@ export class LadderPage {
   comptitionlists: any = [];
   competition_id: any;
   selectables: any = [];
+  WeblinkAd:any;
   arraySize: any;
   advertisementHeader: any;
   advertisementFooter: any;
@@ -35,12 +37,14 @@ export class LadderPage {
   ladderDataa: any = [];
   selectd_yr:any;
   YearList:any;
+  weblink : boolean = false;
+  safeURL : any;
   // path: any = 'http://vafalive.com.au';
   path1: any = 'http://54.244.98.247';
   path: any = 'https://s3.us-west-2.amazonaws.com/vafas3';
 
 
-  constructor(private inapp: InAppBrowser,public popoverCtrl: PopoverController,
+  constructor(private sanitizer: DomSanitizer,private inapp: InAppBrowser,public popoverCtrl: PopoverController,
     public plt:Platform,public ga:GoogleAnalytics, public ajax: AjaxProvider, public cmnfun: CommomfunctionProvider, private modalCtrl: ModalController, public events: Events, public navCtrl: NavController, public navParams: NavParams) {
 
     // $.plot($("#placeholder"), [ [[0, 0], [1, 1]] ], { yaxis: { max: 1 } });
@@ -90,6 +94,12 @@ export class LadderPage {
         })
       }
     });
+
+
+        // weblink add fetching api
+  this.ajax.postMethod('get-weblink-advertisements',{ page_title : 'Ladder(Weblink)'}).subscribe((res : any) =>{
+    this.WeblinkAd = res.footerAdv.ad_image;
+  })
 
   }
 // year_dropdown
@@ -173,8 +183,11 @@ presentPopover(myEvent) {
           cell.innerHTML = i + 1;
         });
       }).draw();
+    //   table.row.add( [
+    //     '<img class="full-image" src="assets/imgs/CSM_-_More_Footy_Less_Admin_(white).gif">'
+    // ] ).draw( false );
+      // $('#LadderTable').wrap('<img src="https://s3.us-west-2.amazonaws.com/vafas3/publish/339/1522912681_stats_guru.gif">');
       this.cmnfun.HideLoading();
-
     }, 1500);
 
 
@@ -184,6 +197,14 @@ presentPopover(myEvent) {
     let me = this;
     modal.onDidDismiss(data => {
       if(data){
+        if(data.seasons[0].manual_score_recording == "2"){
+          this.selectables = data.competitions_name;
+          var htmlvalue = '<iframe src='+data.seasons[0].weblink_ladder+' seamless   sandbox="allow-popups allow-same-origin allow-forms allow-scripts"></iframe>';
+          this.safeURL =this.sanitizer.bypassSecurityTrustHtml(htmlvalue);
+          // this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(data.seasons[0].weblink_ladder);
+          this.weblink = true;
+        }else{
+          this.weblink = false;
         this.ladderDataa = [];
         $('#LadderTable').dataTable().fnDestroy();
       console.log(data);
@@ -200,6 +221,7 @@ presentPopover(myEvent) {
       }, error => {
         // this.cmnfun.showToast('Some thing Unexpected happen please try again');
       })
+    }
     }
     });
     modal.present();

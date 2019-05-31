@@ -8,6 +8,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Searchbar } from 'ionic-angular';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { PopoverController } from 'ionic-angular';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 /**
  * Generated class for the GoalkickersPage page.
  *
@@ -30,6 +31,7 @@ export class GoalkickersPage {
   items: any = [];
   // path: any = 'http://vafalive.com.au';
   path1: any = 'http://54.244.98.247';
+  // path1: any = 'http://52.89.30.220';
   path: any = 'https://s3.us-west-2.amazonaws.com/vafas3';
   competition_id: any;
   comptitionlists: any = [];
@@ -42,11 +44,16 @@ export class GoalkickersPage {
   YearList : any = [];
   headerAdv: any = [];
   footerAdv: any = [];
+  WeblinkAd:any;
+
+  weblink: boolean = false;
+  safeURL: any;
 
   selectd_yr: any = '';
   constructor(private zone: NgZone,public plt:Platform,
     public ga:GoogleAnalytics, public keyboard: Keyboard,
      private inapp: InAppBrowser, public ajax: AjaxProvider,
+     private sanitizer: DomSanitizer,
       private modalCtrl: ModalController, public events: Events,
        public cmnfun: CommomfunctionProvider, public navCtrl: NavController,
        public popoverCtrl: PopoverController,  public navParams: NavParams) {
@@ -80,6 +87,13 @@ export class GoalkickersPage {
       }, 150);
     }
   }
+
+    // path reset function
+    cutPath(url){
+      if(url)
+      return url.substring(12);
+    }
+
   identify(index, value) {
         return value.player_id;
   }
@@ -179,6 +193,11 @@ export class GoalkickersPage {
     }, error => {
       // this.cmnfun.showToast('Some thing Unexpected happen please try again');
     })
+
+    // weblink add fetching api
+  this.ajax.postMethod('get-weblink-advertisements',{ page_title : 'Goal Kickers(Weblink)'}).subscribe((res : any) =>{
+    this.WeblinkAd = res.footerAdv.ad_image;
+  })
   }
   onScroll() {
     //   this.content.ionScrollEnd.subscribe((data)=>{
@@ -214,7 +233,15 @@ export class GoalkickersPage {
       let modal = this.modalCtrl.create('CommommodelPage', { items: this.comptitionlists });
       let me = this;
       modal.onDidDismiss(data => {
-        if(data){
+         if(data){
+           if(data.seasons[0].manual_score_recording == "2"){
+            this.selectables = data.competitions_name;
+            var htmlvalue = '<iframe src='+data.seasons[0].weblink_goal_kickers+' seamless   sandbox="allow-popups allow-same-origin allow-forms allow-scripts"></iframe>';
+            this.safeURL =this.sanitizer.bypassSecurityTrustHtml(htmlvalue);
+            // this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(data.seasons[0].weblink_goal_kickers);
+            this.weblink = true;
+           }else {
+            this.weblink = false;
         console.log(data);
         this.competition_id = data.seasons[0].competition_id;
         this.YearList = data.seasons;
@@ -233,6 +260,7 @@ export class GoalkickersPage {
         }, error => {
           // this.cmnfun.showToast('Some thing Unexpected happen please try again');
         })
+      }
       }
       });
       modal.present();
@@ -283,13 +311,5 @@ export class GoalkickersPage {
       });
       modal.present();
     }
-  }
-
-
-
-   // path reset function
-   cutPath(url){
-    if(url)
-    return url.substring(12);
   }
 }

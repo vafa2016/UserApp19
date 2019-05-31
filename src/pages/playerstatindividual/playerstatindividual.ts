@@ -24,7 +24,8 @@ export class PlayerstatindividualPage {
   @ViewChild(Content) content: Content;
 
   // path: any = 'http://vafalive.com.au';
-  // path: any = 'http://54.244.98.247';
+  path1: any = 'http://54.244.98.247';
+  // path1: any = 'http://52.89.30.220';
   path: any = 'https://s3.us-west-2.amazonaws.com/vafas3';
   Coach: boolean = true;
   player_id:any='';

@@ -31,7 +31,8 @@ export class MatchreportPage {
  headerimage:any='';
  headerurl:any;
 //  path:any='http://vafalive.com.au';
- path: any = 'http://54.244.98.247';
+//  path: any = 'http://54.244.98.247';
+ path: any = 'https://s3.us-west-2.amazonaws.com/vafas3';
   constructor(private zone: NgZone,private inapp: InAppBrowser,public plt:Platform,public ga:GoogleAnalytics,public ajax:AjaxProvider, public cmnfun: CommomfunctionProvider,private modalCtrl:ModalController,public events: Events,public navCtrl: NavController, public navParams: NavParams) {
      this.plt.ready().then(() => {
       this.ga.startTrackerWithId('UA-118996199-1')
@@ -88,6 +89,16 @@ export class MatchreportPage {
     {
        this.slides.startAutoplay();
     }
+
+
+
+    // path reset function
+    cutPath(url){
+      if(url)
+      return url.substring(12);
+    }
+
+
   ionViewWillEnter()
   {
     console.log("res");
@@ -141,9 +152,9 @@ export class MatchreportPage {
             let me = this;
             modal.onDidDismiss(data => {
               if(data){
-              this.MatchreportData = [];
-              this.cmnfun.showLoading('Please wait...');
-              this.slides.update();
+               this.MatchreportData = [];
+      this.cmnfun.showLoading('Please wait...');
+      this.slides.update();
               this.selectables=data.competitions_name
               this.competition_id=data.competition_id
               this.ajax.postMethod('get-compition-fixture-match-report',{

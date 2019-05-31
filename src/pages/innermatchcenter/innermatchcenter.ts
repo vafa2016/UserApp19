@@ -66,7 +66,8 @@ export class InnermatchcenterPage {
     ApiResponse: any;
     path: any = 'https://s3.us-west-2.amazonaws.com/vafas3';
     // path: any = 'http://vafalive.com.au';
-    // path: any = 'http://54.244.98.247';
+    path1: any = 'http://54.244.98.247';
+    // path1: any = 'http://52.89.30.220';
     type: any = 'SCORE';
     showcontent: any = 'hide';
     showfooter: any;

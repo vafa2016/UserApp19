@@ -580,7 +580,7 @@
           <tr *ngFor="let obj of homeTeamPlayers1;let key=index" id="jg-row" (click)="clickhunk()">
             <td [attr.data-t]="obj.type" [attr.data-t1]="obj.player_id" style="text-align:left !important;" (click)="clickhunk()" >
               <div class="ladderTableLeftSide" *ngIf="obj.type=='home'" (click)="clickhunk()">
-                <img src="http://54.244.98.247{{baseUrl}}{{homeTeamImages[0].image_value}}" class="laderTeamIcon" (click)="clickhunk()" />
+                <img src="{{path1}}{{baseUrl}}{{homeTeamImages[0].image_value}}" class="laderTeamIcon" (click)="clickhunk()" />
                 <div class="Player_number" (click)="clickhunk()">
                   <span>{{obj.player_number}}</span>
                 </div>
@@ -588,7 +588,7 @@
               </div>
 
               <div class="ladderTableLeftSide" *ngIf="obj.type=='away'" (click)="clickhunk()">
-                <img src="http://54.244.98.247{{baseUrl}}{{awayTeamImages[0].image_value}}" class="laderTeamIcon" (click)="clickhunk()" />
+                <img src="{{path1}}{{baseUrl}}{{awayTeamImages[0].image_value}}" class="laderTeamIcon" (click)="clickhunk()" />
                 <div class="Player_number">
                   <span>{{obj.player_number}}</span>
                 </div>
@@ -761,7 +761,7 @@
           <tr *ngFor="let obj of homeTeamPlayers1;let key=index" id="jg-row" (click)="clickhunk()">
             <td [attr.data-t]="obj.type" [attr.data-t1]="obj.player_id" style="text-align:left !important;" (click)="clickhunk()" >
               <div class="ladderTableLeftSide" *ngIf="obj.type=='home'" (click)="clickhunk()">
-                <img src="http://54.244.98.247{{baseUrl}}{{homeTeamImages[0].image_value}}" class="laderTeamIcon" (click)="clickhunk()" />
+                <img src="{{path1}}{{baseUrl}}{{homeTeamImages[0].image_value}}" class="laderTeamIcon" (click)="clickhunk()" />
                 <div class="Player_number" (click)="clickhunk()">
                   <span>{{obj.player_number}}</span>
                 </div>
@@ -769,7 +769,7 @@
               </div>
 
               <div class="ladderTableLeftSide" *ngIf="obj.type=='away'" (click)="clickhunk()">
-                <img src="http://54.244.98.247{{baseUrl}}{{awayTeamImages[0].image_value}}" class="laderTeamIcon" (click)="clickhunk()" />
+                <img src="{{path1}}{{baseUrl}}{{awayTeamImages[0].image_value}}" class="laderTeamIcon" (click)="clickhunk()" />
                 <div class="Player_number">
                   <span>{{obj.player_number}}</span>
                 </div>

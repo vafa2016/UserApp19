@@ -15,8 +15,10 @@ export class HomePage {
   comptitionlists: any = [];
   headerimage: any = '';
   headerurl: any;
+  index : any =0;
+  path: any = 'https://s3.us-west-2.amazonaws.com/vafas3';
   // path: any = 'http://vafalive.com.au';
-  path: any = 'http://54.244.98.247';
+  // path: any = 'http://54.244.98.247';
   constructor(private inapp: InAppBrowser,public plt:Platform,public ga:GoogleAnalytics, public events: Events, public ajax: AjaxProvider, public cmnfun: CommomfunctionProvider, public navCtrl: NavController) {
 
    this.plt.ready().then(() => {
@@ -45,6 +47,7 @@ export class HomePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Home');
+    // http://54.244.98.247/score/default/get-all-news-v1
     //  this.events.subscribe('competitionlist:changed', res => {
     //    console.log(res);
     //   if(res !== undefined && res !== ""){
@@ -54,8 +57,9 @@ export class HomePage {
     // console.log(this.comptitionlists[0].competition_id);
     // alert('');
     this.cmnfun.showLoading('Please wait...');
-    this.ajax.postMethod('get-all-news', {
-      accessKey: 'QzEnDyPAHT12asHb4On6HH2016'
+    this.ajax.postMethod('get-all-news-v1', {
+      accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+      page : this.index
     }).subscribe((res) => {
       this.cmnfun.HideLoading();
 
@@ -81,5 +85,30 @@ export class HomePage {
     this.ga.trackEvent('Advertisement', 'Viewed', 'News', 1);
     const browser = this.inapp.create(ad_url);
   }
+
+
+    // path reset function
+    cutPath(url){
+      if(url)
+      return url.substring(12);
+    }
+
+
+    doInfinite(infiniteScroll) {
+      this.index = this.index + 10;
+      this.ajax.postMethod('get-all-news-v1', {
+        accessKey: 'QzEnDyPAHT12asHb4On6HH2016',
+        page : this.index
+      }).subscribe((res:any) => {
+        infiniteScroll.complete();
+      for(let data of res.news){
+         this.newsData.news.push(data);
+      }
+      }, error => {
+        infiniteScroll.complete();
+        // this.cmnfun.showToast('Some thing Unexpected happen please try again');
+      })
+
+    }
 
 }

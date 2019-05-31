@@ -19,6 +19,7 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
 export class NewsDetailsPage {
   @ViewChild(Slides) slides: Slides;
   newsdetails: any = {};
+  path1: any = 'https://s3.us-west-2.amazonaws.com/vafas3';
   // path: any = 'http://vafalive.com.au';
   path: any = 'http://54.244.98.247';
   constructor(public navCtrl: NavController, private youtube: YoutubeVideoPlayer,public plt:Platform,public ga:GoogleAnalytics, public navParams: NavParams, private socialSharing: SocialSharing, public cmnfun: CommomfunctionProvider) {
@@ -69,6 +70,12 @@ export class NewsDetailsPage {
     var filename = item.video.substring(item.video.lastIndexOf('/') + 1);
     this.youtube.openVideo(filename);
 
+  }
+
+
+  cutPath(url){
+    if(url)
+    return url.substring(12);
   }
 
 }
