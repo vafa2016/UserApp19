@@ -51,7 +51,7 @@
     "cordova-plugin-x-socialsharing": "5.4.3",
     "cordova-plugin-youtube-video-player": "1.0.6",
     "cordova-sqlite-storage": "1.2.1",
-    "datatables.net": "^1.10.19",
+    "datatables.net": "^1.10.22",
     "datatables.net-fixedcolumns": "^3.2.6",
     "datatables.net-fixedheader-dt": "^3.1.5",
     "ionic-angular": "3.9.2",
